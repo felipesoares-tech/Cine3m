@@ -1,37 +1,38 @@
-
 package br.com.iftm.pv.cinema.sistemacinema.gerenciamento;
 
 import br.com.iftm.pv.cinema.sistemacinema.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.sistemacinema.model.Cliente;
 import java.util.ArrayList;
-import java.util.List;
 
+public class GerenciaCliente implements IGerencia<Cliente> {
 
-public class GerenciaCliente implements IGerencia{
-    private ArrayList<Cliente> clientes; 
+    private ArrayList<Cliente> clientes;
 
-    @Override
-    public Boolean cadastrar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public GerenciaCliente() {
+        this.clientes = new ArrayList<Cliente>();
+    }
+    
+    public Boolean cadastrar(Cliente cliente) {
+        if (!clientes.contains(cliente)) {
+            return clientes.add(cliente);
+        }
+        return false;
     }
 
-    @Override
-    public Boolean remover() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Cliente remover(Cliente cliente) {
+        return clientes.remove(clientes.indexOf(cliente));
     }
 
-    @Override
-    public Boolean atualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Cliente atualizar(Cliente cliente, Cliente clienteAtualizado) {
+        return clientes.set(clientes.indexOf(cliente), clienteAtualizado);
+    }
+    
+    public Cliente consultar(Cliente cliente) {
+        return clientes.get(clientes.indexOf(cliente));
     }
 
-    @Override
-    public Object consultar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Cliente> relatorio(){
+        return this.clientes;
     }
 
-    @Override
-    public List<Object> relatorio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

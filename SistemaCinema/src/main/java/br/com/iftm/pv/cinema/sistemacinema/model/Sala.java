@@ -7,5 +7,13 @@ public class Sala {
     private String nome;
     private Integer capacidade;
     private Poltrona[] poltronas;
+
+    public Sala(String nome, Integer capacidade, Poltrona[] poltronas) {
+        this.nome = nome;
+        this.capacidade = capacidade;
+        this.poltronas = poltronas;
+    }
+    
+    
     
 }

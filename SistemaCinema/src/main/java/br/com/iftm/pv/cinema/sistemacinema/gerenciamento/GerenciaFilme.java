@@ -1,37 +1,36 @@
-
 package br.com.iftm.pv.cinema.sistemacinema.gerenciamento;
+
 import br.com.iftm.pv.cinema.sistemacinema.interfaces.IGerencia;
+
 import br.com.iftm.pv.cinema.sistemacinema.model.Filme;
 import java.util.ArrayList;
 import java.util.List;
 
+public class GerenciaFilme implements IGerencia<Filme> {
 
-public class GerenciaFilme implements IGerencia{
     private ArrayList<Filme> filmes;
 
-    @Override
-    public Boolean cadastrar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Boolean cadastrar(Filme filme) {
+        if (!filmes.contains(filme)) {
+            return filmes.add(filme);
+        }
+        return false;
     }
 
-    @Override
-    public Boolean remover() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Filme remover(Filme filme) {
+        return filmes.remove(filmes.indexOf(filme));
     }
 
-    @Override
-    public Boolean atualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Filme atualizar(Filme filme, Filme filmeAtualizado) {
+        return filmes.set(filmes.indexOf(filme), filmeAtualizado);
     }
 
-    @Override
-    public Object consultar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Filme consultar(Filme filme) {
+        return filmes.get(filmes.indexOf(filme));
     }
 
-    @Override
-    public List<Object> relatorio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Filme> relatorio() {
+        return this.filmes;
     }
-    
+
 }

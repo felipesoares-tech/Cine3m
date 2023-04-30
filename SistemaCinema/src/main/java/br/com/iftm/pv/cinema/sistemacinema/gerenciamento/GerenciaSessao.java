@@ -1,35 +1,33 @@
 package br.com.iftm.pv.cinema.sistemacinema.gerenciamento;
 import br.com.iftm.pv.cinema.sistemacinema.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.sistemacinema.model.Sessao;
+import br.com.iftm.pv.cinema.sistemacinema.model.Sessao;
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class GerenciaSessao implements IGerencia{
+public class GerenciaSessao implements IGerencia<Sessao>{
     private ArrayList<Sessao> sessoes;
 
-    @Override
-    public Boolean cadastrar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      public Boolean cadastrar(Sessao sessao) {
+        if (!sessoes.contains(sessao)) {
+            return sessoes.add(sessao);
+        }
+        return false;
     }
 
-    @Override
-    public Boolean remover() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Sessao remover(Sessao sessao) {
+        return sessoes.remove(sessoes.indexOf(sessao));
     }
 
-    @Override
-    public Boolean atualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Sessao atualizar(Sessao sessao, Sessao sessaoAtualizado) {
+        return sessoes.set(sessoes.indexOf(sessao), sessaoAtualizado);
     }
 
-    @Override
-    public Object consultar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Sessao consultar(Sessao sessao) {
+        return sessoes.get(sessoes.indexOf(sessao));
     }
 
-    @Override
-    public List<Object> relatorio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Sessao> relatorio() {
+        return this.sessoes;
     }
 }

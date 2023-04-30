@@ -4,8 +4,15 @@ import java.time.LocalDateTime;
 
 
 public class Sessao {
+    private Integer id;
     private Filme filme;
     private LocalDateTime dataHora;
     private Sala sala;
+
+    public Sessao(Filme filme, LocalDateTime dataHora, Sala sala) {
+        this.filme = filme;
+        this.dataHora = dataHora;
+        this.sala = sala;
+    }
     
 }

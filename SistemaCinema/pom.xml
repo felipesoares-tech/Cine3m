@@ -11,4 +11,11 @@
         <maven.compiler.target>11</maven.compiler.target>
         <exec.mainClass>br.com.iftm.pv.cinema.sistemacinema.SistemaCinema</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+        </dependency>
+    </dependencies>
 </project>

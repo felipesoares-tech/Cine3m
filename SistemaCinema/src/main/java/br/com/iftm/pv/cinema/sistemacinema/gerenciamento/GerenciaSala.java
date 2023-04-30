@@ -3,35 +3,34 @@ package br.com.iftm.pv.cinema.sistemacinema.gerenciamento;
 
 import br.com.iftm.pv.cinema.sistemacinema.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.sistemacinema.model.Sala;
+import br.com.iftm.pv.cinema.sistemacinema.model.Sala;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class GerenciaSala implements IGerencia{
+public class GerenciaSala implements IGerencia<Sala>{
     private ArrayList<Sala> salas;
 
-    @Override
-    public Boolean cadastrar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      public Boolean cadastrar(Sala sala) {
+        if (!salas.contains(sala)) {
+            return salas.add(sala);
+        }
+        return false;
     }
 
-    @Override
-    public Boolean remover() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Sala remover(Sala sala) {
+        return salas.remove(salas.indexOf(sala));
     }
 
-    @Override
-    public Boolean atualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Sala atualizar(Sala sala, Sala salaAtualizado) {
+        return salas.set(salas.indexOf(sala), salaAtualizado);
     }
 
-    @Override
-    public Object consultar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Sala consultar(Sala sala) {
+        return salas.get(salas.indexOf(sala));
     }
 
-    @Override
-    public List<Object> relatorio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Sala> relatorio() {
+        return this.salas;
     }
 }

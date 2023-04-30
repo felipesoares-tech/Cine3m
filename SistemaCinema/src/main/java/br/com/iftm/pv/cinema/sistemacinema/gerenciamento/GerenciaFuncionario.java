@@ -4,34 +4,31 @@ package br.com.iftm.pv.cinema.sistemacinema.gerenciamento;
 import br.com.iftm.pv.cinema.sistemacinema.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.sistemacinema.model.Funcionario;
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class GerenciaFuncionario implements IGerencia{
+public class GerenciaFuncionario implements IGerencia<Funcionario>{
     private ArrayList<Funcionario> funcionarios;
 
-    @Override
-    public Boolean cadastrar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     public Boolean cadastrar(Funcionario funcionario) {
+        if (!funcionarios.contains(funcionario)) {
+            return funcionarios.add(funcionario);
+        }
+        return false;
     }
 
-    @Override
-    public Boolean remover() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Funcionario remover(Funcionario funcionario) {
+        return funcionarios.remove(funcionarios.indexOf(funcionario));
     }
 
-    @Override
-    public Boolean atualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Funcionario atualizar(Funcionario funcionario, Funcionario funcionarioAtualizado) {
+        return funcionarios.set(funcionarios.indexOf(funcionario), funcionarioAtualizado);
     }
 
-    @Override
-    public Object consultar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Funcionario consultar(Funcionario funcionario) {
+        return funcionarios.get(funcionarios.indexOf(funcionario));
     }
 
-    @Override
-    public List<Object> relatorio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Funcionario> relatorio() {
+        return this.funcionarios;
     }
 }

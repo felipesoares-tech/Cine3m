@@ -3,14 +3,20 @@ package br.com.iftm.pv.cinema.sistemacinema.gerenciamento;
 
 import br.com.iftm.pv.cinema.sistemacinema.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.sistemacinema.model.Sala;
-import br.com.iftm.pv.cinema.sistemacinema.model.Sala;
-import java.util.ArrayList;
 import java.util.List;
+import lombok.Data;
 
 
+@Data
 public class GerenciaSala implements IGerencia<Sala>{
-    private ArrayList<Sala> salas;
+    private List<Sala> salas;
 
+    public GerenciaSala(List<Sala> salas) {
+        this.salas = salas;
+    }
+
+    
+    
       public Boolean cadastrar(Sala sala) {
         if (!salas.contains(sala)) {
             return salas.add(sala);
@@ -30,7 +36,7 @@ public class GerenciaSala implements IGerencia<Sala>{
         return salas.get(salas.indexOf(sala));
     }
 
-    public ArrayList<Sala> relatorio() {
+    public List<Sala> relatorio() {
         return this.salas;
     }
 }

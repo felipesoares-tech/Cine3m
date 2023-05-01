@@ -9,14 +9,14 @@ public class Ingresso {
     private Cliente cliente;
     private TipoIngresso tipoIngresso;
     private Double valor;
+    private Poltrona poltrona;
 
-    public Ingresso(Sessao sessao, Cliente cliente, TipoIngresso tipoIngresso, Double valor) {
+    public Ingresso(Sessao sessao, Cliente cliente, TipoIngresso tipoIngresso, Double valor,Poltrona poltrona) {
         this.sessao = sessao;
         this.cliente = cliente;
         this.tipoIngresso = tipoIngresso;
         this.valor = valor;
+        this.poltrona = poltrona;
     }
-    
-    
     
 }

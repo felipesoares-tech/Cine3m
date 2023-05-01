@@ -1,14 +1,23 @@
 package br.com.iftm.pv.cinema.sistemacinema.gerenciamento;
+
 import br.com.iftm.pv.cinema.sistemacinema.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.sistemacinema.model.Sessao;
-import br.com.iftm.pv.cinema.sistemacinema.model.Sessao;
-import java.util.ArrayList;
+import java.util.List;
+import lombok.Data;
 
 
-public class GerenciaSessao implements IGerencia<Sessao>{
-    private ArrayList<Sessao> sessoes;
+@Data
+public class GerenciaSessao implements IGerencia<Sessao> {
 
-      public Boolean cadastrar(Sessao sessao) {
+    private List<Sessao> sessoes;
+
+    public GerenciaSessao(List<Sessao> sessoes) {
+        this.sessoes = sessoes;
+    }
+
+   
+
+    public Boolean cadastrar(Sessao sessao) {
         if (!sessoes.contains(sessao)) {
             return sessoes.add(sessao);
         }
@@ -27,7 +36,7 @@ public class GerenciaSessao implements IGerencia<Sessao>{
         return sessoes.get(sessoes.indexOf(sessao));
     }
 
-    public ArrayList<Sessao> relatorio() {
+    public List<Sessao> relatorio() {
         return this.sessoes;
     }
 }

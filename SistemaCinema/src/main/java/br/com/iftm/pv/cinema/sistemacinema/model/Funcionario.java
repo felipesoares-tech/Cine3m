@@ -2,10 +2,8 @@
 package br.com.iftm.pv.cinema.sistemacinema.model;
 
 
-public class Funcionario {
+public class Funcionario extends Pessoa{
     private Integer id;
-    private String nome;
-    private String cpf;
     private Conta conta;
 
     public Funcionario(String nome, String cpf, Conta conta) {
@@ -13,7 +11,5 @@ public class Funcionario {
         this.cpf = cpf;
         this.conta = conta;
     }
-    
-    
-    
+   
 }

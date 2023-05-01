@@ -3,11 +3,18 @@ package br.com.iftm.pv.cinema.sistemacinema.gerenciamento;
 
 import br.com.iftm.pv.cinema.sistemacinema.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.sistemacinema.model.Ingresso;
-import java.util.ArrayList;
+import java.util.List;
+import lombok.Data;
 
-
+@Data
 public class GerenciaIngresso implements IGerencia<Ingresso>{
-    private ArrayList<Ingresso> ingressos;
+    private List<Ingresso> ingressos;
+
+    public GerenciaIngresso(List<Ingresso> ingressos) {
+        this.ingressos = ingressos;
+    }
+    
+    
 
       public Boolean cadastrar(Ingresso ingresso) {
             return ingressos.add(ingresso);
@@ -26,7 +33,7 @@ public class GerenciaIngresso implements IGerencia<Ingresso>{
         return ingressos.get(ingressos.indexOf(ingresso));
     }
 
-    public ArrayList<Ingresso> relatorio() {
+    public List<Ingresso> relatorio() {
         return this.ingressos;
     }
     

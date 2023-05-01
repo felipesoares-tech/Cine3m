@@ -3,11 +3,18 @@ package br.com.iftm.pv.cinema.sistemacinema.gerenciamento;
 
 import br.com.iftm.pv.cinema.sistemacinema.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.sistemacinema.model.Funcionario;
-import java.util.ArrayList;
+import java.util.List;
+import lombok.Data;
 
-
+@Data
 public class GerenciaFuncionario implements IGerencia<Funcionario>{
-    private ArrayList<Funcionario> funcionarios;
+    private List<Funcionario> funcionarios;
+
+    public GerenciaFuncionario(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
+    }
+    
+    
 
      public Boolean cadastrar(Funcionario funcionario) {
         if (!funcionarios.contains(funcionario)) {
@@ -28,7 +35,7 @@ public class GerenciaFuncionario implements IGerencia<Funcionario>{
         return funcionarios.get(funcionarios.indexOf(funcionario));
     }
 
-    public ArrayList<Funcionario> relatorio() {
+    public List<Funcionario> relatorio() {
         return this.funcionarios;
     }
 }

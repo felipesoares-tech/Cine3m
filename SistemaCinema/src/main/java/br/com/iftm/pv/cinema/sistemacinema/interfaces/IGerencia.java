@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.sistemacinema.interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public interface IGerencia<E> {
@@ -8,5 +9,5 @@ public interface IGerencia<E> {
     E remover(E obj);
     E atualizar(E obj, E objAt);
     E consultar(E obj);
-    ArrayList<E> relatorio();
+    List<E> relatorio();
 }

@@ -8,7 +8,15 @@ import br.com.iftm.pv.cinema.sistemacinema.gerenciamento.GerenciaIngresso;
 import br.com.iftm.pv.cinema.sistemacinema.gerenciamento.GerenciaSala;
 import br.com.iftm.pv.cinema.sistemacinema.gerenciamento.GerenciaSessao;
 import br.com.iftm.pv.cinema.sistemacinema.model.Cliente;
+import br.com.iftm.pv.cinema.sistemacinema.model.Conta;
 import br.com.iftm.pv.cinema.sistemacinema.model.Filme;
+import br.com.iftm.pv.cinema.sistemacinema.model.Funcionario;
+import br.com.iftm.pv.cinema.sistemacinema.model.Ingresso;
+import br.com.iftm.pv.cinema.sistemacinema.model.Sala;
+import br.com.iftm.pv.cinema.sistemacinema.model.Sessao;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Cine3m {
@@ -31,13 +39,27 @@ public class Cine3m {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        GerenciaCliente gerenciaCliente = new GerenciaCliente();
-        GerenciaFilme gerenciaFilme = new GerenciaFilme();
-        GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario();
-        GerenciaSessao gerenciaSessao = new GerenciaSessao();
-        GerenciaIngresso gerenciaIngresso = new GerenciaIngresso();
-        GerenciaSala gerenciaSala = new GerenciaSala();
+        
+        List<Filme> filmes = new ArrayList<Filme>();
+        List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+        List<Sessao> sessoes = new ArrayList<Sessao>();
+        List<Ingresso> ingressos = new ArrayList<Ingresso>();
+        List<Sala> salas = new ArrayList<Sala>();
+        List<Cliente> clientes = new ArrayList<Cliente>();
+        
+        GerenciaCliente gerenciaCliente = new GerenciaCliente(clientes);
+        GerenciaFilme gerenciaFilme = new GerenciaFilme(filmes);
+        GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(funcionarios);
+        GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes);
+        GerenciaIngresso gerenciaIngresso = new GerenciaIngresso(ingressos);
+        GerenciaSala gerenciaSala = new GerenciaSala(salas);
 
+        gerenciaFilme.cadastrar(new Filme(Genero.TERROR, "filme a", "desc a", "diretor a"));
+        gerenciaCliente.cadastrar(new Cliente("Felipe Soares", "02187354644"));
+        gerenciaSala.cadastrar(new Sala("sala a", 30));
+        gerenciaFuncionario.cadastrar(new Funcionario("Pedro", "15732145567", new Conta("admin", "123")));
+        gerenciaSessao.cadastrar(new Sessao(gerenciaFilme.getFilmes().get(0), LocalDateTime.now(), gerenciaSala.getSalas().get(0)));
+        
         int opcao;
 
         do {
@@ -63,7 +85,6 @@ public class Cine3m {
                                 //gerenciaCliente.cadastrar(new Cliente(nome, cpf));
                             }
                             case 2: {
-
                                 //gerenciaCliente.atualizar(new Cliente(nome, cpf));
                             }
                             case 3: {
@@ -153,7 +174,7 @@ public class Cine3m {
                         operacao = menu(opcao);
                         switch (operacao) {
                             case 1: {
-                                //gerenciaSala.cadastrar();
+                                //gerenciaSala.cadastrar(new Sala(nome, capacidade));
                             }
                             case 2: {
                                 //gerenciaSala.excluir();
@@ -177,7 +198,7 @@ public class Cine3m {
                         operacao = menu(opcao);
                         switch (operacao) {
                             case 1: {
-                                //gerenciaSessao.cadastrar();
+                                //gerenciaSessao.cadastrar(new Sessao(filme, LocalDateTime.now(), sala));
                             }
 
                             case 2: {
@@ -209,7 +230,14 @@ public class Cine3m {
                         operacao = menu(opcao);
                         switch (operacao) {
                             case 1: {
-                                //gerenciaIngresso.cadastrar();
+                                System.out.println("Sessões disponíveis: ");
+                                System.out.println(gerenciaSessao.getSessoes());
+                                System.out.println("Escolha: ");
+                                Integer escolha = sc.nextInt();
+
+                                System.out.println("Poltronas disponíveis: ");
+                                System.out.println(gerenciaSessao.getSessoes().get(escolha).getSala().getPoltronas());
+
                             }
 
                             case 2: {

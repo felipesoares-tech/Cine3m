@@ -2,14 +2,16 @@ package br.com.iftm.pv.cinema.sistemacinema.gerenciamento;
 
 import br.com.iftm.pv.cinema.sistemacinema.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.sistemacinema.model.Cliente;
-import java.util.ArrayList;
+import java.util.List;
+import lombok.Data;
 
+@Data
 public class GerenciaCliente implements IGerencia<Cliente> {
 
-    private ArrayList<Cliente> clientes;
+    private List<Cliente> clientes;
 
-    public GerenciaCliente() {
-        this.clientes = new ArrayList<Cliente>();
+    public GerenciaCliente(List<Cliente> clientes) {
+        this.clientes = clientes;
     }
     
     public Boolean cadastrar(Cliente cliente) {
@@ -31,7 +33,7 @@ public class GerenciaCliente implements IGerencia<Cliente> {
         return clientes.get(clientes.indexOf(cliente));
     }
 
-    public ArrayList<Cliente> relatorio(){
+    public List<Cliente> relatorio(){
         return this.clientes;
     }
 

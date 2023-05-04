@@ -1,7 +1,7 @@
 
-package br.com.iftm.pv.cinema.sistemacinema.model;
+package br.com.iftm.pv.cinema.cine3m.model;
 
-import br.com.iftm.pv.cinema.sistemacinema.enums.Genero;
+import br.com.iftm.pv.cinema.cine3m.enums.Genero;
 import lombok.Data;
 
 @Data

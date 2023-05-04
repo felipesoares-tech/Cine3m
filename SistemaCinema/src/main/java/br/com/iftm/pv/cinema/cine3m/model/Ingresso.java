@@ -1,7 +1,7 @@
 
-package br.com.iftm.pv.cinema.sistemacinema.model;
+package br.com.iftm.pv.cinema.cine3m.model;
 
-import br.com.iftm.pv.cinema.sistemacinema.enums.TipoIngresso;
+import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
 
 public class Ingresso {
     private Integer id;

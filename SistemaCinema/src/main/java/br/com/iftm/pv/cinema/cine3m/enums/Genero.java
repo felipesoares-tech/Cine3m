@@ -1,5 +1,5 @@
 
-package br.com.iftm.pv.cinema.sistemacinema.enums;
+package br.com.iftm.pv.cinema.cine3m.enums;
 
 
 public enum Genero {

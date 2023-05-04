@@ -1,7 +1,7 @@
-package br.com.iftm.pv.cinema.sistemacinema.gerenciamento;
+package br.com.iftm.pv.cinema.cine3m.gerenciamento;
 
-import br.com.iftm.pv.cinema.sistemacinema.interfaces.IGerencia;
-import br.com.iftm.pv.cinema.sistemacinema.model.Filme;
+import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
+import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import java.util.List;
 import lombok.Data;
 

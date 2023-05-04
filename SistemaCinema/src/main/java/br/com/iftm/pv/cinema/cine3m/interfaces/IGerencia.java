@@ -1,4 +1,4 @@
-package br.com.iftm.pv.cinema.sistemacinema.interfaces;
+package br.com.iftm.pv.cinema.cine3m.interfaces;
 
 import java.util.ArrayList;
 import java.util.List;

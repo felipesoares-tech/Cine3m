@@ -1,4 +1,4 @@
-package br.com.iftm.pv.cinema.sistemacinema.model;
+package br.com.iftm.pv.cinema.cine3m.model;
 
 import java.time.LocalDateTime;
 import lombok.Data;

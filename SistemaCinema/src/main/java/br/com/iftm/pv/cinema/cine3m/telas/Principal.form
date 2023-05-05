@@ -24,17 +24,19 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
-              <Component id="btn_sessao" min="-2" pref="139" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+              <Component id="btnSessao" min="-2" pref="139" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btn_ingresso" pref="125" max="32767" attributes="0"/>
+              <Component id="btnIngresso" pref="139" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btn_sala" pref="125" max="32767" attributes="0"/>
+              <Component id="btnFilme" pref="139" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btn_funcionario" min="-2" pref="139" max="-2" attributes="0"/>
+              <Component id="btnSala" min="-2" pref="139" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btn_cliente" min="-2" pref="139" max="-2" attributes="0"/>
-              <EmptySpace pref="156" max="32767" attributes="0"/>
+              <Component id="btnFuncionario" min="-2" pref="139" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnCliente" min="-2" pref="139" max="-2" attributes="0"/>
+              <EmptySpace pref="64" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
@@ -50,11 +52,12 @@
               <Component id="jLabel1" min="-2" pref="75" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btn_sessao" alignment="3" min="-2" pref="125" max="-2" attributes="0"/>
-                  <Component id="btn_ingresso" alignment="3" min="-2" pref="125" max="-2" attributes="0"/>
-                  <Component id="btn_sala" alignment="3" min="-2" pref="125" max="-2" attributes="0"/>
-                  <Component id="btn_funcionario" alignment="3" min="-2" pref="125" max="-2" attributes="0"/>
-                  <Component id="btn_cliente" alignment="3" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="btnSessao" alignment="3" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="btnIngresso" alignment="3" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="btnFilme" alignment="3" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="btnSala" alignment="3" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="btnFuncionario" alignment="3" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="btnCliente" alignment="3" min="-2" pref="125" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="254" max="32767" attributes="0"/>
           </Group>
@@ -70,12 +73,12 @@
         <Property name="text" type="java.lang.String" value="Cine 3M"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_sessao">
+    <Component class="javax.swing.JButton" name="btnSessao">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sess&#xe3;o"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_ingresso">
+    <Component class="javax.swing.JButton" name="btnIngresso">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ingresso"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -89,10 +92,24 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ingressoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngressoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_sala">
+    <Component class="javax.swing.JButton" name="btnFilme">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Filme"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[82, 31]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[82, 31]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[82, 31]"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSala">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sala"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -106,7 +123,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_funcionario">
+    <Component class="javax.swing.JButton" name="btnFuncionario">
       <Properties>
         <Property name="text" type="java.lang.String" value="Funcionario"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -120,18 +137,9 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_cliente">
+    <Component class="javax.swing.JButton" name="btnCliente">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cliente"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[82, 31]"/>
-        </Property>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[82, 31]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[82, 31]"/>
-        </Property>
       </Properties>
     </Component>
   </SubComponents>

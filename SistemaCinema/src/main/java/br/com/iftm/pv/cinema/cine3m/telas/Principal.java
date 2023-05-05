@@ -28,60 +28,65 @@ public class Principal extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btn_sessao = new javax.swing.JButton();
-        btn_ingresso = new javax.swing.JButton();
-        btn_sala = new javax.swing.JButton();
-        btn_funcionario = new javax.swing.JButton();
-        btn_cliente = new javax.swing.JButton();
+        btnSessao = new javax.swing.JButton();
+        btnIngresso = new javax.swing.JButton();
+        btnFilme = new javax.swing.JButton();
+        btnSala = new javax.swing.JButton();
+        btnFuncionario = new javax.swing.JButton();
+        btnCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("P052", 1, 60)); // NOI18N
         jLabel1.setText("Cine 3M");
 
-        btn_sessao.setText("Sessão");
+        btnSessao.setText("Sessão");
 
-        btn_ingresso.setText("Ingresso");
-        btn_ingresso.setMaximumSize(new java.awt.Dimension(82, 31));
-        btn_ingresso.setMinimumSize(new java.awt.Dimension(82, 31));
-        btn_ingresso.setPreferredSize(new java.awt.Dimension(82, 31));
-        btn_ingresso.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresso.setText("Ingresso");
+        btnIngresso.setMaximumSize(new java.awt.Dimension(82, 31));
+        btnIngresso.setMinimumSize(new java.awt.Dimension(82, 31));
+        btnIngresso.setPreferredSize(new java.awt.Dimension(82, 31));
+        btnIngresso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ingressoActionPerformed(evt);
+                btnIngressoActionPerformed(evt);
             }
         });
 
-        btn_sala.setText("Sala");
-        btn_sala.setMaximumSize(new java.awt.Dimension(82, 31));
-        btn_sala.setMinimumSize(new java.awt.Dimension(82, 31));
-        btn_sala.setPreferredSize(new java.awt.Dimension(82, 31));
+        btnFilme.setText("Filme");
+        btnFilme.setMaximumSize(new java.awt.Dimension(82, 31));
+        btnFilme.setMinimumSize(new java.awt.Dimension(82, 31));
+        btnFilme.setPreferredSize(new java.awt.Dimension(82, 31));
 
-        btn_funcionario.setText("Funcionario");
-        btn_funcionario.setMaximumSize(new java.awt.Dimension(82, 31));
-        btn_funcionario.setMinimumSize(new java.awt.Dimension(82, 31));
-        btn_funcionario.setPreferredSize(new java.awt.Dimension(82, 31));
+        btnSala.setText("Sala");
+        btnSala.setMaximumSize(new java.awt.Dimension(82, 31));
+        btnSala.setMinimumSize(new java.awt.Dimension(82, 31));
+        btnSala.setPreferredSize(new java.awt.Dimension(82, 31));
 
-        btn_cliente.setText("Cliente");
-        btn_cliente.setMaximumSize(new java.awt.Dimension(82, 31));
-        btn_cliente.setMinimumSize(new java.awt.Dimension(82, 31));
-        btn_cliente.setPreferredSize(new java.awt.Dimension(82, 31));
+        btnFuncionario.setText("Funcionario");
+        btnFuncionario.setMaximumSize(new java.awt.Dimension(82, 31));
+        btnFuncionario.setMinimumSize(new java.awt.Dimension(82, 31));
+        btnFuncionario.setPreferredSize(new java.awt.Dimension(82, 31));
+
+        btnCliente.setText("Cliente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(btn_sessao, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98)
+                .addComponent(btnSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_ingresso, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                .addComponent(btnIngresso, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_sala, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                .addComponent(btnFilme, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSala, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addComponent(btnFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(99, 99, 99)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -94,20 +99,21 @@ public class Principal extends javax.swing.JDialog {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(131, 131, 131)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_sessao, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_ingresso, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_sala, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSala, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(254, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_ingressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingressoActionPerformed
+    private void btnIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngressoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_ingressoActionPerformed
+    }//GEN-LAST:event_btnIngressoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,11 +158,12 @@ public class Principal extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_cliente;
-    private javax.swing.JButton btn_funcionario;
-    private javax.swing.JButton btn_ingresso;
-    private javax.swing.JButton btn_sala;
-    private javax.swing.JButton btn_sessao;
+    private javax.swing.JButton btnCliente;
+    private javax.swing.JButton btnFilme;
+    private javax.swing.JButton btnFuncionario;
+    private javax.swing.JButton btnIngresso;
+    private javax.swing.JButton btnSala;
+    private javax.swing.JButton btnSessao;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

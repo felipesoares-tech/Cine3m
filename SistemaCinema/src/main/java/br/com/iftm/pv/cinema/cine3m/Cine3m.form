@@ -24,23 +24,16 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="346" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lb_email" min="-2" max="-2" attributes="0"/>
-                          <Component id="lb_senha" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tf_email" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tf_senha" alignment="0" pref="248" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="427" max="-2" attributes="0"/>
-                      <Component id="btn_login" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="402" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="346" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lb_email" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_senha" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="tf_email" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tf_senha" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="btn_cadastrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="21" max="32767" attributes="0"/>
+                      <Component id="btn_login" min="-2" pref="101" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="420" max="32767" attributes="0"/>
@@ -59,10 +52,11 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="tf_senha" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="btn_login" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-              <Component id="btn_cadastrar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="138" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btn_login" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="212" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

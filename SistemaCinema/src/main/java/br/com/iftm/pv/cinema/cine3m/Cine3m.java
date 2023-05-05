@@ -43,21 +43,78 @@ public class Cine3m extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lb_email = new javax.swing.JLabel();
+        lb_senha = new javax.swing.JLabel();
+        tf_email = new javax.swing.JTextField();
+        tf_senha = new javax.swing.JTextField();
+        btn_login = new javax.swing.JButton();
+        btn_cadastrar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lb_email.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lb_email.setText("Usuario");
+
+        lb_senha.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lb_senha.setText("Senha");
+
+        tf_email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_emailActionPerformed(evt);
+            }
+        });
+
+        btn_login.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btn_login.setText("Login");
+
+        btn_cadastrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btn_cadastrar.setText("Cadastre-se");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(346, 346, 346)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lb_email)
+                            .addComponent(lb_senha)
+                            .addComponent(tf_email)
+                            .addComponent(tf_senha, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(427, 427, 427)
+                        .addComponent(btn_login))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(402, 402, 402)
+                        .addComponent(btn_cadastrar)))
+                .addContainerGap(420, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(lb_email)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lb_senha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tf_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(btn_login)
+                .addGap(41, 41, 41)
+                .addComponent(btn_cadastrar)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tf_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_emailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -95,5 +152,11 @@ public class Cine3m extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btn_login;
+    private javax.swing.JLabel lb_email;
+    private javax.swing.JLabel lb_senha;
+    private javax.swing.JTextField tf_email;
+    private javax.swing.JTextField tf_senha;
     // End of variables declaration//GEN-END:variables
 }

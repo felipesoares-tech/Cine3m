@@ -43,32 +43,32 @@ public class Cine3m extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lb_email = new javax.swing.JLabel();
-        lb_senha = new javax.swing.JLabel();
-        tf_email = new javax.swing.JTextField();
-        tf_senha = new javax.swing.JTextField();
-        btn_login = new javax.swing.JButton();
-        btn_cadastrar = new javax.swing.JButton();
+        lbEmail = new javax.swing.JLabel();
+        lbSenha = new javax.swing.JLabel();
+        tfUsuario = new javax.swing.JTextField();
+        tfSenha = new javax.swing.JTextField();
+        btnLogin = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lb_email.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lb_email.setText("Usuario");
+        lbEmail.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbEmail.setText("Usuario");
 
-        lb_senha.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lb_senha.setText("Senha");
+        lbSenha.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbSenha.setText("Senha");
 
-        tf_email.addActionListener(new java.awt.event.ActionListener() {
+        tfUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_emailActionPerformed(evt);
+                tfUsuarioActionPerformed(evt);
             }
         });
 
-        btn_login.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_login.setText("Login");
+        btnLogin.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnLogin.setText("Login");
 
-        btn_cadastrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_cadastrar.setText("Cadastre-se");
+        btnCadastrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCadastrar.setText("Cadastre-se");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,40 +77,40 @@ public class Cine3m extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(346, 346, 346)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lb_email)
-                    .addComponent(lb_senha)
-                    .addComponent(tf_email)
-                    .addComponent(tf_senha)
+                    .addComponent(lbEmail)
+                    .addComponent(lbSenha)
+                    .addComponent(tfUsuario)
+                    .addComponent(tfSenha)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_cadastrar)
+                        .addComponent(btnCadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(420, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(230, 230, 230)
-                .addComponent(lb_email)
+                .addComponent(lbEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lb_senha)
+                .addComponent(lbSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tf_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_login)
-                    .addComponent(btn_cadastrar))
+                    .addComponent(btnLogin)
+                    .addComponent(btnCadastrar))
                 .addContainerGap(212, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tf_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_emailActionPerformed
+    private void tfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_emailActionPerformed
+    }//GEN-LAST:event_tfUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,11 +148,11 @@ public class Cine3m extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_cadastrar;
-    private javax.swing.JButton btn_login;
-    private javax.swing.JLabel lb_email;
-    private javax.swing.JLabel lb_senha;
-    private javax.swing.JTextField tf_email;
-    private javax.swing.JTextField tf_senha;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JLabel lbEmail;
+    private javax.swing.JLabel lbSenha;
+    private javax.swing.JTextField tfSenha;
+    private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

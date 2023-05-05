@@ -26,14 +26,14 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="346" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lb_email" min="-2" max="-2" attributes="0"/>
-                  <Component id="lb_senha" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_email" alignment="0" max="32767" attributes="0"/>
-                  <Component id="tf_senha" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lbEmail" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbSenha" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfUsuario" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tfSenha" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btn_cadastrar" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="21" max="32767" attributes="0"/>
-                      <Component id="btn_login" min="-2" pref="101" max="-2" attributes="0"/>
+                      <Component id="btnLogin" min="-2" pref="101" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="420" max="32767" attributes="0"/>
@@ -44,17 +44,17 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
-              <Component id="lb_email" min="-2" max="-2" attributes="0"/>
+              <Component id="lbEmail" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="tf_email" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="tfUsuario" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="lb_senha" min="-2" max="-2" attributes="0"/>
+              <Component id="lbSenha" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="tf_senha" min="-2" pref="36" max="-2" attributes="0"/>
+              <Component id="tfSenha" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btn_login" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btn_cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="212" max="32767" attributes="0"/>
           </Group>
@@ -62,7 +62,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lb_email">
+    <Component class="javax.swing.JLabel" name="lbEmail">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
@@ -70,7 +70,7 @@
         <Property name="text" type="java.lang.String" value="Usuario"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lb_senha">
+    <Component class="javax.swing.JLabel" name="lbSenha">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
@@ -78,14 +78,14 @@
         <Property name="text" type="java.lang.String" value="Senha"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tf_email">
+    <Component class="javax.swing.JTextField" name="tfUsuario">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_emailActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfUsuarioActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="tf_senha">
+    <Component class="javax.swing.JTextField" name="tfSenha">
     </Component>
-    <Component class="javax.swing.JButton" name="btn_login">
+    <Component class="javax.swing.JButton" name="btnLogin">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
@@ -93,7 +93,7 @@
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_cadastrar">
+    <Component class="javax.swing.JButton" name="btnCadastrar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>

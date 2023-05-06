@@ -10,6 +10,7 @@ public class Sessao {
     private Integer id;
     private Filme filme;
     private LocalDateTime dataHora;
+    private Double valor;
     private Sala sala;
 
     public Sessao(Filme filme, LocalDateTime dataHora, Sala sala) {

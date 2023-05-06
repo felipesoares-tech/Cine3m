@@ -1,22 +1,46 @@
 
 package br.com.iftm.pv.cinema.cine3m.model;
 
-import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
+import java.util.List;
+
 
 public class Ingresso {
-    private Integer id;
     private Sessao sessao;
     private Cliente cliente;
-    private TipoIngresso tipoIngresso;
-    private Double valor;
-    private Poltrona poltrona;
+    private Double valorFinal;
+    private List<ItemIngresso> itensIngresso;
 
-    public Ingresso(Sessao sessao, Cliente cliente, TipoIngresso tipoIngresso, Double valor,Poltrona poltrona) {
+
+    public Sessao getSessao() {
+        return sessao;
+    }
+
+    public void setSessao(Sessao sessao) {
         this.sessao = sessao;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-        this.tipoIngresso = tipoIngresso;
-        this.valor = valor;
-        this.poltrona = poltrona;
+    }
+
+    public Double getValorFinal() {
+        return valorFinal;
+    }
+
+    public void setValorFinal(Double valorFinal) {
+        this.valorFinal = valorFinal;
+    }
+
+    public List<ItemIngresso> getItensIngresso() {
+        return itensIngresso;
+    }
+
+    public void setItensIngresso(List<ItemIngresso> itensIngresso) {
+        this.itensIngresso = itensIngresso;
     }
     
 }

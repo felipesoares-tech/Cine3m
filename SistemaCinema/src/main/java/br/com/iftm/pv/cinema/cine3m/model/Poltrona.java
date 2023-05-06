@@ -16,4 +16,8 @@ public class Poltrona {
         this.id = poltronaId++;
     }
     
+    public Poltrona(Integer id) {
+        this.id = id;
+    }
+    
 }

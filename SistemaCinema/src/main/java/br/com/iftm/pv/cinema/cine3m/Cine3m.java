@@ -1,4 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m;
+
+import br.com.iftm.pv.cinema.cine3m.enums.Genero;
+import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
 import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaFuncionario;
@@ -9,9 +12,13 @@ import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Ingresso;
+import br.com.iftm.pv.cinema.cine3m.model.ItemIngresso;
+import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Cine3m extends javax.swing.JFrame {
@@ -145,6 +152,81 @@ public class Cine3m extends javax.swing.JFrame {
                 new Cine3m().setVisible(true);
             }
         });
+
+        //Sessão (PREVIAMENTE CADASTRADA) 
+        Sessao sessao = new Sessao(new Filme(Genero.TERROR, "Invocação do Mal",
+                "abc", "Felipe"), LocalDateTime.MAX,
+                new Sala("SALA A", 30));
+        
+        /*Imaginamos aqui que o funcionário seleciona a sessão a qual o cliente deseja, quando selecionar
+        Deverá ser aberto uma outra JDialog mostrando os lugares disponíveis para aquela sessão
+        */
+        
+        /*Quando o funcionário selecionar alguma poltrona, deverá abrir um diálago ou alguma opção que dirá
+        se aquele item será meia ou inteira. (este processo se repetirá a cada item selecionado)
+        */
+        
+        /*Agora vamos imaginar que já foram escolhidas todas as poltronas a qual o cliente deseja, após clicar
+        em ok, deverá ser amarzenado os itens selecionados em um list que precisa conter a identificação da poltrona
+        e também se será meia ou inteira.
+        */
+        
+        /*Abaixo vamos considerar que já temos este list e de alguma maneira já recuperamos os itens lá selecionados
+        e trazemos para o código
+        */
+        
+        /*A partir deste ponto será o código executado quando o funcionario clica para realizar a venda..
+        */
+        
+        //Instancia o ingresso (que será nossa "Venda")
+        Ingresso ingresso = new Ingresso();
+
+        //Será instanciado os itens do ingresso, que deverá ser preenchido com os itens os quais estão no List(componente visual)
+        List<ItemIngresso> itensIngressos = new ArrayList<ItemIngresso>();
+        for (int i = 0; i < 5; i++) {
+            int poltronaId = 5; //Aqui vamos imaginar que o valor vai ser recuperado do List visual
+            TipoIngresso tipoIngresso = TipoIngresso.INTEIRA; //Aqui tbm irá recuperar do List visual
+
+            Poltrona poltrona = new Poltrona(poltronaId); //Poltrona a ser buscada 
+            int indexPoltrona = sessao.getSala().getPoltronas().indexOf(poltrona); //Recupera posicao da poltrona
+            Poltrona poltronaRecuperada = sessao.getSala().getPoltronas().get(indexPoltrona);
+            poltronaRecuperada.setLivre(false); //Coloca como ocupada
+
+            Double valorItemIngresso = tipoIngresso == tipoIngresso.INTEIRA ? sessao.getValor() : sessao.getValor() / 2;
+
+            itensIngressos.add(new ItemIngresso(poltronaRecuperada, tipoIngresso,
+                                                valorItemIngresso));
+           
+        }
+
+        Iterator<ItemIngresso> it = itensIngressos.iterator();
+        Double valorFinalIngresso = 0d; //Calcula valor final do ingresso
+        while (it.hasNext()) {
+            ItemIngresso item = it.next();
+            valorFinalIngresso += item.getValor();
+        }
+        ingresso.setSessao(sessao);
+        //ingresso.setCliente(cliente); caso tenha cliente cadastrado poderia ser adicionado aq
+        ingresso.setItensIngresso(itensIngressos); //Adiciona as poltronas selecionadas.
+        ingresso.setValorFinal(valorFinalIngresso); //adiciona valor total do ingresso
+        
+        //o processo acima ocorrerá quando usuário clicar em Realizar venda
+        //Nesse ponto temos o ingresso com todos os itens necessários
+        
+        //Aqui fica interessante tbm agnt abrir um MessageDialog com a venda que acabou de ser realizada
+        /*
+            Caso a venda tenha ocorrido tudo certo de acordo com as nossas regras de negócio irá apresentar
+        uma mensagem de sucesso, caso contrario mensagem de erro.
+        
+        E dentro da mensagem de sucesso, após o usuário clicar em "ok", podemos simular uma "impressão"
+        que seria basicamente criarmos um layout para impressão do ingresso, e imprimi-los na tela separadamente
+        
+        isso é muito simples de fazer pois, como temos os itens anexados a venda, será basicamente um toString
+        do ingresso, e uma função separada dentro do nosso gerenciaIngresso..
+        
+        
+        */
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -10,11 +10,11 @@ package br.com.iftm.pv.cinema.cine3m.view;
  */
 public class IngressoCRUD extends javax.swing.JDialog {
 
-    /**
-     * Creates new form IngressoCRUD
-     */
+    ConsultaPoltronas consultaPoltronas; //Tela para consulta de poltronas
+
     public IngressoCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        consultaPoltronas = new ConsultaPoltronas(null, rootPaneCheckingEnabled);
         initComponents();
     }
 
@@ -37,7 +37,7 @@ public class IngressoCRUD extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jButton2 = new javax.swing.JButton();
+        btnConsultarPoltrona = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -57,8 +57,13 @@ public class IngressoCRUD extends javax.swing.JDialog {
 
         jScrollPane1.setViewportView(jList1);
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton2.setText("Consultar Poltrona");
+        btnConsultarPoltrona.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnConsultarPoltrona.setText("Consultar Poltrona");
+        btnConsultarPoltrona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarPoltronaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Ingresso :");
 
@@ -77,7 +82,7 @@ public class IngressoCRUD extends javax.swing.JDialog {
                             .addComponent(jButton1)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(368, 368, 368)
-                        .addComponent(jButton2)))
+                        .addComponent(btnConsultarPoltrona)))
                 .addGap(109, 109, 109))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
@@ -101,7 +106,7 @@ public class IngressoCRUD extends javax.swing.JDialog {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(36, 36, 36)
-                .addComponent(jButton2)
+                .addComponent(btnConsultarPoltrona)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(71, 71, 71)
@@ -206,6 +211,11 @@ public class IngressoCRUD extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnConsultarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaActionPerformed
+
+        consultaPoltronas.setVisible(true);
+    }//GEN-LAST:event_btnConsultarPoltronaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -249,8 +259,8 @@ public class IngressoCRUD extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultarPoltrona;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

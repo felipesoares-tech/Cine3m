@@ -7,16 +7,14 @@ import lombok.ToString;
 @Data
 @ToString
 public class Poltrona {
-    private static int poltronaId = 0;
-    private Integer id;
+    private String id;
     private boolean livre ;
 
     public Poltrona() {
         this.livre = true;
-        this.id = poltronaId++;
     }
     
-    public Poltrona(Integer id) {
+    public Poltrona(String id) {
         this.id = id;
     }
     

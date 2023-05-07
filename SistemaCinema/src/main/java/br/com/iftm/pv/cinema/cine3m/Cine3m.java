@@ -184,7 +184,7 @@ public class Cine3m extends javax.swing.JFrame {
         //Será instanciado os itens do ingresso, que deverá ser preenchido com os itens os quais estão no List(componente visual)
         List<ItemIngresso> itensIngressos = new ArrayList<ItemIngresso>();
         for (int i = 0; i < 5; i++) {
-            int poltronaId = 5; //Aqui vamos imaginar que o valor vai ser recuperado do List visual
+            String poltronaId = "A1"; //Aqui vamos imaginar que o valor vai ser recuperado do List visual
             TipoIngresso tipoIngresso = TipoIngresso.INTEIRA; //Aqui tbm irá recuperar do List visual
 
             Poltrona poltrona = new Poltrona(poltronaId); //Poltrona a ser buscada 

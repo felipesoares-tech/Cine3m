@@ -3,6 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view;
+import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaFilme;
+import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaIngresso;
+import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.model.Filme;
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
+import br.com.iftm.pv.cinema.cine3m.model.Ingresso;
+import br.com.iftm.pv.cinema.cine3m.model.Sala;
+import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.SessaoCRUD;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -10,11 +25,27 @@ package br.com.iftm.pv.cinema.cine3m.view;
  */
 public class Principal extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Principal
-     */
+    //Telas a serem chamadas
+    SessaoCRUD sessaoCRUD;
+    
+    
+    List<Filme> filmes = new ArrayList<Filme>();
+    List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+    List<Sessao> sessoes = new ArrayList<Sessao>();
+    List<Ingresso> ingressos = new ArrayList<Ingresso>();
+    List<Sala> salas = new ArrayList<Sala>();
+    List<Cliente> clientes = new ArrayList<Cliente>();
+
+    private GerenciaCliente gerenciaCliente = new GerenciaCliente(clientes);
+    private GerenciaFilme gerenciaFilme = new GerenciaFilme(filmes);
+    private GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(funcionarios);
+    private GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes);
+    private GerenciaIngresso gerenciaIngresso = new GerenciaIngresso(ingressos);
+    private GerenciaSala gerenciaSala = new GerenciaSala(salas);
+            
     public Principal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.sessaoCRUD = new SessaoCRUD(null, rootPaneCheckingEnabled, gerenciaFilme, gerenciaSala, gerenciaSessao);
         initComponents();
     }
 
@@ -41,6 +72,11 @@ public class Principal extends javax.swing.JDialog {
         jLabel1.setText("Cine 3M");
 
         btnSessao.setText("Sessão");
+        btnSessao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSessaoActionPerformed(evt);
+            }
+        });
 
         btnIngresso.setText("Ingresso");
         btnIngresso.setMaximumSize(new java.awt.Dimension(82, 31));
@@ -114,6 +150,10 @@ public class Principal extends javax.swing.JDialog {
     private void btnIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngressoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIngressoActionPerformed
+
+    private void btnSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSessaoActionPerformed
+        sessaoCRUD.setVisible(true);
+    }//GEN-LAST:event_btnSessaoActionPerformed
 
     /**
      * @param args the command line arguments

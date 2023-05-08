@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package br.com.iftm.pv.cinema.cine3m.view;
+package br.com.iftm.pv.cinema.cine3m.view.gerenciamento;
+
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.consultas.ConsultaPoltronas;
 
 /**
  *

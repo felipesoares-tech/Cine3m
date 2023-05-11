@@ -9,10 +9,14 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
  * @author Felipe Soares
  */
 public class ConsultaSessao extends javax.swing.JDialog {
-
-    /**
-     * Creates new form ConsultaSessao
-     */
+    private CadastroSessao cadastroSessao;
+    
+   
+    public ConsultaSessao(java.awt.Frame parent, boolean modal,CadastroSessao cadastroSessao) {
+        super(parent, modal);
+        this.cadastroSessao = cadastroSessao;
+        initComponents();
+    }
     public ConsultaSessao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -28,12 +32,17 @@ public class ConsultaSessao extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        cbSessoes1 = new javax.swing.JComboBox<>();
+        cbSessoes3 = new javax.swing.JComboBox<>();
         lbSessao3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        cbSessoes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSessoes3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSessoes3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSessoes3ActionPerformed(evt);
+            }
+        });
 
         lbSessao3.setText("Sessões");
 
@@ -41,7 +50,7 @@ public class ConsultaSessao extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cbSessoes1, 0, 239, Short.MAX_VALUE)
+            .addComponent(cbSessoes3, 0, 239, Short.MAX_VALUE)
             .addComponent(lbSessao3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -50,7 +59,7 @@ public class ConsultaSessao extends javax.swing.JDialog {
                 .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(lbSessao3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbSessoes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbSessoes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
@@ -73,6 +82,10 @@ public class ConsultaSessao extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbSessoes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessoes3ActionPerformed
+        this.cadastroSessao.setVisible(true);
+    }//GEN-LAST:event_cbSessoes3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,7 +130,7 @@ public class ConsultaSessao extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbSessoes1;
+    private javax.swing.JComboBox<String> cbSessoes3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbSessao3;
     // End of variables declaration//GEN-END:variables

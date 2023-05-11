@@ -10,11 +10,15 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
  */
 public class AtualizaSessao extends javax.swing.JDialog {
 
-    /**
-     * Creates new form AtualizaSessao
-     */
+    private CadastroSessao cadastroSessao;
+    
     public AtualizaSessao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+    public AtualizaSessao(java.awt.Frame parent, boolean modal, CadastroSessao cadastroSessao) {
+        super(parent, modal);
+        this.cadastroSessao = cadastroSessao;
         initComponents();
     }
 
@@ -28,27 +32,32 @@ public class AtualizaSessao extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel8 = new javax.swing.JPanel();
-        lbSessao1 = new javax.swing.JLabel();
+        lbSessao2 = new javax.swing.JLabel();
         cbSessoes2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lbSessao1.setText("Sessões");
+        lbSessao2.setText("Sessões");
 
         cbSessoes2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSessoes2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSessoes2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbSessao1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbSessao2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(cbSessoes2, 0, 286, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbSessao1)
+                .addComponent(lbSessao2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbSessoes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -73,6 +82,10 @@ public class AtualizaSessao extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbSessoes2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessoes2ActionPerformed
+        this.cadastroSessao.setVisible(true);
+    }//GEN-LAST:event_cbSessoes2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,6 +132,6 @@ public class AtualizaSessao extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbSessoes2;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JLabel lbSessao1;
+    private javax.swing.JLabel lbSessao2;
     // End of variables declaration//GEN-END:variables
 }

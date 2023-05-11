@@ -46,7 +46,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="lbSessao1" alignment="0" max="32767" attributes="0"/>
+              <Component id="lbSessao2" alignment="0" max="32767" attributes="0"/>
               <Component id="cbSessoes2" alignment="0" pref="286" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
@@ -54,7 +54,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lbSessao1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbSessao2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cbSessoes2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="44" max="32767" attributes="0"/>
@@ -63,7 +63,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lbSessao1">
+        <Component class="javax.swing.JLabel" name="lbSessao2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sess&#xf5;es"/>
           </Properties>
@@ -79,6 +79,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbSessoes2ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

@@ -22,6 +22,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ApagaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.AtualizaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.auxiliares.ImprimeRelatorio;
 
 /**
  *
@@ -35,7 +36,10 @@ public class Principal extends javax.swing.JDialog {
     AtualizaSessao atualizaSessao;
     ApagaSessao apagaSessao;
     RelatorioSessao relatorioSessao;
-    //Telas a serem chamadas (CRUD SALA)
+    //Telas auxiliares (CRUD SESSÃO)
+    ImprimeRelatorio imprimeRelatorio;
+    
+//Telas a serem chamadas (CRUD SALA)
     
     
     
@@ -66,12 +70,13 @@ public class Principal extends javax.swing.JDialog {
             
     public Principal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        //Telas a serem chamadas (CRUD SESSÃO)
+        //Telas a serem chamadas (CRUD SESSÃO) Instanciação
         this.cadastroSessao = new CadastroSessao(null, rootPaneCheckingEnabled, gerenciaFilme, gerenciaSala, gerenciaSessao);
-        this.consultaSessao = new ConsultaSessao(null, rootPaneCheckingEnabled);
-        this.atualizaSessao = new AtualizaSessao(null, rootPaneCheckingEnabled);
+        this.consultaSessao = new ConsultaSessao(null, rootPaneCheckingEnabled,cadastroSessao);
+        this.atualizaSessao = new AtualizaSessao(null, rootPaneCheckingEnabled,cadastroSessao);
         this.apagaSessao = new ApagaSessao(null, rootPaneCheckingEnabled);
-        this.relatorioSessao = new RelatorioSessao(null, rootPaneCheckingEnabled);
+        this.imprimeRelatorio = new ImprimeRelatorio(null, rootPaneCheckingEnabled); //Tela auxiliar p/ relatório
+        this.relatorioSessao = new RelatorioSessao(null, rootPaneCheckingEnabled,imprimeRelatorio);
         //Telas a serem chamadas (CRUD SALA)
     
     

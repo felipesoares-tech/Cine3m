@@ -46,7 +46,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="cbSessoes1" pref="239" max="32767" attributes="0"/>
+              <Component id="cbSessoes3" pref="239" max="32767" attributes="0"/>
               <Component id="lbSessao3" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
@@ -56,14 +56,14 @@
                   <EmptySpace pref="60" max="32767" attributes="0"/>
                   <Component id="lbSessao3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="cbSessoes1" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbSessoes3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="cbSessoes1">
+        <Component class="javax.swing.JComboBox" name="cbSessoes3">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -74,6 +74,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbSessoes3ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

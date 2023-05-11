@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.SessaoCRUD;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import java.util.ArrayList;
 import java.util.List;
 import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaCliente;
@@ -26,7 +26,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 public class Principal extends javax.swing.JDialog {
 
     //Telas a serem chamadas
-    SessaoCRUD sessaoCRUD;
+    CadastroSessao sessaoCRUD;
     
     
     List<Filme> filmes = new ArrayList<Filme>();
@@ -46,7 +46,7 @@ public class Principal extends javax.swing.JDialog {
             
     public Principal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.sessaoCRUD = new SessaoCRUD(null, rootPaneCheckingEnabled, gerenciaFilme, gerenciaSala, gerenciaSessao);
+        this.sessaoCRUD = new CadastroSessao(null, rootPaneCheckingEnabled, gerenciaFilme, gerenciaSala, gerenciaSessao);
         initComponents();
     }
 

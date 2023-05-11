@@ -2,19 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package br.com.iftm.pv.cinema.cine3m.view.gerenciamento;
+package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso;
 
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.consultas.ConsultaPoltronas;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConsultaPoltronas;
 
 /**
  *
  * @author elisabete
  */
-public class IngressoCRUD extends javax.swing.JDialog {
+public class CadastroIngresso extends javax.swing.JDialog {
 
     ConsultaPoltronas consultaPoltronas; //Tela para consulta de poltronas
 
-    public IngressoCRUD(java.awt.Frame parent, boolean modal) {
+    public CadastroIngresso(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         consultaPoltronas = new ConsultaPoltronas(null, rootPaneCheckingEnabled);
         initComponents();
@@ -235,20 +235,21 @@ public class IngressoCRUD extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IngressoCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IngressoCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IngressoCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IngressoCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                IngressoCRUD dialog = new IngressoCRUD(new javax.swing.JFrame(), true);
+                CadastroIngresso dialog = new CadastroIngresso(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

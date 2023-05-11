@@ -60,101 +60,193 @@ public class Principal extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnSessao = new javax.swing.JButton();
-        btnIngresso = new javax.swing.JButton();
-        btnFilme = new javax.swing.JButton();
-        btnSala = new javax.swing.JButton();
-        btnFuncionario = new javax.swing.JButton();
-        btnCliente = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mSessao = new javax.swing.JMenu();
+        imCadastroSessao = new javax.swing.JMenuItem();
+        imConsultaSessao = new javax.swing.JMenuItem();
+        imAtualizaSessao = new javax.swing.JMenuItem();
+        imApagaSessao = new javax.swing.JMenuItem();
+        imRelatorioSessao = new javax.swing.JMenuItem();
+        mIngresso = new javax.swing.JMenu();
+        imCadastroIngresso = new javax.swing.JMenuItem();
+        imConsultaIngresso = new javax.swing.JMenuItem();
+        imAtualizaIngresso = new javax.swing.JMenuItem();
+        imApagaIngresso = new javax.swing.JMenuItem();
+        imRelatorioIngresso = new javax.swing.JMenuItem();
+        mFilme = new javax.swing.JMenu();
+        imCadastroFilme = new javax.swing.JMenuItem();
+        imConsultaFilme = new javax.swing.JMenuItem();
+        imAtualizaFilme = new javax.swing.JMenuItem();
+        imApagaFilme = new javax.swing.JMenuItem();
+        imRelatorioFilme = new javax.swing.JMenuItem();
+        mSala = new javax.swing.JMenu();
+        imCadastroSala = new javax.swing.JMenuItem();
+        imConsultaSala = new javax.swing.JMenuItem();
+        imAtualizaSala = new javax.swing.JMenuItem();
+        imApagaSala = new javax.swing.JMenuItem();
+        imRelatorioSala = new javax.swing.JMenuItem();
+        mFuncionario = new javax.swing.JMenu();
+        imCadastroFuncionario = new javax.swing.JMenuItem();
+        imConsultaFuncionario = new javax.swing.JMenuItem();
+        imAtualizaFuncionario = new javax.swing.JMenuItem();
+        imApagaFuncionario = new javax.swing.JMenuItem();
+        imRelatorioFuncionario = new javax.swing.JMenuItem();
+        mCliente = new javax.swing.JMenu();
+        imCadastraCliente = new javax.swing.JMenuItem();
+        imConsultaCliente = new javax.swing.JMenuItem();
+        imAtualizaCliente = new javax.swing.JMenuItem();
+        imApagaCliente = new javax.swing.JMenuItem();
+        imRelatorioCliente = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("P052", 1, 60)); // NOI18N
         jLabel1.setText("Cine 3M");
 
-        btnSessao.setText("Sessão");
-        btnSessao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSessaoActionPerformed(evt);
-            }
-        });
+        jMenu1.setText("File");
 
-        btnIngresso.setText("Ingresso");
-        btnIngresso.setMaximumSize(new java.awt.Dimension(82, 31));
-        btnIngresso.setMinimumSize(new java.awt.Dimension(82, 31));
-        btnIngresso.setPreferredSize(new java.awt.Dimension(82, 31));
-        btnIngresso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngressoActionPerformed(evt);
-            }
-        });
+        mSessao.setText("Sessão");
 
-        btnFilme.setText("Filme");
-        btnFilme.setMaximumSize(new java.awt.Dimension(82, 31));
-        btnFilme.setMinimumSize(new java.awt.Dimension(82, 31));
-        btnFilme.setPreferredSize(new java.awt.Dimension(82, 31));
+        imCadastroSessao.setText("Cadastrar");
+        mSessao.add(imCadastroSessao);
 
-        btnSala.setText("Sala");
-        btnSala.setMaximumSize(new java.awt.Dimension(82, 31));
-        btnSala.setMinimumSize(new java.awt.Dimension(82, 31));
-        btnSala.setPreferredSize(new java.awt.Dimension(82, 31));
+        imConsultaSessao.setText("Consultar");
+        mSessao.add(imConsultaSessao);
 
-        btnFuncionario.setText("Funcionario");
-        btnFuncionario.setMaximumSize(new java.awt.Dimension(82, 31));
-        btnFuncionario.setMinimumSize(new java.awt.Dimension(82, 31));
-        btnFuncionario.setPreferredSize(new java.awt.Dimension(82, 31));
+        imAtualizaSessao.setText("Atualizar");
+        mSessao.add(imAtualizaSessao);
 
-        btnCliente.setText("Cliente");
+        imApagaSessao.setText("Apagar");
+        mSessao.add(imApagaSessao);
+
+        imRelatorioSessao.setText("Relatório");
+        mSessao.add(imRelatorioSessao);
+
+        jMenu1.add(mSessao);
+
+        mIngresso.setText("Ingresso");
+
+        imCadastroIngresso.setText("Cadastrar");
+        mIngresso.add(imCadastroIngresso);
+
+        imConsultaIngresso.setText("Consultar");
+        mIngresso.add(imConsultaIngresso);
+
+        imAtualizaIngresso.setText("Atualizar");
+        mIngresso.add(imAtualizaIngresso);
+
+        imApagaIngresso.setText("Apagar");
+        mIngresso.add(imApagaIngresso);
+
+        imRelatorioIngresso.setText("Relatório");
+        mIngresso.add(imRelatorioIngresso);
+
+        jMenu1.add(mIngresso);
+
+        mFilme.setText("Filme");
+
+        imCadastroFilme.setText("Cadastrar");
+        mFilme.add(imCadastroFilme);
+
+        imConsultaFilme.setText("Consultar");
+        mFilme.add(imConsultaFilme);
+
+        imAtualizaFilme.setText("Atualizar");
+        mFilme.add(imAtualizaFilme);
+
+        imApagaFilme.setText("Apagar");
+        mFilme.add(imApagaFilme);
+
+        imRelatorioFilme.setText("Relatório");
+        mFilme.add(imRelatorioFilme);
+
+        jMenu1.add(mFilme);
+
+        mSala.setText("Sala");
+
+        imCadastroSala.setText("Cadastrar");
+        mSala.add(imCadastroSala);
+
+        imConsultaSala.setText("Consultar");
+        mSala.add(imConsultaSala);
+
+        imAtualizaSala.setText("Atualizar");
+        mSala.add(imAtualizaSala);
+
+        imApagaSala.setText("Apagar");
+        mSala.add(imApagaSala);
+
+        imRelatorioSala.setText("Relatório");
+        mSala.add(imRelatorioSala);
+
+        jMenu1.add(mSala);
+
+        mFuncionario.setText("Funcionario");
+
+        imCadastroFuncionario.setText("Cadastrar");
+        mFuncionario.add(imCadastroFuncionario);
+
+        imConsultaFuncionario.setText("Consultar");
+        mFuncionario.add(imConsultaFuncionario);
+
+        imAtualizaFuncionario.setText("Atualizar");
+        mFuncionario.add(imAtualizaFuncionario);
+
+        imApagaFuncionario.setText("Apagar");
+        mFuncionario.add(imApagaFuncionario);
+
+        imRelatorioFuncionario.setText("Relatório");
+        mFuncionario.add(imRelatorioFuncionario);
+
+        jMenu1.add(mFuncionario);
+
+        mCliente.setText("Cliente");
+
+        imCadastraCliente.setText("Cadastrar");
+        mCliente.add(imCadastraCliente);
+
+        imConsultaCliente.setText("Consultar");
+        mCliente.add(imConsultaCliente);
+
+        imAtualizaCliente.setText("Atualizar");
+        mCliente.add(imAtualizaCliente);
+
+        imApagaCliente.setText("Apagar");
+        mCliente.add(imApagaCliente);
+
+        imRelatorioCliente.setText("Relatório");
+        mCliente.add(imRelatorioCliente);
+
+        jMenu1.add(mCliente);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(btnSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIngresso, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFilme, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSala, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(345, 345, 345)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(373, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSala, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addGap(236, 236, 236)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(284, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngressoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIngressoActionPerformed
-
-    private void btnSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSessaoActionPerformed
-        sessaoCRUD.setVisible(true);
-    }//GEN-LAST:event_btnSessaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,12 +291,45 @@ public class Principal extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCliente;
-    private javax.swing.JButton btnFilme;
-    private javax.swing.JButton btnFuncionario;
-    private javax.swing.JButton btnIngresso;
-    private javax.swing.JButton btnSala;
-    private javax.swing.JButton btnSessao;
+    private javax.swing.JMenuItem imApagaCliente;
+    private javax.swing.JMenuItem imApagaFilme;
+    private javax.swing.JMenuItem imApagaFuncionario;
+    private javax.swing.JMenuItem imApagaIngresso;
+    private javax.swing.JMenuItem imApagaSala;
+    private javax.swing.JMenuItem imApagaSessao;
+    private javax.swing.JMenuItem imAtualizaCliente;
+    private javax.swing.JMenuItem imAtualizaFilme;
+    private javax.swing.JMenuItem imAtualizaFuncionario;
+    private javax.swing.JMenuItem imAtualizaIngresso;
+    private javax.swing.JMenuItem imAtualizaSala;
+    private javax.swing.JMenuItem imAtualizaSessao;
+    private javax.swing.JMenuItem imCadastraCliente;
+    private javax.swing.JMenuItem imCadastroFilme;
+    private javax.swing.JMenuItem imCadastroFuncionario;
+    private javax.swing.JMenuItem imCadastroIngresso;
+    private javax.swing.JMenuItem imCadastroSala;
+    private javax.swing.JMenuItem imCadastroSessao;
+    private javax.swing.JMenuItem imConsultaCliente;
+    private javax.swing.JMenuItem imConsultaFilme;
+    private javax.swing.JMenuItem imConsultaFuncionario;
+    private javax.swing.JMenuItem imConsultaIngresso;
+    private javax.swing.JMenuItem imConsultaSala;
+    private javax.swing.JMenuItem imConsultaSessao;
+    private javax.swing.JMenuItem imRelatorioCliente;
+    private javax.swing.JMenuItem imRelatorioFilme;
+    private javax.swing.JMenuItem imRelatorioFuncionario;
+    private javax.swing.JMenuItem imRelatorioIngresso;
+    private javax.swing.JMenuItem imRelatorioSala;
+    private javax.swing.JMenuItem imRelatorioSessao;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu mCliente;
+    private javax.swing.JMenu mFilme;
+    private javax.swing.JMenu mFuncionario;
+    private javax.swing.JMenu mIngresso;
+    private javax.swing.JMenu mSala;
+    private javax.swing.JMenu mSessao;
     // End of variables declaration//GEN-END:variables
 }

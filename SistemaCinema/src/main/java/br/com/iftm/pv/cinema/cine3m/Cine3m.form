@@ -23,18 +23,18 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="346" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="lbEmail" min="-2" max="-2" attributes="0"/>
                   <Component id="lbSenha" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="tfUsuario" alignment="0" max="32767" attributes="0"/>
-                  <Component id="tfSenha" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="21" max="32767" attributes="0"/>
                       <Component id="btnLogin" min="-2" pref="101" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="pfSenha" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="420" max="32767" attributes="0"/>
           </Group>
@@ -50,7 +50,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lbSenha" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="tfSenha" min="-2" pref="36" max="-2" attributes="0"/>
+              <Component id="pfSenha" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnLogin" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -83,8 +83,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfUsuarioActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfSenha">
-    </Component>
     <Component class="javax.swing.JButton" name="btnLogin">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -99,6 +97,11 @@
           <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cadastre-se"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="pfSenha">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
       </Properties>
     </Component>
   </SubComponents>

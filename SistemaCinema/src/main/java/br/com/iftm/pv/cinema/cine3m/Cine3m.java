@@ -12,9 +12,9 @@ public class Cine3m extends javax.swing.JFrame {
         lbEmail = new javax.swing.JLabel();
         lbSenha = new javax.swing.JLabel();
         tfUsuario = new javax.swing.JTextField();
-        tfSenha = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
+        pfSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -36,6 +36,8 @@ public class Cine3m extends javax.swing.JFrame {
         btnCadastrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnCadastrar.setText("Cadastre-se");
 
+        pfSenha.setText("jPasswordField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -46,11 +48,11 @@ public class Cine3m extends javax.swing.JFrame {
                     .addComponent(lbEmail)
                     .addComponent(lbSenha)
                     .addComponent(tfUsuario)
-                    .addComponent(tfSenha)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnCadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pfSenha))
                 .addContainerGap(420, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -63,7 +65,7 @@ public class Cine3m extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lbSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
@@ -190,7 +192,7 @@ public class Cine3m extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel lbEmail;
     private javax.swing.JLabel lbSenha;
-    private javax.swing.JTextField tfSenha;
+    private javax.swing.JPasswordField pfSenha;
     private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

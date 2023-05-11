@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.SessaoCRUD;
+import java.util.ArrayList;
+import java.util.List;
 import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaFuncionario;
@@ -15,9 +18,6 @@ import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Ingresso;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.SessaoCRUD;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -42,6 +42,7 @@ public class Principal extends javax.swing.JDialog {
     private GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes);
     private GerenciaIngresso gerenciaIngresso = new GerenciaIngresso(ingressos);
     private GerenciaSala gerenciaSala = new GerenciaSala(salas);
+    
             
     public Principal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

@@ -18,6 +18,10 @@ import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Ingresso;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ApagaSessao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.AtualizaSessao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 
 /**
  *
@@ -25,8 +29,24 @@ import br.com.iftm.pv.cinema.cine3m.model.Sessao;
  */
 public class Principal extends javax.swing.JDialog {
 
-    //Telas a serem chamadas
-    CadastroSessao sessaoCRUD;
+    //Telas a serem chamadas (CRUD SESSÃO)
+    CadastroSessao cadastroSessao;
+    ConsultaSessao consultaSessao;
+    AtualizaSessao atualizaSessao;
+    ApagaSessao apagaSessao;
+    RelatorioSessao relatorioSessao;
+    //Telas a serem chamadas (CRUD SALA)
+    
+    
+    
+    
+    
+    //Telas a serem chamadas (CRUD INGRESSO)
+    
+    
+    
+    
+    //Telas a serem chamadas (CRUD FUNCIONARIO)
     
     
     List<Filme> filmes = new ArrayList<Filme>();
@@ -46,7 +66,24 @@ public class Principal extends javax.swing.JDialog {
             
     public Principal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.sessaoCRUD = new CadastroSessao(null, rootPaneCheckingEnabled, gerenciaFilme, gerenciaSala, gerenciaSessao);
+        //Telas a serem chamadas (CRUD SESSÃO)
+        this.cadastroSessao = new CadastroSessao(null, rootPaneCheckingEnabled, gerenciaFilme, gerenciaSala, gerenciaSessao);
+        this.consultaSessao = new ConsultaSessao(null, rootPaneCheckingEnabled);
+        this.atualizaSessao = new AtualizaSessao(null, rootPaneCheckingEnabled);
+        this.apagaSessao = new ApagaSessao(null, rootPaneCheckingEnabled);
+        this.relatorioSessao = new RelatorioSessao(null, rootPaneCheckingEnabled);
+        //Telas a serem chamadas (CRUD SALA)
+    
+    
+    
+    
+    
+        //Telas a serem chamadas (CRUD INGRESSO)
+    
+    
+    
+    
+        //Telas a serem chamadas (CRUD FUNCIONARIO)
         initComponents();
     }
 
@@ -110,18 +147,43 @@ public class Principal extends javax.swing.JDialog {
         mSessao.setText("Sessão");
 
         imCadastroSessao.setText("Cadastrar");
+        imCadastroSessao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imCadastroSessaoActionPerformed(evt);
+            }
+        });
         mSessao.add(imCadastroSessao);
 
         imConsultaSessao.setText("Consultar");
+        imConsultaSessao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imConsultaSessaoActionPerformed(evt);
+            }
+        });
         mSessao.add(imConsultaSessao);
 
         imAtualizaSessao.setText("Atualizar");
+        imAtualizaSessao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imAtualizaSessaoActionPerformed(evt);
+            }
+        });
         mSessao.add(imAtualizaSessao);
 
         imApagaSessao.setText("Apagar");
+        imApagaSessao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imApagaSessaoActionPerformed(evt);
+            }
+        });
         mSessao.add(imApagaSessao);
 
         imRelatorioSessao.setText("Relatório");
+        imRelatorioSessao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imRelatorioSessaoActionPerformed(evt);
+            }
+        });
         mSessao.add(imRelatorioSessao);
 
         jMenu1.add(mSessao);
@@ -247,6 +309,26 @@ public class Principal extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void imCadastroSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSessaoActionPerformed
+        cadastroSessao.setVisible(true);
+    }//GEN-LAST:event_imCadastroSessaoActionPerformed
+
+    private void imConsultaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaSessaoActionPerformed
+        consultaSessao.setVisible(true);
+    }//GEN-LAST:event_imConsultaSessaoActionPerformed
+
+    private void imAtualizaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaSessaoActionPerformed
+        atualizaSessao.setVisible(true);
+    }//GEN-LAST:event_imAtualizaSessaoActionPerformed
+
+    private void imApagaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaSessaoActionPerformed
+        apagaSessao.setVisible(true);
+    }//GEN-LAST:event_imApagaSessaoActionPerformed
+
+    private void imRelatorioSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioSessaoActionPerformed
+        relatorioSessao.setVisible(true);
+    }//GEN-LAST:event_imRelatorioSessaoActionPerformed
 
     /**
      * @param args the command line arguments

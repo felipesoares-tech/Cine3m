@@ -4,17 +4,23 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.*;
+
 /**
  *
  * @author Felipe Soares
  */
-public class CadastroCliente extends javax.swing.JDialog {
+public class AtualizaCliente extends javax.swing.JDialog {
 
-    /**
-     * Creates new form CadastroCliente
-     */
-    public CadastroCliente(java.awt.Frame parent, boolean modal) {
+    private CadastroSessao cadastroSessao;
+    
+    public AtualizaCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+    public AtualizaCliente(java.awt.Frame parent, boolean modal, CadastroSessao cadastroSessao) {
+        super(parent, modal);
+        this.cadastroSessao = cadastroSessao;
         initComponents();
     }
 
@@ -28,57 +34,35 @@ public class CadastroCliente extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel8 = new javax.swing.JPanel();
-        lbNomeCliente = new javax.swing.JLabel();
-        lbCpfCliente = new javax.swing.JLabel();
-        btnCadastrarCliente = new javax.swing.JButton();
-        tfCpfCliente = new javax.swing.JFormattedTextField();
-        tfNomeCliente = new javax.swing.JTextField();
+        lbCliente2 = new javax.swing.JLabel();
+        cbCliente2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lbNomeCliente.setText("Nome:");
+        lbCliente2.setText("Clientes:");
 
-        lbCpfCliente.setText("Cpf:");
-
-        btnCadastrarCliente.setText("Cadastrar");
-        btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+        cbCliente2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCliente2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarClienteActionPerformed(evt);
+                cbCliente2ActionPerformed(evt);
             }
         });
-
-        try {
-            tfCpfCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lbCpfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tfNomeCliente)
-            .addComponent(tfCpfCliente)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+            .addComponent(lbCliente2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cbCliente2, 0, 286, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbNomeCliente)
+                .addComponent(lbCliente2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbCpfCliente)
-                .addGap(10, 10, 10)
-                .addComponent(tfCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cbCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -86,25 +70,24 @@ public class CadastroCliente extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(126, 126, 126)
+                .addGap(103, 103, 103)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addGap(96, 96, 96))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
-
-
-    }//GEN-LAST:event_btnCadastrarClienteActionPerformed
+    private void cbCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCliente2ActionPerformed
+        this.cadastroSessao.setVisible(true);
+    }//GEN-LAST:event_cbCliente2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,20 +106,23 @@ public class CadastroCliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CadastroCliente dialog = new CadastroCliente(new javax.swing.JFrame(), true);
+                AtualizaCliente dialog = new AtualizaCliente(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -149,11 +135,8 @@ public class CadastroCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrarCliente;
+    private javax.swing.JComboBox<String> cbCliente2;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JLabel lbCpfCliente;
-    private javax.swing.JLabel lbNomeCliente;
-    private javax.swing.JFormattedTextField tfCpfCliente;
-    private javax.swing.JTextField tfNomeCliente;
+    private javax.swing.JLabel lbCliente2;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,22 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
+package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
+
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.*;
 
 /**
  *
  * @author Felipe Soares
  */
-public class ConsultaSessao extends javax.swing.JDialog {
-    private CadastroSessao cadastroSessao;
+public class ConsultaSala extends javax.swing.JDialog {
+    private CadastroSala cadastroSessao;
     
    
-    public ConsultaSessao(java.awt.Frame parent, boolean modal,CadastroSessao cadastroSessao) {
+    public ConsultaSala(java.awt.Frame parent, boolean modal,CadastroSala cadastroSessao) {
         super(parent, modal);
         this.cadastroSessao = cadastroSessao;
         initComponents();
     }
-    public ConsultaSessao(java.awt.Frame parent, boolean modal) {
+    public ConsultaSala(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -32,34 +34,36 @@ public class ConsultaSessao extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        cbSessoes3 = new javax.swing.JComboBox<>();
-        lbSessao3 = new javax.swing.JLabel();
+        cbSalaConsulta = new javax.swing.JComboBox<>();
+        lbSalaConsulta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        cbSessoes3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbSessoes3.addActionListener(new java.awt.event.ActionListener() {
+        cbSalaConsulta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        cbSalaConsulta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSalaConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbSessoes3ActionPerformed(evt);
+                cbSalaConsultaActionPerformed(evt);
             }
         });
 
-        lbSessao3.setText("Sessões");
+        lbSalaConsulta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbSalaConsulta.setText("Sala");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cbSessoes3, 0, 239, Short.MAX_VALUE)
-            .addComponent(lbSessao3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cbSalaConsulta, 0, 239, Short.MAX_VALUE)
+            .addComponent(lbSalaConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(60, Short.MAX_VALUE)
-                .addComponent(lbSessao3)
+                .addComponent(lbSalaConsulta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbSessoes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbSalaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
@@ -77,15 +81,15 @@ public class ConsultaSessao extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(125, 125, 125)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbSessoes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessoes3ActionPerformed
+    private void cbSalaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSalaConsultaActionPerformed
         this.cadastroSessao.setVisible(true);
-    }//GEN-LAST:event_cbSessoes3ActionPerformed
+    }//GEN-LAST:event_cbSalaConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,20 +108,23 @@ public class ConsultaSessao extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaSala.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaSala.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaSala.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaSala.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConsultaSessao dialog = new ConsultaSessao(new javax.swing.JFrame(), true);
+                ConsultaSala dialog = new ConsultaSala(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -130,8 +137,8 @@ public class ConsultaSessao extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbSessoes3;
+    private javax.swing.JComboBox<String> cbSalaConsulta;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbSessao3;
+    private javax.swing.JLabel lbSalaConsulta;
     // End of variables declaration//GEN-END:variables
 }

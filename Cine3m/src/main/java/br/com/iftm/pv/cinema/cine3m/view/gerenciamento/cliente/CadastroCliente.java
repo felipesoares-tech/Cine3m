@@ -4,15 +4,22 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+
 /**
  *
  * @author Felipe Soares
  */
 public class CadastroCliente extends javax.swing.JDialog {
 
-    /**
-     * Creates new form CadastroCliente
-     */
+    private GerenciaCliente gerenciaCliente;
+    
+    public CadastroCliente(java.awt.Frame parent, boolean modal,GerenciaCliente gerenciaCliente) {
+        super(parent, modal);
+        this.gerenciaCliente = gerenciaCliente;
+        initComponents();
+    }
     public CadastroCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -27,21 +34,90 @@ public class CadastroCliente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel8 = new javax.swing.JPanel();
+        lbNomeCliente = new javax.swing.JLabel();
+        lbCpfCliente = new javax.swing.JLabel();
+        btnCadastrarCliente = new javax.swing.JButton();
+        tfCpfCliente = new javax.swing.JFormattedTextField();
+        tfNomeCliente = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        lbNomeCliente.setText("Nome:");
+
+        lbCpfCliente.setText("Cpf:");
+
+        btnCadastrarCliente.setText("Cadastrar");
+        btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarClienteActionPerformed(evt);
+            }
+        });
+
+        try {
+            tfCpfCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbCpfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tfNomeCliente)
+            .addComponent(tfCpfCliente)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(124, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbNomeCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbCpfCliente)
+                .addGap(10, 10, 10)
+                .addComponent(tfCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(87, Short.MAX_VALUE)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
+        String nome = tfNomeCliente.getText().toUpperCase();
+        String cpf = tfCpfCliente.getText().replaceAll("[-.]", "");
+        
+        System.out.println(nome);
+        System.out.println(cpf);
+        
+        gerenciaCliente.cadastrar(new Cliente(nome, cpf));
+        
+    }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +162,11 @@ public class CadastroCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastrarCliente;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel lbCpfCliente;
+    private javax.swing.JLabel lbNomeCliente;
+    private javax.swing.JFormattedTextField tfCpfCliente;
+    private javax.swing.JTextField tfNomeCliente;
     // End of variables declaration//GEN-END:variables
 }

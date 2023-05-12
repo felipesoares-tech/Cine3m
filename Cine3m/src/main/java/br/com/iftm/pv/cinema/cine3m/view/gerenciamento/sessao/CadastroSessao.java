@@ -4,9 +4,9 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
 
-import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaFilme;
-import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaSala;
-import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 

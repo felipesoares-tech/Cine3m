@@ -147,7 +147,7 @@ public class Principal extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("P052", 1, 60)); // NOI18N
         jLabel1.setText("Cine 3M");
 
-        jMenu1.setText("File");
+        jMenu1.setText("Lançamentos");
 
         mSessao.setText("Sessão");
 

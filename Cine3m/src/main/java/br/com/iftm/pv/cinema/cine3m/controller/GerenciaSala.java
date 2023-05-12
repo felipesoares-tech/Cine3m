@@ -1,5 +1,5 @@
 
-package br.com.iftm.pv.cinema.cine3m.gerenciamento;
+package br.com.iftm.pv.cinema.cine3m.controller;
 
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;

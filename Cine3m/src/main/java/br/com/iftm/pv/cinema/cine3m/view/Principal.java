@@ -6,12 +6,12 @@ package br.com.iftm.pv.cinema.cine3m.view;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import java.util.ArrayList;
 import java.util.List;
-import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaCliente;
-import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaFilme;
-import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaFuncionario;
-import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaIngresso;
-import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaSala;
-import br.com.iftm.pv.cinema.cine3m.gerenciamento.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaIngresso;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
@@ -95,7 +95,7 @@ public class Principal extends javax.swing.JDialog {
         this.imprimeRelatorio = new ImprimeRelatorio(null, rootPaneCheckingEnabled); //Tela auxiliar p/ relatório
         this.relatorioSessao = new RelatorioSessao(null, rootPaneCheckingEnabled,imprimeRelatorio);
         //Telas a serem chamadas (CRUD CLIENTES) Instanciação
-         this.cadastroCliente = new CadastroCliente(null,rootPaneCheckingEnabled);
+         this.cadastroCliente = new CadastroCliente(null,rootPaneCheckingEnabled,gerenciaCliente);
          this.consultaCliente = new ConsultaCliente(null, rootPaneCheckingEnabled,cadastroCliente);
          this.atualizaCliente = new AtualizaCliente(null, rootPaneCheckingEnabled,cadastroCliente);
          this.apagaCliente = new ApagaCliente(null, rootPaneCheckingEnabled);

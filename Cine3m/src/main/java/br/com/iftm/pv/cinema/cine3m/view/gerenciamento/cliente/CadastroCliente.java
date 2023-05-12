@@ -4,15 +4,22 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+
 /**
  *
  * @author Felipe Soares
  */
 public class CadastroCliente extends javax.swing.JDialog {
 
-    /**
-     * Creates new form CadastroCliente
-     */
+    private GerenciaCliente gerenciaCliente;
+    
+    public CadastroCliente(java.awt.Frame parent, boolean modal,GerenciaCliente gerenciaCliente) {
+        super(parent, modal);
+        this.gerenciaCliente = gerenciaCliente;
+        initComponents();
+    }
     public CadastroCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -85,25 +92,31 @@ public class CadastroCliente extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(126, 126, 126)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(87, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(43, 43, 43)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
-
-
+        String nome = tfNomeCliente.getText().toUpperCase();
+        String cpf = tfCpfCliente.getText().replaceAll("[-.]", "");
+        
+        System.out.println(nome);
+        System.out.println(cpf);
+        
+        gerenciaCliente.cadastrar(new Cliente(nome, cpf));
+        
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
     /**

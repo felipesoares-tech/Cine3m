@@ -4,19 +4,27 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
+import java.util.List;
+
 /**
  *
  * @author Felipe Soares
  */
 public class ConsultaCliente extends javax.swing.JDialog {
+
     private CadastroCliente cadastroCliente;
-    
-   
-    public ConsultaCliente(java.awt.Frame parent, boolean modal,CadastroCliente cadastroCliente) {
+    private GerenciaCliente gerenciaCliente;
+
+    public ConsultaCliente(java.awt.Frame parent, boolean modal, CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente) {
         super(parent, modal);
         this.cadastroCliente = cadastroCliente;
+        this.gerenciaCliente = gerenciaCliente;
         initComponents();
     }
+
     public ConsultaCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -37,10 +45,18 @@ public class ConsultaCliente extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        cbClientes3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbClientes3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbClientes3ActionPerformed(evt);
+        cbClientes3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbClientes3ItemStateChanged(evt);
+            }
+        });
+        cbClientes3.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                cbClientes3AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -83,9 +99,19 @@ public class ConsultaCliente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbClientes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClientes3ActionPerformed
+    private void cbClientes3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbClientes3AncestorAdded
+        List<Cliente> clientes = gerenciaCliente.relatorio();
+        
+        cbClientes3.removeAll();
+        
+        for (Cliente c : clientes) {
+            cbClientes3.addItem(c);
+        }
+    }//GEN-LAST:event_cbClientes3AncestorAdded
+
+    private void cbClientes3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbClientes3ItemStateChanged
         this.cadastroCliente.setVisible(true);
-    }//GEN-LAST:event_cbClientes3ActionPerformed
+    }//GEN-LAST:event_cbClientes3ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -116,7 +142,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -134,7 +160,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbClientes3;
+    private javax.swing.JComboBox<Pessoa> cbClientes3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbSessao3;
     // End of variables declaration//GEN-END:variables

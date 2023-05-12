@@ -18,6 +18,12 @@ import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Ingresso;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.ApagaCliente;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.AtualizaCliente;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.ConsultaCliente;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.RelatorioCliente;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.auxiliares.ImprimeRelatorioCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ApagaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.AtualizaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
@@ -38,8 +44,19 @@ public class Principal extends javax.swing.JDialog {
     RelatorioSessao relatorioSessao;
     //Telas auxiliares (CRUD SESSÃO)
     ImprimeRelatorio imprimeRelatorio;
+   
+    //Telas a serem chamadas (CRUD CLIENTES)
+    CadastroCliente cadastroCliente;
+    ConsultaCliente consultaCliente;
+    AtualizaCliente atualizaCliente;
+    ApagaCliente apagaCliente;
+    RelatorioCliente relatorioCliente;
+    //Telas auxiliares (CRUD SESSÃO)
+    ImprimeRelatorioCliente imprimeRelatorioCliente;
     
-//Telas a serem chamadas (CRUD SALA)
+    
+    
+   //Telas a serem chamadas (CRUD SALA)
     
     
     
@@ -77,6 +94,17 @@ public class Principal extends javax.swing.JDialog {
         this.apagaSessao = new ApagaSessao(null, rootPaneCheckingEnabled);
         this.imprimeRelatorio = new ImprimeRelatorio(null, rootPaneCheckingEnabled); //Tela auxiliar p/ relatório
         this.relatorioSessao = new RelatorioSessao(null, rootPaneCheckingEnabled,imprimeRelatorio);
+        //Telas a serem chamadas (CRUD CLIENTES) Instanciação
+         this.cadastroCliente = new CadastroCliente(null,rootPaneCheckingEnabled);
+         this.consultaCliente = new ConsultaCliente(null, rootPaneCheckingEnabled,cadastroCliente);
+         this.atualizaCliente = new AtualizaCliente(null, rootPaneCheckingEnabled,cadastroCliente);
+         this.apagaCliente = new ApagaCliente(null, rootPaneCheckingEnabled);
+         this.imprimeRelatorioCliente = new ImprimeRelatorioCliente(null, rootPaneCheckingEnabled);
+         this.relatorioCliente = new RelatorioCliente(null, rootPaneCheckingEnabled,imprimeRelatorioCliente);
+
+
+
+
         //Telas a serem chamadas (CRUD SALA)
     
     
@@ -272,18 +300,43 @@ public class Principal extends javax.swing.JDialog {
         mCliente.setText("Cliente");
 
         imCadastraCliente.setText("Cadastrar");
+        imCadastraCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imCadastraClienteActionPerformed(evt);
+            }
+        });
         mCliente.add(imCadastraCliente);
 
         imConsultaCliente.setText("Consultar");
+        imConsultaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imConsultaClienteActionPerformed(evt);
+            }
+        });
         mCliente.add(imConsultaCliente);
 
         imAtualizaCliente.setText("Atualizar");
+        imAtualizaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imAtualizaClienteActionPerformed(evt);
+            }
+        });
         mCliente.add(imAtualizaCliente);
 
         imApagaCliente.setText("Apagar");
+        imApagaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imApagaClienteActionPerformed(evt);
+            }
+        });
         mCliente.add(imApagaCliente);
 
         imRelatorioCliente.setText("Relatório");
+        imRelatorioCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imRelatorioClienteActionPerformed(evt);
+            }
+        });
         mCliente.add(imRelatorioCliente);
 
         jMenu1.add(mCliente);
@@ -334,6 +387,26 @@ public class Principal extends javax.swing.JDialog {
     private void imRelatorioSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioSessaoActionPerformed
         relatorioSessao.setVisible(true);
     }//GEN-LAST:event_imRelatorioSessaoActionPerformed
+
+    private void imCadastraClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastraClienteActionPerformed
+        cadastroCliente.setVisible(true);
+    }//GEN-LAST:event_imCadastraClienteActionPerformed
+
+    private void imConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaClienteActionPerformed
+        consultaCliente.setVisible(true);
+    }//GEN-LAST:event_imConsultaClienteActionPerformed
+
+    private void imAtualizaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaClienteActionPerformed
+        atualizaCliente.setVisible(true);
+    }//GEN-LAST:event_imAtualizaClienteActionPerformed
+
+    private void imApagaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaClienteActionPerformed
+        apagaCliente.setVisible(true);
+    }//GEN-LAST:event_imApagaClienteActionPerformed
+
+    private void imRelatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioClienteActionPerformed
+        relatorioCliente.setVisible(true);
+    }//GEN-LAST:event_imRelatorioClienteActionPerformed
 
     /**
      * @param args the command line arguments

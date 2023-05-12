@@ -11,12 +11,12 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.*;
  * @author Felipe Soares
  */
 public class ConsultaCliente extends javax.swing.JDialog {
-    private CadastroSessao cadastroSessao;
+    private CadastroCliente cadastroCliente;
     
    
-    public ConsultaCliente(java.awt.Frame parent, boolean modal,CadastroSessao cadastroSessao) {
+    public ConsultaCliente(java.awt.Frame parent, boolean modal,CadastroCliente cadastroCliente) {
         super(parent, modal);
-        this.cadastroSessao = cadastroSessao;
+        this.cadastroCliente = cadastroCliente;
         initComponents();
     }
     public ConsultaCliente(java.awt.Frame parent, boolean modal) {
@@ -86,7 +86,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbClientes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClientes3ActionPerformed
-        this.cadastroSessao.setVisible(true);
+        this.cadastroCliente.setVisible(true);
     }//GEN-LAST:event_cbClientes3ActionPerformed
 
     /**

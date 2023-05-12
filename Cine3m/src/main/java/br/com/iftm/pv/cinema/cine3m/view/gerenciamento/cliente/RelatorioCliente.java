@@ -4,8 +4,8 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.*;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.auxiliares.ImprimeRelatorio;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.auxiliares.ImprimeRelatorioCliente;
+
 
 /**
  *
@@ -13,7 +13,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.auxiliares.Imprime
  */
 public class RelatorioCliente extends javax.swing.JDialog {
     
-    private ImprimeRelatorio imprimeRelatorio;
+    private ImprimeRelatorioCliente imprimeRelatorioCliente;
 
     
     public RelatorioCliente(java.awt.Frame parent, boolean modal) {
@@ -21,11 +21,13 @@ public class RelatorioCliente extends javax.swing.JDialog {
         initComponents();
     }
     
-    public RelatorioCliente(java.awt.Frame parent, boolean modal, ImprimeRelatorio imprimeRelatorio) {
+    public RelatorioCliente(java.awt.Frame parent, boolean modal, ImprimeRelatorioCliente imprimeRelatorioCliente) {
         super(parent, modal);
-        this.imprimeRelatorio = imprimeRelatorio;
+        this.imprimeRelatorioCliente = imprimeRelatorioCliente;
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +91,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbClientes4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClientes4ActionPerformed
-        this.imprimeRelatorio.setVisible(true);
+        this.imprimeRelatorioCliente.setVisible(true);
     }//GEN-LAST:event_cbClientes4ActionPerformed
 
     /**

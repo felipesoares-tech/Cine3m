@@ -5,6 +5,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
 import javax.swing.JOptionPane;
@@ -14,14 +15,14 @@ import javax.swing.JOptionPane;
  * @author Felipe Soares
  */
 public class ApagaCliente extends javax.swing.JDialog {
-
+    
     private GerenciaCliente gerenciaCliente;
-
+    
     public ApagaCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-
+    
     public ApagaCliente(java.awt.Frame parent, boolean modal, GerenciaCliente gerenciaCliente) {
         super(parent, modal);
         this.gerenciaCliente = gerenciaCliente;
@@ -93,28 +94,36 @@ public class ApagaCliente extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(127, 127, 127)
+                .addContainerGap()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addContainerGap()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbClienteAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbClienteAncestorAdded
-        ComboBoxUtils.carregarComboBox(cbCliente,gerenciaCliente.relatorio());
+        ComboBoxUtils.carregarComboBox(cbCliente, gerenciaCliente.relatorio());
     }//GEN-LAST:event_cbClienteAncestorAdded
 
     private void btnConfirmarApagaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaClienteActionPerformed
-        JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar o cliente "+cbCliente.getSelectedItem().toString(), 
+        Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar o cliente " + cbCliente.getSelectedItem().toString(),
                 "Apagar Cliente", WIDTH, JOptionPane.WARNING_MESSAGE);
+        
+        Cliente clienteSelecionado = (Cliente) cbCliente.getSelectedItem();
+        
+        if (resp.equals(JOptionPane.OK_OPTION)) {
+            gerenciaCliente.remover(clienteSelecionado);
+        }
+        
+        cbClienteAncestorAdded(null);
     }//GEN-LAST:event_btnConfirmarApagaClienteActionPerformed
 
     /**

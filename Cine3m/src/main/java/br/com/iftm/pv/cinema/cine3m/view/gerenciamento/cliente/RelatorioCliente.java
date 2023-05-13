@@ -77,7 +77,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
 
     private void tbRelClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbRelClientesAncestorAdded
         
-        modelo.adicionar(gerenciaCliente.relatorio());
+        modelo.setData(gerenciaCliente.relatorio());
 
         //tbRelClientes.setModel(new SimpleTable(gerenciaCliente.relatorio()));
         //tbRelClientes.setColumnModel(columnModel);

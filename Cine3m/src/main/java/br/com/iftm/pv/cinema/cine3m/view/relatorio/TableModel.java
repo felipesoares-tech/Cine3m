@@ -77,13 +77,8 @@ public class TableModel<T> extends AbstractTableModel {
         return columnNames.get(column);
     }
 
-    public void adicionar(List<T> objs) {
-        data.addAll(objs);
+    public void setData(List<T> objs) {
+        this.data = objs;
         fireTableRowsInserted(data.size() - objs.size(), data.size() - 1);
-    }
-
-    public void remover(int rowIndex) {
-        data.remove(rowIndex);
-        fireTableRowsDeleted(rowIndex, rowIndex);
     }
 }

@@ -7,7 +7,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.relatorio.TableModelCliente;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.relatorio.TableModel;
 
 /**
  *
@@ -16,7 +16,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.relatorio.TableModelClien
 public class RelatorioCliente extends javax.swing.JDialog {
 
     private GerenciaCliente gerenciaCliente;
-    private TableModelCliente modelo;
+    private TableModel modelo;
 
     public RelatorioCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -26,7 +26,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
     public RelatorioCliente(java.awt.Frame parent, boolean modal, GerenciaCliente gerenciaCliente) {
         super(parent, modal);
         this.gerenciaCliente = gerenciaCliente;
-        this.modelo = new TableModelCliente(Cliente.class);
+        this.modelo = new TableModel(Cliente.class);
         initComponents();
     }
 
@@ -77,7 +77,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbRelClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbRelClientesAncestorAdded
-
+        
         modelo.adicionar(gerenciaCliente.relatorio());
 
         //tbRelClientes.setModel(new SimpleTable(gerenciaCliente.relatorio()));

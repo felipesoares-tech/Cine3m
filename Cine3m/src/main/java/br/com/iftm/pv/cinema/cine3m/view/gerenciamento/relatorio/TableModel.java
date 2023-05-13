@@ -13,14 +13,14 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Felipe Soares
  */
-public class TableModelCliente<T> extends AbstractTableModel {
+public class TableModel<T> extends AbstractTableModel {
 
     private List<T> data = new ArrayList<>();
     private List<String> columnNames = new ArrayList<>();
     private List<Field> fields = new ArrayList<>();
     private Class<?> classe;
 
-    public TableModelCliente(Class<?> classe) {
+    public TableModel(Class<?> classe) {
         this.classe = classe;
         buscaCampos(); //Irá retornar os campos que irão aparecer na table
         buscaNomeColunas(); //Serve para renomear os campos que irão aparecer na tabela

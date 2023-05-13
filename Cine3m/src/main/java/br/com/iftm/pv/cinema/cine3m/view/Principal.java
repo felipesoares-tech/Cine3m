@@ -168,8 +168,10 @@ public class Principal extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("P052", 1, 60)); // NOI18N
         jLabel1.setText("Cine 3M");
 
+        jMenu1.setMnemonic('L');
         jMenu1.setText("Lançamentos");
 
+        mSessao.setMnemonic('S');
         mSessao.setText("Sessão");
 
         imCadastroSessao.setText("Cadastrar");
@@ -214,6 +216,7 @@ public class Principal extends javax.swing.JDialog {
 
         jMenu1.add(mSessao);
 
+        mIngresso.setMnemonic('I');
         mIngresso.setText("Ingresso");
 
         imCadastroIngresso.setText("Cadastrar");
@@ -233,6 +236,7 @@ public class Principal extends javax.swing.JDialog {
 
         jMenu1.add(mIngresso);
 
+        mFilme.setMnemonic('F');
         mFilme.setText("Filme");
 
         imCadastroFilme.setText("Cadastrar");
@@ -252,7 +256,9 @@ public class Principal extends javax.swing.JDialog {
 
         jMenu1.add(mFilme);
 
+        mSala.setMnemonic('a');
         mSala.setText("Sala");
+        mSala.setToolTipText("");
 
         imCadastroSala.setText("Cadastrar");
         imCadastroSala.addActionListener(new java.awt.event.ActionListener() {
@@ -296,6 +302,7 @@ public class Principal extends javax.swing.JDialog {
 
         jMenu1.add(mSala);
 
+        mFuncionario.setMnemonic('F');
         mFuncionario.setText("Funcionario");
 
         imCadastroFuncionario.setText("Cadastrar");
@@ -315,6 +322,7 @@ public class Principal extends javax.swing.JDialog {
 
         jMenu1.add(mFuncionario);
 
+        mCliente.setMnemonic('C');
         mCliente.setText("Cliente");
 
         imCadastraCliente.setText("Cadastrar");

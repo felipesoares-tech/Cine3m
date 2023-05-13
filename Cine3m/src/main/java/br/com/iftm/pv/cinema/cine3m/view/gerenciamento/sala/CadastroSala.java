@@ -9,10 +9,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Sala;
 
 
 
-/**
- *
- * @author felipe
- */
+
 public class CadastroSala extends javax.swing.JDialog {
 
     private GerenciaSala gerenciaSala;  

@@ -4,6 +4,8 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+
 /**
  *
  * @author Felipe Soares

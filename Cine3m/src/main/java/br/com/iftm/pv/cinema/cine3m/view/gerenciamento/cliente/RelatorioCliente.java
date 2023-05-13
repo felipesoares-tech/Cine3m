@@ -44,6 +44,8 @@ public class RelatorioCliente extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(java.awt.Color.darkGray);
+
         cbClientes4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbClientes4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,6 +53,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
             }
         });
 
+        lbCliente4.setForeground(new java.awt.Color(255, 255, 255));
         lbCliente4.setText("Clientes:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

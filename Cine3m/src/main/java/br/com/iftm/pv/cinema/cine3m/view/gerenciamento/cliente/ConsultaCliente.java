@@ -7,7 +7,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
-import java.awt.Color;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
 import java.util.List;
 
 /**
@@ -18,7 +18,6 @@ public class ConsultaCliente extends javax.swing.JDialog {
 
     private CadastroCliente cadastroCliente;
     private GerenciaCliente gerenciaCliente;
-    private boolean comboInicializado = false;
 
     public ConsultaCliente(java.awt.Frame parent, boolean modal, CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente) {
         super(parent, modal);
@@ -29,7 +28,6 @@ public class ConsultaCliente extends javax.swing.JDialog {
 
     public ConsultaCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.getContentPane().setBackground(Color.DARK_GRAY);
         initComponents();
     }
 
@@ -48,6 +46,9 @@ public class ConsultaCliente extends javax.swing.JDialog {
         btnConfirmarConsulta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 0, 153));
+
+        jPanel1.setBackground(java.awt.Color.darkGray);
 
         cbClientes3.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -59,6 +60,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
             }
         });
 
+        lbSessao3.setForeground(new java.awt.Color(255, 255, 255));
         lbSessao3.setText("Clientes:");
 
         btnConfirmarConsulta.setText("Confirmar");
@@ -97,30 +99,24 @@ public class ConsultaCliente extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(186, 186, 186)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbClientes3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbClientes3AncestorAdded
-        List<Cliente> clientes = gerenciaCliente.relatorio();
 
-        cbClientes3.removeAllItems();
-
-        for (Cliente c : clientes) {
-            cbClientes3.addItem(c);
-        }
-        comboInicializado = false;
+        ComboBoxUtils.carregarComboBox(cbClientes3, gerenciaCliente.relatorio());
 
     }//GEN-LAST:event_cbClientes3AncestorAdded
 

@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view;
+
+import br.com.iftm.pv.cinema.cine3m.config.ParametrosSistema;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.AtualizaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.auxiliares.ImprimeRelatorio;
+import java.awt.Color;
 
 /**
  *
@@ -44,7 +47,7 @@ public class Principal extends javax.swing.JDialog {
     RelatorioSessao relatorioSessao;
     //Telas auxiliares (CRUD SESSÃO)
     ImprimeRelatorio imprimeRelatorio;
-   
+
     //Telas a serem chamadas (CRUD CLIENTES)
     CadastroCliente cadastroCliente;
     ConsultaCliente consultaCliente;
@@ -53,23 +56,10 @@ public class Principal extends javax.swing.JDialog {
     RelatorioCliente relatorioCliente;
     //Telas auxiliares (CRUD SESSÃO)
     ImprimeRelatorioCliente imprimeRelatorioCliente;
-    
-    
-    
-   //Telas a serem chamadas (CRUD SALA)
-    
-    
-    
-    
-    
+
+    //Telas a serem chamadas (CRUD SALA)
     //Telas a serem chamadas (CRUD INGRESSO)
-    
-    
-    
-    
     //Telas a serem chamadas (CRUD FUNCIONARIO)
-    
-    
     List<Filme> filmes = new ArrayList<Filme>();
     List<Funcionario> funcionarios = new ArrayList<Funcionario>();
     List<Sessao> sessoes = new ArrayList<Sessao>();
@@ -83,40 +73,35 @@ public class Principal extends javax.swing.JDialog {
     private GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes);
     private GerenciaIngresso gerenciaIngresso = new GerenciaIngresso(ingressos);
     private GerenciaSala gerenciaSala = new GerenciaSala(salas);
-    
-            
+
     public Principal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         //Telas a serem chamadas (CRUD SESSÃO) Instanciação
         this.cadastroSessao = new CadastroSessao(null, rootPaneCheckingEnabled, gerenciaFilme, gerenciaSala, gerenciaSessao);
-        this.consultaSessao = new ConsultaSessao(null, rootPaneCheckingEnabled,cadastroSessao);
-        this.atualizaSessao = new AtualizaSessao(null, rootPaneCheckingEnabled,cadastroSessao);
+        this.consultaSessao = new ConsultaSessao(null, rootPaneCheckingEnabled, cadastroSessao);
+        this.atualizaSessao = new AtualizaSessao(null, rootPaneCheckingEnabled, cadastroSessao);
         this.apagaSessao = new ApagaSessao(null, rootPaneCheckingEnabled);
         this.imprimeRelatorio = new ImprimeRelatorio(null, rootPaneCheckingEnabled); //Tela auxiliar p/ relatório
-        this.relatorioSessao = new RelatorioSessao(null, rootPaneCheckingEnabled,imprimeRelatorio);
+        this.relatorioSessao = new RelatorioSessao(null, rootPaneCheckingEnabled, imprimeRelatorio);
         //Telas a serem chamadas (CRUD CLIENTES) Instanciação
-         this.cadastroCliente = new CadastroCliente(null,rootPaneCheckingEnabled,gerenciaCliente);
-         this.consultaCliente = new ConsultaCliente(null, rootPaneCheckingEnabled,cadastroCliente,gerenciaCliente);
-         this.atualizaCliente = new AtualizaCliente(null, rootPaneCheckingEnabled,cadastroCliente);
-         this.apagaCliente = new ApagaCliente(null, rootPaneCheckingEnabled);
-         this.imprimeRelatorioCliente = new ImprimeRelatorioCliente(null, rootPaneCheckingEnabled);
-         this.relatorioCliente = new RelatorioCliente(null, rootPaneCheckingEnabled,imprimeRelatorioCliente);
-
-
-
+        this.cadastroCliente = new CadastroCliente(null, rootPaneCheckingEnabled, gerenciaCliente);
+        this.consultaCliente = new ConsultaCliente(null, rootPaneCheckingEnabled, cadastroCliente, gerenciaCliente);
+        this.atualizaCliente = new AtualizaCliente(null, rootPaneCheckingEnabled, cadastroCliente, gerenciaCliente);
+        this.apagaCliente = new ApagaCliente(null, rootPaneCheckingEnabled);
+        this.imprimeRelatorioCliente = new ImprimeRelatorioCliente(null, rootPaneCheckingEnabled);
+        this.relatorioCliente = new RelatorioCliente(null, rootPaneCheckingEnabled, imprimeRelatorioCliente);
 
         //Telas a serem chamadas (CRUD SALA)
-    
-    
-    
-    
-    
         //Telas a serem chamadas (CRUD INGRESSO)
-    
-    
-    
-    
         //Telas a serem chamadas (CRUD FUNCIONARIO)
+        //Configurações para as telas;
+        Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
+        this.cadastroCliente.getContentPane().setBackground(corFundoPadrao);
+        this.consultaCliente.getContentPane().setBackground(corFundoPadrao);
+        this.atualizaCliente.getContentPane().setBackground(corFundoPadrao);
+        this.apagaCliente.getContentPane().setBackground(corFundoPadrao);
+        this.relatorioCliente.getContentPane().setBackground(corFundoPadrao);
+        this.imprimeRelatorioCliente.getContentPane().setBackground(corFundoPadrao);
         initComponents();
     }
 

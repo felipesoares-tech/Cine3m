@@ -18,6 +18,7 @@ public class Sala {
         this.nome = nome;
         this.capacidade = capacidade;
         this.poltronas = new ArrayList<Poltrona>(capacidade);
+        
     }
     
     public Sala(String nome) {

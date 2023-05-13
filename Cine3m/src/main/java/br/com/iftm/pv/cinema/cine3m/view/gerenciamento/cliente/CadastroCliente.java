@@ -135,7 +135,7 @@ public class CadastroCliente extends javax.swing.JDialog {
         
         System.out.println(nome);
         System.out.println(cpf);
-        
+         
         gerenciaCliente.cadastrar(new Cliente(nome, cpf));
         tfNomeCliente.setText("");
         tfCpfCliente.setText("");

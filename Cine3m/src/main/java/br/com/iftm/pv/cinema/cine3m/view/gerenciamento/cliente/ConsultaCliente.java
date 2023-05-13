@@ -115,7 +115,6 @@ public class ConsultaCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbClientes3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbClientes3AncestorAdded
-
         ComboBoxUtils.carregarComboBox(cbClientes3, gerenciaCliente.relatorio());
 
     }//GEN-LAST:event_cbClientes3AncestorAdded
@@ -124,12 +123,12 @@ public class ConsultaCliente extends javax.swing.JDialog {
         Cliente clienteSelecionado = (Cliente) this.cbClientes3.getSelectedItem();
         this.cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
         this.cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
-        
+
         this.cadastroCliente.getBtnCadastrarCliente().setVisible(false);
         this.cadastroCliente.getTfNomeCliente().setEditable(false);
         this.cadastroCliente.getTfCpfCliente().setEditable(false);
         this.cadastroCliente.setVisible(true);
-         
+
     }//GEN-LAST:event_btnConfirmarConsultaActionPerformed
 
     /**

@@ -105,11 +105,21 @@ public class Principal extends javax.swing.JDialog {
         //Telas a serem chamadas (CRUD FUNCIONARIO)
         //Configurações para as telas;
         Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
+        this.getContentPane().setBackground(corFundoPadrao);
+        
+        //CORES PARA TELAS CLIENTE
         this.cadastroCliente.getContentPane().setBackground(corFundoPadrao);
         this.consultaCliente.getContentPane().setBackground(corFundoPadrao);
         this.atualizaCliente.getContentPane().setBackground(corFundoPadrao);
         this.apagaCliente.getContentPane().setBackground(corFundoPadrao);
         this.relatorioCliente.getContentPane().setBackground(corFundoPadrao);
+        
+        //CORES PARA TELAS SESSAO
+        this.cadastroSessao.getContentPane().setBackground(corFundoPadrao);
+        this.consultaSessao.getContentPane().setBackground(corFundoPadrao);
+        this.atualizaSessao.getContentPane().setBackground(corFundoPadrao);
+        this.apagaSessao.getContentPane().setBackground(corFundoPadrao);
+        this.relatorioSessao.getContentPane().setBackground(corFundoPadrao);
         initComponents();
     }
 
@@ -166,6 +176,7 @@ public class Principal extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("P052", 1, 60)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cine 3M");
 
         jMenu1.setMnemonic('L');

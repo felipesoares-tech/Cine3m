@@ -37,6 +37,9 @@ public class AtualizaSessao extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel8.setBackground(java.awt.Color.darkGray);
+
+        lbSessao2.setForeground(new java.awt.Color(255, 255, 255));
         lbSessao2.setText("Sessões");
 
         cbSessoes2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));

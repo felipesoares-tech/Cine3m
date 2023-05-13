@@ -60,16 +60,22 @@ public class CadastroSessao extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel8.setBackground(java.awt.Color.darkGray);
+
+        lbFilmes.setForeground(new java.awt.Color(255, 255, 255));
         lbFilmes.setText("FIlmes");
 
         cbFilmesSessao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cbSalasSessao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        lbSalas.setForeground(new java.awt.Color(255, 255, 255));
         lbSalas.setText("Salas");
 
+        lbValor.setForeground(new java.awt.Color(255, 255, 255));
         lbValor.setText("Valor");
 
+        lbDataHora.setForeground(new java.awt.Color(255, 255, 255));
         lbDataHora.setText("Data:");
 
         btnCadastrarSessao.setText("Cadastrar");
@@ -79,6 +85,7 @@ public class CadastroSessao extends javax.swing.JDialog {
             }
         });
 
+        lbDataHora1.setForeground(new java.awt.Color(255, 255, 255));
         lbDataHora1.setText("Hora");
 
         try {

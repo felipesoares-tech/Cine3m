@@ -87,9 +87,9 @@ public class Principal extends javax.swing.JDialog {
         this.cadastroCliente = new CadastroCliente(null, rootPaneCheckingEnabled, gerenciaCliente);
         this.consultaCliente = new ConsultaCliente(null, rootPaneCheckingEnabled, cadastroCliente, gerenciaCliente);
         this.atualizaCliente = new AtualizaCliente(null, rootPaneCheckingEnabled, cadastroCliente, gerenciaCliente);
-        this.apagaCliente = new ApagaCliente(null, rootPaneCheckingEnabled);
+        this.apagaCliente = new ApagaCliente(null, rootPaneCheckingEnabled,gerenciaCliente);
         this.imprimeRelatorioCliente = new ImprimeRelatorioCliente(null, rootPaneCheckingEnabled);
-        this.relatorioCliente = new RelatorioCliente(null, rootPaneCheckingEnabled, imprimeRelatorioCliente);
+        this.relatorioCliente = new RelatorioCliente(null, rootPaneCheckingEnabled, imprimeRelatorioCliente,gerenciaCliente);
 
         //Telas a serem chamadas (CRUD SALA)
         //Telas a serem chamadas (CRUD INGRESSO)

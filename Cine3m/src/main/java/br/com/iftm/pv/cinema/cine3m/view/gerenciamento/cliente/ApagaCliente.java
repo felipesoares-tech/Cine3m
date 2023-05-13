@@ -4,7 +4,10 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.*;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,11 +15,16 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.*;
  */
 public class ApagaCliente extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ApagaSessao
-     */
+    private GerenciaCliente gerenciaCliente;
+
     public ApagaCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+
+    public ApagaCliente(java.awt.Frame parent, boolean modal, GerenciaCliente gerenciaCliente) {
+        super(parent, modal);
+        this.gerenciaCliente = gerenciaCliente;
         initComponents();
     }
 
@@ -41,9 +49,22 @@ public class ApagaCliente extends javax.swing.JDialog {
         lbCliente.setForeground(new java.awt.Color(255, 255, 255));
         lbCliente.setText("Cliente");
 
-        cbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCliente.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                cbClienteAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         btnConfirmarApagaCliente.setText("Confirmar");
+        btnConfirmarApagaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarApagaClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -86,6 +107,15 @@ public class ApagaCliente extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbClienteAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbClienteAncestorAdded
+        ComboBoxUtils.carregarComboBox(cbCliente,gerenciaCliente.relatorio());
+    }//GEN-LAST:event_cbClienteAncestorAdded
+
+    private void btnConfirmarApagaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaClienteActionPerformed
+        JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar o cliente "+cbCliente.getSelectedItem().toString(), 
+                "Apagar Cliente", WIDTH, JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_btnConfirmarApagaClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,7 +164,7 @@ public class ApagaCliente extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarApagaCliente;
-    private javax.swing.JComboBox<String> cbCliente;
+    private javax.swing.JComboBox<Pessoa> cbCliente;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel lbCliente;
     // End of variables declaration//GEN-END:variables

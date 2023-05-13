@@ -6,6 +6,9 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -24,6 +27,19 @@ public class CadastroCliente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+
+    public JFormattedTextField getTfCpfCliente() {
+        return tfCpfCliente;
+    }
+
+    public JTextField getTfNomeCliente() {
+        return tfNomeCliente;
+    }
+
+    public JButton getBtnCadastrarCliente() {
+        return btnCadastrarCliente;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,6 +132,8 @@ public class CadastroCliente extends javax.swing.JDialog {
         System.out.println(cpf);
         
         gerenciaCliente.cadastrar(new Cliente(nome, cpf));
+        tfNomeCliente.setText("");
+        tfCpfCliente.setText("");
         
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 

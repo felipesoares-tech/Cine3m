@@ -369,43 +369,46 @@ public class Principal extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imCadastroSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSessaoActionPerformed
-        cadastroSessao.setVisible(true);
+        this.cadastroSessao.setVisible(true);
     }//GEN-LAST:event_imCadastroSessaoActionPerformed
 
     private void imConsultaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaSessaoActionPerformed
-        consultaSessao.setVisible(true);
+        this.consultaSessao.setVisible(true);
     }//GEN-LAST:event_imConsultaSessaoActionPerformed
 
     private void imAtualizaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaSessaoActionPerformed
-        atualizaSessao.setVisible(true);
+        this.atualizaSessao.setVisible(true);
     }//GEN-LAST:event_imAtualizaSessaoActionPerformed
 
     private void imApagaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaSessaoActionPerformed
-        apagaSessao.setVisible(true);
+        this.apagaSessao.setVisible(true);
     }//GEN-LAST:event_imApagaSessaoActionPerformed
 
     private void imRelatorioSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioSessaoActionPerformed
-        relatorioSessao.setVisible(true);
+        this.relatorioSessao.setVisible(true);
     }//GEN-LAST:event_imRelatorioSessaoActionPerformed
 
     private void imCadastraClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastraClienteActionPerformed
-        cadastroCliente.setVisible(true);
+        this.cadastroCliente.getBtnCadastrarCliente().setVisible(true);
+        this.cadastroCliente.getTfNomeCliente().setEditable(true);
+        this.cadastroCliente.getTfCpfCliente().setEditable(true);
+        this.cadastroCliente.setVisible(true);
     }//GEN-LAST:event_imCadastraClienteActionPerformed
 
     private void imConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaClienteActionPerformed
-        consultaCliente.setVisible(true);
+        this.consultaCliente.setVisible(true);
     }//GEN-LAST:event_imConsultaClienteActionPerformed
 
     private void imAtualizaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaClienteActionPerformed
-        atualizaCliente.setVisible(true);
+        this.atualizaCliente.setVisible(true);
     }//GEN-LAST:event_imAtualizaClienteActionPerformed
 
     private void imApagaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaClienteActionPerformed
-        apagaCliente.setVisible(true);
+        this.apagaCliente.setVisible(true);
     }//GEN-LAST:event_imApagaClienteActionPerformed
 
     private void imRelatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioClienteActionPerformed
-        relatorioCliente.setVisible(true);
+        this.relatorioCliente.setVisible(true);
     }//GEN-LAST:event_imRelatorioClienteActionPerformed
 
     /**

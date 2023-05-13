@@ -7,6 +7,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
+import java.awt.Color;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
 
     private CadastroCliente cadastroCliente;
     private GerenciaCliente gerenciaCliente;
+    private boolean comboInicializado = false;
 
     public ConsultaCliente(java.awt.Frame parent, boolean modal, CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente) {
         super(parent, modal);
@@ -27,6 +29,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
 
     public ConsultaCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.getContentPane().setBackground(Color.DARK_GRAY);
         initComponents();
     }
 
@@ -42,14 +45,10 @@ public class ConsultaCliente extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         cbClientes3 = new javax.swing.JComboBox<>();
         lbSessao3 = new javax.swing.JLabel();
+        btnConfirmarConsulta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        cbClientes3.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbClientes3ItemStateChanged(evt);
-            }
-        });
         cbClientes3.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 cbClientes3AncestorAdded(evt);
@@ -62,21 +61,35 @@ public class ConsultaCliente extends javax.swing.JDialog {
 
         lbSessao3.setText("Clientes:");
 
+        btnConfirmarConsulta.setText("Confirmar");
+        btnConfirmarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarConsultaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cbClientes3, 0, 239, Short.MAX_VALUE)
-            .addComponent(lbSessao3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(lbSessao3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
+            .addComponent(cbClientes3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(lbSessao3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbClientes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -84,16 +97,16 @@ public class ConsultaCliente extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(192, 192, 192)
+                .addGap(186, 186, 186)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
+                .addGap(99, 99, 99)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         pack();
@@ -101,17 +114,27 @@ public class ConsultaCliente extends javax.swing.JDialog {
 
     private void cbClientes3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbClientes3AncestorAdded
         List<Cliente> clientes = gerenciaCliente.relatorio();
-        
-        cbClientes3.removeAll();
-        
+
+        cbClientes3.removeAllItems();
+
         for (Cliente c : clientes) {
             cbClientes3.addItem(c);
         }
+        comboInicializado = false;
+
     }//GEN-LAST:event_cbClientes3AncestorAdded
 
-    private void cbClientes3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbClientes3ItemStateChanged
+    private void btnConfirmarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarConsultaActionPerformed
+        Cliente clienteSelecionado = (Cliente) this.cbClientes3.getSelectedItem();
+        this.cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
+        this.cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
+        
+        this.cadastroCliente.getBtnCadastrarCliente().setVisible(false);
+        this.cadastroCliente.getTfNomeCliente().setEditable(false);
+        this.cadastroCliente.getTfCpfCliente().setEditable(false);
         this.cadastroCliente.setVisible(true);
-    }//GEN-LAST:event_cbClientes3ItemStateChanged
+         
+    }//GEN-LAST:event_btnConfirmarConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +183,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfirmarConsulta;
     private javax.swing.JComboBox<Pessoa> cbClientes3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbSessao3;

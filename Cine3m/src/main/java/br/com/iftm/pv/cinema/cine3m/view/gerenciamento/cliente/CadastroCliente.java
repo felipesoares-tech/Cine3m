@@ -8,6 +8,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -17,12 +18,14 @@ import javax.swing.JTextField;
 public class CadastroCliente extends javax.swing.JDialog {
 
     private GerenciaCliente gerenciaCliente;
-    
-    public CadastroCliente(java.awt.Frame parent, boolean modal,GerenciaCliente gerenciaCliente) {
+    private Cliente clienteSelecionado;
+
+    public CadastroCliente(java.awt.Frame parent, boolean modal, GerenciaCliente gerenciaCliente) {
         super(parent, modal);
         this.gerenciaCliente = gerenciaCliente;
         initComponents();
     }
+
     public CadastroCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -39,7 +42,14 @@ public class CadastroCliente extends javax.swing.JDialog {
     public JButton getBtnCadastrarCliente() {
         return btnCadastrarCliente;
     }
-    
+
+    public Cliente getClienteSelecionado() {
+        return clienteSelecionado;
+    }
+
+    public void setClienteSelecionado(Cliente clienteSelecionado) {
+        this.clienteSelecionado = clienteSelecionado;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -132,14 +142,19 @@ public class CadastroCliente extends javax.swing.JDialog {
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
         String nome = tfNomeCliente.getText().toUpperCase();
         String cpf = tfCpfCliente.getText().replaceAll("[-.]", "");
-        
-        System.out.println(nome);
-        System.out.println(cpf);
-         
-        gerenciaCliente.cadastrar(new Cliente(nome, cpf));
+
+        Cliente cliente = new Cliente(nome, cpf);
+
+        if (btnCadastrarCliente.getText().equals("Cadastrar")) {
+            gerenciaCliente.cadastrar(cliente);
+        } else {
+            gerenciaCliente.atualizar(clienteSelecionado, cliente);
+            JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+            this.setVisible(false);
+            this.getParent().setVisible(false);
+        }
         tfNomeCliente.setText("");
         tfCpfCliente.setText("");
-        
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
     /**

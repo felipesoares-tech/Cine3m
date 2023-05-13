@@ -118,6 +118,7 @@ public class AtualizaCliente extends javax.swing.JDialog {
         this.cadastroCliente.getBtnCadastrarCliente().setVisible(true);
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
+        this.cadastroCliente.setClienteSelecionado(clienteSelecionado);
         this.cadastroCliente.setVisible(true);
 
     }//GEN-LAST:event_btnAtualizarClienteActionPerformed

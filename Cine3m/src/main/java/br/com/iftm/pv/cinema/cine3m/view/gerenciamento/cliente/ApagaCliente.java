@@ -120,10 +120,11 @@ public class ApagaCliente extends javax.swing.JDialog {
         Cliente clienteSelecionado = (Cliente) cbCliente.getSelectedItem();
         
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            gerenciaCliente.remover(clienteSelecionado);
+           gerenciaCliente.remover(clienteSelecionado);
+           JOptionPane.showMessageDialog(this, "Cliente removido com sucesso", "Remover", JOptionPane.PLAIN_MESSAGE);
+           this.setVisible(false);
+            
         }
-        
-        cbClienteAncestorAdded(null);
     }//GEN-LAST:event_btnConfirmarApagaClienteActionPerformed
 
     /**

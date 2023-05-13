@@ -5,7 +5,6 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.auxiliares.ImprimeRelatorioCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 
@@ -15,8 +14,6 @@ import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
  * @author Felipe Soares
  */
 public class RelatorioCliente extends javax.swing.JDialog {
-    
-    private ImprimeRelatorioCliente imprimeRelatorioCliente;
     private GerenciaCliente gerenciaCliente;
 
     
@@ -25,9 +22,8 @@ public class RelatorioCliente extends javax.swing.JDialog {
         initComponents();
     }
     
-    public RelatorioCliente(java.awt.Frame parent, boolean modal, ImprimeRelatorioCliente imprimeRelatorioCliente, GerenciaCliente gerenciaCliente) {
+    public RelatorioCliente(java.awt.Frame parent, boolean modal, GerenciaCliente gerenciaCliente) {
         super(parent, modal);
-        this.imprimeRelatorioCliente = imprimeRelatorioCliente;
         this.gerenciaCliente = gerenciaCliente;
         initComponents();
     }
@@ -115,7 +111,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRelatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioClienteActionPerformed
-        imprimeRelatorioCliente.setVisible(true);
+
     }//GEN-LAST:event_btnRelatorioClienteActionPerformed
 
     private void cbClientes4AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbClientes4AncestorAdded

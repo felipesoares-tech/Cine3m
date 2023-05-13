@@ -25,13 +25,11 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.AtualizaCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.ConsultaCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.RelatorioCliente;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.auxiliares.ImprimeRelatorioCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ApagaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.AtualizaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.*;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.auxiliares.ImprimeRelatorio;
 import java.awt.Color;
 
 /**
@@ -56,7 +54,6 @@ public class Principal extends javax.swing.JDialog {
     ApagaCliente apagaCliente;
     RelatorioCliente relatorioCliente;
     //Telas auxiliares (CRUD SESSÃO)
-    ImprimeRelatorioCliente imprimeRelatorioCliente;
 
     //Telas a serem chamadas (CRUD SALA)
     CadastroSala cadastroSala;
@@ -94,8 +91,7 @@ public class Principal extends javax.swing.JDialog {
         this.consultaCliente = new ConsultaCliente(null, rootPaneCheckingEnabled, cadastroCliente, gerenciaCliente);
         this.atualizaCliente = new AtualizaCliente(null, rootPaneCheckingEnabled, cadastroCliente, gerenciaCliente);
         this.apagaCliente = new ApagaCliente(null, rootPaneCheckingEnabled,gerenciaCliente);
-        this.imprimeRelatorioCliente = new ImprimeRelatorioCliente(null, rootPaneCheckingEnabled);
-        this.relatorioCliente = new RelatorioCliente(null, rootPaneCheckingEnabled, imprimeRelatorioCliente,gerenciaCliente);
+        this.relatorioCliente = new RelatorioCliente(null, rootPaneCheckingEnabled,gerenciaCliente);
 
         //Telas a serem chamadas (CRUD SALA)
          this.cadastroSala = new CadastroSala(null, rootPaneCheckingEnabled, gerenciaSala);
@@ -114,7 +110,6 @@ public class Principal extends javax.swing.JDialog {
         this.atualizaCliente.getContentPane().setBackground(corFundoPadrao);
         this.apagaCliente.getContentPane().setBackground(corFundoPadrao);
         this.relatorioCliente.getContentPane().setBackground(corFundoPadrao);
-        this.imprimeRelatorioCliente.getContentPane().setBackground(corFundoPadrao);
         initComponents();
     }
 

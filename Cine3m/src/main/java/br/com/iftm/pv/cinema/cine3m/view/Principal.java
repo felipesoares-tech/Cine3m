@@ -427,6 +427,7 @@ public class Principal extends javax.swing.JDialog {
 
     private void imCadastraClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastraClienteActionPerformed
         this.cadastroCliente.getBtnCadastrarCliente().setVisible(true);
+        this.cadastroCliente.getLbTituloTelaCliente().setText("Cadastro de Cliente");
         this.cadastroCliente.getBtnCadastrarCliente().setText("Cadastrar");
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);

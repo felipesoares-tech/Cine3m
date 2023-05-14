@@ -6,6 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -184,19 +185,21 @@ public class CadastroCliente extends javax.swing.JDialog {
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
         String nome = tfNomeCliente.getText().toUpperCase();
         String cpf = tfCpfCliente.getText().replaceAll("[-.]", "");
+        
+        if (ValidaCampo.validar(nome, lbNomeCliente, this) && ValidaCampo.validar(cpf, lbCpfCliente, this)){
+            Cliente cliente = new Cliente(nome, cpf);
 
-        Cliente cliente = new Cliente(nome, cpf);
-
-        if (btnCadastrarCliente.getText().equals("Cadastrar")) {
-            gerenciaCliente.cadastrar(cliente);
-        } else {
-            gerenciaCliente.atualizar(clienteSelecionado, cliente);
-            JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
-            this.setVisible(false);
-            this.getParent().setVisible(false);
+            if (btnCadastrarCliente.getText().equals("Cadastrar")) {
+                gerenciaCliente.cadastrar(cliente);
+            } else {
+                gerenciaCliente.atualizar(clienteSelecionado, cliente);
+                JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+                this.setVisible(false);
+                this.getParent().setVisible(false);
+            }
+            tfNomeCliente.setText("");
+            tfCpfCliente.setText("");
         }
-        tfNomeCliente.setText("");
-        tfCpfCliente.setText("");
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
     /**

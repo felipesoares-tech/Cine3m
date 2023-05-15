@@ -3,14 +3,14 @@ package br.com.iftm.pv.cinema.cine3m.model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 public class Sala {
 
-    @EqualsAndHashCode.Include
+
     private String nome;
     private Integer capacidade;
     private List<Poltrona> poltronas;
@@ -39,8 +39,61 @@ public class Sala {
 
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.nome);
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Sala other = (Sala) obj;
+        return Objects.equals(this.nome, other.nome);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Integer getCapacidade() {
+        return capacidade;
+    }
+
+    public void setCapacidade(Integer capacidade) {
+        this.capacidade = capacidade;
+    }
+
+    public List<Poltrona> getPoltronas() {
+        return poltronas;
+    }
+
+    public void setPoltronas(List<Poltrona> poltronas) {
+        this.poltronas = poltronas;
+    }
+    
+
     public Sala(String nome) {
         this.nome = nome;
     }
+    
 
 }

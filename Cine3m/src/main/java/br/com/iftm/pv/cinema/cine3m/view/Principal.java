@@ -112,7 +112,7 @@ public class Principal extends javax.swing.JDialog {
 
         //Telas a serem chamadas (CRUD SALA)
         this.cadastroSala = new CadastroSala(null, rootPaneCheckingEnabled, gerenciaSala);
-        this.consultaSala = new ConsultaSala(null, rootPaneCheckingEnabled, cadastroSala);
+        this.consultaSala = new ConsultaSala(null, rootPaneCheckingEnabled, cadastroSala, gerenciaSala);
         this.atualizaSala = new AtualizaSala(null, rootPaneCheckingEnabled, cadastroSala);
         this.apagaSala = new ApagaSala(null, rootPaneCheckingEnabled);
 //        this.imprimeRelatorio = new ImprimeRelatorio(null, rootPaneCheckingEnabled);
@@ -130,7 +130,7 @@ public class Principal extends javax.swing.JDialog {
         this.atualizaCliente.getContentPane().setBackground(corFundoPadrao);
         this.apagaCliente.getContentPane().setBackground(corFundoPadrao);
         this.relatorioCliente.getContentPane().setBackground(corFundoPadrao);
-        
+
         //CORES PARA TELAS FUNCIONARIO
         this.cadastroFuncionario.getContentPane().setBackground(corFundoPadrao);
         this.consultaFuncionario.getContentPane().setBackground(corFundoPadrao);
@@ -542,7 +542,7 @@ public class Principal extends javax.swing.JDialog {
     }//GEN-LAST:event_imApagaFuncionarioActionPerformed
 
     private void imRelatorioFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioFuncionarioActionPerformed
-       this.relatorioFuncionario.setVisible(true);
+        this.relatorioFuncionario.setVisible(true);
     }//GEN-LAST:event_imRelatorioFuncionarioActionPerformed
 
     /**

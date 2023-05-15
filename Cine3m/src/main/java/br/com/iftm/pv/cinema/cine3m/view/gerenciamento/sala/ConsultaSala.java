@@ -112,6 +112,10 @@ public class ConsultaSala extends javax.swing.JDialog {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         Sala salaSelecionada = (Sala)  this.cbSalaConsulta.getSelectedItem();
+        this.cadastroSala.getBtnCadastrarSala().setVisible(false);
+        this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
+        this.cadastroSala.getTfNomeSala().setEditable(false);
+        this.cadastroSala.getCbCapacidade().setEditable(false);
         this.cadastroSala.setVisible(true);
                    
     }//GEN-LAST:event_btnConsultarActionPerformed

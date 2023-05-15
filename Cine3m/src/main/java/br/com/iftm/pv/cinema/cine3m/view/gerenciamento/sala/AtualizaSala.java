@@ -4,23 +4,28 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.*;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.model.Sala;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
 
 /**
  *
  * @author Felipe Soares
  */
 public class AtualizaSala extends javax.swing.JDialog {
-
-    private CadastroSala cadastroSessao;
+    
+    private CadastroSala cadastroSala;
+    private GerenciaSala gerenciaSala;
     
     public AtualizaSala(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    public AtualizaSala(java.awt.Frame parent, boolean modal, CadastroSala cadastroSessao) {
+    
+    public AtualizaSala(java.awt.Frame parent, boolean modal, CadastroSala cadastroSala, GerenciaSala gerenciaSala) {
         super(parent, modal);
-        this.cadastroSessao = cadastroSessao;
+        this.cadastroSala = cadastroSala;
+        this.gerenciaSala = gerenciaSala;
         initComponents();
     }
 
@@ -36,6 +41,7 @@ public class AtualizaSala extends javax.swing.JDialog {
         jPanel8 = new javax.swing.JPanel();
         lbSala = new javax.swing.JLabel();
         cbSala = new javax.swing.JComboBox<>();
+        btnConfirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -43,10 +49,20 @@ public class AtualizaSala extends javax.swing.JDialog {
         lbSala.setText("Sala");
 
         cbSala.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        cbSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbSala.addActionListener(new java.awt.event.ActionListener() {
+        cbSala.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                cbSalaAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbSalaActionPerformed(evt);
+                btnConfirmarActionPerformed(evt);
             }
         });
 
@@ -56,6 +72,10 @@ public class AtualizaSala extends javax.swing.JDialog {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lbSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(cbSala, 0, 286, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addComponent(btnConfirmar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,7 +84,9 @@ public class AtualizaSala extends javax.swing.JDialog {
                 .addComponent(lbSala)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(btnConfirmar)
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -81,15 +103,26 @@ public class AtualizaSala extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(102, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addGap(57, 57, 57))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSalaActionPerformed
-        this.cadastroSessao.setVisible(true);
-    }//GEN-LAST:event_cbSalaActionPerformed
+    private void cbSalaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSalaAncestorAdded
+        ComboBoxUtils.carregarComboBox(cbSala, gerenciaSala.relatorio());
+    }//GEN-LAST:event_cbSalaAncestorAdded
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        Sala salaSelecionada = (Sala) this.cbSala.getSelectedItem();
+        this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
+//          this.cadastroSala.getCbCapacidade
+        this.cadastroSala.getBtnCadastrarSala().setText("Atualizar");
+        this.cadastroSala.getBtnCadastrarSala().setVisible(true);
+        this.cadastroSala.getTfNomeSala().setEditable(true);        
+        this.cadastroSala.setSalaSelecionada(salaSelecionada);
+        this.cadastroSala.setVisible(true);
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,7 +170,8 @@ public class AtualizaSala extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbSala;
+    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JComboBox<Sala> cbSala;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lbSala;
     // End of variables declaration//GEN-END:variables

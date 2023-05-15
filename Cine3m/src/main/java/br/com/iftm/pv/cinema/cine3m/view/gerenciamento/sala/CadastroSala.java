@@ -6,28 +6,57 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
-
-
-
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
+import javax.accessibility.AccessibleContext;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
+import javax.swing.JTextField;
 
 public class CadastroSala extends javax.swing.JDialog {
 
-    private GerenciaSala gerenciaSala;  
-    
+    private GerenciaSala gerenciaSala;
+    private Sala salaSelecionada;
+    private boolean ValidarCampo;
 
     /**
      * Creates new form CRUD
      */
-    public CadastroSala(java.awt.Frame parent, boolean modal, GerenciaSala gerenciaSala ) {
+    public CadastroSala(java.awt.Frame parent, boolean modal, GerenciaSala gerenciaSala) {
         super(parent, modal);
         this.gerenciaSala = gerenciaSala;
-              
+
         initComponents();
     }
 
     public CadastroSala(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public JTextField getTfNomeSala() {
+        return tfNomeSala;
+    }
+
+    public Sala getSalaSelecionada() {
+        return salaSelecionada;
+    }
+
+    public void setSalaSelecionada(Sala salaSelecionada) {
+        this.salaSelecionada = salaSelecionada;
+    }
+
+    public JComboBox<String> getCbCapacidade() {
+        return cbCapacidade;
+    }
+
+    public JButton getBtnCadastrarSala() {
+        return btnCadastrarSala;
+    }
+
+    public void setBtnCadastrarSala(JButton btnCadastrarSala) {
+        this.btnCadastrarSala = btnCadastrarSala;
     }
 
     /**
@@ -41,7 +70,7 @@ public class CadastroSala extends javax.swing.JDialog {
 
         jPanel8 = new javax.swing.JPanel();
         lbSalaCapacidade = new javax.swing.JLabel();
-        cbNomeSala = new javax.swing.JComboBox<>();
+        cbCapacidade = new javax.swing.JComboBox<>();
         lbSalaNome = new javax.swing.JLabel();
         btnCadastrarSala = new javax.swing.JButton();
         tfNomeSala = new javax.swing.JTextField();
@@ -51,8 +80,8 @@ public class CadastroSala extends javax.swing.JDialog {
         lbSalaCapacidade.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbSalaCapacidade.setText("Capacidade");
 
-        cbNomeSala.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        cbNomeSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "30", "40", "50" }));
+        cbCapacidade.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        cbCapacidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "30", "40", "50" }));
 
         lbSalaNome.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbSalaNome.setText("Nome");
@@ -69,7 +98,7 @@ public class CadastroSala extends javax.swing.JDialog {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lbSalaCapacidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(cbNomeSala, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cbCapacidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lbSalaNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(102, Short.MAX_VALUE)
@@ -86,7 +115,7 @@ public class CadastroSala extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lbSalaCapacidade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbNomeSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbCapacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lbSalaNome)
                 .addGap(18, 18, 18)
@@ -118,11 +147,26 @@ public class CadastroSala extends javax.swing.JDialog {
 
     private void btnCadastrarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSalaActionPerformed
 
-       Integer capacidade = Integer.parseInt(cbNomeSala.getSelectedItem().toString().trim());
-       String nome = tfNomeSala.getText();
+        Integer capacidade = Integer.parseInt(cbCapacidade.getSelectedItem().toString().trim());
+        String nome = tfNomeSala.getText();
+        Sala sala = new Sala(nome, capacidade);
+        if(ValidaCampo.validar(nome, lbSalaNome, this)){
+               if (btnCadastrarSala.getText().equals("Cadastrar")) {
+            System.out.println(nome + capacidade);
+            Boolean salaRecuperada = gerenciaSala.cadastrar(sala);
+            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!", "Cadastro", JOptionPane.PLAIN_MESSAGE);
 
-        System.out.println(nome + capacidade);
-        Boolean salaRecuperada = gerenciaSala.cadastrar(new Sala(nome,capacidade));
+        } else {
+            gerenciaSala.atualizar(salaSelecionada, sala);
+             JOptionPane.showMessageDialog(this, "Sala atualizada com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+        this.setVisible(false);
+        this.getParent().setVisible(false);
+        }
+            
+        }
+
+     
+        tfNomeSala.setText("");          
     }//GEN-LAST:event_btnCadastrarSalaActionPerformed
 
     /**
@@ -184,7 +228,7 @@ public class CadastroSala extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarSala;
-    private javax.swing.JComboBox<String> cbNomeSala;
+    private javax.swing.JComboBox<String> cbCapacidade;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lbSalaCapacidade;
     private javax.swing.JLabel lbSalaNome;

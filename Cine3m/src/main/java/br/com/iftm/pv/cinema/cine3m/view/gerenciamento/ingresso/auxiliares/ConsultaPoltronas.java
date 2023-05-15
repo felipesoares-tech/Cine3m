@@ -4,7 +4,7 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
-import br.com.iftm.pv.cinema.cine3m.util.BtnApGenerico;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.BtnApGenerico;
 
 
 

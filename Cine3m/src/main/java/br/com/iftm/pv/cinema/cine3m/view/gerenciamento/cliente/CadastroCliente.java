@@ -6,8 +6,11 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -17,12 +20,15 @@ import javax.swing.JTextField;
 public class CadastroCliente extends javax.swing.JDialog {
 
     private GerenciaCliente gerenciaCliente;
-    
-    public CadastroCliente(java.awt.Frame parent, boolean modal,GerenciaCliente gerenciaCliente) {
+    private Cliente clienteSelecionado;
+
+    public CadastroCliente(java.awt.Frame parent, boolean modal, GerenciaCliente gerenciaCliente) {
         super(parent, modal);
         this.gerenciaCliente = gerenciaCliente;
+        this.setResizable(false);
         initComponents();
     }
+
     public CadastroCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -39,7 +45,18 @@ public class CadastroCliente extends javax.swing.JDialog {
     public JButton getBtnCadastrarCliente() {
         return btnCadastrarCliente;
     }
-    
+
+    public Cliente getClienteSelecionado() {
+        return clienteSelecionado;
+    }
+
+    public void setClienteSelecionado(Cliente clienteSelecionado) {
+        this.clienteSelecionado = clienteSelecionado;
+    }
+
+    public JLabel getLbTituloTelaCliente() {
+        return lbTituloTelaCliente;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,9 +70,12 @@ public class CadastroCliente extends javax.swing.JDialog {
         jPanel8 = new javax.swing.JPanel();
         lbNomeCliente = new javax.swing.JLabel();
         lbCpfCliente = new javax.swing.JLabel();
-        btnCadastrarCliente = new javax.swing.JButton();
         tfCpfCliente = new javax.swing.JFormattedTextField();
         tfNomeCliente = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        lbTituloTelaCliente = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnCadastrarCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -67,13 +87,6 @@ public class CadastroCliente extends javax.swing.JDialog {
 
         lbCpfCliente.setForeground(new java.awt.Color(255, 255, 255));
         lbCpfCliente.setText("Cpf:");
-
-        btnCadastrarCliente.setText("Cadastrar");
-        btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarClienteActionPerformed(evt);
-            }
-        });
 
         try {
             tfCpfCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -88,11 +101,7 @@ public class CadastroCliente extends javax.swing.JDialog {
             .addComponent(lbNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lbCpfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tfNomeCliente)
-            .addComponent(tfCpfCliente)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+            .addComponent(tfCpfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,25 +114,72 @@ public class CadastroCliente extends javax.swing.JDialog {
                 .addComponent(lbCpfCliente)
                 .addGap(10, 10, 10)
                 .addComponent(tfCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
+
+        jPanel1.setBackground(new java.awt.Color(179, 181, 187));
+
+        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setText("Cadastro de clientes");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cliente-icon.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(lbTituloTelaCliente))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnCadastrarCliente.setText("Cadastrar");
+        btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(150, 150, 150))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(266, 266, 266))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,13 +189,20 @@ public class CadastroCliente extends javax.swing.JDialog {
         String nome = tfNomeCliente.getText().toUpperCase();
         String cpf = tfCpfCliente.getText().replaceAll("[-.]", "");
         
-        System.out.println(nome);
-        System.out.println(cpf);
-        
-        gerenciaCliente.cadastrar(new Cliente(nome, cpf));
-        tfNomeCliente.setText("");
-        tfCpfCliente.setText("");
-        
+        if (ValidaCampo.validar(nome, lbNomeCliente, this) && ValidaCampo.validar(cpf, lbCpfCliente, this)){
+            Cliente cliente = new Cliente(nome, cpf);
+
+            if (btnCadastrarCliente.getText().equals("Cadastrar")) {
+                gerenciaCliente.cadastrar(cliente);
+            } else {
+                gerenciaCliente.atualizar(clienteSelecionado, cliente);
+                JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+                this.setVisible(false);
+                this.getParent().setVisible(false);
+            }
+            tfNomeCliente.setText("");
+            tfCpfCliente.setText("");
+        }
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
     /**
@@ -186,9 +249,12 @@ public class CadastroCliente extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarCliente;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lbCpfCliente;
     private javax.swing.JLabel lbNomeCliente;
+    private javax.swing.JLabel lbTituloTelaCliente;
     private javax.swing.JFormattedTextField tfCpfCliente;
     private javax.swing.JTextField tfNomeCliente;
     // End of variables declaration//GEN-END:variables

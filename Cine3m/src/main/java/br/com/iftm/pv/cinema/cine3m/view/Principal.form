@@ -6,11 +6,13 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
+            <Property name="mnemonic" type="int" value="76"/>
             <Property name="text" type="java.lang.String" value="Lan&#xe7;amentos"/>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="mSessao">
               <Properties>
+                <Property name="mnemonic" type="int" value="83"/>
                 <Property name="text" type="java.lang.String" value="Sess&#xe3;o"/>
               </Properties>
               <SubComponents>
@@ -58,6 +60,7 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="mIngresso">
               <Properties>
+                <Property name="mnemonic" type="int" value="73"/>
                 <Property name="text" type="java.lang.String" value="Ingresso"/>
               </Properties>
               <SubComponents>
@@ -90,6 +93,7 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="mFilme">
               <Properties>
+                <Property name="mnemonic" type="int" value="70"/>
                 <Property name="text" type="java.lang.String" value="Filme"/>
               </Properties>
               <SubComponents>
@@ -122,7 +126,9 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="mSala">
               <Properties>
+                <Property name="mnemonic" type="int" value="97"/>
                 <Property name="text" type="java.lang.String" value="Sala"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="imCadastroSala">
@@ -169,6 +175,7 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="mFuncionario">
               <Properties>
+                <Property name="mnemonic" type="int" value="70"/>
                 <Property name="text" type="java.lang.String" value="Funcionario"/>
               </Properties>
               <SubComponents>
@@ -176,31 +183,47 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cadastrar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imCadastroFuncionarioActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="imConsultaFuncionario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Consultar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imConsultaFuncionarioActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="imAtualizaFuncionario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Atualizar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imAtualizaFuncionarioActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="imApagaFuncionario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Apagar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imApagaFuncionarioActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="imRelatorioFuncionario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Relat&#xf3;rio"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imRelatorioFuncionarioActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
             <Menu class="javax.swing.JMenu" name="mCliente">
               <Properties>
+                <Property name="mnemonic" type="int" value="67"/>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
               </Properties>
               <SubComponents>
@@ -301,6 +324,9 @@
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="P052" size="60" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cine 3M"/>
       </Properties>

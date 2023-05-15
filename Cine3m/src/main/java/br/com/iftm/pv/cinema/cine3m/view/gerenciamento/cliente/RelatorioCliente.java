@@ -5,34 +5,29 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.auxiliares.ImprimeRelatorioCliente;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
-import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
-
+import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.view.relatorio.TableModelGenerico;
 
 /**
  *
  * @author Felipe Soares
  */
 public class RelatorioCliente extends javax.swing.JDialog {
-    
-    private ImprimeRelatorioCliente imprimeRelatorioCliente;
-    private GerenciaCliente gerenciaCliente;
 
-    
+    private GerenciaCliente gerenciaCliente;
+    private TableModelGenerico modelo;
+
     public RelatorioCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    
-    public RelatorioCliente(java.awt.Frame parent, boolean modal, ImprimeRelatorioCliente imprimeRelatorioCliente, GerenciaCliente gerenciaCliente) {
+
+    public RelatorioCliente(java.awt.Frame parent, boolean modal, GerenciaCliente gerenciaCliente) {
         super(parent, modal);
-        this.imprimeRelatorioCliente = imprimeRelatorioCliente;
         this.gerenciaCliente = gerenciaCliente;
+        this.modelo = new TableModelGenerico(Cliente.class);
         initComponents();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,84 +38,54 @@ public class RelatorioCliente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        cbClientes4 = new javax.swing.JComboBox<>();
-        lbCliente4 = new javax.swing.JLabel();
-        btnRelatorioCliente = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbRelClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(java.awt.Color.darkGray);
-
-        cbClientes4.addAncestorListener(new javax.swing.event.AncestorListener() {
+        tbRelClientes.setModel(modelo);
+        tbRelClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cbClientes4AncestorAdded(evt);
+                tbRelClientesAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-
-        lbCliente4.setForeground(new java.awt.Color(255, 255, 255));
-        lbCliente4.setText("Clientes:");
-
-        btnRelatorioCliente.setText("Confirmar");
-        btnRelatorioCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRelatorioClienteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cbClientes4, 0, 239, Short.MAX_VALUE)
-            .addComponent(lbCliente4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(btnRelatorioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbCliente4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbClientes4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addComponent(btnRelatorioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jScrollPane1.setViewportView(tbRelClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(185, 185, 185)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addGap(95, 95, 95)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(54, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRelatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioClienteActionPerformed
-        imprimeRelatorioCliente.setVisible(true);
-    }//GEN-LAST:event_btnRelatorioClienteActionPerformed
+    private void tbRelClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbRelClientesAncestorAdded
+        
+        modelo.setData(gerenciaCliente.relatorio());
 
-    private void cbClientes4AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbClientes4AncestorAdded
-        ComboBoxUtils.carregarComboBox(cbClientes4, gerenciaCliente.relatorio());
-    }//GEN-LAST:event_cbClientes4AncestorAdded
+        //tbRelClientes.setModel(new SimpleTable(gerenciaCliente.relatorio()));
+        //tbRelClientes.setColumnModel(columnModel);
+        //tbRelClientes.setModel(dataModel);
+//st.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //st.setSize(1000, 200);
+        //st.setVisible(true);
+    }//GEN-LAST:event_tbRelClientesAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -168,9 +133,7 @@ public class RelatorioCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRelatorioCliente;
-    private javax.swing.JComboBox<Pessoa> cbClientes4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbCliente4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbRelClientes;
     // End of variables declaration//GEN-END:variables
 }

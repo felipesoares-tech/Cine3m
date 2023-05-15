@@ -2,12 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
+package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
-import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListUtils;
 import java.util.Iterator;
 import java.util.List;
@@ -17,18 +16,17 @@ import javax.swing.JOptionPane;
  *
  * @author Felipe Soares
  */
-public class ApagaCliente extends javax.swing.JDialog {
+public class ApagaFuncionario extends javax.swing.JDialog {
+    private GerenciaFuncionario gerenciaFuncionario;
 
-    private GerenciaCliente gerenciaCliente;
-
-    public ApagaCliente(java.awt.Frame parent, boolean modal) {
+    public ApagaFuncionario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public ApagaCliente(java.awt.Frame parent, boolean modal, GerenciaCliente gerenciaCliente) {
+    public ApagaFuncionario(java.awt.Frame parent, boolean modal, GerenciaFuncionario gerenciaFuncionario) {
         super(parent, modal);
-        this.gerenciaCliente = gerenciaCliente;
+        this.gerenciaFuncionario = gerenciaFuncionario;
         initComponents();
     }
 
@@ -41,81 +39,79 @@ public class ApagaCliente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnConfirmarApagaCliente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstClientes = new javax.swing.JList<>();
+        lstFuncionarios = new javax.swing.JList<>();
+        btnConfirmarApagaFuncionario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnConfirmarApagaCliente.setText("Apagar");
-        btnConfirmarApagaCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarApagaClienteActionPerformed(evt);
-            }
-        });
-
-        lstClientes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        lstClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
+        lstFuncionarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        lstFuncionarios.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lstClientesAncestorAdded(evt);
+                lstFuncionariosAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane1.setViewportView(lstClientes);
+        jScrollPane1.setViewportView(lstFuncionarios);
+
+        btnConfirmarApagaFuncionario.setText("Apagar");
+        btnConfirmarApagaFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarApagaFuncionarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(81, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(305, 305, 305)
-                        .addComponent(btnConfirmarApagaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(133, Short.MAX_VALUE))
+                        .addGap(184, 184, 184)
+                        .addComponent(btnConfirmarApagaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addContainerGap(81, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnConfirmarApagaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addComponent(btnConfirmarApagaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConfirmarApagaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaClienteActionPerformed
-        List<Pessoa> clientesSelecionados = lstClientes.getSelectedValuesList();
+    private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded
+        ListUtils.carregarList(lstFuncionarios, gerenciaFuncionario.relatorio());
+    }//GEN-LAST:event_lstFuncionariosAncestorAdded
+
+    private void btnConfirmarApagaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaFuncionarioActionPerformed
+        List<Pessoa> funcionariosSelecionados = lstFuncionarios.getSelectedValuesList();
         int cont = 0;
-        Iterator<Pessoa> it = clientesSelecionados.iterator();
+        Iterator<Pessoa> it = funcionariosSelecionados.iterator();
 
         Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
                 "Apagar Cliente", WIDTH, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
             while (it.hasNext()) {
-                gerenciaCliente.remover((Cliente) it.next());
+                gerenciaFuncionario.remover((Funcionario) it.next());
                 cont++;
             }
-            lstClientesAncestorAdded(null);
+            lstFuncionariosAncestorAdded(null);
             JOptionPane.showMessageDialog(this, String.format("Clientes removidos: %d", cont), "Remover", JOptionPane.PLAIN_MESSAGE);
         }
 
-
-    }//GEN-LAST:event_btnConfirmarApagaClienteActionPerformed
-
-    private void lstClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstClientesAncestorAdded
-        ListUtils.carregarList(lstClientes, gerenciaCliente.relatorio());
-    }//GEN-LAST:event_lstClientesAncestorAdded
+    }//GEN-LAST:event_btnConfirmarApagaFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,23 +130,20 @@ public class ApagaCliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ApagaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ApagaFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ApagaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ApagaFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ApagaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ApagaFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ApagaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ApagaFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ApagaCliente dialog = new ApagaCliente(new javax.swing.JFrame(), true);
+                ApagaFuncionario dialog = new ApagaFuncionario(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -163,8 +156,8 @@ public class ApagaCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfirmarApagaCliente;
+    private javax.swing.JButton btnConfirmarApagaFuncionario;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<Pessoa> lstClientes;
+    private javax.swing.JList<Pessoa> lstFuncionarios;
     // End of variables declaration//GEN-END:variables
 }

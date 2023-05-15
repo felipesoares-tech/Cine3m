@@ -2,21 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.auxiliares;
+package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.auxiliares.*;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
+import br.com.iftm.pv.cinema.cine3m.view.relatorio.TableModelGenerico;
 
 /**
  *
  * @author Felipe Soares
  */
-public class ImprimeRelatorioCliente extends javax.swing.JDialog {
+public class RelatorioFuncionario extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ConsultaSessoes
-     */
-    public ImprimeRelatorioCliente(java.awt.Frame parent, boolean modal) {
+    private GerenciaFuncionario gerenciaFuncionario;
+    private TableModelGenerico modelo;
+
+    public RelatorioFuncionario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+
+    public RelatorioFuncionario(java.awt.Frame parent, boolean modal,GerenciaFuncionario gerenciaFuncionario) {
+        super(parent, modal);
+        this.gerenciaFuncionario = gerenciaFuncionario;
+        this.modelo = new TableModelGenerico(Funcionario.class);
         initComponents();
     }
 
@@ -30,42 +39,45 @@ public class ImprimeRelatorioCliente extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbRelClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        tbRelClientes.setModel(modelo);
+        tbRelClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tbRelClientesAncestorAdded(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(tbRelClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tbRelClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbRelClientesAncestorAdded
+        modelo.setData(gerenciaFuncionario.relatorio());
+    }//GEN-LAST:event_tbRelClientesAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -84,23 +96,20 @@ public class ImprimeRelatorioCliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ImprimeRelatorioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ImprimeRelatorioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ImprimeRelatorioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ImprimeRelatorioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ImprimeRelatorioCliente dialog = new ImprimeRelatorioCliente(new javax.swing.JFrame(), true);
+                RelatorioFuncionario dialog = new RelatorioFuncionario(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -114,6 +123,6 @@ public class ImprimeRelatorioCliente extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbRelClientes;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,20 +4,127 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Felipe Soares
  */
 public class CadastroFuncionario extends javax.swing.JDialog {
 
-    /**
-     * Creates new form CadastroFuncionario
-     */
+    private GerenciaFuncionario gerenciaFuncionario;
+    private Funcionario funcionarioSelecionado;
+
     public CadastroFuncionario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.setResizable(false);
         initComponents();
     }
 
+    public CadastroFuncionario(java.awt.Frame parent, boolean modal, GerenciaFuncionario gerenciaFuncionario) {
+        super(parent, modal);
+        this.gerenciaFuncionario = gerenciaFuncionario;
+        initComponents();
+    }
+
+    public GerenciaFuncionario getGerenciaFuncionario() {
+        return gerenciaFuncionario;
+    }
+
+    public void setGerenciaFuncionario(GerenciaFuncionario gerenciaFuncionario) {
+        this.gerenciaFuncionario = gerenciaFuncionario;
+    }
+
+    public Funcionario getFuncionarioSelecionado() {
+        return funcionarioSelecionado;
+    }
+
+    public void setFuncionarioSelecionado(Funcionario funcionarioSelecionado) {
+        this.funcionarioSelecionado = funcionarioSelecionado;
+    }
+
+    public JButton getBtnCadastrarFuncionario() {
+        return btnCadastrarFuncionario;
+    }
+
+    public void setBtnCadastrarFuncionario(JButton btnCadastrarFuncionario) {
+        this.btnCadastrarFuncionario = btnCadastrarFuncionario;
+    }
+
+    public JLabel getLbCpfFuncionario() {
+        return lbCpfFuncionario;
+    }
+
+    public void setLbCpfFuncionario(JLabel lbCpfFuncionario) {
+        this.lbCpfFuncionario = lbCpfFuncionario;
+    }
+
+    public JLabel getLbLoginFuncionario() {
+        return lbLoginFuncionario;
+    }
+
+    public void setLbLoginFuncionario(JLabel lbLoginFuncionario) {
+        this.lbLoginFuncionario = lbLoginFuncionario;
+    }
+
+    public JLabel getLbNomeFuncionario() {
+        return lbNomeFuncionario;
+    }
+
+    public void setLbNomeFuncionario(JLabel lbNomeFuncionario) {
+        this.lbNomeFuncionario = lbNomeFuncionario;
+    }
+
+    public JLabel getLbSenhaFuncionario() {
+        return lbSenhaFuncionario;
+    }
+
+    public void setLbSenhaFuncionario(JLabel lbSenhaFuncionario) {
+        this.lbSenhaFuncionario = lbSenhaFuncionario;
+    }
+
+    public JFormattedTextField getTfCpfFuncionario() {
+        return tfCpfFuncionario;
+    }
+
+    public void setTfCpfFuncionario(JFormattedTextField tfCpfFuncionario) {
+        this.tfCpfFuncionario = tfCpfFuncionario;
+    }
+
+    public JTextField getTfLoginFuncionario() {
+        return tfLoginFuncionario;
+    }
+
+    public void setTfLoginFuncionario(JTextField tfLoginFuncionario) {
+        this.tfLoginFuncionario = tfLoginFuncionario;
+    }
+
+    public JTextField getTfNomeFuncionario() {
+        return tfNomeFuncionario;
+    }
+
+    public void setTfNomeFuncionario(JTextField tfNomeFuncionario) {
+        this.tfNomeFuncionario = tfNomeFuncionario;
+    }
+
+    public JPasswordField getTfSenhaFuncionario() {
+        return tfSenhaFuncionario;
+    }
+
+    public void setTfSenhaFuncionario(JPasswordField tfSenhaFuncionario) {
+        this.tfSenhaFuncionario = tfSenhaFuncionario;
+    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +134,115 @@ public class CadastroFuncionario extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lbNomeFuncionario = new javax.swing.JLabel();
+        tfNomeFuncionario = new javax.swing.JTextField();
+        lbCpfFuncionario = new javax.swing.JLabel();
+        lbSenhaFuncionario = new javax.swing.JLabel();
+        tfCpfFuncionario = new javax.swing.JFormattedTextField();
+        tfSenhaFuncionario = new javax.swing.JPasswordField();
+        lbLoginFuncionario = new javax.swing.JLabel();
+        tfLoginFuncionario = new javax.swing.JTextField();
+        btnCadastrarFuncionario = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        lbNomeFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        lbNomeFuncionario.setText("Nome:");
+
+        lbCpfFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        lbCpfFuncionario.setText("CPF:");
+
+        lbSenhaFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        lbSenhaFuncionario.setText("Senha:");
+
+        try {
+            tfCpfFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        lbLoginFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        lbLoginFuncionario.setText("Login:");
+
+        btnCadastrarFuncionario.setText("Cadastrar");
+        btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarFuncionarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbNomeFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfNomeFuncionario)
+                            .addComponent(lbCpfFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbSenhaFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfCpfFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(tfSenhaFuncionario)
+                            .addComponent(lbLoginFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfLoginFuncionario)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(lbNomeFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbCpfFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfCpfFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbLoginFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfLoginFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbSenhaFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
+        String nome = tfNomeFuncionario.getText().toUpperCase();
+        String cpf = tfCpfFuncionario.getText().replaceAll("[-.]", "");
+        String login = tfLoginFuncionario.getText().toUpperCase();
+        String senha = tfSenhaFuncionario.getPassword().toString();
+
+        if (ValidaCampo.validar(nome, lbNomeFuncionario, this) && ValidaCampo.validar(cpf, lbCpfFuncionario, this)) {
+            Funcionario funcionario = new Funcionario(nome, cpf,login,senha);
+
+            if (btnCadastrarFuncionario.getText().equals("Cadastrar")) {
+                gerenciaFuncionario.cadastrar(funcionario);
+            } else {
+                gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
+                JOptionPane.showMessageDialog(this, "Funcionario atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+                this.setVisible(false);
+                this.getParent().setVisible(false);
+            }
+            tfNomeFuncionario.setText("");
+            tfCpfFuncionario.setText("");
+            tfLoginFuncionario.setText("");
+            tfSenhaFuncionario.setText("");
+        }
+    }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +287,14 @@ public class CadastroFuncionario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastrarFuncionario;
+    private javax.swing.JLabel lbCpfFuncionario;
+    private javax.swing.JLabel lbLoginFuncionario;
+    private javax.swing.JLabel lbNomeFuncionario;
+    private javax.swing.JLabel lbSenhaFuncionario;
+    private javax.swing.JFormattedTextField tfCpfFuncionario;
+    private javax.swing.JTextField tfLoginFuncionario;
+    private javax.swing.JTextField tfNomeFuncionario;
+    private javax.swing.JPasswordField tfSenhaFuncionario;
     // End of variables declaration//GEN-END:variables
 }

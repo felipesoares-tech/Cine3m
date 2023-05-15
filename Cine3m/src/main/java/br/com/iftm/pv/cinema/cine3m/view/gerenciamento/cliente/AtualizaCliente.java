@@ -113,11 +113,12 @@ public class AtualizaCliente extends javax.swing.JDialog {
         Cliente clienteSelecionado = (Cliente) this.cbCliente2.getSelectedItem();
         this.cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
         this.cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
-        
+        this.cadastroCliente.getLbTituloTelaCliente().setText("Atualização de Cliente");
         this.cadastroCliente.getBtnCadastrarCliente().setText("Atualizar");
         this.cadastroCliente.getBtnCadastrarCliente().setVisible(true);
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
+        this.cadastroCliente.setClienteSelecionado(clienteSelecionado);
         this.cadastroCliente.setVisible(true);
 
     }//GEN-LAST:event_btnAtualizarClienteActionPerformed

@@ -2,32 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
+package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
-import br.com.iftm.pv.cinema.cine3m.model.Cliente;
-import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
-import java.util.List;
+import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 
 /**
  *
  * @author Felipe Soares
  */
-public class ConsultaCliente extends javax.swing.JDialog {
+public class ConsultaFuncionario extends javax.swing.JDialog {
 
-    private CadastroCliente cadastroCliente;
-    private GerenciaCliente gerenciaCliente;
+    private CadastroFuncionario cadastroFuncionario;
+    private GerenciaFuncionario gerenciaFuncionario;
 
-    public ConsultaCliente(java.awt.Frame parent, boolean modal, CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente) {
+    public ConsultaFuncionario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.cadastroCliente = cadastroCliente;
-        this.gerenciaCliente = gerenciaCliente;
         initComponents();
     }
-
-    public ConsultaCliente(java.awt.Frame parent, boolean modal) {
+    
+    public ConsultaFuncionario(java.awt.Frame parent, boolean modal,CadastroFuncionario cadastroFuncionario, GerenciaFuncionario gerenciaFuncionario) {
         super(parent, modal);
+        this.cadastroFuncionario = cadastroFuncionario;
+        this.gerenciaFuncionario = gerenciaFuncionario;
         initComponents();
     }
 
@@ -41,18 +40,17 @@ public class ConsultaCliente extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        cbClientes3 = new javax.swing.JComboBox<>();
-        lbSessao3 = new javax.swing.JLabel();
+        cbFuncionarios3 = new javax.swing.JComboBox<>();
+        lbConsultaFuncionario = new javax.swing.JLabel();
         btnConfirmarConsulta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 0, 153));
 
         jPanel1.setBackground(java.awt.Color.darkGray);
 
-        cbClientes3.addAncestorListener(new javax.swing.event.AncestorListener() {
+        cbFuncionarios3.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cbClientes3AncestorAdded(evt);
+                cbFuncionarios3AncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -60,8 +58,8 @@ public class ConsultaCliente extends javax.swing.JDialog {
             }
         });
 
-        lbSessao3.setForeground(new java.awt.Color(255, 255, 255));
-        lbSessao3.setText("Clientes:");
+        lbConsultaFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        lbConsultaFuncionario.setText("Funcionarios:");
 
         btnConfirmarConsulta.setText("Confirmar");
         btnConfirmarConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -75,20 +73,20 @@ public class ConsultaCliente extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(lbSessao3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbConsultaFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(84, Short.MAX_VALUE))
-            .addComponent(cbClientes3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cbFuncionarios3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lbSessao3)
+                .addComponent(lbConsultaFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbClientes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbFuncionarios3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -101,7 +99,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,21 +112,23 @@ public class ConsultaCliente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbClientes3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbClientes3AncestorAdded
-        ComboBoxUtils.carregarComboBox(cbClientes3, gerenciaCliente.relatorio());
-
-    }//GEN-LAST:event_cbClientes3AncestorAdded
+    private void cbFuncionarios3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbFuncionarios3AncestorAdded
+        ComboBoxUtils.carregarComboBox(cbFuncionarios3, gerenciaFuncionario.relatorio());
+    }//GEN-LAST:event_cbFuncionarios3AncestorAdded
 
     private void btnConfirmarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarConsultaActionPerformed
-        Cliente clienteSelecionado = (Cliente) this.cbClientes3.getSelectedItem();
-        this.cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
-        this.cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
+        Funcionario funcionarioSelecionado = (Funcionario) this.cbFuncionarios3.getSelectedItem();
+        this.cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
+        this.cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
+        this.cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
+        this.cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
 
-        this.cadastroCliente.getBtnCadastrarCliente().setVisible(false);
-        this.cadastroCliente.getTfNomeCliente().setEditable(false);
-        this.cadastroCliente.getTfCpfCliente().setEditable(false);
-        this.cadastroCliente.setVisible(true);
-
+        this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(false);
+        this.cadastroFuncionario.getTfNomeFuncionario().setEditable(false);
+        this.cadastroFuncionario.getTfCpfFuncionario().setEditable(false);
+        this.cadastroFuncionario.getTfLoginFuncionario().setEditable(false);
+        this.cadastroFuncionario.getTfSenhaFuncionario().setEditable(false);
+        this.cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnConfirmarConsultaActionPerformed
 
     /**
@@ -148,24 +148,20 @@ public class ConsultaCliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConsultaCliente dialog = new ConsultaCliente(new javax.swing.JFrame(), true);
+                ConsultaFuncionario dialog = new ConsultaFuncionario(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -179,8 +175,8 @@ public class ConsultaCliente extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarConsulta;
-    private javax.swing.JComboBox<Pessoa> cbClientes3;
+    private javax.swing.JComboBox<Pessoa> cbFuncionarios3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbSessao3;
+    private javax.swing.JLabel lbConsultaFuncionario;
     // End of variables declaration//GEN-END:variables
 }

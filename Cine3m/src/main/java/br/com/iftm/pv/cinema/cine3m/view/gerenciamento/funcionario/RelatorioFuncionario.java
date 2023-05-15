@@ -4,17 +4,28 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
+import br.com.iftm.pv.cinema.cine3m.view.relatorio.TableModelGenerico;
+
 /**
  *
  * @author Felipe Soares
  */
 public class RelatorioFuncionario extends javax.swing.JDialog {
 
-    /**
-     * Creates new form RelatorioFuncionario
-     */
+    private GerenciaFuncionario gerenciaFuncionario;
+    private TableModelGenerico modelo;
+
     public RelatorioFuncionario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+
+    public RelatorioFuncionario(java.awt.Frame parent, boolean modal,GerenciaFuncionario gerenciaFuncionario) {
+        super(parent, modal);
+        this.gerenciaFuncionario = gerenciaFuncionario;
+        this.modelo = new TableModelGenerico(Funcionario.class);
         initComponents();
     }
 
@@ -27,21 +38,46 @@ public class RelatorioFuncionario extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbRelClientes = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        tbRelClientes.setModel(modelo);
+        tbRelClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tbRelClientesAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(tbRelClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tbRelClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbRelClientesAncestorAdded
+        modelo.setData(gerenciaFuncionario.relatorio());
+    }//GEN-LAST:event_tbRelClientesAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -86,5 +122,7 @@ public class RelatorioFuncionario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbRelClientes;
     // End of variables declaration//GEN-END:variables
 }

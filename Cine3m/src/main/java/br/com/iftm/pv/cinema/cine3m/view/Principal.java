@@ -108,6 +108,7 @@ public class Principal extends javax.swing.JDialog {
         this.consultaFuncionario = new ConsultaFuncionario(null, rootPaneCheckingEnabled, cadastroFuncionario, gerenciaFuncionario);
         this.atualizaFuncionario = new AtualizaFuncionario(null, rootPaneCheckingEnabled, cadastroFuncionario, gerenciaFuncionario);
         this.apagaFuncionario = new ApagaFuncionario(null, rootPaneCheckingEnabled, gerenciaFuncionario);
+        this.relatorioFuncionario = new RelatorioFuncionario(null, rootPaneCheckingEnabled, gerenciaFuncionario);
 
         //Telas a serem chamadas (CRUD SALA)
         this.cadastroSala = new CadastroSala(null, rootPaneCheckingEnabled, gerenciaSala);
@@ -135,7 +136,7 @@ public class Principal extends javax.swing.JDialog {
         this.consultaFuncionario.getContentPane().setBackground(corFundoPadrao);
         this.apagaFuncionario.getContentPane().setBackground(corFundoPadrao);
         this.atualizaFuncionario.getContentPane().setBackground(corFundoPadrao);
-        //this.relatorioFuncionario.getContentPane().setBackground(corFundoPadrao);
+        this.relatorioFuncionario.getContentPane().setBackground(corFundoPadrao);
 
         //CORES PARA TELAS SESSAO
         this.cadastroSessao.getContentPane().setBackground(corFundoPadrao);

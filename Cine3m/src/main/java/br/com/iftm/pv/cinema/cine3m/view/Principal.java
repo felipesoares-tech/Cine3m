@@ -115,8 +115,7 @@ public class Principal extends javax.swing.JDialog {
         this.consultaSala = new ConsultaSala(null, rootPaneCheckingEnabled, cadastroSala, gerenciaSala);
         this.atualizaSala = new AtualizaSala(null, rootPaneCheckingEnabled, cadastroSala, gerenciaSala);
         this.apagaSala = new ApagaSala(null, rootPaneCheckingEnabled, gerenciaSala);
-//        this.imprimeRelatorio = new ImprimeRelatorio(null, rootPaneCheckingEnabled);
-        this.relatorioSala = new RelatorioSala(null, rootPaneCheckingEnabled);
+        this.relatorioSala = new RelatorioSala(null, rootPaneCheckingEnabled, gerenciaSala);
 
         //Telas a serem chamadas (CRUD INGRESSO)
         //Telas a serem chamadas (CRUD FUNCIONARIO)
@@ -145,6 +144,13 @@ public class Principal extends javax.swing.JDialog {
         this.apagaSessao.getContentPane().setBackground(corFundoPadrao);
         this.relatorioSessao.getContentPane().setBackground(corFundoPadrao);
         initComponents();
+        
+         //CORES PARA TELAS SALA
+        this.cadastroSala.getContentPane().setBackground(corFundoPadrao);
+        this.consultaSala.getContentPane().setBackground(corFundoPadrao);
+        this.atualizaSala.getContentPane().setBackground(corFundoPadrao);
+        this.apagaSala.getContentPane().setBackground(corFundoPadrao);
+        this.relatorioSala.getContentPane().setBackground(corFundoPadrao);
     }
 
     /**
@@ -506,7 +512,6 @@ public class Principal extends javax.swing.JDialog {
         this.cadastroSala.getTfNomeSala().setText("");
         this.cadastroSala.getCbCapacidade().setSelectedIndex(0);
         this.cadastroSala.getTfNomeSala().setEditable(true);
-//        this.cadastroSala.getCbCapacidade().setEditable(false);
         this.cadastroSala.setVisible(true);
 
     }//GEN-LAST:event_imCadastroSalaActionPerformed

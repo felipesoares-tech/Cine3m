@@ -9,6 +9,9 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
+import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -67,7 +70,15 @@ public class CadastroSessao extends javax.swing.JDialog {
 
         cbFilmesSessao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        cbSalasSessao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSalasSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                cbSalasSessaoAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         lbSalas.setForeground(new java.awt.Color(255, 255, 255));
         lbSalas.setText("Salas");
@@ -176,9 +187,16 @@ public class CadastroSessao extends javax.swing.JDialog {
         String nomeSalaSelecionada = cbSalasSessao.getSelectedItem().toString().trim();
         Double valorSessao = Double.parseDouble(tfValorSessao.getText());
 
-        Filme filmeRecuperado = gerenciaFilme.consultar(new Filme(nomeFilmeSelecionado));
+       // Filme filmeRecuperado = gerenciaFilme.consultar(new Filme(nomeFilmeSelecionado));
+       Filme filmeRecuperado = new Filme("abccc");
         Sala salaRecuperada = gerenciaSala.consultar(new Sala(nomeSalaSelecionada));
+        
+        gerenciaSessao.cadastrar(new Sessao(filmeRecuperado,LocalDateTime.MAX,salaRecuperada));
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
+
+    private void cbSalasSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSalasSessaoAncestorAdded
+        ComboBoxUtils.carregarComboBox(cbSalasSessao,gerenciaSala.relatorio());
+    }//GEN-LAST:event_cbSalasSessaoAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -228,7 +246,7 @@ public class CadastroSessao extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarSessao;
     private javax.swing.JComboBox<String> cbFilmesSessao;
-    private javax.swing.JComboBox<String> cbSalasSessao;
+    private javax.swing.JComboBox<Sala> cbSalasSessao;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lbDataHora;
     private javax.swing.JLabel lbDataHora1;

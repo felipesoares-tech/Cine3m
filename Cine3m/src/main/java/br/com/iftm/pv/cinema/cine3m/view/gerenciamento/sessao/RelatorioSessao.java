@@ -4,15 +4,18 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
 
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.auxiliares.ImprimeRelatorio;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import br.com.iftm.pv.cinema.cine3m.view.relatorio.TableModelGenerico;
+
 
 /**
  *
  * @author Felipe Soares
  */
 public class RelatorioSessao extends javax.swing.JDialog {
-    
-    private ImprimeRelatorio imprimeRelatorio;
+    private GerenciaSessao gerenciaSessao;
+    private TableModelGenerico modelo;
 
     
     public RelatorioSessao(java.awt.Frame parent, boolean modal) {
@@ -20,9 +23,10 @@ public class RelatorioSessao extends javax.swing.JDialog {
         initComponents();
     }
     
-    public RelatorioSessao(java.awt.Frame parent, boolean modal, ImprimeRelatorio imprimeRelatorio) {
+    public RelatorioSessao(java.awt.Frame parent, boolean modal, GerenciaSessao gerenciaSessao) {
         super(parent, modal);
-        this.imprimeRelatorio = imprimeRelatorio;
+        this.gerenciaSessao = gerenciaSessao;
+        this.modelo = new TableModelGenerico(Sessao.class);
         initComponents();
     }
 
@@ -35,64 +39,46 @@ public class RelatorioSessao extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        cbSessoes4 = new javax.swing.JComboBox<>();
-        lbSessao4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbRelatorioSessao = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(java.awt.Color.darkGray);
-
-        cbSessoes4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbSessoes4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbSessoes4ActionPerformed(evt);
+        tbRelatorioSessao.setModel(modelo);
+        tbRelatorioSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tbRelatorioSessaoAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-
-        lbSessao4.setForeground(new java.awt.Color(255, 255, 255));
-        lbSessao4.setText("Sessões");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cbSessoes4, 0, 239, Short.MAX_VALUE)
-            .addComponent(lbSessao4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addComponent(lbSessao4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbSessoes4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-        );
+        jScrollPane1.setViewportView(tbRelatorioSessao);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(208, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(107, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(195, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(48, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbSessoes4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessoes4ActionPerformed
-        this.imprimeRelatorio.setVisible(true);
-    }//GEN-LAST:event_cbSessoes4ActionPerformed
+    private void tbRelatorioSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbRelatorioSessaoAncestorAdded
+        modelo.setData(gerenciaSessao.relatorio());
+    }//GEN-LAST:event_tbRelatorioSessaoAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -137,8 +123,7 @@ public class RelatorioSessao extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbSessoes4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbSessao4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbRelatorioSessao;
     // End of variables declaration//GEN-END:variables
 }

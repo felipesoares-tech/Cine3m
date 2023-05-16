@@ -125,7 +125,7 @@ public class ApagaSala extends javax.swing.JDialog {
        Iterator<Sala> it = salaSelecionadas.iterator();
        int cont = 0;
         Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
-                "Apagar Cliente", WIDTH, JOptionPane.WARNING_MESSAGE);
+                "Apagar Sala", WIDTH, JOptionPane.WARNING_MESSAGE);
         
         if(resp.equals(JOptionPane.OK_OPTION)){
             while(it.hasNext()){

@@ -114,6 +114,8 @@ public class ConsultaSala extends javax.swing.JDialog {
         Sala salaSelecionada = (Sala)  this.cbSalaConsulta.getSelectedItem();
         this.cadastroSala.getBtnCadastrarSala().setVisible(false);
         this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
+        this.cadastroSala.getCbCapacidade().setSelectedItem(salaSelecionada.getCapacidade().toString());
+        this.cadastroSala.getCbCapacidade().setEnabled(false);
         this.cadastroSala.getTfNomeSala().setEditable(false);
         this.cadastroSala.getCbCapacidade().setEditable(false);
         this.cadastroSala.setVisible(true);

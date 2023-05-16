@@ -113,8 +113,8 @@ public class Principal extends javax.swing.JDialog {
         //Telas a serem chamadas (CRUD SALA)
         this.cadastroSala = new CadastroSala(null, rootPaneCheckingEnabled, gerenciaSala);
         this.consultaSala = new ConsultaSala(null, rootPaneCheckingEnabled, cadastroSala, gerenciaSala);
-        this.atualizaSala = new AtualizaSala(null, rootPaneCheckingEnabled, cadastroSala,gerenciaSala);
-        this.apagaSala = new ApagaSala(null, rootPaneCheckingEnabled);
+        this.atualizaSala = new AtualizaSala(null, rootPaneCheckingEnabled, cadastroSala, gerenciaSala);
+        this.apagaSala = new ApagaSala(null, rootPaneCheckingEnabled, gerenciaSala);
 //        this.imprimeRelatorio = new ImprimeRelatorio(null, rootPaneCheckingEnabled);
         this.relatorioSala = new RelatorioSala(null, rootPaneCheckingEnabled);
 
@@ -500,7 +500,15 @@ public class Principal extends javax.swing.JDialog {
     }//GEN-LAST:event_imRelatorioClienteActionPerformed
 
     private void imCadastroSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSalaActionPerformed
+        this.cadastroSala.getCbCapacidade().setEnabled(true);
+        this.cadastroSala.getBtnCadastrarSala().setVisible(true);  
+         this.cadastroSala.getBtnCadastrarSala().setText("Cadastrar");  
+        this.cadastroSala.getTfNomeSala().setText("");
+        this.cadastroSala.getCbCapacidade().setSelectedIndex(0);
+        this.cadastroSala.getTfNomeSala().setEditable(true);
+//        this.cadastroSala.getCbCapacidade().setEditable(false);
         this.cadastroSala.setVisible(true);
+
     }//GEN-LAST:event_imCadastroSalaActionPerformed
 
     private void imConsultaSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaSalaActionPerformed

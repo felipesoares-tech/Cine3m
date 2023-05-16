@@ -4,19 +4,31 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.*;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.model.Sala;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListUtils;
+import static java.awt.image.ImageObserver.WIDTH;
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Felipe Soares
  */
 public class ApagaSala extends javax.swing.JDialog {
+    private GerenciaSala gerenciaSala;
 
     /**
      * Creates new form ApagaSessao
      */
-    public ApagaSala(java.awt.Frame parent, boolean modal) {
+    public ApagaSala(java.awt.Frame parent, boolean modal, GerenciaSala gerenciaSala) {
         super(parent, modal);
+        this.gerenciaSala = gerenciaSala;
+        initComponents();
+    }
+    public ApagaSala(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);     
         initComponents();
     }
 
@@ -31,38 +43,56 @@ public class ApagaSala extends javax.swing.JDialog {
 
         jPanel9 = new javax.swing.JPanel();
         lbSala = new javax.swing.JLabel();
-        cbSala = new javax.swing.JComboBox<>();
         btnConfirmarApagaSala = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listSala = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lbSala.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbSala.setText("Sala");
 
-        cbSala.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        cbSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         btnConfirmarApagaSala.setText("Confirmar");
+        btnConfirmarApagaSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarApagaSalaActionPerformed(evt);
+            }
+        });
+
+        listSala.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                listSalaAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(listSala);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lbSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(cbSala, 0, 286, Short.MAX_VALUE)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(btnConfirmarApagaSala)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(btnConfirmarApagaSala)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbSala)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(btnConfirmarApagaSala, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -71,20 +101,43 @@ public class ApagaSala extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(127, 127, 127)
+                .addGap(52, 52, 52)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addGap(26, 26, 26)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void listSalaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_listSalaAncestorAdded
+        ListUtils.carregarList(listSala,gerenciaSala.relatorio());
+    }//GEN-LAST:event_listSalaAncestorAdded
+
+    private void btnConfirmarApagaSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaSalaActionPerformed
+       List<Sala> salaSelecionadas =  listSala.getSelectedValuesList();
+       Iterator<Sala> it = salaSelecionadas.iterator();
+       int cont = 0;
+        Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
+                "Apagar Cliente", WIDTH, JOptionPane.WARNING_MESSAGE);
+        
+        if(resp.equals(JOptionPane.OK_OPTION)){
+            while(it.hasNext()){
+                gerenciaSala.remover( it.next());
+                cont++;
+            }
+            listSalaAncestorAdded(null);
+             JOptionPane.showMessageDialog(this, String.format("Clientes removidos: %d", cont), "Remover", JOptionPane.PLAIN_MESSAGE);
+              
+        }
+      
+    }//GEN-LAST:event_btnConfirmarApagaSalaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,8 +186,9 @@ public class ApagaSala extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarApagaSala;
-    private javax.swing.JComboBox<String> cbSala;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbSala;
+    private javax.swing.JList<Sala> listSala;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+
 
 
 public class Sala {
@@ -34,7 +33,6 @@ public class Sala {
         Iterator<Poltrona> it = poltronas.iterator();
         while(it.hasNext()){
             Poltrona poltrona = it.next();
-            System.out.println(poltrona.getId());
         }
 
     }

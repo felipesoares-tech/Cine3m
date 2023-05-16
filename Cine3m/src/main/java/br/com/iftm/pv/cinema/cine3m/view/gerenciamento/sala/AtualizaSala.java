@@ -116,8 +116,9 @@ public class AtualizaSala extends javax.swing.JDialog {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         Sala salaSelecionada = (Sala) this.cbSala.getSelectedItem();
         this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
-//          this.cadastroSala.getCbCapacidade
+        this.cadastroSala.getCbCapacidade().setSelectedItem(salaSelecionada.getCapacidade());
         this.cadastroSala.getBtnCadastrarSala().setText("Atualizar");
+        this.cadastroSala.getCbCapacidade().setEnabled(true);
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
         this.cadastroSala.getTfNomeSala().setEditable(true);        
         this.cadastroSala.setSalaSelecionada(salaSelecionada);

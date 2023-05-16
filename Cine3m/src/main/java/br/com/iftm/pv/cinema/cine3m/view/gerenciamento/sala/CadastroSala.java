@@ -7,11 +7,9 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
-import javax.accessibility.AccessibleContext;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JRootPane;
 import javax.swing.JTextField;
 
 public class CadastroSala extends javax.swing.JDialog {
@@ -150,23 +148,23 @@ public class CadastroSala extends javax.swing.JDialog {
         Integer capacidade = Integer.parseInt(cbCapacidade.getSelectedItem().toString().trim());
         String nome = tfNomeSala.getText();
         Sala sala = new Sala(nome, capacidade);
-        if(ValidaCampo.validar(nome, lbSalaNome, this)){
-               if (btnCadastrarSala.getText().equals("Cadastrar")) {
-            System.out.println(nome + capacidade);
-            Boolean salaRecuperada = gerenciaSala.cadastrar(sala);
-            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!", "Cadastro", JOptionPane.PLAIN_MESSAGE);
+        if (ValidaCampo.validar(nome, lbSalaNome, this)) {
+            if (btnCadastrarSala.getText().equals("Cadastrar")) {
+                System.out.println(nome + capacidade);
+                Boolean salaRecuperada = gerenciaSala.cadastrar(sala);
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!", "Cadastro", JOptionPane.PLAIN_MESSAGE);
 
-        } else {
-            gerenciaSala.atualizar(salaSelecionada, sala);
-             JOptionPane.showMessageDialog(this, "Sala atualizada com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
-        this.setVisible(false);
-        this.getParent().setVisible(false);
-        }
-            
+            } else {
+                gerenciaSala.atualizar(salaSelecionada, sala);
+                JOptionPane.showMessageDialog(this, "Sala atualizada com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+                this.setVisible(false);
+                this.getParent().setVisible(false);
+            }
+            tfNomeSala.setText("");
+            cbCapacidade.setSelectedIndex(0);
         }
 
-     
-        tfNomeSala.setText("");          
+        
     }//GEN-LAST:event_btnCadastrarSalaActionPerformed
 
     /**

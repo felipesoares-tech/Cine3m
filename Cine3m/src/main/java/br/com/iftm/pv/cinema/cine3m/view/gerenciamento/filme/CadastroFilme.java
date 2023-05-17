@@ -4,17 +4,59 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
+import br.com.iftm.pv.cinema.cine3m.enums.Genero;
+import br.com.iftm.pv.cinema.cine3m.model.Filme;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
+import java.util.Arrays;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Felipe Soares
  */
 public class CadastroFilme extends javax.swing.JDialog {
 
-    /**
-     * Creates new form CadastroFilme
-     */
+    private GerenciaFilme gerenciaFilme;
+    private Filme filmeSelecionado;
+
+    public JButton getBtnConfirmar() {
+        return btnConfirmar;
+    }
+
+    public JTextField getTfDiretor() {
+        return tfDiretor;
+    }
+
+    public JTextField getTfNome() {
+        return tfNome;
+    }
+
+    public JTextArea getTfaDescricao() {
+        return tfaDescricao;
+    }
+
+    public Filme getFilmeSelecionado() {
+        return filmeSelecionado;
+    }
+
+    public void setFilmeSelecionado(Filme filmeSelecionado) {
+        this.filmeSelecionado = filmeSelecionado;
+    }
+
     public CadastroFilme(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+
+    public CadastroFilme(java.awt.Frame parent, boolean modal, GerenciaFilme gerenciaFilme) {
+        super(parent, modal);
+        this.gerenciaFilme = gerenciaFilme;
         initComponents();
     }
 
@@ -27,21 +69,156 @@ public class CadastroFilme extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tfaDescricao = new javax.swing.JTextArea();
+        lbGenero = new javax.swing.JLabel();
+        cbGenero = new javax.swing.JComboBox<>();
+        lbDiretor = new javax.swing.JLabel();
+        tfDiretor = new javax.swing.JTextField();
+        lbNome = new javax.swing.JLabel();
+        tfNome = new javax.swing.JTextField();
+        lbDescricao = new javax.swing.JLabel();
+        btnConfirmar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        tfaDescricao.setColumns(20);
+        tfaDescricao.setRows(5);
+        jScrollPane1.setViewportView(tfaDescricao);
+
+        lbGenero.setText("Genero");
+
+        cbGenero.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                cbGeneroAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        lbDiretor.setText("Diretor");
+
+        lbNome.setText("Nome");
+
+        lbDescricao.setText("Descrição");
+
+        btnConfirmar.setText("Cadastrar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(lbGenero)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbDiretor)
+                            .addComponent(tfDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbNome)
+                            .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnConfirmar))
+                            .addComponent(lbDescricao))
+                        .addGap(0, 88, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(lbGenero)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbDiretor)
+                    .addComponent(lbNome))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(lbDescricao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnConfirmar)
+                        .addGap(36, 36, 36))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(113, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        String nome = tfNome.getText();
+        String diretor = tfDiretor.getText();
+        String descricao = tfaDescricao.getText();
+        Genero genero = (Genero) cbGenero.getSelectedItem();
+
+        if (ValidaCampo.validar(nome, lbNome, this) && ValidaCampo.validar(diretor, lbDiretor, this) && ValidaCampo.validar(descricao, lbDescricao, this)) {
+            Filme filme = new Filme(genero, nome, descricao, diretor);
+            if (btnConfirmar.getText().equals("Cadastrar")) {
+                System.out.println("asasaksa");
+                System.out.println(filme);
+                gerenciaFilme.cadastrar(filme);
+            } else {
+                gerenciaFilme.atualizar(filmeSelecionado, filme);
+                JOptionPane.showMessageDialog(this, "Filme atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+                this.setVisible(false);
+                this.getParent().setVisible(false);
+                
+            }
+        }
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void cbGeneroAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbGeneroAncestorAdded
+        List<Genero> listaGeneros = Arrays.asList(Genero.values());
+        ComboBoxUtils.carregarComboBox(cbGenero, listaGeneros);
+    }//GEN-LAST:event_cbGeneroAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -86,5 +263,16 @@ public class CadastroFilme extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JComboBox<Genero> cbGenero;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbDescricao;
+    private javax.swing.JLabel lbDiretor;
+    private javax.swing.JLabel lbGenero;
+    private javax.swing.JLabel lbNome;
+    private javax.swing.JTextField tfDiretor;
+    private javax.swing.JTextField tfNome;
+    private javax.swing.JTextArea tfaDescricao;
     // End of variables declaration//GEN-END:variables
 }

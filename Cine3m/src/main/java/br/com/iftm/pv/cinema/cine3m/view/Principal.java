@@ -25,6 +25,8 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.AtualizaCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.ConsultaCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.RelatorioCliente;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.CadastroFilme;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.ConsultaFilme;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.ApagaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.AtualizaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.CadastroFuncionario;
@@ -73,7 +75,10 @@ public class Principal extends javax.swing.JDialog {
     ApagaSala apagaSala;
     RelatorioSala relatorioSala;
     //Telas a serem chamadas (CRUD INGRESSO)
-    //Telas a serem chamadas (CRUD FUNCIONARIO)
+    //Telas a serem chamadas (CRUD FILMES)
+    CadastroFilme cadastroFilme;
+    ConsultaFilme consultaFilme;
+            
     List<Filme> filmes = new ArrayList<Filme>();
     List<Funcionario> funcionarios = new ArrayList<Funcionario>();
     List<Sessao> sessoes = new ArrayList<Sessao>();
@@ -117,7 +122,9 @@ public class Principal extends javax.swing.JDialog {
         this.relatorioSala = new RelatorioSala(null, rootPaneCheckingEnabled, gerenciaSala);
 
         //Telas a serem chamadas (CRUD INGRESSO)
-        //Telas a serem chamadas (CRUD FUNCIONARIO)
+        //Telas a serem chamadas (CRUD FILMES)
+        this.cadastroFilme =new CadastroFilme(null, rootPaneCheckingEnabled, gerenciaFilme);
+        this.consultaFilme = new ConsultaFilme(null, rootPaneCheckingEnabled, cadastroFilme, gerenciaFilme);
         //Configurações para as telas;
         Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
         this.getContentPane().setBackground(corFundoPadrao);
@@ -280,9 +287,19 @@ public class Principal extends javax.swing.JDialog {
         mFilme.setText("Filme");
 
         imCadastroFilme.setText("Cadastrar");
+        imCadastroFilme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imCadastroFilmeActionPerformed(evt);
+            }
+        });
         mFilme.add(imCadastroFilme);
 
         imConsultaFilme.setText("Consultar");
+        imConsultaFilme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imConsultaFilmeActionPerformed(evt);
+            }
+        });
         mFilme.add(imConsultaFilme);
 
         imAtualizaFilme.setText("Atualizar");
@@ -556,6 +573,14 @@ public class Principal extends javax.swing.JDialog {
     private void imRelatorioFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioFuncionarioActionPerformed
         this.relatorioFuncionario.setVisible(true);
     }//GEN-LAST:event_imRelatorioFuncionarioActionPerformed
+
+    private void imCadastroFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroFilmeActionPerformed
+        this.cadastroFilme.setVisible(true);
+    }//GEN-LAST:event_imCadastroFilmeActionPerformed
+
+    private void imConsultaFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaFilmeActionPerformed
+      this.consultaFilme.setVisible(true);
+    }//GEN-LAST:event_imConsultaFilmeActionPerformed
 
     /**
      * @param args the command line arguments

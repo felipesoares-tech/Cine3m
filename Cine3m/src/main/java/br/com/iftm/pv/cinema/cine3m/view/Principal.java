@@ -78,7 +78,7 @@ public class Principal extends javax.swing.JDialog {
     //Telas a serem chamadas (CRUD FILMES)
     CadastroFilme cadastroFilme;
     ConsultaFilme consultaFilme;
-            
+
     List<Filme> filmes = new ArrayList<Filme>();
     List<Funcionario> funcionarios = new ArrayList<Funcionario>();
     List<Sessao> sessoes = new ArrayList<Sessao>();
@@ -99,8 +99,8 @@ public class Principal extends javax.swing.JDialog {
         this.cadastroSessao = new CadastroSessao(null, rootPaneCheckingEnabled, gerenciaFilme, gerenciaSala, gerenciaSessao);
         this.consultaSessao = new ConsultaSessao(null, rootPaneCheckingEnabled, cadastroSessao);
         this.atualizaSessao = new AtualizaSessao(null, rootPaneCheckingEnabled, cadastroSessao);
-        this.apagaSessao = new ApagaSessao(null, rootPaneCheckingEnabled,gerenciaSessao);
-        this.relatorioSessao = new RelatorioSessao(null, rootPaneCheckingEnabled,gerenciaSessao);
+        this.apagaSessao = new ApagaSessao(null, rootPaneCheckingEnabled, gerenciaSessao);
+        this.relatorioSessao = new RelatorioSessao(null, rootPaneCheckingEnabled, gerenciaSessao);
         //Telas a serem chamadas (CRUD CLIENTES) Instanciação
         this.cadastroCliente = new CadastroCliente(null, rootPaneCheckingEnabled, gerenciaCliente);
         this.consultaCliente = new ConsultaCliente(null, rootPaneCheckingEnabled, cadastroCliente, gerenciaCliente);
@@ -123,7 +123,7 @@ public class Principal extends javax.swing.JDialog {
 
         //Telas a serem chamadas (CRUD INGRESSO)
         //Telas a serem chamadas (CRUD FILMES)
-        this.cadastroFilme =new CadastroFilme(null, rootPaneCheckingEnabled, gerenciaFilme);
+        this.cadastroFilme = new CadastroFilme(null, rootPaneCheckingEnabled, gerenciaFilme);
         this.consultaFilme = new ConsultaFilme(null, rootPaneCheckingEnabled, cadastroFilme, gerenciaFilme);
         //Configurações para as telas;
         Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
@@ -150,8 +150,8 @@ public class Principal extends javax.swing.JDialog {
         this.apagaSessao.getContentPane().setBackground(corFundoPadrao);
         this.relatorioSessao.getContentPane().setBackground(corFundoPadrao);
         initComponents();
-        
-         //CORES PARA TELAS SALA
+
+        //CORES PARA TELAS SALA
         this.cadastroSala.getContentPane().setBackground(corFundoPadrao);
         this.consultaSala.getContentPane().setBackground(corFundoPadrao);
         this.atualizaSala.getContentPane().setBackground(corFundoPadrao);
@@ -523,8 +523,8 @@ public class Principal extends javax.swing.JDialog {
 
     private void imCadastroSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSalaActionPerformed
         this.cadastroSala.getCbCapacidade().setEnabled(true);
-        this.cadastroSala.getBtnCadastrarSala().setVisible(true);  
-         this.cadastroSala.getBtnCadastrarSala().setText("Cadastrar");  
+        this.cadastroSala.getBtnCadastrarSala().setVisible(true);
+        this.cadastroSala.getBtnCadastrarSala().setText("Cadastrar");
         this.cadastroSala.getTfNomeSala().setText("");
         this.cadastroSala.getCbCapacidade().setSelectedIndex(0);
         this.cadastroSala.getTfNomeSala().setEditable(true);
@@ -575,11 +575,20 @@ public class Principal extends javax.swing.JDialog {
     }//GEN-LAST:event_imRelatorioFuncionarioActionPerformed
 
     private void imCadastroFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroFilmeActionPerformed
+        this.cadastroFilme.getBtnConfirmar().setText("Cadastrar");
+        this.cadastroFilme.getBtnConfirmar().setVisible(true);
+        this.cadastroFilme.getTfNome().setEditable(true);
+        this.cadastroFilme.getTfDiretor().setEditable(true);
+        this.cadastroFilme.getTfaDescricao().setEditable(true);
+         this.cadastroFilme.getTfNome().setText("");
+        this.cadastroFilme.getTfDiretor().setText("");
+        this.cadastroFilme.getTfaDescricao().setText("");
+        this.cadastroFilme.getCbGenero().setEnabled(true);
         this.cadastroFilme.setVisible(true);
     }//GEN-LAST:event_imCadastroFilmeActionPerformed
 
     private void imConsultaFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaFilmeActionPerformed
-      this.consultaFilme.setVisible(true);
+        this.consultaFilme.setVisible(true);
     }//GEN-LAST:event_imConsultaFilmeActionPerformed
 
     /**

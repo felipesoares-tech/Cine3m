@@ -12,6 +12,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -202,8 +203,6 @@ public class CadastroFilme extends javax.swing.JDialog {
         if (ValidaCampo.validar(nome, lbNome, this) && ValidaCampo.validar(diretor, lbDiretor, this) && ValidaCampo.validar(descricao, lbDescricao, this)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
             if (btnConfirmar.getText().equals("Cadastrar")) {
-                System.out.println("asasaksa");
-                System.out.println(filme);
                 gerenciaFilme.cadastrar(filme);
             } else {
                 gerenciaFilme.atualizar(filmeSelecionado, filme);
@@ -214,6 +213,10 @@ public class CadastroFilme extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    public JComboBox<Genero> getCbGenero() {
+        return cbGenero;
+    }
 
     private void cbGeneroAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbGeneroAncestorAdded
         List<Genero> listaGeneros = Arrays.asList(Genero.values());

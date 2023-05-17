@@ -16,6 +16,7 @@ public class GerenciaFilme implements IGerencia<Filme> {
 
     public Boolean cadastrar(Filme filme) {
         if (!filmes.contains(filme)) {
+            System.out.println(filme);
             return filmes.add(filme);
         }
         return false;

@@ -68,8 +68,6 @@ public class CadastroSessao extends javax.swing.JDialog {
         lbFilmes.setForeground(new java.awt.Color(255, 255, 255));
         lbFilmes.setText("FIlmes");
 
-        cbFilmesSessao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         cbSalasSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 cbSalasSessaoAncestorAdded(evt);
@@ -167,23 +165,23 @@ public class CadastroSessao extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(254, 254, 254)
+                .addGap(47, 47, 47)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
-        String nomeFilmeSelecionado = cbFilmesSessao.getSelectedItem().toString().trim();
+        //String nomeFilmeSelecionado = cbFilmesSessao.getSelectedItem().toString().trim();
         String nomeSalaSelecionada = cbSalasSessao.getSelectedItem().toString().trim();
         Double valorSessao = Double.parseDouble(tfValorSessao.getText());
 
@@ -245,7 +243,7 @@ public class CadastroSessao extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarSessao;
-    private javax.swing.JComboBox<String> cbFilmesSessao;
+    private javax.swing.JComboBox<Filme> cbFilmesSessao;
     private javax.swing.JComboBox<Sala> cbSalasSessao;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lbDataHora;

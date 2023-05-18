@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 
-@Data
+
 public class GerenciaSessao implements IGerencia<Sessao> {
 
     private List<Sessao> sessoes;

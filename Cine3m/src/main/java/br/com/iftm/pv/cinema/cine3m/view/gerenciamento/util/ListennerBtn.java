@@ -9,19 +9,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
-public class BtnApGenerico implements ActionListener {
+public class ListennerBtn implements ActionListener {
+    private Color defaultColor;
+
+    public ListennerBtn(Color defaultColor) {
+        this.defaultColor = defaultColor;
+
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
-
-        if (btn.getBackground() == Color.LIGHT_GRAY) {
+        if (btn.getBackground() == defaultColor) {
             btn.setBackground(Color.GREEN);
         } else {
-            btn.setBackground(Color.LIGHT_GRAY);
+            btn.setBackground(defaultColor);
         }
-        System.out.println(btn.getBackground());
-        System.out.println("oi");
     }
 
 }

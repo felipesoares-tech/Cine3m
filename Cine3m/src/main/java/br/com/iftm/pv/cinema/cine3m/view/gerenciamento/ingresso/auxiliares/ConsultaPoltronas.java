@@ -39,15 +39,17 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
         this.listItens = listItens;
         this.listBotoes = new ArrayList<JButton>();
 
-        ListennerBtn btnListener = new ListennerBtn(new JButton("").getBackground());
+        ListennerBtn btnListener = new ListennerBtn();
         JPanel panel = new JPanel(new GridLayout(0, 10));
 
         for (char row = 'A'; row <= 'G'; row++) {
             for (int col = 1; col <= 10; col++) {
                 JButton button = new JButton(Character.toString(row) + col);
                 button.addActionListener(btnListener);
+                listBotoes.add(button);
                 panel.add(button);
             }
+            btnListener.setDefaultColor(listBotoes.get(0).getBackground());
         }
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(panel, BorderLayout.CENTER);

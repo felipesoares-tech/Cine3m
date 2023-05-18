@@ -12,11 +12,6 @@ import javax.swing.JButton;
 public class ListennerBtn implements ActionListener {
     private Color defaultColor;
 
-    public ListennerBtn(Color defaultColor) {
-        this.defaultColor = defaultColor;
-
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
@@ -25,6 +20,14 @@ public class ListennerBtn implements ActionListener {
         } else {
             btn.setBackground(defaultColor);
         }
+    }
+
+    public Color getDefaultColor() {
+        return defaultColor;
+    }
+
+    public void setDefaultColor(Color defaultColor) {
+        this.defaultColor = defaultColor;
     }
 
 }

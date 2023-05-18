@@ -4,7 +4,7 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.BtnApGenerico;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListennerBtn;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -39,7 +39,7 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
         this.listItens = listItens;
         this.listBotoes = new ArrayList<JButton>();
 
-        BtnApGenerico btnListener = new BtnApGenerico();
+        ListennerBtn btnListener = new ListennerBtn(new JButton("").getBackground());
         JPanel panel = new JPanel(new GridLayout(0, 10));
 
         for (char row = 'A'; row <= 'G'; row++) {

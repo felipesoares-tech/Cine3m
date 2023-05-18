@@ -68,6 +68,16 @@ public class CadastroSessao extends javax.swing.JDialog {
         lbFilmes.setForeground(new java.awt.Color(255, 255, 255));
         lbFilmes.setText("FIlmes");
 
+        cbFilmesSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                cbFilmesSessaoAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
         cbSalasSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 cbSalasSessaoAncestorAdded(evt);
@@ -181,12 +191,12 @@ public class CadastroSessao extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
-        //String nomeFilmeSelecionado = cbFilmesSessao.getSelectedItem().toString().trim();
+        String nomeFilmeSelecionado = cbFilmesSessao.getSelectedItem().toString().trim();
         String nomeSalaSelecionada = cbSalasSessao.getSelectedItem().toString().trim();
         Double valorSessao = Double.parseDouble(tfValorSessao.getText());
 
-       // Filme filmeRecuperado = gerenciaFilme.consultar(new Filme(nomeFilmeSelecionado));
-       Filme filmeRecuperado = new Filme("abccc");
+        Filme filmeRecuperado = gerenciaFilme.consultar(new Filme(nomeFilmeSelecionado));
+//       Filme filmeRecuperado = new Filme("abccc");
         Sala salaRecuperada = gerenciaSala.consultar(new Sala(nomeSalaSelecionada));
         
         gerenciaSessao.cadastrar(new Sessao(filmeRecuperado,LocalDateTime.MAX,salaRecuperada));
@@ -195,6 +205,10 @@ public class CadastroSessao extends javax.swing.JDialog {
     private void cbSalasSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSalasSessaoAncestorAdded
         ComboBoxUtils.carregarComboBox(cbSalasSessao,gerenciaSala.relatorio());
     }//GEN-LAST:event_cbSalasSessaoAncestorAdded
+
+    private void cbFilmesSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbFilmesSessaoAncestorAdded
+        ComboBoxUtils.carregarComboBox(cbFilmesSessao, gerenciaFilme.relatorio());
+    }//GEN-LAST:event_cbFilmesSessaoAncestorAdded
 
     /**
      * @param args the command line arguments

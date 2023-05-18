@@ -39,7 +39,6 @@ public class ConsultaSessao extends javax.swing.JDialog {
 
         jPanel1.setBackground(java.awt.Color.darkGray);
 
-        cbSessoes3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbSessoes3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbSessoes3ActionPerformed(evt);
@@ -133,7 +132,7 @@ public class ConsultaSessao extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbSessoes3;
+    private javax.swing.JComboBox<Sessao> cbSessoes3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbSessao3;
     // End of variables declaration//GEN-END:variables

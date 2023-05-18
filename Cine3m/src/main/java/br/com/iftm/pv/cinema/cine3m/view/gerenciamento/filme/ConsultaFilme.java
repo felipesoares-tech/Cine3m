@@ -122,7 +122,7 @@ public class ConsultaFilme extends javax.swing.JDialog {
         this.cadastroFilme.getTfNome().setEditable(false);
         this.cadastroFilme.getTfDiretor().setEditable(false);
         this.cadastroFilme.getTfaDescricao().setEditable(false);
-        this.cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero().values());
+//        this.cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
         this.cadastroFilme.getCbGenero().setEnabled(false);
         this.cadastroFilme.setVisible(true);
     }//GEN-LAST:event_btnConfirmarActionPerformed

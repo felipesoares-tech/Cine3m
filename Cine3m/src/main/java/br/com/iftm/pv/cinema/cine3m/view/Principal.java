@@ -32,6 +32,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.AtualizaFunci
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.CadastroFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.ConsultaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.RelatorioFuncionario;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ApagaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.AtualizaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
@@ -75,6 +76,8 @@ public class Principal extends javax.swing.JDialog {
     ApagaSala apagaSala;
     RelatorioSala relatorioSala;
     //Telas a serem chamadas (CRUD INGRESSO)
+    CadastroIngresso cadastroIngresso;
+    
     //Telas a serem chamadas (CRUD FILMES)
     CadastroFilme cadastroFilme;
     ConsultaFilme consultaFilme;
@@ -122,6 +125,9 @@ public class Principal extends javax.swing.JDialog {
         this.relatorioSala = new RelatorioSala(null, rootPaneCheckingEnabled, gerenciaSala);
 
         //Telas a serem chamadas (CRUD INGRESSO)
+        this.cadastroIngresso = new CadastroIngresso(null, rootPaneCheckingEnabled,gerenciaIngresso);
+        
+        
         //Telas a serem chamadas (CRUD FILMES)
         this.cadastroFilme = new CadastroFilme(null, rootPaneCheckingEnabled, gerenciaFilme);
         this.consultaFilme = new ConsultaFilme(null, rootPaneCheckingEnabled, cadastroFilme, gerenciaFilme);
@@ -267,18 +273,43 @@ public class Principal extends javax.swing.JDialog {
         mIngresso.setText("Ingresso");
 
         imCadastroIngresso.setText("Cadastrar");
+        imCadastroIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imCadastroIngressoActionPerformed(evt);
+            }
+        });
         mIngresso.add(imCadastroIngresso);
 
         imConsultaIngresso.setText("Consultar");
+        imConsultaIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imConsultaIngressoActionPerformed(evt);
+            }
+        });
         mIngresso.add(imConsultaIngresso);
 
         imAtualizaIngresso.setText("Atualizar");
+        imAtualizaIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imAtualizaIngressoActionPerformed(evt);
+            }
+        });
         mIngresso.add(imAtualizaIngresso);
 
         imApagaIngresso.setText("Apagar");
+        imApagaIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imApagaIngressoActionPerformed(evt);
+            }
+        });
         mIngresso.add(imApagaIngresso);
 
         imRelatorioIngresso.setText("Relatório");
+        imRelatorioIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imRelatorioIngressoActionPerformed(evt);
+            }
+        });
         mIngresso.add(imRelatorioIngresso);
 
         jMenu1.add(mIngresso);
@@ -590,6 +621,26 @@ public class Principal extends javax.swing.JDialog {
     private void imConsultaFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaFilmeActionPerformed
         this.consultaFilme.setVisible(true);
     }//GEN-LAST:event_imConsultaFilmeActionPerformed
+
+    private void imCadastroIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroIngressoActionPerformed
+        this.cadastroIngresso.setVisible(true);
+    }//GEN-LAST:event_imCadastroIngressoActionPerformed
+
+    private void imConsultaIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaIngressoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imConsultaIngressoActionPerformed
+
+    private void imAtualizaIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaIngressoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imAtualizaIngressoActionPerformed
+
+    private void imApagaIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaIngressoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imApagaIngressoActionPerformed
+
+    private void imRelatorioIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioIngressoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imRelatorioIngressoActionPerformed
 
     /**
      * @param args the command line arguments

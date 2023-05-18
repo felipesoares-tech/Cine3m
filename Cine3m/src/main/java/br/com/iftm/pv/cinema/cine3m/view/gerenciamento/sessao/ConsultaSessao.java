@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
+import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;

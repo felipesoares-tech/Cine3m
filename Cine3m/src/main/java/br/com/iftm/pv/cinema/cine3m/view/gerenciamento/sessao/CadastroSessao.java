@@ -12,6 +12,9 @@ import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
 import java.time.LocalDateTime;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 
 /**
  *
@@ -22,6 +25,54 @@ public class CadastroSessao extends javax.swing.JDialog {
     private GerenciaFilme gerenciaFilme;
     private GerenciaSala gerenciaSala;
     private GerenciaSessao gerenciaSessao;
+
+    public JButton getBtnCadastrarSessao() {
+        return btnCadastrarSessao;
+    }
+
+    public void setBtnCadastrarSessao(JButton btnCadastrarSessao) {
+        this.btnCadastrarSessao = btnCadastrarSessao;
+    }
+
+    public JComboBox<Filme> getCbFilmesSessao() {
+        return cbFilmesSessao;
+    }
+
+    public void setCbFilmesSessao(JComboBox<Filme> cbFilmesSessao) {
+        this.cbFilmesSessao = cbFilmesSessao;
+    }
+
+    public JComboBox<Sala> getCbSalasSessao() {
+        return cbSalasSessao;
+    }
+
+    public void setCbSalasSessao(JComboBox<Sala> cbSalasSessao) {
+        this.cbSalasSessao = cbSalasSessao;
+    }
+
+    public JFormattedTextField getTfDataSessao() {
+        return tfDataSessao;
+    }
+
+    public void setTfDataSessao(JFormattedTextField tfDataSessao) {
+        this.tfDataSessao = tfDataSessao;
+    }
+
+    public JFormattedTextField getTfHorarioSessao() {
+        return tfHorarioSessao;
+    }
+
+    public void setTfHorarioSessao(JFormattedTextField tfHorarioSessao) {
+        this.tfHorarioSessao = tfHorarioSessao;
+    }
+
+    public JFormattedTextField getTfValorSessao() {
+        return tfValorSessao;
+    }
+
+    public void setTfValorSessao(JFormattedTextField tfValorSessao) {
+        this.tfValorSessao = tfValorSessao;
+    }
 
     /**
      * Creates new form CRUD

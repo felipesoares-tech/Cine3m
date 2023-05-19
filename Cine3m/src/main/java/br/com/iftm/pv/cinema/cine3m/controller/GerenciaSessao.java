@@ -3,9 +3,6 @@ package br.com.iftm.pv.cinema.cine3m.controller;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import java.util.List;
-import lombok.Data;
-
-
 
 public class GerenciaSessao implements IGerencia<Sessao> {
 

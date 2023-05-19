@@ -4,9 +4,7 @@ package br.com.iftm.pv.cinema.cine3m.controller;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import java.util.List;
-import lombok.Data;
 
-@Data
 public class GerenciaFuncionario implements IGerencia<Funcionario>{
     private List<Funcionario> funcionarios;
 

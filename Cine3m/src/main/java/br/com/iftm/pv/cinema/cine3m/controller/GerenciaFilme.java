@@ -3,9 +3,7 @@ package br.com.iftm.pv.cinema.cine3m.controller;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import java.util.List;
-import lombok.Data;
 
-@Data
 public class GerenciaFilme implements IGerencia<Filme> {
 
     private List<Filme> filmes;

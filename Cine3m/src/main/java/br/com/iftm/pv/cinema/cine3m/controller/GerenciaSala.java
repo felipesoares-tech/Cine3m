@@ -4,10 +4,7 @@ package br.com.iftm.pv.cinema.cine3m.controller;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import java.util.List;
-import lombok.Data;
 
-
-@Data
 public class GerenciaSala implements IGerencia<Sala>{
     private List<Sala> salas;
 

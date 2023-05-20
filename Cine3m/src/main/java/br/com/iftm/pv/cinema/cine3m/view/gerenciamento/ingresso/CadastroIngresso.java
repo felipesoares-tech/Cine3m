@@ -37,6 +37,7 @@ public class CadastroIngresso extends javax.swing.JDialog {
         super(parent, modal);
         this.gerenciaIngresso = gerenciaIngresso;
         this.gerenciaSessao = gerenciaSessao;
+        this.consultaPoltronas = new ConsultaPoltronas(null, rootPaneCheckingEnabled, this, gerenciaSessao);
         this.cadastroSessao = cadastroSessao;
         initComponents();
     }
@@ -184,12 +185,12 @@ public class CadastroIngresso extends javax.swing.JDialog {
     }
 
     private void btnConsultarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaActionPerformed
-        this.consultaPoltronas = new ConsultaPoltronas(null, rootPaneCheckingEnabled, this, gerenciaSessao);
         this.consultaPoltronas.setVisible(true);
     }//GEN-LAST:event_btnConsultarPoltronaActionPerformed
 
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
         cadastroSessao.setVisible(true);
+        
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
 
     private void cbSessaoVendaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSessaoVendaAncestorAdded

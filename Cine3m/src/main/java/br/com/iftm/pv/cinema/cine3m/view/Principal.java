@@ -92,9 +92,9 @@ public class Principal extends javax.swing.JDialog {
     private GerenciaCliente gerenciaCliente = new GerenciaCliente(clientes);
     private GerenciaFilme gerenciaFilme = new GerenciaFilme(filmes);
     private GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(funcionarios);
-    private GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes);
     private GerenciaIngresso gerenciaIngresso = new GerenciaIngresso(ingressos);
     private GerenciaSala gerenciaSala = new GerenciaSala(salas);
+    private GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes,gerenciaSala);
 
     public Principal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -125,7 +125,7 @@ public class Principal extends javax.swing.JDialog {
         this.relatorioSala = new RelatorioSala(null, rootPaneCheckingEnabled, gerenciaSala);
 
         //Telas a serem chamadas (CRUD INGRESSO)
-        this.cadastroIngresso = new CadastroIngresso(null, rootPaneCheckingEnabled,gerenciaIngresso,cadastroSessao);
+        this.cadastroIngresso = new CadastroIngresso(null, rootPaneCheckingEnabled,gerenciaIngresso,gerenciaSessao,cadastroSessao);
         
         
         //Telas a serem chamadas (CRUD FILMES)

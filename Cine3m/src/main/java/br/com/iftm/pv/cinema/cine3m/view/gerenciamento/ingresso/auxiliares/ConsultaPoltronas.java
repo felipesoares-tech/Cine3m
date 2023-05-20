@@ -4,7 +4,9 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
+import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListennerBtn;
 import java.awt.BorderLayout;
@@ -29,22 +31,29 @@ import javax.swing.JPanel;
  * @author felipe
  */
 public class ConsultaPoltronas extends javax.swing.JDialog {
-
+    
     private List<JButton> listBotoes;
     private JButton btnConfirmar;
     private JDialog cadastroIngresso;
-
-    public ConsultaPoltronas(java.awt.Frame parent, boolean modal, CadastroIngresso cadastroIngresso) {
+    private GerenciaSessao gerenciaSessao;
+    
+    public ConsultaPoltronas(java.awt.Frame parent, boolean modal, CadastroIngresso cadastroIngresso, GerenciaSessao gerenciaSessao) {
         super(parent, modal);
         this.listBotoes = new ArrayList<JButton>();
         this.cadastroIngresso = cadastroIngresso;
-
+        this.gerenciaSessao = gerenciaSessao;
+        
         ListennerBtn btnListener = new ListennerBtn();
         JPanel panel = new JPanel(new GridLayout(0, 10));
-
+        Sessao sessaoSelecionada = (Sessao) cadastroIngresso.getCbSessaoVenda().getSelectedItem();
+        
         for (char row = 'A'; row <= 'G'; row++) {
             for (int col = 1; col <= 10; col++) {
-                JButton button = new JButton(Character.toString(row) + col);
+                String PoltronaID = Character.toString(row) + col;
+                JButton button = new JButton(PoltronaID);
+                if (!this.gerenciaSessao.poltronaDisponivel(sessaoSelecionada, new Poltrona(PoltronaID))) {
+                    button.setEnabled(false);
+                }
                 button.addActionListener(btnListener);
                 listBotoes.add(button);
                 panel.add(button);
@@ -54,11 +63,11 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(panel, BorderLayout.CENTER);
         pack();
-
-        ConfirmarButtonListener confirmarListener = new ConfirmarButtonListener(cadastroIngresso,this);
+        
+        ConfirmarButtonListener confirmarListener = new ConfirmarButtonListener(cadastroIngresso, this);
         this.btnConfirmar = new JButton("Confirmar");
         this.btnConfirmar.addActionListener(confirmarListener);
-
+        
         JPanel mainPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -66,38 +75,38 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         mainPanel.add(panel, gbc);
-
+        
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weightx = 0;
         gbc.insets = new Insets(0, 10, 0, 0);
         mainPanel.add(btnConfirmar, gbc);
-
+        
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(mainPanel, BorderLayout.CENTER);
         pack();
         initComponents();
     }
-
+    
     public ConsultaPoltronas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-
+    
     private class ConfirmarButtonListener implements ActionListener {
-
+        
         private CadastroIngresso cadastroIngresso;
         private ConsultaPoltronas consultaPoltronas;
-
+        
         public ConfirmarButtonListener(CadastroIngresso cadastroIngresso, ConsultaPoltronas consultaPoltronas) {
             this.cadastroIngresso = cadastroIngresso;
             this.consultaPoltronas = consultaPoltronas;
         }
-
+        
         @Override
         public void actionPerformed(ActionEvent e) {
             DefaultListModel<Poltrona> model = new DefaultListModel<>();
-
+            
             Iterator<JButton> it = listBotoes.iterator();
             while (it.hasNext()) {
                 JButton btn = it.next();

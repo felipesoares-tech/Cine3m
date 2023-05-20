@@ -1,20 +1,19 @@
-
 package br.com.iftm.pv.cinema.cine3m.controller;
 
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
+import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import java.util.List;
 
-public class GerenciaSala implements IGerencia<Sala>{
+public class GerenciaSala implements IGerencia<Sala> {
+
     private List<Sala> salas;
 
     public GerenciaSala(List<Sala> salas) {
         this.salas = salas;
     }
 
-    
-    
-      public Boolean cadastrar(Sala sala) {
+    public Boolean cadastrar(Sala sala) {
         if (!salas.contains(sala)) {
             System.out.println(sala.getPoltronas().size());
             return salas.add(sala);
@@ -36,5 +35,10 @@ public class GerenciaSala implements IGerencia<Sala>{
 
     public List<Sala> relatorio() {
         return this.salas;
+    }
+
+    public Boolean ConsultaPoltronaDisponivel(Sala sala, Poltrona poltrona) {
+        int pos = sala.getPoltronas().indexOf(poltrona);
+        return consultar(sala).getPoltronas().get(pos).isLivre();
     }
 }

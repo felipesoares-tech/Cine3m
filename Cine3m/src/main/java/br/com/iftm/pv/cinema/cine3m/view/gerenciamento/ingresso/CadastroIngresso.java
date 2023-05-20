@@ -5,9 +5,13 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaIngresso;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConsultaPoltronas;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import javax.swing.JComboBox;
 import javax.swing.JList;
 
 /**
@@ -15,10 +19,11 @@ import javax.swing.JList;
  * @author felipe
  */
 public class CadastroIngresso extends javax.swing.JDialog {
-    
+
     private ConsultaPoltronas consultaPoltronas;
     private CadastroSessao cadastroSessao;
     private GerenciaIngresso gerenciaIngresso;
+    private GerenciaSessao gerenciaSessao;
 
     /**
      * Creates new form CadastroIngresso2
@@ -27,19 +32,19 @@ public class CadastroIngresso extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
-    public CadastroIngresso(java.awt.Frame parent, boolean modal, GerenciaIngresso gerenciaIngresso, CadastroSessao cadastroSessao) {
+
+    public CadastroIngresso(java.awt.Frame parent, boolean modal, GerenciaIngresso gerenciaIngresso, GerenciaSessao gerenciaSessao, CadastroSessao cadastroSessao) {
         super(parent, modal);
         this.gerenciaIngresso = gerenciaIngresso;
+        this.gerenciaSessao = gerenciaSessao;
         this.cadastroSessao = cadastroSessao;
-        this.consultaPoltronas = new ConsultaPoltronas(null, rootPaneCheckingEnabled, this);
         initComponents();
     }
-    
+
     public JList<Poltrona> getjList1() {
         return jList1;
     }
-    
+
     public void setjList1(JList<Poltrona> jList1) {
         this.jList1 = jList1;
     }
@@ -53,7 +58,7 @@ public class CadastroIngresso extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbSessaoVenda = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         btnConsultarPoltrona = new javax.swing.JButton();
@@ -66,6 +71,16 @@ public class CadastroIngresso extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        cbSessaoVenda.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                cbSessaoVendaAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Sessão");
 
@@ -74,6 +89,15 @@ public class CadastroIngresso extends javax.swing.JDialog {
 
         btnConsultarPoltrona.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnConsultarPoltrona.setText("Consultar Poltrona");
+        btnConsultarPoltrona.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                btnConsultarPoltronaAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         btnConsultarPoltrona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarPoltronaActionPerformed(evt);
@@ -112,20 +136,17 @@ public class CadastroIngresso extends javax.swing.JDialog {
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConsultarPoltrona)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cbSessaoVenda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnConsultarPoltrona, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -137,7 +158,7 @@ public class CadastroIngresso extends javax.swing.JDialog {
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbSessaoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastrarSessao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConsultarPoltrona)
@@ -158,13 +179,30 @@ public class CadastroIngresso extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JComboBox<Sessao> getCbSessaoVenda() {
+        return cbSessaoVenda;
+    }
+
     private void btnConsultarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaActionPerformed
-        consultaPoltronas.setVisible(true);
+        this.consultaPoltronas = new ConsultaPoltronas(null, rootPaneCheckingEnabled, this, gerenciaSessao);
+        this.consultaPoltronas.setVisible(true);
     }//GEN-LAST:event_btnConsultarPoltronaActionPerformed
 
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
         cadastroSessao.setVisible(true);
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
+
+    private void cbSessaoVendaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSessaoVendaAncestorAdded
+        ComboBoxUtils.carregarComboBox(cbSessaoVenda, gerenciaSessao.relatorio());
+    }//GEN-LAST:event_cbSessaoVendaAncestorAdded
+
+    private void btnConsultarPoltronaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaAncestorAdded
+        if (gerenciaSessao.relatorio().isEmpty()) {
+            btnConsultarPoltrona.setEnabled(false);
+        } else {
+            btnConsultarPoltrona.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnConsultarPoltronaAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -212,8 +250,8 @@ public class CadastroIngresso extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarSessao;
     private javax.swing.JButton btnConsultarPoltrona;
+    private javax.swing.JComboBox<Sessao> cbSessaoVenda;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -12,10 +12,11 @@ public class Sessao {
     private Double valor;
     private Sala sala;
 
-    public Sessao(Filme filme, LocalDateTime dataHora, Sala sala) {
+    public Sessao(Filme filme, LocalDateTime dataHora, Sala sala, Double valor) {
         this.filme = filme;
         this.dataHora = dataHora;
         this.sala = sala;
+        this.valor = valor;
         this.nome = filme.toString() + sala.toString();
     }
 

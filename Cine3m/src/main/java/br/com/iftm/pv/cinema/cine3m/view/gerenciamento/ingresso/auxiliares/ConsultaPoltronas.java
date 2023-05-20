@@ -55,7 +55,7 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
         getContentPane().add(panel, BorderLayout.CENTER);
         pack();
 
-        ConfirmarButtonListener confirmarListener = new ConfirmarButtonListener(cadastroIngresso);
+        ConfirmarButtonListener confirmarListener = new ConfirmarButtonListener(cadastroIngresso,this);
         this.btnConfirmar = new JButton("Confirmar");
         this.btnConfirmar.addActionListener(confirmarListener);
 
@@ -87,9 +87,11 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
     private class ConfirmarButtonListener implements ActionListener {
 
         private CadastroIngresso cadastroIngresso;
+        private ConsultaPoltronas consultaPoltronas;
 
-        public ConfirmarButtonListener(CadastroIngresso cadastroIngresso) {
+        public ConfirmarButtonListener(CadastroIngresso cadastroIngresso, ConsultaPoltronas consultaPoltronas) {
             this.cadastroIngresso = cadastroIngresso;
+            this.consultaPoltronas = consultaPoltronas;
         }
 
         @Override
@@ -104,6 +106,7 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
                 }
             }
             this.cadastroIngresso.getjList1().setModel(model);
+            this.consultaPoltronas.setVisible(false);
         }
     }
 

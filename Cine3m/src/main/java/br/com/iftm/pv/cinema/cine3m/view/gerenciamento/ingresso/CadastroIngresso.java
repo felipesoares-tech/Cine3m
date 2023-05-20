@@ -6,12 +6,15 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaIngresso;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConsultaPoltronas;
+import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
+import javax.swing.JList;
 
 /**
  *
  * @author felipe
  */
 public class CadastroIngresso extends javax.swing.JDialog {
+
     private ConsultaPoltronas consultaPoltronas;
     private GerenciaIngresso gerenciaIngresso;
 
@@ -22,11 +25,20 @@ public class CadastroIngresso extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+
     public CadastroIngresso(java.awt.Frame parent, boolean modal, GerenciaIngresso gerenciaIngresso) {
         super(parent, modal);
         this.gerenciaIngresso = gerenciaIngresso;
-        this.consultaPoltronas = new ConsultaPoltronas(null, rootPaneCheckingEnabled,jList1);
+        this.consultaPoltronas = new ConsultaPoltronas(null, rootPaneCheckingEnabled,this);
         initComponents();
+    }
+
+    public JList<Poltrona> getjList1() {
+        return jList1;
+    }
+
+    public void setjList1(JList<Poltrona> jList1) {
+        this.jList1 = jList1;
     }
 
     /**
@@ -128,7 +140,6 @@ public class CadastroIngresso extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaActionPerformed
-        
         consultaPoltronas.setVisible(true);
     }//GEN-LAST:event_btnConsultarPoltronaActionPerformed
 
@@ -182,7 +193,7 @@ public class CadastroIngresso extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<Poltrona> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

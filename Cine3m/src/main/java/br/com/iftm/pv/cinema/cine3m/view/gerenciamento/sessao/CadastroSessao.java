@@ -250,7 +250,7 @@ public class CadastroSessao extends javax.swing.JDialog {
 //       Filme filmeRecuperado = new Filme("abccc");
         Sala salaRecuperada = gerenciaSala.consultar(new Sala(nomeSalaSelecionada));
         
-        gerenciaSessao.cadastrar(new Sessao(filmeRecuperado,LocalDateTime.MAX,salaRecuperada));
+        gerenciaSessao.cadastrar(new Sessao(filmeRecuperado,LocalDateTime.MAX,salaRecuperada,valorSessao));
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
 
     private void cbSalasSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSalasSessaoAncestorAdded

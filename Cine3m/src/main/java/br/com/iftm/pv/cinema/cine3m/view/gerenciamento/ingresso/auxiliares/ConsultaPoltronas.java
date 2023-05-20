@@ -4,8 +4,12 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
+import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListennerBtn;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -13,11 +17,11 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JPanel;
 
 /**
@@ -26,18 +30,14 @@ import javax.swing.JPanel;
  */
 public class ConsultaPoltronas extends javax.swing.JDialog {
 
-    private JList listItens;
     private List<JButton> listBotoes;
+    private JButton btnConfirmar;
+    private JDialog cadastroIngresso;
 
-    public ConsultaPoltronas(java.awt.Frame parent, boolean modal) {
+    public ConsultaPoltronas(java.awt.Frame parent, boolean modal, CadastroIngresso cadastroIngresso) {
         super(parent, modal);
-        initComponents();
-    }
-
-    public ConsultaPoltronas(java.awt.Frame parent, boolean modal, JList listItens) {
-        super(parent, modal);
-        this.listItens = listItens;
         this.listBotoes = new ArrayList<JButton>();
+        this.cadastroIngresso = cadastroIngresso;
 
         ListennerBtn btnListener = new ListennerBtn();
         JPanel panel = new JPanel(new GridLayout(0, 10));
@@ -55,14 +55,10 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
         getContentPane().add(panel, BorderLayout.CENTER);
         pack();
 
-        JButton btnConfirmar = new JButton("Confirmar");
-        btnConfirmar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para o botão de confirmar
-            }
-        });
-        
+        ConfirmarButtonListener confirmarListener = new ConfirmarButtonListener(cadastroIngresso);
+        this.btnConfirmar = new JButton("Confirmar");
+        this.btnConfirmar.addActionListener(confirmarListener);
+
         JPanel mainPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -82,8 +78,34 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
         pack();
         initComponents();
     }
-    
-    
+
+    public ConsultaPoltronas(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+    }
+
+    private class ConfirmarButtonListener implements ActionListener {
+
+        private CadastroIngresso cadastroIngresso;
+
+        public ConfirmarButtonListener(CadastroIngresso cadastroIngresso) {
+            this.cadastroIngresso = cadastroIngresso;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            DefaultListModel<Poltrona> model = new DefaultListModel<>();
+
+            Iterator<JButton> it = listBotoes.iterator();
+            while (it.hasNext()) {
+                JButton btn = it.next();
+                if (btn.getBackground() == Color.GREEN) {
+                    model.addElement(new Poltrona(btn.getText()));
+                }
+            }
+            this.cadastroIngresso.getjList1().setModel(model);
+        }
+    }
 
     //
     /**

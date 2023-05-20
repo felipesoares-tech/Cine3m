@@ -4,7 +4,9 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
+import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListennerBtn;
 import java.awt.BorderLayout;
@@ -33,18 +35,22 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
     private List<JButton> listBotoes;
     private JButton btnConfirmar;
     private JDialog cadastroIngresso;
+    private GerenciaSessao gerenciaSessao;
 
-    public ConsultaPoltronas(java.awt.Frame parent, boolean modal, CadastroIngresso cadastroIngresso) {
+    public ConsultaPoltronas(java.awt.Frame parent, boolean modal, CadastroIngresso cadastroIngresso, GerenciaSessao gerenciaSessao) {
         super(parent, modal);
         this.listBotoes = new ArrayList<JButton>();
         this.cadastroIngresso = cadastroIngresso;
+        this.gerenciaSessao = gerenciaSessao;
 
         ListennerBtn btnListener = new ListennerBtn();
         JPanel panel = new JPanel(new GridLayout(0, 10));
 
         for (char row = 'A'; row <= 'G'; row++) {
             for (int col = 1; col <= 10; col++) {
-                JButton button = new JButton(Character.toString(row) + col);
+                String PoltronaID = Character.toString(row) + col;
+                JButton button = new JButton(PoltronaID);
+
                 button.addActionListener(btnListener);
                 listBotoes.add(button);
                 panel.add(button);
@@ -55,7 +61,7 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
         getContentPane().add(panel, BorderLayout.CENTER);
         pack();
 
-        ConfirmarButtonListener confirmarListener = new ConfirmarButtonListener(cadastroIngresso);
+        ConfirmarButtonListener confirmarListener = new ConfirmarButtonListener(cadastroIngresso, this);
         this.btnConfirmar = new JButton("Confirmar");
         this.btnConfirmar.addActionListener(confirmarListener);
 
@@ -84,12 +90,20 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
         initComponents();
     }
 
+    public void atualizaPoltronasDisponiveis(Sessao sessao) {
+//        if (!this.gerenciaSessao.poltronaDisponivel(sessao, new Poltrona(PoltronaID))) {;
+//            button.setEnabled(false);
+//        }
+    }
+
     private class ConfirmarButtonListener implements ActionListener {
 
         private CadastroIngresso cadastroIngresso;
+        private ConsultaPoltronas consultaPoltronas;
 
-        public ConfirmarButtonListener(CadastroIngresso cadastroIngresso) {
+        public ConfirmarButtonListener(CadastroIngresso cadastroIngresso, ConsultaPoltronas consultaPoltronas) {
             this.cadastroIngresso = cadastroIngresso;
+            this.consultaPoltronas = consultaPoltronas;
         }
 
         @Override
@@ -104,6 +118,7 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
                 }
             }
             this.cadastroIngresso.getjList1().setModel(model);
+            this.consultaPoltronas.setVisible(false);
         }
     }
 

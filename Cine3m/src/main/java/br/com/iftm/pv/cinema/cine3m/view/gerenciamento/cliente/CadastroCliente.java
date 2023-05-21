@@ -166,7 +166,6 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
             } else {
                 gerenciaCliente.atualizar(clienteSelecionado, cliente);
                 JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
-                JDesktopPane parent = (JDesktopPane) getParent();
                 
             }
             tfNomeCliente.setText("");

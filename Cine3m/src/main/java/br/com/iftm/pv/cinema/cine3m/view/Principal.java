@@ -130,8 +130,8 @@ public class Principal extends javax.swing.JDialog {
         this.cadastroIngresso = new CadastroIngresso(null, rootPaneCheckingEnabled, gerenciaIngresso, gerenciaSessao, cadastroSessao);
 
         //Telas a serem chamadas (CRUD FILMES)
-        this.cadastroFilme = new CadastroFilme(null, rootPaneCheckingEnabled, gerenciaFilme);
-        this.consultaFilme = new ConsultaFilme(null, rootPaneCheckingEnabled, cadastroFilme, gerenciaFilme);
+        this.cadastroFilme = new CadastroFilme(gerenciaFilme);
+        this.consultaFilme = new ConsultaFilme(cadastroFilme, gerenciaFilme,jDesktopPane1);
         //Configurações para as telas;
         Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
         this.getContentPane().setBackground(corFundoPadrao);
@@ -221,11 +221,11 @@ public class Principal extends javax.swing.JDialog {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 953, Short.MAX_VALUE)
+            .addGap(0, 1069, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 507, Short.MAX_VALUE)
+            .addGap(0, 596, Short.MAX_VALUE)
         );
 
         jMenu1.setMnemonic('L');
@@ -498,11 +498,15 @@ public class Principal extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -621,10 +625,12 @@ public class Principal extends javax.swing.JDialog {
         this.cadastroFilme.getTfDiretor().setText("");
         this.cadastroFilme.getTfaDescricao().setText("");
         this.cadastroFilme.getCbGenero().setEnabled(true);
+        jDesktopPane1.add(cadastroFilme);
         this.cadastroFilme.setVisible(true);
     }//GEN-LAST:event_imCadastroFilmeActionPerformed
 
     private void imConsultaFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaFilmeActionPerformed
+        jDesktopPane1.add(consultaFilme);
         this.consultaFilme.setVisible(true);
     }//GEN-LAST:event_imConsultaFilmeActionPerformed
 

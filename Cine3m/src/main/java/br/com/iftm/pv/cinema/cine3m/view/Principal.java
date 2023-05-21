@@ -52,9 +52,6 @@ public class Principal extends javax.swing.JDialog {
     AtualizaSessao atualizaSessao;
     ApagaSessao apagaSessao;
     RelatorioSessao relatorioSessao;
-    //Telas auxiliares (CRUD SESSÃO)
-//    ImprimeRelatorio imprimeRelatorio;
-
     //Telas a serem chamadas (CRUD CLIENTES)
     CadastroCliente cadastroCliente;
     ConsultaCliente consultaCliente;
@@ -67,8 +64,6 @@ public class Principal extends javax.swing.JDialog {
     AtualizaFuncionario atualizaFuncionario;
     ApagaFuncionario apagaFuncionario;
     RelatorioFuncionario relatorioFuncionario;
-    //Telas auxiliares (CRUD SESSÃO)
-
     //Telas a serem chamadas (CRUD SALA)
     CadastroSala cadastroSala;
     ConsultaSala consultaSala;
@@ -101,11 +96,11 @@ public class Principal extends javax.swing.JDialog {
         initComponents();
 
         //Telas a serem chamadas (CRUD SESSÃO) Instanciação
-        this.cadastroSessao = new CadastroSessao(null, rootPaneCheckingEnabled, gerenciaFilme, gerenciaSala, gerenciaSessao);
-        this.consultaSessao = new ConsultaSessao(null, rootPaneCheckingEnabled, cadastroSessao, gerenciaSessao);
-        this.atualizaSessao = new AtualizaSessao(null, rootPaneCheckingEnabled, cadastroSessao);
-        this.apagaSessao = new ApagaSessao(null, rootPaneCheckingEnabled, gerenciaSessao);
-        this.relatorioSessao = new RelatorioSessao(null, rootPaneCheckingEnabled, gerenciaSessao);
+        this.cadastroSessao = new CadastroSessao(gerenciaSessao, gerenciaSala, gerenciaFilme);
+        this.consultaSessao = new ConsultaSessao(cadastroSessao, gerenciaSessao, jDesktopPane1);
+        this.atualizaSessao = new AtualizaSessao(cadastroSessao);
+        this.apagaSessao = new ApagaSessao(gerenciaSessao);
+        this.relatorioSessao = new RelatorioSessao(gerenciaSessao);
         //Telas a serem chamadas (CRUD CLIENTES) Instanciação
         this.cadastroCliente = new CadastroCliente(gerenciaCliente);
         this.consultaCliente = new ConsultaCliente(cadastroCliente, gerenciaCliente, jDesktopPane1);
@@ -513,22 +508,27 @@ public class Principal extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imCadastroSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSessaoActionPerformed
+        jDesktopPane1.add(cadastroSessao);
         this.cadastroSessao.setVisible(true);
     }//GEN-LAST:event_imCadastroSessaoActionPerformed
 
     private void imConsultaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaSessaoActionPerformed
+        jDesktopPane1.add(consultaSessao);
         this.consultaSessao.setVisible(true);
     }//GEN-LAST:event_imConsultaSessaoActionPerformed
 
     private void imAtualizaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaSessaoActionPerformed
+        jDesktopPane1.add(atualizaSessao);
         this.atualizaSessao.setVisible(true);
     }//GEN-LAST:event_imAtualizaSessaoActionPerformed
 
     private void imApagaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaSessaoActionPerformed
+        jDesktopPane1.add(apagaSessao);
         this.apagaSessao.setVisible(true);
     }//GEN-LAST:event_imApagaSessaoActionPerformed
 
     private void imRelatorioSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioSessaoActionPerformed
+        jDesktopPane1.add(relatorioSessao);
         this.relatorioSessao.setVisible(true);
     }//GEN-LAST:event_imRelatorioSessaoActionPerformed
 

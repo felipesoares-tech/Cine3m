@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 
 public class Sessao {
     private String nome;
-    private Integer id;
     private Filme filme;
     private LocalDateTime dataHora;
     private Double valor;
@@ -32,15 +31,7 @@ public class Sessao {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
+    
     public Filme getFilme() {
         return filme;
     }

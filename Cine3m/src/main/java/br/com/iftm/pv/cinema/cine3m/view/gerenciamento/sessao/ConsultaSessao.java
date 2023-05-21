@@ -1,33 +1,29 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
-import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
+import javax.swing.JDesktopPane;
 
 /**
  *
  * @author Felipe Soares
  */
-public class ConsultaSessao extends javax.swing.JDialog {
+public class ConsultaSessao extends javax.swing.JInternalFrame {
 
     private CadastroSessao cadastroSessao;
     private GerenciaSessao gerenciaSessao;
+    private JDesktopPane jdp;
 
-    public ConsultaSessao(java.awt.Frame parent, boolean modal, CadastroSessao cadastroSessao, GerenciaSessao gerenciaSessao) {
-        super(parent, modal);
+    public ConsultaSessao(CadastroSessao cadastroSessao, GerenciaSessao gerenciaSessao, JDesktopPane jdp) {
+        initComponents();
         this.cadastroSessao = cadastroSessao;
         this.gerenciaSessao = gerenciaSessao;
-        initComponents();
-    }
-
-    public ConsultaSessao(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+        this.jdp = jdp;
     }
 
     /**
@@ -39,14 +35,12 @@ public class ConsultaSessao extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         cbSessoes3 = new javax.swing.JComboBox<>();
         lbSessao3 = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
+        lbTituloTelaCliente = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jPanel1.setBackground(java.awt.Color.darkGray);
+        setClosable(true);
 
         cbSessoes3.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -68,118 +62,70 @@ public class ConsultaSessao extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cbSessoes3, 0, 239, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbSessao3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConfirmar)
-                .addGap(74, 74, 74))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(lbSessao3)
-                .addGap(18, 18, 18)
-                .addComponent(cbSessoes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnConfirmar)
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
+        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setText("Consulta Sessões");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbSessoes3, 0, 441, Short.MAX_VALUE)
+                    .addComponent(lbSessao3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addGap(162, 162, 162)
+                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addComponent(lbTituloTelaCliente)
+                .addGap(44, 44, 44)
+                .addComponent(lbSessao3)
+                .addGap(18, 18, 18)
+                .addComponent(cbSessoes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbSessoes3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSessoes3AncestorAdded
+        ComboBoxUtils.carregarComboBox(cbSessoes3, gerenciaSessao.relatorio());
+    }//GEN-LAST:event_cbSessoes3AncestorAdded
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         Sessao sessaoSelecionada = (Sessao) this.cbSessoes3.getSelectedItem();
         this.cadastroSessao.getBtnCadastrarSessao().setVisible(false);
         this.cadastroSessao.getCbFilmesSessao().setSelectedItem(sessaoSelecionada.getFilme());
         this.cadastroSessao.getCbSalasSessao().setSelectedItem(sessaoSelecionada.getSala());
-//        this.cadastroSessao.getTfValorSessao().setText(sessaoSelecionada.getValor().toString());
-//        this.cadastroSessao.getTfDataSessao().setText(sessaoSelecionada.getDataHora());
-//        this.cadastroSessao.getTfHorarioSessao().setText(sessaoSelecionada.get());
+        //        this.cadastroSessao.getTfValorSessao().setText(sessaoSelecionada.getValor().toString());
+        //        this.cadastroSessao.getTfDataSessao().setText(sessaoSelecionada.getDataHora());
+        //        this.cadastroSessao.getTfHorarioSessao().setText(sessaoSelecionada.get());
         this.cadastroSessao.getCbFilmesSessao().setEnabled(false);
         this.cadastroSessao.getCbSalasSessao().setEnabled(false);
         this.cadastroSessao.getTfValorSessao().setEditable(false);
         this.cadastroSessao.getTfDataSessao().setEditable(false);
         this.cadastroSessao.getTfHorarioSessao().setEditable(false);
+        this.jdp.add(cadastroSessao);
         this.cadastroSessao.setVisible(true);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
-    private void cbSessoes3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSessoes3AncestorAdded
-        ComboBoxUtils.carregarComboBox(cbSessoes3, gerenciaSessao.relatorio());
-    }//GEN-LAST:event_cbSessoes3AncestorAdded
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ConsultaSessao dialog = new ConsultaSessao(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JComboBox<Sessao> cbSessoes3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbSessao3;
+    private javax.swing.JLabel lbTituloTelaCliente;
     // End of variables declaration//GEN-END:variables
 }

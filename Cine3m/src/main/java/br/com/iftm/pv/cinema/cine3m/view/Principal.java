@@ -122,7 +122,7 @@ public class Principal extends javax.swing.JDialog {
         this.relatorioSala = new RelatorioSala(gerenciaSala);
 
         //Telas a serem chamadas (CRUD INGRESSO)
-        this.cadastroIngresso = new CadastroIngresso(gerenciaIngresso, gerenciaSessao, cadastroSessao,jDesktopPane1);
+        this.cadastroIngresso = new CadastroIngresso(gerenciaIngresso, gerenciaSessao, cadastroSessao);
 
         //Telas a serem chamadas (CRUD FILMES)
         this.cadastroFilme = new CadastroFilme(gerenciaFilme);

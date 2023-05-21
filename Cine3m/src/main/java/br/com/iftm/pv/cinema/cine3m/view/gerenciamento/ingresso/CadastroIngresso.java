@@ -30,15 +30,13 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
     private GerenciaIngresso gerenciaIngresso;
     private GerenciaSessao gerenciaSessao;
     private CadastroSessao cadastroSessao;
-    private JDesktopPane jdp;
 
-    public CadastroIngresso(GerenciaIngresso gerenciaIngresso, GerenciaSessao gerenciaSessao, CadastroSessao cadastroSessao, JDesktopPane jdp) {
+    public CadastroIngresso(GerenciaIngresso gerenciaIngresso, GerenciaSessao gerenciaSessao, CadastroSessao cadastroSessao) {
         initComponents();
         this.gerenciaIngresso = gerenciaIngresso;
         this.gerenciaSessao = gerenciaSessao;
         this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao);
         this.cadastroSessao = cadastroSessao;
-        this.jdp = jdp;
     }
 
     public ConsultaPoltronas getConsultaPoltronas() {
@@ -63,14 +61,6 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
 
     public void setCadastroSessao(CadastroSessao cadastroSessao) {
         this.cadastroSessao = cadastroSessao;
-    }
-
-    public JDesktopPane getJdp() {
-        return jdp;
-    }
-
-    public void setJdp(JDesktopPane jdp) {
-        this.jdp = jdp;
     }
 
     public JButton getBtnCadastrarSessao() {
@@ -299,19 +289,19 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnConsultarPoltronaAncestorAdded
 
     private void btnConsultarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaActionPerformed
-        this.jdp.add(consultaPoltronas);
+        getDesktopPane().add(consultaPoltronas);
         this.consultaPoltronas.setVisible(true);
     }//GEN-LAST:event_btnConsultarPoltronaActionPerformed
 
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
-        this.jdp.add(cadastroSessao);
+        getDesktopPane().add(cadastroSessao);
         cadastroSessao.setVisible(true);
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
 
     private void btnContinuarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarCompraActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
         this.confirmaCompra = new ConfirmaCompra(jList1.getModel().getSize(), sessaoSelecionada.getValor());
-        this.jdp.add(confirmaCompra);
+        getDesktopPane().add(confirmaCompra);
         this.confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed
 

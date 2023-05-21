@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
  * @author Felipe Soares
  */
 public class ValidaCampo {
-    public static boolean validar(String valor, JLabel lbCampo, Dialog jd) {
+    public static boolean validar(String valor, JLabel lbCampo) {
         if (valor.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(jd, String.format("O campo '%s' é obrigatório.", lbCampo.getText()), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, String.format("O campo '%s' é obrigatório.", lbCampo.getText()), "Erro", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;

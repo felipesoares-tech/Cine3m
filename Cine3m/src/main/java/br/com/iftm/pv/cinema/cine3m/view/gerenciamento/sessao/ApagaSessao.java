@@ -1,13 +1,12 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListUtils;
-import static java.awt.image.ImageObserver.WIDTH;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -16,19 +15,13 @@ import javax.swing.JOptionPane;
  *
  * @author Felipe Soares
  */
-public class ApagaSessao extends javax.swing.JDialog {
+public class ApagaSessao extends javax.swing.JInternalFrame {
 
     private GerenciaSessao gerenciaSessao;
-   
-    
-    public ApagaSessao(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+
+    public ApagaSessao(GerenciaSessao gerenciaSessao) {
         initComponents();
-    }
-      public ApagaSessao(java.awt.Frame parent, boolean modal,GerenciaSessao gerenciaSessao) {
-        super(parent, modal);
         this.gerenciaSessao = gerenciaSessao;
-        initComponents();
     }
 
     /**
@@ -40,21 +33,15 @@ public class ApagaSessao extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel9 = new javax.swing.JPanel();
-        btnConfirmarApagaSessao = new javax.swing.JButton();
+        lbTituloTelaCliente = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listApagaSessao = new javax.swing.JList<>();
+        btnConfirmarApagaSessao1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
 
-        jPanel9.setBackground(java.awt.Color.darkGray);
-
-        btnConfirmarApagaSessao.setText("Confirmar");
-        btnConfirmarApagaSessao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarApagaSessaoActionPerformed(evt);
-            }
-        });
+        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setText("Apagar Sessão");
 
         listApagaSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -67,44 +54,41 @@ public class ApagaSessao extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(listApagaSessao);
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(btnConfirmarApagaSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(93, Short.MAX_VALUE))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnConfirmarApagaSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
+        btnConfirmarApagaSessao1.setText("Confirmar");
+        btnConfirmarApagaSessao1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarApagaSessao1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addComponent(btnConfirmarApagaSessao1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 22, Short.MAX_VALUE)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbTituloTelaCliente)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnConfirmarApagaSessao1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,70 +98,30 @@ public class ApagaSessao extends javax.swing.JDialog {
         ListUtils.carregarList(listApagaSessao, gerenciaSessao.relatorio());
     }//GEN-LAST:event_listApagaSessaoAncestorAdded
 
-    private void btnConfirmarApagaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaSessaoActionPerformed
-       List<Sessao> sessoesSelecionadas = listApagaSessao.getSelectedValuesList();
-       Iterator<Sessao> it = sessoesSelecionadas.iterator();
-       int cont =0;
+    private void btnConfirmarApagaSessao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaSessao1ActionPerformed
+        List<Sessao> sessoesSelecionadas = listApagaSessao.getSelectedValuesList();
+        Iterator<Sessao> it = sessoesSelecionadas.iterator();
+        int cont = 0;
         Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
                 "Apagar Sessao", WIDTH, JOptionPane.WARNING_MESSAGE);
 
-       if(resp.equals(JOptionPane.OK_OPTION)){
-             while(it.hasNext()){
-           gerenciaSessao.remover(it.next());
-           cont++;
-       }
-             listApagaSessaoAncestorAdded(null);
-      JOptionPane.showMessageDialog(this, String.format("Sessões removidos: %d", cont), "Remover", JOptionPane.PLAIN_MESSAGE);
-           
-       }
-    }//GEN-LAST:event_btnConfirmarApagaSessaoActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+        if (resp.equals(JOptionPane.OK_OPTION)) {
+            while (it.hasNext()) {
+                gerenciaSessao.remover(it.next());
+                cont++;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ApagaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ApagaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ApagaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ApagaSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            listApagaSessaoAncestorAdded(null);
+            JOptionPane.showMessageDialog(this, String.format("Sessões removidos: %d", cont), "Remover", JOptionPane.PLAIN_MESSAGE);
+
         }
-        //</editor-fold>
+    }//GEN-LAST:event_btnConfirmarApagaSessao1ActionPerformed
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ApagaSessao dialog = new ApagaSessao(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarApagaSessao;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JButton btnConfirmarApagaSessao1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbTituloTelaCliente;
     private javax.swing.JList<Sessao> listApagaSessao;
     // End of variables declaration//GEN-END:variables
 }

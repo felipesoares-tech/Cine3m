@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
@@ -13,7 +13,10 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -21,44 +24,111 @@ import javax.swing.JTextField;
  *
  * @author Felipe Soares
  */
-public class CadastroFilme extends javax.swing.JDialog {
+public class CadastroFilme extends javax.swing.JInternalFrame {
 
     private GerenciaFilme gerenciaFilme;
     private Filme filmeSelecionado;
 
+    public CadastroFilme(GerenciaFilme gerenciaFilme) {
+        initComponents();
+        this.gerenciaFilme = gerenciaFilme;
+
+    }
+
     public JButton getBtnConfirmar() {
         return btnConfirmar;
+    }
+
+    public void setBtnConfirmar(JButton btnConfirmar) {
+        this.btnConfirmar = btnConfirmar;
+    }
+
+    public JComboBox<Genero> getCbGenero() {
+        return cbGenero;
+    }
+
+    public void setCbGenero(JComboBox<Genero> cbGenero) {
+        this.cbGenero = cbGenero;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JLabel getLbDescricao() {
+        return lbDescricao;
+    }
+
+    public void setLbDescricao(JLabel lbDescricao) {
+        this.lbDescricao = lbDescricao;
+    }
+
+    public JLabel getLbDiretor() {
+        return lbDiretor;
+    }
+
+    public void setLbDiretor(JLabel lbDiretor) {
+        this.lbDiretor = lbDiretor;
+    }
+
+    public JLabel getLbGenero() {
+        return lbGenero;
+    }
+
+    public void setLbGenero(JLabel lbGenero) {
+        this.lbGenero = lbGenero;
+    }
+
+    public JLabel getLbNome() {
+        return lbNome;
+    }
+
+    public void setLbNome(JLabel lbNome) {
+        this.lbNome = lbNome;
+    }
+
+    public JLabel getLbTituloTelaCliente() {
+        return lbTituloTelaCliente;
+    }
+
+    public void setLbTituloTelaCliente(JLabel lbTituloTelaCliente) {
+        this.lbTituloTelaCliente = lbTituloTelaCliente;
     }
 
     public JTextField getTfDiretor() {
         return tfDiretor;
     }
 
+    public void setTfDiretor(JTextField tfDiretor) {
+        this.tfDiretor = tfDiretor;
+    }
+
     public JTextField getTfNome() {
         return tfNome;
+    }
+
+    public void setTfNome(JTextField tfNome) {
+        this.tfNome = tfNome;
     }
 
     public JTextArea getTfaDescricao() {
         return tfaDescricao;
     }
 
-    public Filme getFilmeSelecionado() {
-        return filmeSelecionado;
-    }
-
-    public void setFilmeSelecionado(Filme filmeSelecionado) {
-        this.filmeSelecionado = filmeSelecionado;
-    }
-
-    public CadastroFilme(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
-
-    public CadastroFilme(java.awt.Frame parent, boolean modal, GerenciaFilme gerenciaFilme) {
-        super(parent, modal);
-        this.gerenciaFilme = gerenciaFilme;
-        initComponents();
+    public void setTfaDescricao(JTextArea tfaDescricao) {
+        this.tfaDescricao = tfaDescricao;
     }
 
     /**
@@ -75,14 +145,15 @@ public class CadastroFilme extends javax.swing.JDialog {
         tfaDescricao = new javax.swing.JTextArea();
         lbGenero = new javax.swing.JLabel();
         cbGenero = new javax.swing.JComboBox<>();
-        lbDiretor = new javax.swing.JLabel();
-        tfDiretor = new javax.swing.JTextField();
+        lbDescricao = new javax.swing.JLabel();
         lbNome = new javax.swing.JLabel();
         tfNome = new javax.swing.JTextField();
-        lbDescricao = new javax.swing.JLabel();
+        tfDiretor = new javax.swing.JTextField();
+        lbDiretor = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
+        lbTituloTelaCliente = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
 
         tfaDescricao.setColumns(20);
         tfaDescricao.setRows(5);
@@ -100,11 +171,11 @@ public class CadastroFilme extends javax.swing.JDialog {
             }
         });
 
-        lbDiretor.setText("Diretor");
+        lbDescricao.setText("Descrição");
 
         lbNome.setText("Nome");
 
-        lbDescricao.setText("Descrição");
+        lbDiretor.setText("Diretor");
 
         btnConfirmar.setText("Cadastrar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -117,82 +188,78 @@ public class CadastroFilme extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tfNome)
+            .addComponent(lbNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbDiretor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tfDiretor)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(lbDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(cbGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbGenero)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(lbGenero)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbDiretor)
-                            .addComponent(tfDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbNome)
-                            .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(btnConfirmar))
-                            .addComponent(lbDescricao))
-                        .addGap(0, 88, Short.MAX_VALUE))))
+                        .addGap(192, 192, 192)
+                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 199, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addComponent(lbNome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbDiretor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lbGenero)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbDiretor)
-                    .addComponent(lbNome))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(lbDescricao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnConfirmar)
-                        .addGap(36, 36, 36))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setText("Cadastro de filmes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addContainerGap(37, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addContainerGap()
+                .addComponent(lbTituloTelaCliente)
+                .addGap(12, 12, 12)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbGeneroAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbGeneroAncestorAdded
+        List<Genero> listaGeneros = Arrays.asList(Genero.values());
+        ComboBoxUtils.carregarComboBox(cbGenero, listaGeneros);
+    }//GEN-LAST:event_cbGeneroAncestorAdded
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         String nome = tfNome.getText();
@@ -200,7 +267,7 @@ public class CadastroFilme extends javax.swing.JDialog {
         String descricao = tfaDescricao.getText();
         Genero genero = (Genero) cbGenero.getSelectedItem();
 
-        if (ValidaCampo.validar(nome, lbNome, this) && ValidaCampo.validar(diretor, lbDiretor, this) && ValidaCampo.validar(descricao, lbDescricao, this)) {
+        if (ValidaCampo.validar(nome, lbNome) && ValidaCampo.validar(diretor, lbDiretor) && ValidaCampo.validar(descricao, lbDescricao)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
             if (btnConfirmar.getText().equals("Cadastrar")) {
                 gerenciaFilme.cadastrar(filme);
@@ -209,61 +276,14 @@ public class CadastroFilme extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Filme atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
                 this.setVisible(false);
                 this.getParent().setVisible(false);
-                
+
             }
+            tfNome.setText("");
+            tfDiretor.setText("");
+            tfaDescricao.setText("");
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
-    public JComboBox<Genero> getCbGenero() {
-        return cbGenero;
-    }
-
-    private void cbGeneroAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbGeneroAncestorAdded
-        List<Genero> listaGeneros = Arrays.asList(Genero.values());
-        ComboBoxUtils.carregarComboBox(cbGenero, listaGeneros);
-    }//GEN-LAST:event_cbGeneroAncestorAdded
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CadastroFilme dialog = new CadastroFilme(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
@@ -274,6 +294,7 @@ public class CadastroFilme extends javax.swing.JDialog {
     private javax.swing.JLabel lbDiretor;
     private javax.swing.JLabel lbGenero;
     private javax.swing.JLabel lbNome;
+    private javax.swing.JLabel lbTituloTelaCliente;
     private javax.swing.JTextField tfDiretor;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextArea tfaDescricao;

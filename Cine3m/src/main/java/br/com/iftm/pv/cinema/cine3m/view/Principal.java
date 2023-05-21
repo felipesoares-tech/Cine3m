@@ -113,11 +113,11 @@ public class Principal extends javax.swing.JDialog {
         this.apagaCliente = new ApagarCliente(gerenciaCliente);
         this.relatorioCliente = new RelatorioCliente(gerenciaCliente);
         //Telas a serem chamadas (CRUD FUNCIONARIOS) Instanciação
-        this.cadastroFuncionario = new CadastroFuncionario(null, rootPaneCheckingEnabled, gerenciaFuncionario);
-        this.consultaFuncionario = new ConsultaFuncionario(null, rootPaneCheckingEnabled, cadastroFuncionario, gerenciaFuncionario);
-        this.atualizaFuncionario = new AtualizaFuncionario(null, rootPaneCheckingEnabled, cadastroFuncionario, gerenciaFuncionario);
-        this.apagaFuncionario = new ApagaFuncionario(null, rootPaneCheckingEnabled, gerenciaFuncionario);
-        this.relatorioFuncionario = new RelatorioFuncionario(null, rootPaneCheckingEnabled, gerenciaFuncionario);
+        this.cadastroFuncionario = new CadastroFuncionario(gerenciaFuncionario);
+        this.consultaFuncionario = new ConsultaFuncionario(cadastroFuncionario, gerenciaFuncionario,jDesktopPane1);
+        this.atualizaFuncionario = new AtualizaFuncionario(cadastroFuncionario, gerenciaFuncionario,jDesktopPane1);
+        this.apagaFuncionario = new ApagaFuncionario(gerenciaFuncionario);
+        this.relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
 
         //Telas a serem chamadas (CRUD SALA)
         this.cadastroSala = new CadastroSala(null, rootPaneCheckingEnabled, gerenciaSala);
@@ -596,22 +596,27 @@ public class Principal extends javax.swing.JDialog {
         this.cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
         this.cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
         this.cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
+        jDesktopPane1.add(cadastroFuncionario);
         this.cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_imCadastroFuncionarioActionPerformed
 
     private void imConsultaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaFuncionarioActionPerformed
+        jDesktopPane1.add(consultaFuncionario);
         this.consultaFuncionario.setVisible(true);
     }//GEN-LAST:event_imConsultaFuncionarioActionPerformed
 
     private void imAtualizaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaFuncionarioActionPerformed
+        jDesktopPane1.add(atualizaFuncionario);
         this.atualizaFuncionario.setVisible(true);
     }//GEN-LAST:event_imAtualizaFuncionarioActionPerformed
 
     private void imApagaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaFuncionarioActionPerformed
+        jDesktopPane1.add(apagaFuncionario);
         this.apagaFuncionario.setVisible(true);
     }//GEN-LAST:event_imApagaFuncionarioActionPerformed
 
     private void imRelatorioFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioFuncionarioActionPerformed
+        jDesktopPane1.add(relatorioFuncionario);
         this.relatorioFuncionario.setVisible(true);
     }//GEN-LAST:event_imRelatorioFuncionarioActionPerformed
 

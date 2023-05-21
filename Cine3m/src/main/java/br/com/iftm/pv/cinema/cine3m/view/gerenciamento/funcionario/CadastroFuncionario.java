@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
@@ -18,28 +18,13 @@ import javax.swing.JTextField;
  *
  * @author Felipe Soares
  */
-public class CadastroFuncionario extends javax.swing.JDialog {
+public class CadastroFuncionario extends javax.swing.JInternalFrame {
 
     private GerenciaFuncionario gerenciaFuncionario;
     private Funcionario funcionarioSelecionado;
 
-    public CadastroFuncionario(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        this.setResizable(false);
+    public CadastroFuncionario(GerenciaFuncionario gerenciaFuncionario) {
         initComponents();
-    }
-
-    public CadastroFuncionario(java.awt.Frame parent, boolean modal, GerenciaFuncionario gerenciaFuncionario) {
-        super(parent, modal);
-        this.gerenciaFuncionario = gerenciaFuncionario;
-        initComponents();
-    }
-
-    public GerenciaFuncionario getGerenciaFuncionario() {
-        return gerenciaFuncionario;
-    }
-
-    public void setGerenciaFuncionario(GerenciaFuncionario gerenciaFuncionario) {
         this.gerenciaFuncionario = gerenciaFuncionario;
     }
 
@@ -91,6 +76,14 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         this.lbSenhaFuncionario = lbSenhaFuncionario;
     }
 
+    public JLabel getLbTituloTelaCliente() {
+        return lbTituloTelaCliente;
+    }
+
+    public void setLbTituloTelaCliente(JLabel lbTituloTelaCliente) {
+        this.lbTituloTelaCliente = lbTituloTelaCliente;
+    }
+
     public JFormattedTextField getTfCpfFuncionario() {
         return tfCpfFuncionario;
     }
@@ -122,9 +115,9 @@ public class CadastroFuncionario extends javax.swing.JDialog {
     public void setTfSenhaFuncionario(JPasswordField tfSenhaFuncionario) {
         this.tfSenhaFuncionario = tfSenhaFuncionario;
     }
+    
+    
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,8 +136,9 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         lbLoginFuncionario = new javax.swing.JLabel();
         tfLoginFuncionario = new javax.swing.JTextField();
         btnCadastrarFuncionario = new javax.swing.JButton();
+        lbTituloTelaCliente = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
 
         lbNomeFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         lbNomeFuncionario.setText("Nome:");
@@ -171,6 +165,9 @@ public class CadastroFuncionario extends javax.swing.JDialog {
             }
         });
 
+        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setText("Cadastro Funcionario");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,25 +175,31 @@ public class CadastroFuncionario extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
+                        .addGap(123, 123, 123)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lbNomeFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfNomeFuncionario)
                             .addComponent(lbCpfFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbSenhaFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfCpfFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(tfCpfFuncionario)
                             .addComponent(tfSenhaFuncionario)
                             .addComponent(lbLoginFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfLoginFuncionario)))
+                            .addComponent(tfLoginFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(235, 235, 235)
-                        .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(187, Short.MAX_VALUE))
+                        .addGap(67, 67, 67)
+                        .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(167, 167, 167))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbTituloTelaCliente)
+                .addGap(54, 54, 54)
                 .addComponent(lbNomeFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,7 +217,7 @@ public class CadastroFuncionario extends javax.swing.JDialog {
                 .addComponent(tfSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -227,7 +230,7 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         String senha = tfSenhaFuncionario.getPassword().toString();
 
         if (ValidaCampo.validar(nome, lbNomeFuncionario) && ValidaCampo.validar(cpf, lbCpfFuncionario)) {
-            Funcionario funcionario = new Funcionario(nome, cpf,login,senha);
+            Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
             if (btnCadastrarFuncionario.getText().equals("Cadastrar")) {
                 gerenciaFuncionario.cadastrar(funcionario);
@@ -235,7 +238,6 @@ public class CadastroFuncionario extends javax.swing.JDialog {
                 gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
                 JOptionPane.showMessageDialog(this, "Funcionario atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
                 this.setVisible(false);
-                this.getParent().setVisible(false);
             }
             tfNomeFuncionario.setText("");
             tfCpfFuncionario.setText("");
@@ -244,47 +246,6 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CadastroFuncionario dialog = new CadastroFuncionario(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarFuncionario;
@@ -292,6 +253,7 @@ public class CadastroFuncionario extends javax.swing.JDialog {
     private javax.swing.JLabel lbLoginFuncionario;
     private javax.swing.JLabel lbNomeFuncionario;
     private javax.swing.JLabel lbSenhaFuncionario;
+    private javax.swing.JLabel lbTituloTelaCliente;
     private javax.swing.JFormattedTextField tfCpfFuncionario;
     private javax.swing.JTextField tfLoginFuncionario;
     private javax.swing.JTextField tfNomeFuncionario;

@@ -6,6 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
+import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListennerBtn;
 import java.awt.BorderLayout;
@@ -34,7 +35,7 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
     private CadastroIngresso cadastroIngresso;
     private GerenciaSessao gerenciaSessao;
 
-    public ConsultaPoltronas(CadastroIngresso cadastroIngresso, GerenciaSessao gerenciaSessao) {
+    public ConsultaPoltronas(CadastroIngresso cadastroIngresso, GerenciaSessao gerenciaSessao, Sessao sessaoSelecionada) {
         this.listBotoes = new ArrayList<JButton>();
         this.cadastroIngresso = cadastroIngresso;
         this.gerenciaSessao = gerenciaSessao;
@@ -42,17 +43,29 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
         ListennerBtn btnListener = new ListennerBtn();
         JPanel panel = new JPanel(new GridLayout(0, 10));
 
-        for (char row = 'A'; row <= 'G'; row++) {
-            for (int col = 1; col <= 10; col++) {
-                String PoltronaID = Character.toString(row) + col;
-                JButton button = new JButton(PoltronaID);
+        int capacidadeTotal = sessaoSelecionada.getSala().getCapacidade();
 
-                button.addActionListener(btnListener);
-                listBotoes.add(button);
-                panel.add(button);
+       // int rowMax = (capacidadeTotal % 10 == 0) ? (capacidadeTotal / 10) : (capacidadeTotal / 10) + 1;
+        char row = 'A';
+        int col = 1;
+
+        for (int i = 1; i <= capacidadeTotal; i++) {
+            String PoltronaID = Character.toString(row) + col;
+            JButton button = new JButton(PoltronaID);
+
+            button.addActionListener(btnListener);
+            listBotoes.add(button);
+            panel.add(button);
+
+            if (col == 10) {
+                row++;
+                col = 1;
+            } else {
+                col++;
             }
-            btnListener.setDefaultColor(listBotoes.get(0).getBackground());
         }
+        btnListener.setDefaultColor(listBotoes.get(0).getBackground());
+
         ConsultaPoltronas.ConfirmarButtonListener confirmarListener = new ConsultaPoltronas.ConfirmarButtonListener(cadastroIngresso, this);
         this.btnConfirmar = new JButton("Confirmar");
         this.btnConfirmar.addActionListener(confirmarListener);

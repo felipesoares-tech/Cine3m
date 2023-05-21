@@ -17,13 +17,11 @@ public class ConsultaSala extends javax.swing.JInternalFrame {
 
     private CadastroSala cadastroSala;
     private GerenciaSala gerenciaSala;
-    private JDesktopPane jdp;
 
-    public ConsultaSala(CadastroSala cadastroSala, GerenciaSala gerenciaSala, JDesktopPane jdp) {
+    public ConsultaSala(CadastroSala cadastroSala, GerenciaSala gerenciaSala) {
         initComponents();
         this.cadastroSala = cadastroSala;
         this.gerenciaSala = gerenciaSala;
-        this.jdp = jdp;
     }
 
     /**
@@ -113,7 +111,7 @@ public class ConsultaSala extends javax.swing.JInternalFrame {
         this.cadastroSala.getCbCapacidade().setEnabled(false);
         this.cadastroSala.getTfNomeSala().setEditable(false);
         this.cadastroSala.getCbCapacidade().setEditable(false);
-        this.jdp.add(cadastroSala);
+        getDesktopPane().add(cadastroSala);
         this.cadastroSala.setVisible(true);
 
     }//GEN-LAST:event_btnConsultarActionPerformed

@@ -17,13 +17,11 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
 
     private CadastroSessao cadastroSessao;
     private GerenciaSessao gerenciaSessao;
-    private JDesktopPane jdp;
 
-    public ConsultaSessao(CadastroSessao cadastroSessao, GerenciaSessao gerenciaSessao, JDesktopPane jdp) {
+    public ConsultaSessao(CadastroSessao cadastroSessao, GerenciaSessao gerenciaSessao) {
         initComponents();
         this.cadastroSessao = cadastroSessao;
         this.gerenciaSessao = gerenciaSessao;
-        this.jdp = jdp;
     }
 
     /**
@@ -117,7 +115,7 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
         this.cadastroSessao.getTfValorSessao().setEditable(false);
         this.cadastroSessao.getTfDataSessao().setEditable(false);
         this.cadastroSessao.getTfHorarioSessao().setEditable(false);
-        this.jdp.add(cadastroSessao);
+        getDesktopPane().add(cadastroSessao);
         this.cadastroSessao.setVisible(true);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 

@@ -17,13 +17,11 @@ public class AtualizaSala extends javax.swing.JInternalFrame {
 
     private CadastroSala cadastroSala;
     private GerenciaSala gerenciaSala;
-    private JDesktopPane jdp;
 
-    public AtualizaSala(CadastroSala cadastroSala, GerenciaSala gerenciaSala, JDesktopPane jdp) {
+    public AtualizaSala(CadastroSala cadastroSala, GerenciaSala gerenciaSala) {
         initComponents();
         this.cadastroSala = cadastroSala;
         this.gerenciaSala = gerenciaSala;
-        this.jdp = jdp;
     }
 
     /**
@@ -121,7 +119,7 @@ public class AtualizaSala extends javax.swing.JInternalFrame {
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
         this.cadastroSala.getTfNomeSala().setEditable(true);
         this.cadastroSala.setSalaSelecionada(salaSelecionada);
-        this.jdp.add(cadastroSala);
+        getDesktopPane().add(cadastroSala);
         this.cadastroSala.setVisible(true);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 

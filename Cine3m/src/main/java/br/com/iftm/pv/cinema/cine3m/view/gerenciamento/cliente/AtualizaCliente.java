@@ -8,7 +8,6 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
-import javax.swing.JDesktopPane;
 
 /**
  *
@@ -18,13 +17,11 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
 
     CadastroCliente cadastroCliente;
     GerenciaCliente gerenciaCliente;
-    JDesktopPane jdp;
 
-    public AtualizaCliente(CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente, JDesktopPane jdp) {
+    public AtualizaCliente(CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente) {
         initComponents();
         this.cadastroCliente = cadastroCliente;
         this.gerenciaCliente = gerenciaCliente;
-        this.jdp = jdp;
     }
 
     /**
@@ -126,7 +123,7 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
         this.cadastroCliente.setClienteSelecionado(clienteSelecionado);
-        this.jdp.add(cadastroCliente);
+        getDesktopPane().add(cadastroCliente);
         this.cadastroCliente.setVisible(true);
     }//GEN-LAST:event_btnAtualizarClienteActionPerformed
 

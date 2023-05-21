@@ -8,7 +8,6 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
-import javax.swing.JDesktopPane;
 
 /**
  *
@@ -18,13 +17,11 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
 
     private CadastroFuncionario cadastroFuncionario;
     private GerenciaFuncionario gerenciaFuncionario;
-    private JDesktopPane jdp;
 
-    public AtualizaFuncionario(CadastroFuncionario cadastroFuncionario, GerenciaFuncionario gerenciaFuncionario, JDesktopPane jdp) {
+    public AtualizaFuncionario(CadastroFuncionario cadastroFuncionario, GerenciaFuncionario gerenciaFuncionario) {
         initComponents();
         this.cadastroFuncionario = cadastroFuncionario;
         this.gerenciaFuncionario = gerenciaFuncionario;
-        this.jdp = jdp;
     }
 
     /**
@@ -124,7 +121,7 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
         this.cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
         this.cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
         this.cadastroFuncionario.setFuncionarioSelecionado(funcionarioSelecionado);
-        this.jdp.add(cadastroFuncionario);
+        getDesktopPane().add(cadastroFuncionario);
         this.cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnAtualizarFuncionarioActionPerformed
 

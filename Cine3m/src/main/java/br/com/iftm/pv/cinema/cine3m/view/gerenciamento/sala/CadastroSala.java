@@ -148,7 +148,7 @@ public class CadastroSala extends javax.swing.JDialog {
         Integer capacidade = Integer.parseInt(cbCapacidade.getSelectedItem().toString().trim());
         String nome = tfNomeSala.getText();
         Sala sala = new Sala(nome, capacidade);
-        if (ValidaCampo.validar(nome, lbSalaNome, this)) {
+        if (ValidaCampo.validar(nome, lbSalaNome)) {
             if (btnCadastrarSala.getText().equals("Cadastrar")) {
                 System.out.println(nome + capacidade);
                 Boolean salaRecuperada = gerenciaSala.cadastrar(sala);

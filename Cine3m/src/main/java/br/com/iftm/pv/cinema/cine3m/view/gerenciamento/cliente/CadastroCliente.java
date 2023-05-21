@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
@@ -8,54 +8,25 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
 import javax.swing.JButton;
+import javax.swing.JDesktopPane;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
  *
  * @author Felipe Soares
  */
-public class CadastroCliente extends javax.swing.JDialog {
+public class CadastroCliente extends javax.swing.JInternalFrame {
 
     private GerenciaCliente gerenciaCliente;
     private Cliente clienteSelecionado;
 
-    public CadastroCliente(java.awt.Frame parent, boolean modal, GerenciaCliente gerenciaCliente) {
-        super(parent, modal);
+    public CadastroCliente(GerenciaCliente gerenciaCliente) {
         this.gerenciaCliente = gerenciaCliente;
-        this.setResizable(false);
         initComponents();
-    }
-
-    public CadastroCliente(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
-
-    public JFormattedTextField getTfCpfCliente() {
-        return tfCpfCliente;
-    }
-
-    public JTextField getTfNomeCliente() {
-        return tfNomeCliente;
-    }
-
-    public JButton getBtnCadastrarCliente() {
-        return btnCadastrarCliente;
-    }
-
-    public Cliente getClienteSelecionado() {
-        return clienteSelecionado;
-    }
-
-    public void setClienteSelecionado(Cliente clienteSelecionado) {
-        this.clienteSelecionado = clienteSelecionado;
-    }
-
-    public JLabel getLbTituloTelaCliente() {
-        return lbTituloTelaCliente;
     }
 
     /**
@@ -72,12 +43,12 @@ public class CadastroCliente extends javax.swing.JDialog {
         lbCpfCliente = new javax.swing.JLabel();
         tfCpfCliente = new javax.swing.JFormattedTextField();
         tfNomeCliente = new javax.swing.JTextField();
+        btnCadastrarCliente = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lbTituloTelaCliente = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnCadastrarCliente = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
 
         jPanel8.setBackground(java.awt.Color.darkGray);
 
@@ -117,6 +88,13 @@ public class CadastroCliente extends javax.swing.JDialog {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
+        btnCadastrarCliente.setText("Cadastrar");
+        btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarClienteActionPerformed(evt);
+            }
+        });
+
         jPanel1.setBackground(new java.awt.Color(179, 181, 187));
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
@@ -129,57 +107,48 @@ public class CadastroCliente extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(196, Short.MAX_VALUE)
                 .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(103, 103, 103))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(lbTituloTelaCliente))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(lbTituloTelaCliente)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        btnCadastrarCliente.setText("Cadastrar");
-        btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarClienteActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(266, 266, 266))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(315, 315, 315)
+                        .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(35, 35, 35)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
@@ -188,8 +157,8 @@ public class CadastroCliente extends javax.swing.JDialog {
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
         String nome = tfNomeCliente.getText().toUpperCase();
         String cpf = tfCpfCliente.getText().replaceAll("[-.]", "");
-        
-        if (ValidaCampo.validar(nome, lbNomeCliente, this) && ValidaCampo.validar(cpf, lbCpfCliente, this)){
+
+        if (ValidaCampo.validar(nome, lbNomeCliente) && ValidaCampo.validar(cpf, lbCpfCliente)) {
             Cliente cliente = new Cliente(nome, cpf);
 
             if (btnCadastrarCliente.getText().equals("Cadastrar")) {
@@ -197,55 +166,94 @@ public class CadastroCliente extends javax.swing.JDialog {
             } else {
                 gerenciaCliente.atualizar(clienteSelecionado, cliente);
                 JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
-                this.setVisible(false);
-                this.getParent().setVisible(false);
+                JDesktopPane parent = (JDesktopPane) getParent();
+                
             }
             tfNomeCliente.setText("");
             tfCpfCliente.setText("");
         }
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CadastroCliente dialog = new CadastroCliente(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+    public Cliente getClienteSelecionado() {
+        return clienteSelecionado;
     }
+
+    public void setClienteSelecionado(Cliente clienteSelecionado) {
+        this.clienteSelecionado = clienteSelecionado;
+    }
+
+    public JButton getBtnCadastrarCliente() {
+        return btnCadastrarCliente;
+    }
+
+    public void setBtnCadastrarCliente(JButton btnCadastrarCliente) {
+        this.btnCadastrarCliente = btnCadastrarCliente;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel8() {
+        return jPanel8;
+    }
+
+    public void setjPanel8(JPanel jPanel8) {
+        this.jPanel8 = jPanel8;
+    }
+
+    public JLabel getLbCpfCliente() {
+        return lbCpfCliente;
+    }
+
+    public void setLbCpfCliente(JLabel lbCpfCliente) {
+        this.lbCpfCliente = lbCpfCliente;
+    }
+
+    public JLabel getLbNomeCliente() {
+        return lbNomeCliente;
+    }
+
+    public void setLbNomeCliente(JLabel lbNomeCliente) {
+        this.lbNomeCliente = lbNomeCliente;
+    }
+
+    public JLabel getLbTituloTelaCliente() {
+        return lbTituloTelaCliente;
+    }
+
+    public void setLbTituloTelaCliente(JLabel lbTituloTelaCliente) {
+        this.lbTituloTelaCliente = lbTituloTelaCliente;
+    }
+
+    public JFormattedTextField getTfCpfCliente() {
+        return tfCpfCliente;
+    }
+
+    public void setTfCpfCliente(JFormattedTextField tfCpfCliente) {
+        this.tfCpfCliente = tfCpfCliente;
+    }
+
+    public JTextField getTfNomeCliente() {
+        return tfNomeCliente;
+    }
+
+    public void setTfNomeCliente(JTextField tfNomeCliente) {
+        this.tfNomeCliente = tfNomeCliente;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarCliente;

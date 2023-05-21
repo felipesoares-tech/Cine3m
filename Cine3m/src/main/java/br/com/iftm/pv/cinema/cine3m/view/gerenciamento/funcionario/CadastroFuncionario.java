@@ -226,7 +226,7 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         String login = tfLoginFuncionario.getText().toUpperCase();
         String senha = tfSenhaFuncionario.getPassword().toString();
 
-        if (ValidaCampo.validar(nome, lbNomeFuncionario, this) && ValidaCampo.validar(cpf, lbCpfFuncionario, this)) {
+        if (ValidaCampo.validar(nome, lbNomeFuncionario) && ValidaCampo.validar(cpf, lbCpfFuncionario)) {
             Funcionario funcionario = new Funcionario(nome, cpf,login,senha);
 
             if (btnCadastrarFuncionario.getText().equals("Cadastrar")) {

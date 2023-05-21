@@ -200,7 +200,7 @@ public class CadastroFilme extends javax.swing.JDialog {
         String descricao = tfaDescricao.getText();
         Genero genero = (Genero) cbGenero.getSelectedItem();
 
-        if (ValidaCampo.validar(nome, lbNome, this) && ValidaCampo.validar(diretor, lbDiretor, this) && ValidaCampo.validar(descricao, lbDescricao, this)) {
+        if (ValidaCampo.validar(nome, lbNome) && ValidaCampo.validar(diretor, lbDiretor) && ValidaCampo.validar(descricao, lbDescricao)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
             if (btnConfirmar.getText().equals("Cadastrar")) {
                 gerenciaFilme.cadastrar(filme);

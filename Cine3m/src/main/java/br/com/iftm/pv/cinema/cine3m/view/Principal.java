@@ -20,7 +20,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Ingresso;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.ApagaCliente;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.ApagarCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.AtualizaCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.ConsultaCliente;
@@ -59,7 +59,7 @@ public class Principal extends javax.swing.JDialog {
     CadastroCliente cadastroCliente;
     ConsultaCliente consultaCliente;
     AtualizaCliente atualizaCliente;
-    ApagaCliente apagaCliente;
+    ApagarCliente apagaCliente;
     RelatorioCliente relatorioCliente;
     //Telas a serem chamadas (CRUD FUNCIONARIOS)
     CadastroFuncionario cadastroFuncionario;
@@ -77,7 +77,7 @@ public class Principal extends javax.swing.JDialog {
     RelatorioSala relatorioSala;
     //Telas a serem chamadas (CRUD INGRESSO)
     CadastroIngresso cadastroIngresso;
-    
+
     //Telas a serem chamadas (CRUD FILMES)
     CadastroFilme cadastroFilme;
     ConsultaFilme consultaFilme;
@@ -94,10 +94,12 @@ public class Principal extends javax.swing.JDialog {
     private GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(funcionarios);
     private GerenciaIngresso gerenciaIngresso = new GerenciaIngresso(ingressos);
     private GerenciaSala gerenciaSala = new GerenciaSala(salas);
-    private GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes,gerenciaSala);
+    private GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes, gerenciaSala);
 
     public Principal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+
         //Telas a serem chamadas (CRUD SESSÃO) Instanciação
         this.cadastroSessao = new CadastroSessao(null, rootPaneCheckingEnabled, gerenciaFilme, gerenciaSala, gerenciaSessao);
         this.consultaSessao = new ConsultaSessao(null, rootPaneCheckingEnabled, cadastroSessao, gerenciaSessao);
@@ -105,11 +107,11 @@ public class Principal extends javax.swing.JDialog {
         this.apagaSessao = new ApagaSessao(null, rootPaneCheckingEnabled, gerenciaSessao);
         this.relatorioSessao = new RelatorioSessao(null, rootPaneCheckingEnabled, gerenciaSessao);
         //Telas a serem chamadas (CRUD CLIENTES) Instanciação
-        this.cadastroCliente = new CadastroCliente(null, rootPaneCheckingEnabled, gerenciaCliente);
-        this.consultaCliente = new ConsultaCliente(null, rootPaneCheckingEnabled, cadastroCliente, gerenciaCliente);
-        this.atualizaCliente = new AtualizaCliente(null, rootPaneCheckingEnabled, cadastroCliente, gerenciaCliente);
-        this.apagaCliente = new ApagaCliente(null, rootPaneCheckingEnabled, gerenciaCliente);
-        this.relatorioCliente = new RelatorioCliente(null, rootPaneCheckingEnabled, gerenciaCliente);
+        this.cadastroCliente = new CadastroCliente(gerenciaCliente);
+        this.consultaCliente = new ConsultaCliente(cadastroCliente, gerenciaCliente, jDesktopPane1);
+        this.atualizaCliente = new AtualizaCliente(cadastroCliente, gerenciaCliente, jDesktopPane1);
+        this.apagaCliente = new ApagarCliente(gerenciaCliente);
+        this.relatorioCliente = new RelatorioCliente(gerenciaCliente);
         //Telas a serem chamadas (CRUD FUNCIONARIOS) Instanciação
         this.cadastroFuncionario = new CadastroFuncionario(null, rootPaneCheckingEnabled, gerenciaFuncionario);
         this.consultaFuncionario = new ConsultaFuncionario(null, rootPaneCheckingEnabled, cadastroFuncionario, gerenciaFuncionario);
@@ -125,9 +127,8 @@ public class Principal extends javax.swing.JDialog {
         this.relatorioSala = new RelatorioSala(null, rootPaneCheckingEnabled, gerenciaSala);
 
         //Telas a serem chamadas (CRUD INGRESSO)
-        this.cadastroIngresso = new CadastroIngresso(null, rootPaneCheckingEnabled,gerenciaIngresso,gerenciaSessao,cadastroSessao);
-        
-        
+        this.cadastroIngresso = new CadastroIngresso(null, rootPaneCheckingEnabled, gerenciaIngresso, gerenciaSessao, cadastroSessao);
+
         //Telas a serem chamadas (CRUD FILMES)
         this.cadastroFilme = new CadastroFilme(null, rootPaneCheckingEnabled, gerenciaFilme);
         this.consultaFilme = new ConsultaFilme(null, rootPaneCheckingEnabled, cadastroFilme, gerenciaFilme);
@@ -155,7 +156,6 @@ public class Principal extends javax.swing.JDialog {
         this.atualizaSessao.getContentPane().setBackground(corFundoPadrao);
         this.apagaSessao.getContentPane().setBackground(corFundoPadrao);
         this.relatorioSessao.getContentPane().setBackground(corFundoPadrao);
-        initComponents();
 
         //CORES PARA TELAS SALA
         this.cadastroSala.getContentPane().setBackground(corFundoPadrao);
@@ -174,7 +174,7 @@ public class Principal extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mSessao = new javax.swing.JMenu();
@@ -217,9 +217,16 @@ public class Principal extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("P052", 1, 60)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cine 3M");
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 953, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 507, Short.MAX_VALUE)
+        );
 
         jMenu1.setMnemonic('L');
         jMenu1.setText("Lançamentos");
@@ -491,17 +498,11 @@ public class Principal extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(345, 345, 345)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(373, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(236, 236, 236)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -533,22 +534,27 @@ public class Principal extends javax.swing.JDialog {
         this.cadastroCliente.getBtnCadastrarCliente().setText("Cadastrar");
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
-        this.cadastroCliente.setVisible(true);
+        jDesktopPane1.add(cadastroCliente);
+        cadastroCliente.setVisible(true);
     }//GEN-LAST:event_imCadastraClienteActionPerformed
 
     private void imConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaClienteActionPerformed
+        jDesktopPane1.add(consultaCliente);
         this.consultaCliente.setVisible(true);
     }//GEN-LAST:event_imConsultaClienteActionPerformed
 
     private void imAtualizaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaClienteActionPerformed
+        jDesktopPane1.add(atualizaCliente);
         this.atualizaCliente.setVisible(true);
     }//GEN-LAST:event_imAtualizaClienteActionPerformed
 
     private void imApagaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaClienteActionPerformed
+        jDesktopPane1.add(apagaCliente);
         this.apagaCliente.setVisible(true);
     }//GEN-LAST:event_imApagaClienteActionPerformed
 
     private void imRelatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioClienteActionPerformed
+        jDesktopPane1.add(relatorioCliente);
         this.relatorioCliente.setVisible(true);
     }//GEN-LAST:event_imRelatorioClienteActionPerformed
 
@@ -611,7 +617,7 @@ public class Principal extends javax.swing.JDialog {
         this.cadastroFilme.getTfNome().setEditable(true);
         this.cadastroFilme.getTfDiretor().setEditable(true);
         this.cadastroFilme.getTfaDescricao().setEditable(true);
-         this.cadastroFilme.getTfNome().setText("");
+        this.cadastroFilme.getTfNome().setText("");
         this.cadastroFilme.getTfDiretor().setText("");
         this.cadastroFilme.getTfaDescricao().setText("");
         this.cadastroFilme.getCbGenero().setEnabled(true);
@@ -715,7 +721,7 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenuItem imRelatorioIngresso;
     private javax.swing.JMenuItem imRelatorioSala;
     private javax.swing.JMenuItem imRelatorioSessao;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

@@ -37,7 +37,6 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
         initComponents();
         this.gerenciaIngresso = gerenciaIngresso;
         this.gerenciaSessao = gerenciaSessao;
-        this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao);
         this.cadastroSessao = cadastroSessao;
     }
 
@@ -74,11 +73,11 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
     }
 
     public JButton getBtnConsultarPoltrona() {
-        return btnConsultarPoltrona;
+        return btnSelecionarPoltrona;
     }
 
     public void setBtnConsultarPoltrona(JButton btnConsultarPoltrona) {
-        this.btnConsultarPoltrona = btnConsultarPoltrona;
+        this.btnSelecionarPoltrona = btnConsultarPoltrona;
     }
 
     public JButton getBtnContinuarCompra() {
@@ -149,7 +148,7 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
         cbSessaoVenda = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        btnConsultarPoltrona = new javax.swing.JButton();
+        btnSelecionarPoltrona = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -179,20 +178,20 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
         jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButton1.setText("Cadastrar Cliente");
 
-        btnConsultarPoltrona.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnConsultarPoltrona.setText("Selecionar Poltrona");
-        btnConsultarPoltrona.addAncestorListener(new javax.swing.event.AncestorListener() {
+        btnSelecionarPoltrona.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnSelecionarPoltrona.setText("Selecionar Poltrona");
+        btnSelecionarPoltrona.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                btnConsultarPoltronaAncestorAdded(evt);
+                btnSelecionarPoltronaAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        btnConsultarPoltrona.addActionListener(new java.awt.event.ActionListener() {
+        btnSelecionarPoltrona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarPoltronaActionPerformed(evt);
+                btnSelecionarPoltronaActionPerformed(evt);
             }
         });
 
@@ -239,7 +238,7 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnConsultarPoltrona, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(btnSelecionarPoltrona, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                             .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
@@ -258,7 +257,7 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnConsultarPoltrona)
+                        .addComponent(btnSelecionarPoltrona)
                         .addGap(107, 107, 107)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -278,24 +277,27 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbSessaoVendaAncestorAdded
 
     private void cbSessaoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessaoVendaActionPerformed
-        this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao);
+        // Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
+        // this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao,sessaoSelecionada);
         this.jList1.removeAll();
     }//GEN-LAST:event_cbSessaoVendaActionPerformed
 
-    private void btnConsultarPoltronaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaAncestorAdded
+    private void btnSelecionarPoltronaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btnSelecionarPoltronaAncestorAdded
         if (gerenciaSessao.relatorio().isEmpty()) {
-            btnConsultarPoltrona.setEnabled(false);
+            btnSelecionarPoltrona.setEnabled(false);
         } else {
-            btnConsultarPoltrona.setEnabled(true);
+            btnSelecionarPoltrona.setEnabled(true);
         }
-    }//GEN-LAST:event_btnConsultarPoltronaAncestorAdded
+    }//GEN-LAST:event_btnSelecionarPoltronaAncestorAdded
 
-    private void btnConsultarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaActionPerformed
-        if (!containsInternalFrame(getDesktopPane(), consultaPoltronas)) {
+    private void btnSelecionarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarPoltronaActionPerformed
+        Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
+        if (!containsInternalFrame(getDesktopPane(), consultaPoltronas) && this.consultaPoltronas == null) {
+            this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao, sessaoSelecionada);
             getDesktopPane().add(consultaPoltronas);
         }
         consultaPoltronas.setVisible(true);
-    }//GEN-LAST:event_btnConsultarPoltronaActionPerformed
+    }//GEN-LAST:event_btnSelecionarPoltronaActionPerformed
 
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
         if (!containsInternalFrame(getDesktopPane(), cadastroSessao)) {
@@ -326,8 +328,8 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarSessao;
-    private javax.swing.JButton btnConsultarPoltrona;
     private javax.swing.JButton btnContinuarCompra;
+    private javax.swing.JButton btnSelecionarPoltrona;
     private javax.swing.JComboBox<Sessao> cbSessaoVenda;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

@@ -1,47 +1,132 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaIngresso;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConsultaPoltronas;
+import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConfirmaCompra;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConsultaPoltronas;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
-import br.com.iftm.pv.cinema.cine3m.model.Sessao;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConfirmaCompra;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDesktopPane;
+import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 /**
  *
- * @author felipe
+ * @author Felipe Soares
  */
-public class CadastroIngresso extends javax.swing.JDialog {
+public class CadastroIngresso extends javax.swing.JInternalFrame {
 
     private ConsultaPoltronas consultaPoltronas;
     private ConfirmaCompra confirmaCompra;
-    private CadastroSessao cadastroSessao;
     private GerenciaIngresso gerenciaIngresso;
     private GerenciaSessao gerenciaSessao;
+    private CadastroSessao cadastroSessao;
+    private JDesktopPane jdp;
 
-    /**
-     * Creates new form CadastroIngresso2
-     */
-    public CadastroIngresso(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public CadastroIngresso(GerenciaIngresso gerenciaIngresso, GerenciaSessao gerenciaSessao, CadastroSessao cadastroSessao, JDesktopPane jdp) {
         initComponents();
-    }
-
-    public CadastroIngresso(java.awt.Frame parent, boolean modal, GerenciaIngresso gerenciaIngresso, GerenciaSessao gerenciaSessao, CadastroSessao cadastroSessao) {
-        super(parent, modal);
         this.gerenciaIngresso = gerenciaIngresso;
         this.gerenciaSessao = gerenciaSessao;
-        this.consultaPoltronas = new ConsultaPoltronas(null, rootPaneCheckingEnabled, this, gerenciaSessao);
+        this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao);
         this.cadastroSessao = cadastroSessao;
-        initComponents();
+        this.jdp = jdp;
+    }
+
+    public ConsultaPoltronas getConsultaPoltronas() {
+        return consultaPoltronas;
+    }
+
+    public void setConsultaPoltronas(ConsultaPoltronas consultaPoltronas) {
+        this.consultaPoltronas = consultaPoltronas;
+    }
+
+    public ConfirmaCompra getConfirmaCompra() {
+        return confirmaCompra;
+    }
+
+    public void setConfirmaCompra(ConfirmaCompra confirmaCompra) {
+        this.confirmaCompra = confirmaCompra;
+    }
+
+    public CadastroSessao getCadastroSessao() {
+        return cadastroSessao;
+    }
+
+    public void setCadastroSessao(CadastroSessao cadastroSessao) {
+        this.cadastroSessao = cadastroSessao;
+    }
+
+    public JDesktopPane getJdp() {
+        return jdp;
+    }
+
+    public void setJdp(JDesktopPane jdp) {
+        this.jdp = jdp;
+    }
+
+    public JButton getBtnCadastrarSessao() {
+        return btnCadastrarSessao;
+    }
+
+    public void setBtnCadastrarSessao(JButton btnCadastrarSessao) {
+        this.btnCadastrarSessao = btnCadastrarSessao;
+    }
+
+    public JButton getBtnConsultarPoltrona() {
+        return btnConsultarPoltrona;
+    }
+
+    public void setBtnConsultarPoltrona(JButton btnConsultarPoltrona) {
+        this.btnConsultarPoltrona = btnConsultarPoltrona;
+    }
+
+    public JButton getBtnContinuarCompra() {
+        return btnContinuarCompra;
+    }
+
+    public void setBtnContinuarCompra(JButton btnContinuarCompra) {
+        this.btnContinuarCompra = btnContinuarCompra;
+    }
+
+    public JComboBox<Sessao> getCbSessaoVenda() {
+        return cbSessaoVenda;
+    }
+
+    public void setCbSessaoVenda(JComboBox<Sessao> cbSessaoVenda) {
+        this.cbSessaoVenda = cbSessaoVenda;
+    }
+
+    public JButton getjButton1() {
+        return jButton1;
+    }
+
+    public void setjButton1(JButton jButton1) {
+        this.jButton1 = jButton1;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
     }
 
     public JList<Poltrona> getjList1() {
@@ -50,6 +135,14 @@ public class CadastroIngresso extends javax.swing.JDialog {
 
     public void setjList1(JList<Poltrona> jList1) {
         this.jList1 = jList1;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
     }
 
     /**
@@ -71,7 +164,7 @@ public class CadastroIngresso extends javax.swing.JDialog {
         btnCadastrarSessao = new javax.swing.JButton();
         btnContinuarCompra = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
 
         cbSessaoVenda.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -152,7 +245,7 @@ public class CadastroIngresso extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbSessaoVenda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnConsultarPoltrona, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                             .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
@@ -180,7 +273,7 @@ public class CadastroIngresso extends javax.swing.JDialog {
                             .addComponent(btnContinuarCompra))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 166, Short.MAX_VALUE)
+                        .addGap(0, 198, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27))
         );
@@ -188,22 +281,14 @@ public class CadastroIngresso extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public JComboBox<Sessao> getCbSessaoVenda() {
-        return cbSessaoVenda;
-    }
-
-    private void btnConsultarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaActionPerformed
-        this.consultaPoltronas.setVisible(true);
-    }//GEN-LAST:event_btnConsultarPoltronaActionPerformed
-
-    private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
-        cadastroSessao.setVisible(true);
-
-    }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
-
     private void cbSessaoVendaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSessaoVendaAncestorAdded
         ComboBoxUtils.carregarComboBox(cbSessaoVenda, gerenciaSessao.relatorio());
     }//GEN-LAST:event_cbSessaoVendaAncestorAdded
+
+    private void cbSessaoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessaoVendaActionPerformed
+        this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao);
+        this.jList1.removeAll();
+    }//GEN-LAST:event_cbSessaoVendaActionPerformed
 
     private void btnConsultarPoltronaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaAncestorAdded
         if (gerenciaSessao.relatorio().isEmpty()) {
@@ -213,59 +298,23 @@ public class CadastroIngresso extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnConsultarPoltronaAncestorAdded
 
-    private void cbSessaoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessaoVendaActionPerformed
-        this.consultaPoltronas = new ConsultaPoltronas(null, rootPaneCheckingEnabled, this, gerenciaSessao);
-        this.jList1.removeAll();
-    }//GEN-LAST:event_cbSessaoVendaActionPerformed
+    private void btnConsultarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaActionPerformed
+        this.jdp.add(consultaPoltronas);
+        this.consultaPoltronas.setVisible(true);
+    }//GEN-LAST:event_btnConsultarPoltronaActionPerformed
+
+    private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
+        this.jdp.add(cadastroSessao);
+        cadastroSessao.setVisible(true);
+    }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
 
     private void btnContinuarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarCompraActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        this.confirmaCompra = new ConfirmaCompra(null, rootPaneCheckingEnabled, jList1.getModel().getSize(),sessaoSelecionada.getValor());
+        this.confirmaCompra = new ConfirmaCompra(jList1.getModel().getSize(), sessaoSelecionada.getValor());
+        this.jdp.add(confirmaCompra);
         this.confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroIngresso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CadastroIngresso dialog = new CadastroIngresso(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarSessao;

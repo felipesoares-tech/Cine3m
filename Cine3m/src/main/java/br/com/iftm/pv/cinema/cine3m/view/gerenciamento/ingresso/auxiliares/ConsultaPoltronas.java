@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
@@ -11,7 +11,6 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListennerBtn;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -23,22 +22,21 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JDialog;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
 /**
  *
- * @author felipe
+ * @author Felipe Soares
  */
-public class ConsultaPoltronas extends javax.swing.JDialog {
+public class ConsultaPoltronas extends javax.swing.JInternalFrame {
 
     private List<JButton> listBotoes;
     private JButton btnConfirmar;
-    private JDialog cadastroIngresso;
+    private CadastroIngresso cadastroIngresso;
     private GerenciaSessao gerenciaSessao;
 
-    public ConsultaPoltronas(java.awt.Frame parent, boolean modal, CadastroIngresso cadastroIngresso, GerenciaSessao gerenciaSessao) {
-        super(parent, modal);
+    public ConsultaPoltronas(CadastroIngresso cadastroIngresso, GerenciaSessao gerenciaSessao) {
         this.listBotoes = new ArrayList<JButton>();
         this.cadastroIngresso = cadastroIngresso;
         this.gerenciaSessao = gerenciaSessao;
@@ -57,11 +55,7 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
             }
             btnListener.setDefaultColor(listBotoes.get(0).getBackground());
         }
-        getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(panel, BorderLayout.CENTER);
-        pack();
-
-        ConfirmarButtonListener confirmarListener = new ConfirmarButtonListener(cadastroIngresso, this);
+        ConsultaPoltronas.ConfirmarButtonListener confirmarListener = new ConsultaPoltronas.ConfirmarButtonListener(cadastroIngresso, this);
         this.btnConfirmar = new JButton("Confirmar");
         this.btnConfirmar.addActionListener(confirmarListener);
 
@@ -78,22 +72,12 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
         gbc.weightx = 0;
         gbc.insets = new Insets(0, 10, 0, 0);
         mainPanel.add(btnConfirmar, gbc);
+        initComponents();
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(mainPanel, BorderLayout.CENTER);
         pack();
-        initComponents();
-    }
 
-    public ConsultaPoltronas(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
-
-    public void atualizaPoltronasDisponiveis(Sessao sessao) {
-//        if (!this.gerenciaSessao.poltronaDisponivel(sessao, new Poltrona(PoltronaID))) {;
-//            button.setEnabled(false);
-//        }
     }
 
     private class ConfirmarButtonListener implements ActionListener {
@@ -122,7 +106,6 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
         }
     }
 
-    //
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,66 +115,22 @@ public class ConsultaPoltronas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 792, Short.MAX_VALUE)
+            .addGap(0, 869, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGap(0, 509, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaPoltronas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaPoltronas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaPoltronas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaPoltronas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ConsultaPoltronas dialog = new ConsultaPoltronas(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

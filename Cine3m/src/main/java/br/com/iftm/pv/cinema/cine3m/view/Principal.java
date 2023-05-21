@@ -122,7 +122,7 @@ public class Principal extends javax.swing.JDialog {
         this.relatorioSala = new RelatorioSala(gerenciaSala);
 
         //Telas a serem chamadas (CRUD INGRESSO)
-        this.cadastroIngresso = new CadastroIngresso(null, rootPaneCheckingEnabled, gerenciaIngresso, gerenciaSessao, cadastroSessao);
+        this.cadastroIngresso = new CadastroIngresso(gerenciaIngresso, gerenciaSessao, cadastroSessao,jDesktopPane1);
 
         //Telas a serem chamadas (CRUD FILMES)
         this.cadastroFilme = new CadastroFilme(gerenciaFilme);
@@ -645,6 +645,7 @@ public class Principal extends javax.swing.JDialog {
     }//GEN-LAST:event_imConsultaFilmeActionPerformed
 
     private void imCadastroIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroIngressoActionPerformed
+        jDesktopPane1.add(cadastroIngresso);
         this.cadastroIngresso.setVisible(true);
     }//GEN-LAST:event_imCadastroIngressoActionPerformed
 

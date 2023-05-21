@@ -12,9 +12,11 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.Confi
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConsultaPoltronas;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
+import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -178,7 +180,7 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
         jButton1.setText("Cadastrar Cliente");
 
         btnConsultarPoltrona.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnConsultarPoltrona.setText("Consultar Poltrona");
+        btnConsultarPoltrona.setText("Selecionar Poltrona");
         btnConsultarPoltrona.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 btnConsultarPoltronaAncestorAdded(evt);
@@ -225,7 +227,7 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 548, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -235,7 +237,7 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbSessaoVenda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnConsultarPoltrona, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                             .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
@@ -289,12 +291,16 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnConsultarPoltronaAncestorAdded
 
     private void btnConsultarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPoltronaActionPerformed
-        getDesktopPane().add(consultaPoltronas);
-        this.consultaPoltronas.setVisible(true);
+        if (!containsInternalFrame(getDesktopPane(), consultaPoltronas)) {
+            getDesktopPane().add(consultaPoltronas);
+        }
+        consultaPoltronas.setVisible(true);
     }//GEN-LAST:event_btnConsultarPoltronaActionPerformed
 
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
-        getDesktopPane().add(cadastroSessao);
+        if (!containsInternalFrame(getDesktopPane(), cadastroSessao)) {
+            getDesktopPane().add(cadastroSessao);
+        }
         cadastroSessao.setVisible(true);
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
 
@@ -305,6 +311,18 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
         this.confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed
 
+    public boolean containsInternalFrame(JDesktopPane desktopPane, JInternalFrame internalFrame) {
+        Component[] components = desktopPane.getComponents();
+        for (Component component : components) {
+            if (component instanceof JInternalFrame) {
+                JInternalFrame frame = (JInternalFrame) component;
+                if (frame.equals(internalFrame)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarSessao;

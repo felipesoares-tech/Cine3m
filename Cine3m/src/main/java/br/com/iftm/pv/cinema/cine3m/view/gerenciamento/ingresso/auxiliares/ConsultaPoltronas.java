@@ -6,7 +6,6 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
-import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListennerBtn;
 import java.awt.BorderLayout;
@@ -22,7 +21,6 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
 /**

@@ -97,27 +97,27 @@ public class Principal extends javax.swing.JDialog {
 
         //Telas a serem chamadas (CRUD SESSÃO) Instanciação
         this.cadastroSessao = new CadastroSessao(gerenciaSessao, gerenciaSala, gerenciaFilme);
-        this.consultaSessao = new ConsultaSessao(cadastroSessao, gerenciaSessao, jDesktopPane1);
+        this.consultaSessao = new ConsultaSessao(cadastroSessao, gerenciaSessao);
         this.atualizaSessao = new AtualizaSessao(cadastroSessao);
         this.apagaSessao = new ApagaSessao(gerenciaSessao);
         this.relatorioSessao = new RelatorioSessao(gerenciaSessao);
         //Telas a serem chamadas (CRUD CLIENTES) Instanciação
         this.cadastroCliente = new CadastroCliente(gerenciaCliente);
-        this.consultaCliente = new ConsultaCliente(cadastroCliente, gerenciaCliente, jDesktopPane1);
-        this.atualizaCliente = new AtualizaCliente(cadastroCliente, gerenciaCliente, jDesktopPane1);
+        this.consultaCliente = new ConsultaCliente(cadastroCliente, gerenciaCliente);
+        this.atualizaCliente = new AtualizaCliente(cadastroCliente, gerenciaCliente);
         this.apagaCliente = new ApagarCliente(gerenciaCliente);
         this.relatorioCliente = new RelatorioCliente(gerenciaCliente);
         //Telas a serem chamadas (CRUD FUNCIONARIOS) Instanciação
         this.cadastroFuncionario = new CadastroFuncionario(gerenciaFuncionario);
-        this.consultaFuncionario = new ConsultaFuncionario(cadastroFuncionario, gerenciaFuncionario, jDesktopPane1);
-        this.atualizaFuncionario = new AtualizaFuncionario(cadastroFuncionario, gerenciaFuncionario, jDesktopPane1);
+        this.consultaFuncionario = new ConsultaFuncionario(cadastroFuncionario, gerenciaFuncionario);
+        this.atualizaFuncionario = new AtualizaFuncionario(cadastroFuncionario, gerenciaFuncionario);
         this.apagaFuncionario = new ApagaFuncionario(gerenciaFuncionario);
         this.relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
 
         //Telas a serem chamadas (CRUD SALA)
         this.cadastroSala = new CadastroSala(gerenciaSala);
-        this.consultaSala = new ConsultaSala(cadastroSala, gerenciaSala, jDesktopPane1);
-        this.atualizaSala = new AtualizaSala(cadastroSala, gerenciaSala, jDesktopPane1);
+        this.consultaSala = new ConsultaSala(cadastroSala, gerenciaSala);
+        this.atualizaSala = new AtualizaSala(cadastroSala, gerenciaSala);
         this.apagaSala = new ApagaSala(gerenciaSala);
         this.relatorioSala = new RelatorioSala(gerenciaSala);
 
@@ -126,7 +126,7 @@ public class Principal extends javax.swing.JDialog {
 
         //Telas a serem chamadas (CRUD FILMES)
         this.cadastroFilme = new CadastroFilme(gerenciaFilme);
-        this.consultaFilme = new ConsultaFilme(cadastroFilme, gerenciaFilme, jDesktopPane1);
+        this.consultaFilme = new ConsultaFilme(cadastroFilme, gerenciaFilme);
         //Configurações para as telas;
         Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
         this.getContentPane().setBackground(corFundoPadrao);

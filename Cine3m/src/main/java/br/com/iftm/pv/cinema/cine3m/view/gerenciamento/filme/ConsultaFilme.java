@@ -17,13 +17,11 @@ public class ConsultaFilme extends javax.swing.JInternalFrame {
 
     private GerenciaFilme gerenciaFilme;
     private CadastroFilme cadastroFilme;
-    private JDesktopPane jdp;
 
-    public ConsultaFilme(CadastroFilme cadastroFilme, GerenciaFilme gerenciaFilme, JDesktopPane jdp) {
+    public ConsultaFilme(CadastroFilme cadastroFilme, GerenciaFilme gerenciaFilme) {
         initComponents();
         this.cadastroFilme = cadastroFilme;
         this.gerenciaFilme = gerenciaFilme;
-        this.jdp = jdp;
     }
 
     /**
@@ -115,7 +113,7 @@ public class ConsultaFilme extends javax.swing.JInternalFrame {
         this.cadastroFilme.getTfaDescricao().setEditable(false);
         //        this.cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
         this.cadastroFilme.getCbGenero().setEnabled(false);
-        jdp.add(cadastroFilme);
+        getDesktopPane().add(cadastroFilme);
         this.cadastroFilme.setVisible(true);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 

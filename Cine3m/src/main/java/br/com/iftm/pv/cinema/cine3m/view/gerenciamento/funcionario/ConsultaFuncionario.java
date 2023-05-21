@@ -18,13 +18,11 @@ public class ConsultaFuncionario extends javax.swing.JInternalFrame {
 
     CadastroFuncionario cadastroFuncionario;
     GerenciaFuncionario gerenciaFuncionario;
-    JDesktopPane jdp;
 
-    public ConsultaFuncionario(CadastroFuncionario cadastroFuncionario, GerenciaFuncionario gerenciaFuncionario, JDesktopPane jdp) {
+    public ConsultaFuncionario(CadastroFuncionario cadastroFuncionario, GerenciaFuncionario gerenciaFuncionario) {
         initComponents();
         this.cadastroFuncionario = cadastroFuncionario;
         this.gerenciaFuncionario = gerenciaFuncionario;
-        this.jdp = jdp;
     }
 
     /**
@@ -119,7 +117,7 @@ public class ConsultaFuncionario extends javax.swing.JInternalFrame {
         this.cadastroFuncionario.getTfCpfFuncionario().setEditable(false);
         this.cadastroFuncionario.getTfLoginFuncionario().setEditable(false);
         this.cadastroFuncionario.getTfSenhaFuncionario().setEditable(false);
-        this.jdp.add(cadastroFuncionario);
+        getDesktopPane().add(cadastroFuncionario);
         this.cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnConfirmarConsultaActionPerformed
 

@@ -18,12 +18,10 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
 
     private CadastroCliente cadastroCliente;
     private GerenciaCliente gerenciaCliente;
-    private JDesktopPane jdp;
 
-    public ConsultaCliente(CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente, JDesktopPane jdp) {
+    public ConsultaCliente(CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente) {
         this.cadastroCliente = cadastroCliente;
         this.gerenciaCliente = gerenciaCliente;
-        this.jdp = jdp;
         initComponents();
     }
 
@@ -95,7 +93,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         this.cadastroCliente.getBtnCadastrarCliente().setVisible(false);
         this.cadastroCliente.getTfNomeCliente().setEditable(false);
         this.cadastroCliente.getTfCpfCliente().setEditable(false);
-        this.jdp.add(cadastroCliente);
+        getDesktopPane().add(cadastroCliente);
         this.cadastroCliente.setVisible(true);
     }//GEN-LAST:event_btnConfirmarConsultaActionPerformed
 

@@ -281,9 +281,11 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
         // Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
         // this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao,sessaoSelecionada);
         this.jList1.removeAll();
+        cbSessaoVendaAncestorAdded(null);
     }//GEN-LAST:event_cbSessaoVendaActionPerformed
 
     private void btnSelecionarPoltronaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btnSelecionarPoltronaAncestorAdded
+
         if (gerenciaSessao.relatorio().isEmpty()) {
             btnSelecionarPoltrona.setEnabled(false);
         } else {
@@ -293,8 +295,10 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
 
     private void btnSelecionarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarPoltronaActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        if (!containsInternalFrame(getDesktopPane(), consultaPoltronas) && this.consultaPoltronas == null) {
-            this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao, sessaoSelecionada);
+        if (!containsInternalFrame(getDesktopPane(), consultaPoltronas)) {
+            if (this.consultaPoltronas == null) {
+                this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao, sessaoSelecionada);
+            }
             getDesktopPane().add(consultaPoltronas);
         }
         consultaPoltronas.setVisible(true);
@@ -309,7 +313,7 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
 
     private void btnContinuarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarCompraActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        this.confirmaCompra = new ConfirmaCompra(jList1, sessaoSelecionada,gerenciaSessao);
+        this.confirmaCompra = new ConfirmaCompra(jList1, sessaoSelecionada, gerenciaSessao, consultaPoltronas, this);
         getDesktopPane().add(confirmaCompra);
         this.confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed

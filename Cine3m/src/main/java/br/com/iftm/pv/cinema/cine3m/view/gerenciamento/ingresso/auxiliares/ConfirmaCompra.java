@@ -7,7 +7,9 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -24,9 +26,13 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
     private JList<Poltrona> listPoltronas;
     private GerenciaSessao gerenciaSessao;
     private Sessao sessaoSelecionada;
+    private ConsultaPoltronas consultaPoltronas;
+    private CadastroIngresso cadastroIngresso;
 
-    public ConfirmaCompra(JList listPoltronas, Sessao sessaoSelecionada, GerenciaSessao gerenciaSessao) {
+    public ConfirmaCompra(JList listPoltronas, Sessao sessaoSelecionada, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroIngresso cadastroIngresso) {
         this.listPoltronas = listPoltronas;
+        this.cadastroIngresso = cadastroIngresso;
+        this.consultaPoltronas = consultaPoltronas;
         this.gerenciaSessao = gerenciaSessao;
         this.sessaoSelecionada = sessaoSelecionada;
         this.spinnerModelInteira = new SpinnerNumberModel(0, 0, listPoltronas.getModel().getSize(), 1);
@@ -154,7 +160,11 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
             p.setLivre(false);
             gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);
         }
-        System.out.println("atualizado com sucesso");
+        JOptionPane.showMessageDialog(this, "Atualizado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
+        this.setVisible(false);
+        cadastroIngresso.getContentPane().remove(consultaPoltronas);
+        cadastroIngresso.setConsultaPoltronas(null);
+        cadastroIngresso.getjList1().removeAll();
 
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 

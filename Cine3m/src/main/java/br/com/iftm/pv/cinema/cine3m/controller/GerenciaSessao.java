@@ -37,6 +37,10 @@ public class GerenciaSessao implements IGerencia<Sessao> {
     public Boolean poltronaDisponivel(Sessao sessao, Poltrona poltrona){
         return this.gerenciaSala.ConsultaPoltronaDisponivel(sessao.getSala(), poltrona);
     }
+    
+    public void AtualizaPoltronaSessao(Sessao sessao, Poltrona poltrona){
+        gerenciaSala.AtualizaPoltrona(sessao.getSala(), poltrona);
+    }
 
     public List<Sessao> relatorio() {
         return this.sessoes;

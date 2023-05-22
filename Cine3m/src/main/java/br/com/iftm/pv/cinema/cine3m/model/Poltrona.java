@@ -14,6 +14,7 @@ public class Poltrona {
     
     public Poltrona(String id) {
         this.id = id;
+        this.livre = true;
     }
 
     public String getId() {

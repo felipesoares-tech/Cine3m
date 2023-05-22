@@ -45,13 +45,22 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
 
         int capacidadeTotal = sessaoSelecionada.getSala().getCapacidade();
 
-       // int rowMax = (capacidadeTotal % 10 == 0) ? (capacidadeTotal / 10) : (capacidadeTotal / 10) + 1;
+        // int rowMax = (capacidadeTotal % 10 == 0) ? (capacidadeTotal / 10) : (capacidadeTotal / 10) + 1;
         char row = 'A';
         int col = 1;
 
         for (int i = 1; i <= capacidadeTotal; i++) {
             String PoltronaID = Character.toString(row) + col;
             JButton button = new JButton(PoltronaID);
+
+            int pos = sessaoSelecionada.getSala().getPoltronas().indexOf(new Poltrona(PoltronaID));
+            Poltrona pol = sessaoSelecionada.getSala().getPoltronas().get(pos);
+            
+            System.out.println(pol.getId());
+            
+            if (!pol.isLivre()) {
+                button.setEnabled(false);
+            }
 
             button.addActionListener(btnListener);
             listBotoes.add(button);

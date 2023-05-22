@@ -41,4 +41,10 @@ public class GerenciaSala implements IGerencia<Sala> {
         int pos = sala.getPoltronas().indexOf(poltrona);
         return consultar(sala).getPoltronas().get(pos).isLivre();
     }
+
+    public void AtualizaPoltrona(Sala sala, Poltrona poltrona) {
+        int pos = sala.getPoltronas().indexOf(poltrona);
+        sala.getPoltronas().set(pos, poltrona);
+    }
+
 }

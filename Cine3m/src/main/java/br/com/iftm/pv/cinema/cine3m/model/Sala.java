@@ -30,11 +30,6 @@ public class Sala {
             }
             i++;
         }
-        Iterator<Poltrona> it = poltronas.iterator();
-        while(it.hasNext()){
-            Poltrona poltrona = it.next();
-        }
-
     }
 
     @Override

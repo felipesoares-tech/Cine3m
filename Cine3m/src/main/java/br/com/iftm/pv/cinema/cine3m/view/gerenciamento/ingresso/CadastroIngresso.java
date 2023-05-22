@@ -279,9 +279,11 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbSessaoVendaAncestorAdded
 
     private void cbSessaoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessaoVendaActionPerformed
-       // DefaultListModel<Poltrona> model = (DefaultListModel<Poltrona>) jList1.getModel();
-       // model.removeAllElements();
+
+        DefaultListModel<Poltrona> model = new DefaultListModel<>();
+        this.jList1.setModel(model);
         this.consultaPoltronas = null;
+
 
     }//GEN-LAST:event_cbSessaoVendaActionPerformed
 

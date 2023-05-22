@@ -5,6 +5,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaIngresso;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
@@ -308,7 +309,7 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
 
     private void btnContinuarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarCompraActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        this.confirmaCompra = new ConfirmaCompra(jList1.getModel().getSize(), sessaoSelecionada.getValor());
+        this.confirmaCompra = new ConfirmaCompra(jList1, sessaoSelecionada,gerenciaSessao);
         getDesktopPane().add(confirmaCompra);
         this.confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed

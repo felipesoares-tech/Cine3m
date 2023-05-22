@@ -4,6 +4,10 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
+import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import javax.swing.JList;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -17,12 +21,18 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
     private SpinnerNumberModel spinnerModelMeia;
     private Double valorTotal;
     private Double valorSessao;
+    private JList<Poltrona> listPoltronas;
+    private GerenciaSessao gerenciaSessao;
+    private Sessao sessaoSelecionada;
 
-    public ConfirmaCompra(int qtdMaxPoltronas, Double valorSessao) {
-        this.qtdMaxPoltronas = qtdMaxPoltronas;
-        this.spinnerModelInteira = new SpinnerNumberModel(0, 0, qtdMaxPoltronas, 1);
-        this.spinnerModelMeia = new SpinnerNumberModel(0, 0, qtdMaxPoltronas, 1);
-        this.valorSessao = valorSessao;
+    public ConfirmaCompra(JList listPoltronas, Sessao sessaoSelecionada, GerenciaSessao gerenciaSessao) {
+        this.listPoltronas = listPoltronas;
+        this.gerenciaSessao = gerenciaSessao;
+        this.sessaoSelecionada = sessaoSelecionada;
+        this.spinnerModelInteira = new SpinnerNumberModel(0, 0, listPoltronas.getModel().getSize(), 1);
+        this.spinnerModelMeia = new SpinnerNumberModel(0, 0, listPoltronas.getModel().getSize(), 1);
+        this.valorSessao = sessaoSelecionada.getValor();
+        this.qtdMaxPoltronas = listPoltronas.getModel().getSize();
         initComponents();
         this.jsInteira.setModel(spinnerModelInteira);
         this.jsMeia.setModel(spinnerModelMeia);
@@ -44,7 +54,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnFinalizarVenda = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -69,7 +79,12 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Meia");
 
-        jButton1.setText("CONFIRMAR");
+        btnFinalizarVenda.setText("CONFIRMAR");
+        btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarVendaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,7 +98,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lbValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -100,7 +115,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(32, 32, 32)
@@ -133,6 +148,16 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         calcularValorTotal();
     }//GEN-LAST:event_jsMeiaStateChanged
 
+    private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
+        for (int i = 0; i < qtdMaxPoltronas; i++) {
+            Poltrona p = (Poltrona) listPoltronas.getModel().getElementAt(i);
+            p.setLivre(false);
+            gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);
+        }
+        System.out.println("atualizado com sucesso");
+
+    }//GEN-LAST:event_btnFinalizarVendaActionPerformed
+
     private void calcularValorTotal() {
         int qtdInteira = (int) jsInteira.getValue();
         int qtdMeia = (int) jsMeia.getValue();
@@ -145,7 +170,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnFinalizarVenda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

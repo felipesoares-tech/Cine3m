@@ -287,7 +287,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
         String nomeFilmeSelecionado = cbFilmesSessao.getSelectedItem().toString().trim();
         String nomeSalaSelecionada = cbSalasSessao.getSelectedItem().toString().trim();
-        Double valorSessao = Double.parseDouble(tfValorSessao.getText());
+        Double valorSessao = Double.valueOf(tfValorSessao.getText());
 
         Filme filmeRecuperado = gerenciaFilme.consultar(new Filme(nomeFilmeSelecionado));
         Sala salaRecuperada = gerenciaSala.consultar(new Sala(nomeSalaSelecionada));

@@ -14,6 +14,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.Consu
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
 import java.awt.Component;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
@@ -278,14 +279,13 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbSessaoVendaAncestorAdded
 
     private void cbSessaoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessaoVendaActionPerformed
-        // Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        // this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao,sessaoSelecionada);
-        this.jList1.removeAll();
-        cbSessaoVendaAncestorAdded(null);
+       // DefaultListModel<Poltrona> model = (DefaultListModel<Poltrona>) jList1.getModel();
+       // model.removeAllElements();
+        this.consultaPoltronas = null;
+
     }//GEN-LAST:event_cbSessaoVendaActionPerformed
 
     private void btnSelecionarPoltronaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btnSelecionarPoltronaAncestorAdded
-
         if (gerenciaSessao.relatorio().isEmpty()) {
             btnSelecionarPoltrona.setEnabled(false);
         } else {

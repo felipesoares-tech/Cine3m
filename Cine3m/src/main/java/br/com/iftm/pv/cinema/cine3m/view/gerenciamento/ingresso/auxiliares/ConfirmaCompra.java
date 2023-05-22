@@ -8,6 +8,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
@@ -164,7 +165,8 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         this.setVisible(false);
         cadastroIngresso.getContentPane().remove(consultaPoltronas);
         cadastroIngresso.setConsultaPoltronas(null);
-        cadastroIngresso.getjList1().removeAll();
+        DefaultListModel<Poltrona> model = (DefaultListModel<Poltrona>) cadastroIngresso.getjList1().getModel();
+        model.removeAllElements();
 
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 

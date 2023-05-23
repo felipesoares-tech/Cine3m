@@ -4,11 +4,17 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaIngresso;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
+import br.com.iftm.pv.cinema.cine3m.model.Ingresso;
 import br.com.iftm.pv.cinema.cine3m.model.ItemIngresso;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -20,27 +26,31 @@ import javax.swing.SpinnerNumberModel;
  */
 public class ConfirmaCompra extends javax.swing.JInternalFrame {
 
-    private Integer qtdMaxPoltronas;
+    private Integer qtdMaxItensIngresso;
     private SpinnerNumberModel spinnerModelInteira;
     private SpinnerNumberModel spinnerModelMeia;
     private Double valorTotal;
     private Double valorSessao;
-    private JList<Poltrona> listPoltronas;
+    private JList<ItemIngresso> listItensIngresso;
     private GerenciaSessao gerenciaSessao;
     private Sessao sessaoSelecionada;
     private ConsultaPoltronas consultaPoltronas;
     private CadastroIngresso cadastroIngresso;
+    private GerenciaIngresso gerenciaIngresso;
+    private Integer qtdInteira;
+    private Integer qtdMeia;
 
-    public ConfirmaCompra(JList listPoltronas, Sessao sessaoSelecionada, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroIngresso cadastroIngresso) {
-        this.listPoltronas = listPoltronas;
+    public ConfirmaCompra(JList listItensIngresso, Sessao sessaoSelecionada, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroIngresso cadastroIngresso, GerenciaIngresso gerenciaIngresso) {
+        this.listItensIngresso = listItensIngresso;
         this.cadastroIngresso = cadastroIngresso;
         this.consultaPoltronas = consultaPoltronas;
+        this.gerenciaIngresso = gerenciaIngresso;
         this.gerenciaSessao = gerenciaSessao;
         this.sessaoSelecionada = sessaoSelecionada;
-        this.spinnerModelInteira = new SpinnerNumberModel(0, 0, listPoltronas.getModel().getSize(), 1);
-        this.spinnerModelMeia = new SpinnerNumberModel(0, 0, listPoltronas.getModel().getSize(), 1);
+        this.spinnerModelInteira = new SpinnerNumberModel(0, 0, listItensIngresso.getModel().getSize(), 1);
+        this.spinnerModelMeia = new SpinnerNumberModel(0, 0, listItensIngresso.getModel().getSize(), 1);
         this.valorSessao = sessaoSelecionada.getValor();
-        this.qtdMaxPoltronas = listPoltronas.getModel().getSize();
+        this.qtdMaxItensIngresso = listItensIngresso.getModel().getSize();
         initComponents();
         this.jsInteira.setModel(spinnerModelInteira);
         this.jsMeia.setModel(spinnerModelMeia);
@@ -145,30 +155,59 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jsInteiraStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsInteiraStateChanged
-        int qtdInteira = (int) jsInteira.getValue();
-        spinnerModelMeia.setMaximum(qtdMaxPoltronas - qtdInteira);
+        this.qtdInteira = (int) jsInteira.getValue();
+        spinnerModelMeia.setMaximum(qtdMaxItensIngresso - qtdInteira);
         calcularValorTotal();
     }//GEN-LAST:event_jsInteiraStateChanged
 
     private void jsMeiaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsMeiaStateChanged
-        int qtdMeia = (int) jsMeia.getValue();
-        spinnerModelInteira.setMaximum(qtdMaxPoltronas - qtdMeia);
+        this.qtdMeia = (int) jsMeia.getValue();
+        spinnerModelInteira.setMaximum(qtdMaxItensIngresso - qtdMeia);
         calcularValorTotal();
     }//GEN-LAST:event_jsMeiaStateChanged
 
+    private List<ItemIngresso> preencheItensVenda(JList listItens, int qtdInteiras, int qtdMeia, Double valorSessao) {
+        List<ItemIngresso> itensVenda = new ArrayList<>();
+
+        DefaultListModel<ItemIngresso> model = (DefaultListModel<ItemIngresso>) listItens.getModel();
+
+        for (int i = 0; i < qtdMeia; i++) {
+            ItemIngresso item = model.getElementAt(i);
+            item.setValor(valorSessao / 2.0);
+            item.setTipoIngresso(TipoIngresso.MEIA);
+            itensVenda.add(item);
+        }
+
+        for (int i = qtdMeia; i < qtdMeia + qtdInteiras; i++) {
+            ItemIngresso item = model.getElementAt(i);
+            item.setValor(valorSessao);
+            item.setTipoIngresso(TipoIngresso.INTEIRA);
+            itensVenda.add(item);
+        }
+
+        return itensVenda;
+
+    }
+
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
-        for (int i = 0; i < qtdMaxPoltronas; i++) {
-            Poltrona p = (Poltrona) listPoltronas.getModel().getElementAt(i);
+        for (int i = 0; i < qtdMaxItensIngresso; i++) {
+            ItemIngresso item = (ItemIngresso) listItensIngresso.getModel().getElementAt(i);
+            Poltrona p = (Poltrona) item.getPoltrona();
             p.setLivre(false);
             gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);
-            
-            
         }
+
         JOptionPane.showMessageDialog(this, "Atualizado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
         this.setVisible(false);
         cadastroIngresso.getContentPane().remove(consultaPoltronas);
         cadastroIngresso.setConsultaPoltronas(null);
+
         DefaultListModel<ItemIngresso> model = (DefaultListModel<ItemIngresso>) cadastroIngresso.getjList1().getModel();
+        Ingresso ingresso = new Ingresso(sessaoSelecionada, valorTotal, preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao));
+        System.out.println("opa"); 
+        
+        
+        
         model.removeAllElements();
 
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed

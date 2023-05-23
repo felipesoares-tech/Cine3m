@@ -16,6 +16,7 @@ public class ItemIngresso {
     
     public ItemIngresso(Poltrona poltrona) {
         this.poltrona = poltrona;
+
     }
 
     public Poltrona getPoltrona() {

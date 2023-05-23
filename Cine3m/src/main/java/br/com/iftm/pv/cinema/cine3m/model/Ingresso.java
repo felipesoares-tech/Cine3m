@@ -42,5 +42,20 @@ public class Ingresso {
     public void setItensIngresso(List<ItemIngresso> itensIngresso) {
         this.itensIngresso = itensIngresso;
     }
+
+    public Ingresso(Sessao sessao, Double valorFinal, List<ItemIngresso> itensIngresso) {
+        this.sessao = sessao;
+        this.valorFinal = valorFinal;
+        this.itensIngresso = itensIngresso;
+    }
+
+    public Ingresso(Sessao sessao, Cliente cliente, Double valorFinal, List<ItemIngresso> itensIngresso) {
+        this.sessao = sessao;
+        this.cliente = cliente;
+        this.valorFinal = valorFinal;
+        this.itensIngresso = itensIngresso;
+    }
+    
+    
     
 }

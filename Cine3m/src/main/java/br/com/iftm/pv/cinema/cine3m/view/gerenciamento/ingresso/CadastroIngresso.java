@@ -5,10 +5,9 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaIngresso;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.model.ItemIngresso;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
-import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConfirmaCompra;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConsultaPoltronas;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
@@ -122,11 +121,11 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
         this.jLabel3 = jLabel3;
     }
 
-    public JList<Poltrona> getjList1() {
+    public JList<ItemIngresso> getjList1() {
         return jList1;
     }
 
-    public void setjList1(JList<Poltrona> jList1) {
+    public void setjList1(JList<ItemIngresso> jList1) {
         this.jList1 = jList1;
     }
 
@@ -280,7 +279,7 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
 
     private void cbSessaoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessaoVendaActionPerformed
 
-        DefaultListModel<Poltrona> model = new DefaultListModel<>();
+        DefaultListModel<ItemIngresso> model = new DefaultListModel<>();
         this.jList1.setModel(model);
         this.consultaPoltronas = null;
 
@@ -315,7 +314,7 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
 
     private void btnContinuarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarCompraActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        this.confirmaCompra = new ConfirmaCompra(jList1, sessaoSelecionada, gerenciaSessao, consultaPoltronas, this);
+        this.confirmaCompra = new ConfirmaCompra(jList1, sessaoSelecionada, gerenciaSessao, consultaPoltronas, this, gerenciaIngresso);
         getDesktopPane().add(confirmaCompra);
         this.confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed
@@ -341,7 +340,7 @@ public class CadastroIngresso extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<Poltrona> jList1;
+    private javax.swing.JList<ItemIngresso> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

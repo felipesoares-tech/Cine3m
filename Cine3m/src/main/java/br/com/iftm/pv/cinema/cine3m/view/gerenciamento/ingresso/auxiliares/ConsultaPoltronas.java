@@ -4,7 +4,10 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaIngresso;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
+import br.com.iftm.pv.cinema.cine3m.model.ItemIngresso;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
@@ -55,9 +58,9 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
 
             int pos = sessaoSelecionada.getSala().getPoltronas().indexOf(new Poltrona(PoltronaID));
             Poltrona pol = sessaoSelecionada.getSala().getPoltronas().get(pos);
-            
+
             System.out.println(pol.getId());
-            
+
             if (!pol.isLivre()) {
                 button.setEnabled(false);
             }
@@ -112,13 +115,13 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            DefaultListModel<Poltrona> model = new DefaultListModel<>();
+            DefaultListModel<ItemIngresso> model = new DefaultListModel<>();
 
             Iterator<JButton> it = listBotoes.iterator();
             while (it.hasNext()) {
                 JButton btn = it.next();
                 if (btn.getBackground() == Color.GREEN) {
-                    model.addElement(new Poltrona(btn.getText()));
+                    model.addElement(new ItemIngresso(new Poltrona(btn.getText())));
                 }
             }
             this.cadastroIngresso.getjList1().setModel(model);

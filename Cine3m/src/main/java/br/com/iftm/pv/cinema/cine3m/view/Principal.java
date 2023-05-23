@@ -39,6 +39,11 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.*;
 import java.awt.Color;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -93,6 +98,7 @@ public class Principal extends javax.swing.JDialog {
 
     public Principal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+
         initComponents();
 
         //Telas a serem chamadas (CRUD SESSÃO) Instanciação
@@ -158,6 +164,26 @@ public class Principal extends javax.swing.JDialog {
         this.atualizaSala.getContentPane().setBackground(corFundoPadrao);
         this.apagaSala.getContentPane().setBackground(corFundoPadrao);
         this.relatorioSala.getContentPane().setBackground(corFundoPadrao);
+
+        try {
+            File arquivo = new File("C:\\Users\\Success\\Documents\\clientes.txt");
+            Scanner scanner = new Scanner(arquivo);
+
+            while (scanner.hasNextLine()) {
+                String linha = scanner.nextLine();
+                String[] partes = linha.split(";");
+
+                String nome = partes[0];
+                String cpf = partes[1];
+
+                this.gerenciaCliente.cadastrar(new Cliente(nome, cpf));
+            }
+
+            scanner.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**

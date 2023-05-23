@@ -29,7 +29,7 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="lbTituloTelaCliente" min="-2" pref="354" max="-2" attributes="0"/>
+              <Component id="lbTituloTelaFilme" min="-2" pref="354" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -38,7 +38,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lbTituloTelaCliente" min="-2" max="-2" attributes="0"/>
+              <Component id="lbTituloTelaFilme" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="54" max="32767" attributes="0"/>
@@ -52,7 +52,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="tfNome" alignment="0" max="32767" attributes="0"/>
+              <Component id="tfNomeFilme" alignment="0" max="32767" attributes="0"/>
               <Component id="lbNome" alignment="0" max="32767" attributes="0"/>
               <Component id="lbDiretor" alignment="0" max="32767" attributes="0"/>
               <Component id="tfDiretor" alignment="0" max="32767" attributes="0"/>
@@ -79,7 +79,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <Component id="lbNome" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="tfNome" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfNomeFilme" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lbDiretor" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -142,7 +142,7 @@
             <Property name="text" type="java.lang.String" value="Nome"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfNome">
+        <Component class="javax.swing.JTextField" name="tfNomeFilme">
         </Component>
         <Component class="javax.swing.JTextField" name="tfDiretor">
         </Component>
@@ -161,7 +161,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lbTituloTelaCliente">
+    <Component class="javax.swing.JLabel" name="lbTituloTelaFilme">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="36" style="0"/>

@@ -35,6 +35,14 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
 
     }
 
+    public Filme getFilmeSelecionado() {
+        return filmeSelecionado;
+    }
+
+    public void setFilmeSelecionado(Filme filmeSelecionado) {
+        this.filmeSelecionado = filmeSelecionado;
+    }
+
     public JButton getBtnConfirmar() {
         return btnConfirmar;
     }
@@ -99,12 +107,12 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         this.lbNome = lbNome;
     }
 
-    public JLabel getLbTituloTelaCliente() {
-        return lbTituloTelaCliente;
+    public JLabel getLbTituloTelaFilme() {
+        return lbTituloTelaFilme;
     }
 
-    public void setLbTituloTelaCliente(JLabel lbTituloTelaCliente) {
-        this.lbTituloTelaCliente = lbTituloTelaCliente;
+    public void setLbTituloTelaFilme(JLabel lbTituloTelaFilme) {
+        this.lbTituloTelaFilme = lbTituloTelaFilme;
     }
 
     public JTextField getTfDiretor() {
@@ -115,12 +123,12 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         this.tfDiretor = tfDiretor;
     }
 
-    public JTextField getTfNome() {
-        return tfNome;
+    public JTextField getTfNomeFilme() {
+        return tfNomeFilme;
     }
 
-    public void setTfNome(JTextField tfNome) {
-        this.tfNome = tfNome;
+    public void setTfNomeFilme(JTextField tfNomeFilme) {
+        this.tfNomeFilme = tfNomeFilme;
     }
 
     public JTextArea getTfaDescricao() {
@@ -147,11 +155,11 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         cbGenero = new javax.swing.JComboBox<>();
         lbDescricao = new javax.swing.JLabel();
         lbNome = new javax.swing.JLabel();
-        tfNome = new javax.swing.JTextField();
+        tfNomeFilme = new javax.swing.JTextField();
         tfDiretor = new javax.swing.JTextField();
         lbDiretor = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
-        lbTituloTelaCliente = new javax.swing.JLabel();
+        lbTituloTelaFilme = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -188,7 +196,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tfNome)
+            .addComponent(tfNomeFilme)
             .addComponent(lbNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lbDiretor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tfDiretor)
@@ -210,7 +218,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(lbNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfNomeFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lbDiretor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -227,8 +235,8 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
                 .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaCliente.setText("Cadastro de filmes");
+        lbTituloTelaFilme.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaFilme.setText("Cadastro de filmes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -240,14 +248,14 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbTituloTelaFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbTituloTelaCliente)
+                .addComponent(lbTituloTelaFilme)
                 .addGap(12, 12, 12)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -262,7 +270,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbGeneroAncestorAdded
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        String nome = tfNome.getText();
+        String nome = tfNomeFilme.getText();
         String diretor = tfDiretor.getText();
         String descricao = tfaDescricao.getText();
         Genero genero = (Genero) cbGenero.getSelectedItem();
@@ -278,7 +286,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
                 this.getParent().setVisible(false);
 
             }
-            tfNome.setText("");
+            tfNomeFilme.setText("");
             tfDiretor.setText("");
             tfaDescricao.setText("");
         }
@@ -294,9 +302,9 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbDiretor;
     private javax.swing.JLabel lbGenero;
     private javax.swing.JLabel lbNome;
-    private javax.swing.JLabel lbTituloTelaCliente;
+    private javax.swing.JLabel lbTituloTelaFilme;
     private javax.swing.JTextField tfDiretor;
-    private javax.swing.JTextField tfNome;
+    private javax.swing.JTextField tfNomeFilme;
     private javax.swing.JTextArea tfaDescricao;
     // End of variables declaration//GEN-END:variables
 }

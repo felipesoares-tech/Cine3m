@@ -104,14 +104,15 @@ public class ConsultaFilme extends javax.swing.JInternalFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         Filme filmeSelecionado = (Filme) cbFilmes.getSelectedItem();
-        this.cadastroFilme.getTfNome().setText(filmeSelecionado.getNome());
+        this.cadastroFilme.getTfNomeFilme().setText(filmeSelecionado.getNome());
         this.cadastroFilme.getTfDiretor().setText(filmeSelecionado.getDiretor());
         this.cadastroFilme.getTfaDescricao().setText(filmeSelecionado.getDescricao());
+        this.cadastroFilme.getLbTituloTelaFilme().setText("Consulta de Filme");
         this.cadastroFilme.getBtnConfirmar().setVisible(false);
-        this.cadastroFilme.getTfNome().setEditable(false);
+        this.cadastroFilme.getTfNomeFilme().setEditable(false);
         this.cadastroFilme.getTfDiretor().setEditable(false);
         this.cadastroFilme.getTfaDescricao().setEditable(false);
-        //        this.cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
+        //this.cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
         this.cadastroFilme.getCbGenero().setEnabled(false);
         getDesktopPane().add(cadastroFilme);
         this.cadastroFilme.setVisible(true);

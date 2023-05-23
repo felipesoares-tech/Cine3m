@@ -5,6 +5,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.model.ItemIngresso;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
@@ -160,12 +161,14 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
             Poltrona p = (Poltrona) listPoltronas.getModel().getElementAt(i);
             p.setLivre(false);
             gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);
+            
+            
         }
         JOptionPane.showMessageDialog(this, "Atualizado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
         this.setVisible(false);
         cadastroIngresso.getContentPane().remove(consultaPoltronas);
         cadastroIngresso.setConsultaPoltronas(null);
-        DefaultListModel<Poltrona> model = (DefaultListModel<Poltrona>) cadastroIngresso.getjList1().getModel();
+        DefaultListModel<ItemIngresso> model = (DefaultListModel<ItemIngresso>) cadastroIngresso.getjList1().getModel();
         model.removeAllElements();
 
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed

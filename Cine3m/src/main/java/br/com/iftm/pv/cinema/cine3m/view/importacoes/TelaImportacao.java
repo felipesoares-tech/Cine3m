@@ -9,7 +9,6 @@ import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.util.ImportacaoUtil;
 import br.com.iftm.pv.cinema.cine3m.view.util.TableModelGenerico;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;

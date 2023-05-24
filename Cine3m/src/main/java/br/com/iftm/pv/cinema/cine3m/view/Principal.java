@@ -11,13 +11,13 @@ import java.util.List;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaIngresso;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
-import br.com.iftm.pv.cinema.cine3m.model.Ingresso;
+import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.ApagarCliente;
@@ -35,7 +35,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.AtualizaFunci
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.CadastroFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.ConsultaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.RelatorioFuncionario;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ApagaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.AtualizaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
@@ -43,11 +43,6 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.*;
 import br.com.iftm.pv.cinema.cine3m.view.importacoes.TelaImportacao;
 import java.awt.Color;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -79,8 +74,8 @@ public class Principal extends javax.swing.JDialog {
     AtualizaSala atualizaSala;
     ApagaSala apagaSala;
     RelatorioSala relatorioSala;
-    //Telas a serem chamadas (CRUD INGRESSO)
-    CadastroIngresso cadastroIngresso;
+    //Telas a serem chamadas (CRUD VENDAS)
+    CadastroVenda cadastroVenda;
 
     //Telas a serem chamadas (CRUD FILMES)
     CadastroFilme cadastroFilme;
@@ -95,16 +90,16 @@ public class Principal extends javax.swing.JDialog {
     List<Filme> filmes = new ArrayList<Filme>();
     List<Funcionario> funcionarios = new ArrayList<Funcionario>();
     List<Sessao> sessoes = new ArrayList<Sessao>();
-    List<Ingresso> ingressos = new ArrayList<Ingresso>();
+    List<Venda> vendas = new ArrayList<Venda>();
     List<Sala> salas = new ArrayList<Sala>();
     List<Cliente> clientes = new ArrayList<Cliente>();
 
-    private GerenciaCliente gerenciaCliente = new GerenciaCliente(clientes);
-    private GerenciaFilme gerenciaFilme = new GerenciaFilme(filmes);
-    private GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(funcionarios);
-    private GerenciaIngresso gerenciaIngresso = new GerenciaIngresso(ingressos);
-    private GerenciaSala gerenciaSala = new GerenciaSala(salas);
-    private GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes, gerenciaSala);
+    private final GerenciaCliente gerenciaCliente = new GerenciaCliente(clientes);
+    private final GerenciaFilme gerenciaFilme = new GerenciaFilme(filmes);
+    private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(funcionarios);
+    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(vendas);
+    private final GerenciaSala gerenciaSala = new GerenciaSala(salas);
+    private final GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes, gerenciaSala);
 
     public Principal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -137,8 +132,8 @@ public class Principal extends javax.swing.JDialog {
         this.apagaSala = new ApagaSala(gerenciaSala);
         this.relatorioSala = new RelatorioSala(gerenciaSala);
 
-        //Telas a serem chamadas (CRUD INGRESSO)
-        this.cadastroIngresso = new CadastroIngresso(gerenciaIngresso, gerenciaSessao, cadastroSessao);
+        //Telas a serem chamadas (CRUD VENDAS)
+        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, cadastroSessao);
 
         //Telas a serem chamadas (CRUD FILMES)
         this.cadastroFilme = new CadastroFilme(gerenciaFilme);
@@ -201,11 +196,9 @@ public class Principal extends javax.swing.JDialog {
         imApagaSessao = new javax.swing.JMenuItem();
         imRelatorioSessao = new javax.swing.JMenuItem();
         mIngresso = new javax.swing.JMenu();
-        imCadastroIngresso = new javax.swing.JMenuItem();
-        imConsultaIngresso = new javax.swing.JMenuItem();
-        imAtualizaIngresso = new javax.swing.JMenuItem();
-        imApagaIngresso = new javax.swing.JMenuItem();
-        imRelatorioIngresso = new javax.swing.JMenuItem();
+        imCadastroVenda = new javax.swing.JMenuItem();
+        imConsultaVenda = new javax.swing.JMenuItem();
+        imRelatorioVenda = new javax.swing.JMenuItem();
         mFilme = new javax.swing.JMenu();
         imCadastroFilme = new javax.swing.JMenuItem();
         imConsultaFilme = new javax.swing.JMenuItem();
@@ -295,47 +288,31 @@ public class Principal extends javax.swing.JDialog {
         jMenu1.add(mSessao);
 
         mIngresso.setMnemonic('I');
-        mIngresso.setText("Ingresso");
+        mIngresso.setText("Venda");
 
-        imCadastroIngresso.setText("Cadastrar");
-        imCadastroIngresso.addActionListener(new java.awt.event.ActionListener() {
+        imCadastroVenda.setText("Cadastrar");
+        imCadastroVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imCadastroIngressoActionPerformed(evt);
+                imCadastroVendaActionPerformed(evt);
             }
         });
-        mIngresso.add(imCadastroIngresso);
+        mIngresso.add(imCadastroVenda);
 
-        imConsultaIngresso.setText("Consultar");
-        imConsultaIngresso.addActionListener(new java.awt.event.ActionListener() {
+        imConsultaVenda.setText("Consultar");
+        imConsultaVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imConsultaIngressoActionPerformed(evt);
+                imConsultaVendaActionPerformed(evt);
             }
         });
-        mIngresso.add(imConsultaIngresso);
+        mIngresso.add(imConsultaVenda);
 
-        imAtualizaIngresso.setText("Atualizar");
-        imAtualizaIngresso.addActionListener(new java.awt.event.ActionListener() {
+        imRelatorioVenda.setText("Relatório");
+        imRelatorioVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imAtualizaIngressoActionPerformed(evt);
+                imRelatorioVendaActionPerformed(evt);
             }
         });
-        mIngresso.add(imAtualizaIngresso);
-
-        imApagaIngresso.setText("Apagar");
-        imApagaIngresso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imApagaIngressoActionPerformed(evt);
-            }
-        });
-        mIngresso.add(imApagaIngresso);
-
-        imRelatorioIngresso.setText("Relatório");
-        imRelatorioIngresso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imRelatorioIngressoActionPerformed(evt);
-            }
-        });
-        mIngresso.add(imRelatorioIngresso);
+        mIngresso.add(imRelatorioVenda);
 
         jMenu1.add(mIngresso);
 
@@ -702,26 +679,18 @@ public class Principal extends javax.swing.JDialog {
         this.relatorioFilme.setVisible(true);
     }//GEN-LAST:event_imRelatorioFilmeActionPerformed
 
-    private void imCadastroIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroIngressoActionPerformed
-        jDesktopPane1.add(cadastroIngresso);
-        this.cadastroIngresso.setVisible(true);
-    }//GEN-LAST:event_imCadastroIngressoActionPerformed
+    private void imCadastroVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroVendaActionPerformed
+        jDesktopPane1.add(cadastroVenda);
+        this.cadastroVenda.setVisible(true);
+    }//GEN-LAST:event_imCadastroVendaActionPerformed
 
-    private void imConsultaIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaIngressoActionPerformed
+    private void imConsultaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaVendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_imConsultaIngressoActionPerformed
+    }//GEN-LAST:event_imConsultaVendaActionPerformed
 
-    private void imAtualizaIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaIngressoActionPerformed
+    private void imRelatorioVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioVendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_imAtualizaIngressoActionPerformed
-
-    private void imApagaIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaIngressoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imApagaIngressoActionPerformed
-
-    private void imRelatorioIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioIngressoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imRelatorioIngressoActionPerformed
+    }//GEN-LAST:event_imRelatorioVendaActionPerformed
 
     private void imImportacaoFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imImportacaoFilmesActionPerformed
         jDesktopPane1.add(telaImportacao);
@@ -775,34 +744,32 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenuItem imApagaCliente;
     private javax.swing.JMenuItem imApagaFilme;
     private javax.swing.JMenuItem imApagaFuncionario;
-    private javax.swing.JMenuItem imApagaIngresso;
     private javax.swing.JMenuItem imApagaSala;
     private javax.swing.JMenuItem imApagaSessao;
     private javax.swing.JMenuItem imAtualizaCliente;
     private javax.swing.JMenuItem imAtualizaFilme;
     private javax.swing.JMenuItem imAtualizaFuncionario;
-    private javax.swing.JMenuItem imAtualizaIngresso;
     private javax.swing.JMenuItem imAtualizaSala;
     private javax.swing.JMenuItem imAtualizaSessao;
     private javax.swing.JMenuItem imCadastraCliente;
     private javax.swing.JMenuItem imCadastroFilme;
     private javax.swing.JMenuItem imCadastroFuncionario;
-    private javax.swing.JMenuItem imCadastroIngresso;
     private javax.swing.JMenuItem imCadastroSala;
     private javax.swing.JMenuItem imCadastroSessao;
+    private javax.swing.JMenuItem imCadastroVenda;
     private javax.swing.JMenuItem imConsultaCliente;
     private javax.swing.JMenuItem imConsultaFilme;
     private javax.swing.JMenuItem imConsultaFuncionario;
-    private javax.swing.JMenuItem imConsultaIngresso;
     private javax.swing.JMenuItem imConsultaSala;
     private javax.swing.JMenuItem imConsultaSessao;
+    private javax.swing.JMenuItem imConsultaVenda;
     private javax.swing.JMenuItem imImportacaoFilmes;
     private javax.swing.JMenuItem imRelatorioCliente;
     private javax.swing.JMenuItem imRelatorioFilme;
     private javax.swing.JMenuItem imRelatorioFuncionario;
-    private javax.swing.JMenuItem imRelatorioIngresso;
     private javax.swing.JMenuItem imRelatorioSala;
     private javax.swing.JMenuItem imRelatorioSessao;
+    private javax.swing.JMenuItem imRelatorioVenda;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

@@ -90,19 +90,11 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
 
     private void btnConfirmarApagaFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaFilmeActionPerformed
         Filme filmeSelecionado = lstFilmes.getSelectedValue();
-//        List<Filme> filmesSelecionados = lstFilmes.getSelectedValuesList();
-//        Iterator<Filme> iterator = filmesSelecionados.iterator();
-
-//        int cont = 0;
 
         Integer resp = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar ??",
                 "Apagar Filme", WIDTH, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-//            while (iterator.hasNext()) {
-//                gerenciaFilme.remover((Filme) iterator.next());
-//                cont++;
-//            }
             gerenciaFilme.remover(filmeSelecionado);
             lstFilmesAncestorAdded(null);
             JOptionPane.showMessageDialog(this, "Filme removido", "Remover", JOptionPane.PLAIN_MESSAGE);

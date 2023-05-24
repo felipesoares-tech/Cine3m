@@ -278,7 +278,9 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         if (ValidaCampo.validar(nome, lbNome) && ValidaCampo.validar(diretor, lbDiretor) && ValidaCampo.validar(descricao, lbDescricao)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
             if (btnConfirmar.getText().equals("Cadastrar")) {
-                gerenciaFilme.cadastrar(filme);
+                Boolean sucesso = gerenciaFilme.cadastrar(filme);
+                JOptionPane.showMessageDialog(rootPane, sucesso ? "Filme cadstrado com sucesso " : "Filme já Cadastrado!", "Cadastro Filme", sucesso ? JOptionPane.PLAIN_MESSAGE : JOptionPane.ERROR_MESSAGE);
+                
             } else {
                 gerenciaFilme.atualizar(filmeSelecionado, filme);
                 JOptionPane.showMessageDialog(this, "Filme atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);

@@ -89,21 +89,23 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lstFilmesAncestorAdded
 
     private void btnConfirmarApagaFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaFilmeActionPerformed
-        List<Filme> filmesSelecionados = lstFilmes.getSelectedValuesList();
-        Iterator<Filme> iterator = filmesSelecionados.iterator();
+        Filme filmeSelecionado = lstFilmes.getSelectedValue();
+//        List<Filme> filmesSelecionados = lstFilmes.getSelectedValuesList();
+//        Iterator<Filme> iterator = filmesSelecionados.iterator();
 
-        int cont = 0;
+//        int cont = 0;
 
-        Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
+        Integer resp = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar ??",
                 "Apagar Filme", WIDTH, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            while (iterator.hasNext()) {
-                gerenciaFilme.remover((Filme) iterator.next());
-                cont++;
-            }
+//            while (iterator.hasNext()) {
+//                gerenciaFilme.remover((Filme) iterator.next());
+//                cont++;
+//            }
+            gerenciaFilme.remover(filmeSelecionado);
             lstFilmesAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, String.format("Filmes removidos: %d", cont), "Remover", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Filme removido", "Remover", JOptionPane.PLAIN_MESSAGE);
         }
 
     }//GEN-LAST:event_btnConfirmarApagaFilmeActionPerformed

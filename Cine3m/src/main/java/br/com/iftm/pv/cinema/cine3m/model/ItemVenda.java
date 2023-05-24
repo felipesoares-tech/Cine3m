@@ -2,19 +2,19 @@ package br.com.iftm.pv.cinema.cine3m.model;
 
 import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
 
-public class ItemIngresso {
+public class ItemVenda {
 
     private Poltrona poltrona;
     private TipoIngresso tipoIngresso;
     private Double valor;
 
-    public ItemIngresso(Poltrona poltrona, TipoIngresso tipoIngresso, Double valor) {
+    public ItemVenda(Poltrona poltrona, TipoIngresso tipoIngresso, Double valor) {
         this.poltrona = poltrona;
         this.tipoIngresso = tipoIngresso;
         this.valor = valor;
     }
     
-    public ItemIngresso(Poltrona poltrona) {
+    public ItemVenda(Poltrona poltrona) {
         this.poltrona = poltrona;
 
     }

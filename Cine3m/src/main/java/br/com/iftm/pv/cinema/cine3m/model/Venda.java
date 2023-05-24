@@ -4,11 +4,11 @@ package br.com.iftm.pv.cinema.cine3m.model;
 import java.util.List;
 
 
-public class Ingresso {
+public class Venda {
     private Sessao sessao;
     private Cliente cliente;
     private Double valorFinal;
-    private List<ItemIngresso> itensIngresso;
+    private List<ItemVenda> itensVenda;
 
 
     public Sessao getSessao() {
@@ -35,25 +35,25 @@ public class Ingresso {
         this.valorFinal = valorFinal;
     }
 
-    public List<ItemIngresso> getItensIngresso() {
-        return itensIngresso;
+    public List<ItemVenda> getItensIngresso() {
+        return itensVenda;
     }
 
-    public void setItensIngresso(List<ItemIngresso> itensIngresso) {
-        this.itensIngresso = itensIngresso;
+    public void setItensIngresso(List<ItemVenda> itensVenda) {
+        this.itensVenda = itensVenda;
     }
 
-    public Ingresso(Sessao sessao, Double valorFinal, List<ItemIngresso> itensIngresso) {
+    public Venda(Sessao sessao, Double valorFinal, List<ItemVenda> itensVenda) {
         this.sessao = sessao;
         this.valorFinal = valorFinal;
-        this.itensIngresso = itensIngresso;
+        this.itensVenda = itensVenda;
     }
 
-    public Ingresso(Sessao sessao, Cliente cliente, Double valorFinal, List<ItemIngresso> itensIngresso) {
+    public Venda(Sessao sessao, Cliente cliente, Double valorFinal, List<ItemVenda> itensVenda) {
         this.sessao = sessao;
         this.cliente = cliente;
         this.valorFinal = valorFinal;
-        this.itensIngresso = itensIngresso;
+        this.itensVenda = itensVenda;
     }
     
     

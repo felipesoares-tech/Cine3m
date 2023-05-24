@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
+package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaIngresso;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
-import br.com.iftm.pv.cinema.cine3m.model.ItemIngresso;
+import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListennerBtn;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -35,10 +35,10 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
 
     private List<JButton> listBotoes;
     private JButton btnConfirmar;
-    private CadastroIngresso cadastroIngresso;
+    private CadastroVenda cadastroIngresso;
     private GerenciaSessao gerenciaSessao;
 
-    public ConsultaPoltronas(CadastroIngresso cadastroIngresso, GerenciaSessao gerenciaSessao, Sessao sessaoSelecionada) {
+    public ConsultaPoltronas(CadastroVenda cadastroIngresso, GerenciaSessao gerenciaSessao, Sessao sessaoSelecionada) {
         this.listBotoes = new ArrayList<JButton>();
         this.cadastroIngresso = cadastroIngresso;
         this.gerenciaSessao = gerenciaSessao;
@@ -105,23 +105,23 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
 
     private class ConfirmarButtonListener implements ActionListener {
 
-        private CadastroIngresso cadastroIngresso;
+        private CadastroVenda cadastroIngresso;
         private ConsultaPoltronas consultaPoltronas;
 
-        public ConfirmarButtonListener(CadastroIngresso cadastroIngresso, ConsultaPoltronas consultaPoltronas) {
+        public ConfirmarButtonListener(CadastroVenda cadastroIngresso, ConsultaPoltronas consultaPoltronas) {
             this.cadastroIngresso = cadastroIngresso;
             this.consultaPoltronas = consultaPoltronas;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            DefaultListModel<ItemIngresso> model = new DefaultListModel<>();
+            DefaultListModel<ItemVenda> model = new DefaultListModel<>();
 
             Iterator<JButton> it = listBotoes.iterator();
             while (it.hasNext()) {
                 JButton btn = it.next();
                 if (btn.getBackground() == Color.GREEN) {
-                    model.addElement(new ItemIngresso(new Poltrona(btn.getText())));
+                    model.addElement(new ItemVenda(new Poltrona(btn.getText())));
                 }
             }
             this.cadastroIngresso.getjList1().setModel(model);

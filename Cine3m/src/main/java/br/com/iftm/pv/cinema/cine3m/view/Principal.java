@@ -41,6 +41,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.AtualizaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.*;
+import br.com.iftm.pv.cinema.cine3m.view.importacoes.TelaImportacao;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -87,6 +88,9 @@ public class Principal extends javax.swing.JDialog {
     AtualizaFilme atualizaFilme;
     ApagaFilme apagaFilme;
     RelatorioFilme relatorioFilme;
+    
+    //Telas IMPORTACOES
+    TelaImportacao telaImportacao;
 
     List<Filme> filmes = new ArrayList<Filme>();
     List<Funcionario> funcionarios = new ArrayList<Funcionario>();
@@ -174,26 +178,8 @@ public class Principal extends javax.swing.JDialog {
         this.atualizaSala.getContentPane().setBackground(corFundoPadrao);
         this.apagaSala.getContentPane().setBackground(corFundoPadrao);
         this.relatorioSala.getContentPane().setBackground(corFundoPadrao);
-
-        try {
-            File arquivo = new File("C:\\Users\\Success\\Documents\\clientes.txt");
-            Scanner scanner = new Scanner(arquivo);
-
-            while (scanner.hasNextLine()) {
-                String linha = scanner.nextLine();
-                String[] partes = linha.split(";");
-
-                String nome = partes[0];
-                String cpf = partes[1];
-
-                this.gerenciaCliente.cadastrar(new Cliente(nome, cpf));
-            }
-
-            scanner.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        
+        this.telaImportacao = new TelaImportacao(gerenciaFilme);
     }
 
     /**
@@ -245,6 +231,7 @@ public class Principal extends javax.swing.JDialog {
         imApagaCliente = new javax.swing.JMenuItem();
         imRelatorioCliente = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        imImportacaoFilmes = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -535,7 +522,16 @@ public class Principal extends javax.swing.JDialog {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Importações");
+
+        imImportacaoFilmes.setText("Filmes");
+        imImportacaoFilmes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imImportacaoFilmesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(imImportacaoFilmes);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -727,6 +723,11 @@ public class Principal extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_imRelatorioIngressoActionPerformed
 
+    private void imImportacaoFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imImportacaoFilmesActionPerformed
+        jDesktopPane1.add(telaImportacao);
+        this.telaImportacao.setVisible(true);
+    }//GEN-LAST:event_imImportacaoFilmesActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -795,6 +796,7 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenuItem imConsultaIngresso;
     private javax.swing.JMenuItem imConsultaSala;
     private javax.swing.JMenuItem imConsultaSessao;
+    private javax.swing.JMenuItem imImportacaoFilmes;
     private javax.swing.JMenuItem imRelatorioCliente;
     private javax.swing.JMenuItem imRelatorioFilme;
     private javax.swing.JMenuItem imRelatorioFuncionario;

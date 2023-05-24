@@ -6,7 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
-import br.com.iftm.pv.cinema.cine3m.view.relatorio.TableModelGenerico;
+import br.com.iftm.pv.cinema.cine3m.view.util.TableModelGenerico;
 
 /**
  *

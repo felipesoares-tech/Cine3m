@@ -11,7 +11,7 @@ import br.com.iftm.pv.cinema.cine3m.model.ItemIngresso;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListennerBtn;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListennerBtn;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;

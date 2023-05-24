@@ -6,7 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
+import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;

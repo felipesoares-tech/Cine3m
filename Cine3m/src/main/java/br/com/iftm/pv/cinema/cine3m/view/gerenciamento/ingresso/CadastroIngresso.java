@@ -11,7 +11,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConfirmaCompra;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares.ConsultaPoltronas;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
 import java.awt.Component;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;

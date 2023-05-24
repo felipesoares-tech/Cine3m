@@ -6,7 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
+import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;

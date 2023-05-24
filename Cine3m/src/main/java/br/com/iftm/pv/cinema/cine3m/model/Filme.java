@@ -4,6 +4,7 @@ import br.com.iftm.pv.cinema.cine3m.enums.Genero;
 import java.util.Objects;
 
 public class Filme {
+
     private Genero genero;
     private String nome;
     private String descricao;
@@ -15,14 +16,19 @@ public class Filme {
         this.descricao = descricao;
         this.diretor = diretor;
     }
+
     public Filme(String nome) {
         this.nome = nome;
+    }
+
+    public Filme() {
+
     }
 
     @Override
     public String toString() {
         return getNome();
-    }    
+    }
 
     @Override
     public int hashCode() {
@@ -45,7 +51,6 @@ public class Filme {
         final Filme other = (Filme) obj;
         return Objects.equals(this.nome, other.nome);
     }
-    
 
     public Genero getGenero() {
         return genero;
@@ -78,5 +83,5 @@ public class Filme {
     public void setDiretor(String diretor) {
         this.diretor = diretor;
     }
-    
+
 }

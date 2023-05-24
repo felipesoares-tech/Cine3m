@@ -10,7 +10,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
 import java.time.LocalDateTime;
 import javax.swing.JButton;
 import javax.swing.JComboBox;

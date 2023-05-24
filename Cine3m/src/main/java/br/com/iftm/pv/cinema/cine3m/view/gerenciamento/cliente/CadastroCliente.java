@@ -6,7 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
+import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFormattedTextField;

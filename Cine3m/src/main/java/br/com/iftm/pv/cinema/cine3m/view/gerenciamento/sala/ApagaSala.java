@@ -6,7 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;

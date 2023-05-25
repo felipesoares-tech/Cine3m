@@ -36,7 +36,8 @@ public class AtualizaFilme extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         cbFilme = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnAtualizarFilme.setText("Confirmar");
         btnAtualizarFilme.addActionListener(new java.awt.event.ActionListener() {

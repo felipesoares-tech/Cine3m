@@ -11,14 +11,15 @@ import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,6 +30,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
     private GerenciaSessao gerenciaSessao;
     private GerenciaSala gerenciaSala;
     private GerenciaFilme gerenciaFilme;
+    private Sessao sessaoSelecionada;
 
     public CadastroSessao(GerenciaSessao gerenciaSessao, GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme) {
         initComponents();
@@ -62,19 +64,19 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
     }
 
     public JLabel getLbDataHora() {
-        return lbDataHora;
+        return lbData;
     }
 
     public void setLbDataHora(JLabel lbDataHora) {
-        this.lbDataHora = lbDataHora;
+        this.lbData = lbDataHora;
     }
 
     public JLabel getLbDataHora1() {
-        return lbDataHora1;
+        return lbHora;
     }
 
     public void setLbDataHora1(JLabel lbDataHora1) {
-        this.lbDataHora1 = lbDataHora1;
+        this.lbHora = lbDataHora1;
     }
 
     public JLabel getLbFilmes() {
@@ -148,9 +150,9 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         cbSalasSessao = new javax.swing.JComboBox<>();
         lbSalas = new javax.swing.JLabel();
         lbValor = new javax.swing.JLabel();
-        lbDataHora = new javax.swing.JLabel();
+        lbData = new javax.swing.JLabel();
         btnCadastrarSessao = new javax.swing.JButton();
-        lbDataHora1 = new javax.swing.JLabel();
+        lbHora = new javax.swing.JLabel();
         tfHorarioSessao = new javax.swing.JFormattedTextField();
         tfDataSessao = new javax.swing.JFormattedTextField();
         tfValorSessao = new javax.swing.JFormattedTextField();
@@ -189,8 +191,8 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         lbValor.setForeground(new java.awt.Color(255, 255, 255));
         lbValor.setText("Valor");
 
-        lbDataHora.setForeground(new java.awt.Color(255, 255, 255));
-        lbDataHora.setText("Data:");
+        lbData.setForeground(new java.awt.Color(255, 255, 255));
+        lbData.setText("Data:");
 
         btnCadastrarSessao.setText("Cadastrar");
         btnCadastrarSessao.addActionListener(new java.awt.event.ActionListener() {
@@ -199,8 +201,8 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
             }
         });
 
-        lbDataHora1.setForeground(new java.awt.Color(255, 255, 255));
-        lbDataHora1.setText("Hora");
+        lbHora.setForeground(new java.awt.Color(255, 255, 255));
+        lbHora.setText("Hora");
 
         try {
             tfHorarioSessao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##:##")));
@@ -226,8 +228,8 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
                     .addComponent(lbFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbSalas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbDataHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbDataHora1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfDataSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,10 +243,10 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
                 .addGap(0, 68, Short.MAX_VALUE)
                 .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(188, 188, 188)
                 .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(183, 183, 183))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,16 +266,16 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfValorSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
-                .addComponent(lbDataHora)
+                .addComponent(lbData)
                 .addGap(7, 7, 7)
                 .addComponent(tfDataSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbDataHora1)
+                .addComponent(lbHora)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfHorarioSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -288,17 +290,31 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbSalasSessaoAncestorAdded
 
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
-        String nomeFilmeSelecionado = cbFilmesSessao.getSelectedItem().toString().trim();
-        String nomeSalaSelecionada = cbSalasSessao.getSelectedItem().toString().trim();
+        Filme filmeSelecionado = (Filme) cbFilmesSessao.getSelectedItem();
+        Sala salaSelecionada = (Sala) cbSalasSessao.getSelectedItem();
+
         Double valorSessao = Double.valueOf(tfValorSessao.getText());
         LocalDate data = LocalDate.parse(tfDataSessao.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalTime hora = LocalTime.parse(tfHorarioSessao.getText(), DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-        Filme filmeRecuperado = gerenciaFilme.consultar(new Filme(nomeFilmeSelecionado));
-        Sala salaRecuperada = gerenciaSala.consultar(new Sala(nomeSalaSelecionada));
+        if (ValidaCampo.validar(data.toString(), lbData, this)
+                && ValidaCampo.validar(hora.toString(), lbHora, this)
+                && ValidaCampo.validar(valorSessao.toString(), lbValor, this)) {
 
-        gerenciaSessao.cadastrar(new Sessao(filmeRecuperado, data, hora, salaRecuperada, valorSessao));
-        
+            Sessao sessao = new Sessao(filmeSelecionado, data, hora, salaSelecionada, valorSessao);
+
+            if (btnCadastrarSessao.getText().equals("Cadastrar")) {
+                Boolean sucesso = gerenciaSessao.cadastrar(sessao);
+                JOptionPane.showMessageDialog(this, sucesso ? "Sessão cadstrada com sucesso " : "Sessão já Cadastrada!",
+                        "Cadastro Cliente", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
+            } else {
+                gerenciaSessao.atualizar(sessaoSelecionada, sessao);
+                JOptionPane.showMessageDialog(this, "Sessão atualizada com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+            }
+            tfValorSessao.setText("");
+            tfDataSessao.setText("");
+            tfHorarioSessao.setText("");
+        }
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
 
 
@@ -306,9 +322,9 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCadastrarSessao;
     private javax.swing.JComboBox<Filme> cbFilmesSessao;
     private javax.swing.JComboBox<Sala> cbSalasSessao;
-    private javax.swing.JLabel lbDataHora;
-    private javax.swing.JLabel lbDataHora1;
+    private javax.swing.JLabel lbData;
     private javax.swing.JLabel lbFilmes;
+    private javax.swing.JLabel lbHora;
     private javax.swing.JLabel lbSalas;
     private javax.swing.JLabel lbTituloTelaCliente;
     private javax.swing.JLabel lbValor;

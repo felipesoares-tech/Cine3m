@@ -28,8 +28,8 @@
                   <Component id="lbFilmes" alignment="0" max="32767" attributes="0"/>
                   <Component id="lbSalas" alignment="0" max="32767" attributes="0"/>
                   <Component id="lbValor" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lbDataHora" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lbDataHora1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lbData" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lbHora" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="tfDataSessao" alignment="0" min="-2" pref="303" max="-2" attributes="0"/>
@@ -48,10 +48,10 @@
               <Component id="lbTituloTelaCliente" min="-2" pref="354" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
               <Component id="btnCadastrarSessao" min="-2" pref="86" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,16 +73,16 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="tfValorSessao" min="-2" pref="29" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-              <Component id="lbDataHora" min="-2" max="-2" attributes="0"/>
+              <Component id="lbData" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Component id="tfDataSessao" min="-2" pref="29" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lbDataHora1" min="-2" max="-2" attributes="0"/>
+              <Component id="lbHora" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="tfHorarioSessao" min="-2" pref="29" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnCadastrarSessao" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace pref="52" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -146,7 +146,7 @@
         <Property name="text" type="java.lang.String" value="Valor"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbDataHora">
+    <Component class="javax.swing.JLabel" name="lbData">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -162,7 +162,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarSessaoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbDataHora1">
+    <Component class="javax.swing.JLabel" name="lbHora">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>

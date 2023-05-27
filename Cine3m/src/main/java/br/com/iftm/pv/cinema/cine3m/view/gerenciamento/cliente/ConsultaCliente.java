@@ -8,7 +8,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
-import javax.swing.JDesktopPane;
+import java.util.List;
 
 /**
  *
@@ -18,11 +18,13 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
 
     private CadastroCliente cadastroCliente;
     private GerenciaCliente gerenciaCliente;
+    private List<Cliente> clientes;
 
     public ConsultaCliente(CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente) {
+        initComponents();
         this.cadastroCliente = cadastroCliente;
         this.gerenciaCliente = gerenciaCliente;
-        initComponents();
+        this.btnConfirmarConsulta.setEnabled(false);
     }
 
     /**
@@ -111,7 +113,14 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnConfirmarConsultaActionPerformed
 
     private void listClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_listClientesAncestorAdded
-        ListUtils.carregarList(listClientes, gerenciaCliente.relatorio());
+        clientes = gerenciaCliente.relatorio();
+        ListUtils.carregarList(listClientes, clientes);
+        if (!clientes.isEmpty()) {
+            btnConfirmarConsulta.setEnabled(true);
+            listClientes.setSelectedIndex(0);
+        } else {
+            btnConfirmarConsulta.setEnabled(false);
+        }
     }//GEN-LAST:event_listClientesAncestorAdded
 
 

@@ -19,10 +19,12 @@ import javax.swing.JOptionPane;
 public class ApagarCliente extends javax.swing.JInternalFrame {
 
     private GerenciaCliente gerenciaCliente;
+    private List<Cliente> clientes;
 
     public ApagarCliente(GerenciaCliente gerenciaCliente) {
         initComponents();
         this.gerenciaCliente = gerenciaCliente;
+        this.btnConfirmarApagaCliente.setEnabled(false);
     }
 
     /**
@@ -78,8 +80,8 @@ public class ApagarCliente extends javax.swing.JInternalFrame {
                         .addGap(61, 61, 61)
                         .addComponent(lbCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(btnConfirmarApagaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(211, 211, 211)
+                        .addComponent(btnConfirmarApagaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,7 +100,15 @@ public class ApagarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lstClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstClientesAncestorAdded
-        ListUtils.carregarList(lstClientes, gerenciaCliente.relatorio());
+        clientes = gerenciaCliente.relatorio();
+        ListUtils.carregarList(lstClientes, clientes);
+        
+        if(!clientes.isEmpty()){
+            btnConfirmarApagaCliente.setEnabled(true);
+            lstClientes.setSelectedIndex(0);
+        }else{
+            btnConfirmarApagaCliente.setEnabled(false);
+        }
     }//GEN-LAST:event_lstClientesAncestorAdded
 
     private void btnConfirmarApagaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaClienteActionPerformed

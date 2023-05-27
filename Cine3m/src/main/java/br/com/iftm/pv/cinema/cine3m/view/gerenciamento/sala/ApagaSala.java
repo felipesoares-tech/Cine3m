@@ -18,10 +18,12 @@ import javax.swing.JOptionPane;
 public class ApagaSala extends javax.swing.JInternalFrame {
 
     private GerenciaSala gerenciaSala;
+    private List<Sala> salas;
 
     public ApagaSala(GerenciaSala gerenciaSala) {
         initComponents();
         this.gerenciaSala = gerenciaSala;
+        this.btnConfirmarApagaSala.setEnabled(false);
     }
 
     /**
@@ -50,6 +52,7 @@ public class ApagaSala extends javax.swing.JInternalFrame {
             }
         });
 
+        listSala.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listSala.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 listSalaAncestorAdded(evt);
@@ -95,26 +98,28 @@ public class ApagaSala extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarApagaSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaSalaActionPerformed
-        List<Sala> salaSelecionadas = listSala.getSelectedValuesList();
-        Iterator<Sala> it = salaSelecionadas.iterator();
-        int cont = 0;
-        Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
+        Sala salaSelecionada = listSala.getSelectedValue();
+             Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
                 "Apagar Sala", WIDTH, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            while (it.hasNext()) {
-                gerenciaSala.remover(it.next());
-                cont++;
-            }
+           gerenciaSala.remover(salaSelecionada);
             listSalaAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, String.format("Salas removidas: %d", cont), "Remover", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Sala removida!", "Remover", JOptionPane.INFORMATION_MESSAGE);
 
         }
 
     }//GEN-LAST:event_btnConfirmarApagaSalaActionPerformed
 
     private void listSalaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_listSalaAncestorAdded
-        ListUtils.carregarList(listSala, gerenciaSala.relatorio());
+        salas = gerenciaSala.relatorio();
+        ListUtils.carregarList(listSala, salas);
+         if(!salas.isEmpty()){
+            btnConfirmarApagaSala.setEnabled(true);
+            listSala.setSelectedIndex(0);
+        }else{
+            btnConfirmarApagaSala.setEnabled(false);
+        }
     }//GEN-LAST:event_listSalaAncestorAdded
 
 

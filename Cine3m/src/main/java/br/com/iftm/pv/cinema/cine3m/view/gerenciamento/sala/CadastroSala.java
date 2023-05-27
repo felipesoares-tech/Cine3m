@@ -38,6 +38,9 @@ public class CadastroSala extends javax.swing.JInternalFrame {
                 int valor = (int) jsCapacidade.getValue();
                 if (valor >= maxValor) {
                     jsCapacidade.setValue(maxValor);
+                } else if (valor % 10 != 0) {
+                    valor = Math.round(valor / 10) * 10;
+                    jsCapacidade.setValue(valor);
                 }
             }
         });

@@ -7,7 +7,6 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
-import javax.swing.JDesktopPane;
 
 /**
  *
@@ -99,10 +98,10 @@ public class ConsultaSala extends javax.swing.JInternalFrame {
         Sala salaSelecionada = (Sala) this.cbSalaConsulta.getSelectedItem();
         this.cadastroSala.getBtnCadastrarSala().setVisible(false);
         this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
-        this.cadastroSala.getCbCapacidade().setSelectedItem(salaSelecionada.getCapacidade().toString());
-        this.cadastroSala.getCbCapacidade().setEnabled(false);
+        this.cadastroSala.getJsCapacidade().setValue(salaSelecionada.getCapacidade());
+        this.cadastroSala.getJsCapacidade().setEnabled(false);
         this.cadastroSala.getTfNomeSala().setEditable(false);
-        this.cadastroSala.getCbCapacidade().setEditable(false);
+        this.cadastroSala.getJsCapacidade().setEnabled(false);
         getDesktopPane().add(cadastroSala);
         this.cadastroSala.setVisible(true);
 

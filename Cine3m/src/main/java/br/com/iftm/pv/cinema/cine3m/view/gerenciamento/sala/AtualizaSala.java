@@ -7,7 +7,6 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
-import javax.swing.JDesktopPane;
 
 /**
  *
@@ -105,9 +104,9 @@ public class AtualizaSala extends javax.swing.JInternalFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         Sala salaSelecionada = (Sala) this.cbSala.getSelectedItem();
         this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
-        this.cadastroSala.getCbCapacidade().setSelectedItem(salaSelecionada.getCapacidade());
+        this.cadastroSala.getJsCapacidade().setValue(salaSelecionada.getCapacidade());
         this.cadastroSala.getBtnCadastrarSala().setText("Atualizar");
-        this.cadastroSala.getCbCapacidade().setEnabled(true);
+        this.cadastroSala.getJsCapacidade().setEnabled(true);
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
         this.cadastroSala.getTfNomeSala().setEditable(true);
         this.cadastroSala.setSalaSelecionada(salaSelecionada);

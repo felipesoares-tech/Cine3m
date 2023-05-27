@@ -11,7 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -21,10 +25,31 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
     private GerenciaSala gerenciaSala;
     private Sala salaSelecionada;
+    private int maxValor;
 
     public CadastroSala(GerenciaSala gerenciaSala) {
         initComponents();
         this.gerenciaSala = gerenciaSala;
+        this.maxValor = 100;
+
+        this.jsCapacidade.setModel(new SpinnerNumberModel(0, 0, maxValor, 10));
+        this.jsCapacidade.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int valor = (int) jsCapacidade.getValue();
+                if (valor >= maxValor) {
+                    jsCapacidade.setValue(maxValor);
+                }
+            }
+        });
+    }
+
+    public JSpinner getJsCapacidade() {
+        return jsCapacidade;
+    }
+
+    public void setJsCapacidade(JSpinner jsCapacidade) {
+        this.jsCapacidade = jsCapacidade;
     }
 
     public Sala getSalaSelecionada() {
@@ -41,14 +66,6 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
     public void setBtnCadastrarSala(JButton btnCadastrarSala) {
         this.btnCadastrarSala = btnCadastrarSala;
-    }
-
-    public JComboBox<String> getCbCapacidade() {
-        return cbCapacidade;
-    }
-
-    public void setCbCapacidade(JComboBox<String> cbCapacidade) {
-        this.cbCapacidade = cbCapacidade;
     }
 
     public JLabel getLbSalaCapacidade() {
@@ -94,10 +111,10 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
         lbTituloTelaCliente = new javax.swing.JLabel();
         lbSalaCapacidade = new javax.swing.JLabel();
-        cbCapacidade = new javax.swing.JComboBox<>();
         lbSalaNome = new javax.swing.JLabel();
         btnCadastrarSala = new javax.swing.JButton();
         tfNomeSala = new javax.swing.JTextField();
+        jsCapacidade = new javax.swing.JSpinner();
 
         setClosable(true);
 
@@ -106,9 +123,6 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
         lbSalaCapacidade.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbSalaCapacidade.setText("Capacidade");
-
-        cbCapacidade.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        cbCapacidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "30", "40", "50" }));
 
         lbSalaNome.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbSalaNome.setText("Nome");
@@ -124,21 +138,25 @@ public class CadastroSala extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(96, Short.MAX_VALUE)
                 .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(jsCapacidade, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(228, 228, 228)
+                        .addComponent(btnCadastrarSala)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(114, 114, 114)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lbSalaCapacidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbCapacidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbSalaNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                            .addComponent(btnCadastrarSala)
-                            .addGap(100, 100, 100))
                         .addComponent(tfNomeSala))
                     .addGap(115, 115, 115)))
         );
@@ -146,20 +164,20 @@ public class CadastroSala extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lbTituloTelaCliente)
-                .addGap(0, 369, Short.MAX_VALUE))
+                .addGap(65, 65, 65)
+                .addComponent(jsCapacidade, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addComponent(btnCadastrarSala, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(89, 89, 89)
                     .addComponent(lbSalaCapacidade)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(cbCapacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addGap(53, 53, 53)
                     .addComponent(lbSalaNome)
                     .addGap(18, 18, 18)
-                    .addComponent(tfNomeSala, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(53, 53, 53)
-                    .addComponent(btnCadastrarSala, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(90, Short.MAX_VALUE)))
+                    .addComponent(tfNomeSala, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(127, Short.MAX_VALUE)))
         );
 
         pack();
@@ -167,10 +185,10 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
     private void btnCadastrarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSalaActionPerformed
 
-        Integer capacidade = Integer.parseInt(cbCapacidade.getSelectedItem().toString().trim());
+        Integer capacidade = (int) jsCapacidade.getValue();
         String nome = tfNomeSala.getText();
         Sala sala = new Sala(nome, capacidade);
-        if (ValidaCampo.validar(nome, lbSalaNome,this)) {
+        if (ValidaCampo.validar(nome, lbSalaNome, this)) {
             if (btnCadastrarSala.getText().equals("Cadastrar")) {
                 System.out.println(nome + capacidade);
                 Boolean salaRecuperada = gerenciaSala.cadastrar(sala);
@@ -182,7 +200,6 @@ public class CadastroSala extends javax.swing.JInternalFrame {
                 this.setVisible(false);
             }
             tfNomeSala.setText("");
-            cbCapacidade.setSelectedIndex(0);
         }
 
     }//GEN-LAST:event_btnCadastrarSalaActionPerformed
@@ -190,7 +207,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarSala;
-    private javax.swing.JComboBox<String> cbCapacidade;
+    private javax.swing.JSpinner jsCapacidade;
     private javax.swing.JLabel lbSalaCapacidade;
     private javax.swing.JLabel lbSalaNome;
     private javax.swing.JLabel lbTituloTelaCliente;

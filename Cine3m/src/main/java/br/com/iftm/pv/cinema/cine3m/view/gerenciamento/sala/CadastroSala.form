@@ -22,23 +22,30 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace pref="96" max="32767" attributes="0"/>
               <Component id="lbTituloTelaCliente" min="-2" pref="354" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                      <Component id="jsCapacidade" min="-2" pref="307" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
+                      <Component id="btnCadastrarSala" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lbSalaCapacidade" alignment="0" max="32767" attributes="0"/>
-                      <Component id="cbCapacidade" alignment="0" max="32767" attributes="0"/>
                       <Component id="lbSalaNome" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="102" max="32767" attributes="0"/>
-                          <Component id="btnCadastrarSala" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                      </Group>
                       <Component id="tfNomeSala" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
@@ -50,21 +57,21 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="lbTituloTelaCliente" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="369" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <Component id="jsCapacidade" min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace pref="126" max="32767" attributes="0"/>
+              <Component id="btnCadastrarSala" min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                   <Component id="lbSalaCapacidade" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="cbCapacidade" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   <Component id="lbSalaNome" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="tfNomeSala" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                  <Component id="btnCadastrarSala" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace pref="90" max="32767" attributes="0"/>
+                  <Component id="tfNomeSala" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace pref="127" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -87,23 +94,6 @@
         <Property name="text" type="java.lang.String" value="Capacidade"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cbCapacidade">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="14" style="1"/>
-        </Property>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="30"/>
-            <StringItem index="1" value="40"/>
-            <StringItem index="2" value="50"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JLabel" name="lbSalaNome">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -121,6 +111,8 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfNomeSala">
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jsCapacidade">
     </Component>
   </SubComponents>
 </Form>

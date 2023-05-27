@@ -15,7 +15,6 @@ public class GerenciaSala implements IGerencia<Sala> {
 
     public Boolean cadastrar(Sala sala) {
         if (!salas.contains(sala)) {
-            System.out.println(sala.getPoltronas().size());
             return salas.add(sala);
         }
         return false;

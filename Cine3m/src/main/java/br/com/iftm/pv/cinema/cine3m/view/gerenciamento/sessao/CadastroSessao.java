@@ -11,7 +11,10 @@ import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -288,11 +291,13 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         String nomeFilmeSelecionado = cbFilmesSessao.getSelectedItem().toString().trim();
         String nomeSalaSelecionada = cbSalasSessao.getSelectedItem().toString().trim();
         Double valorSessao = Double.valueOf(tfValorSessao.getText());
+        LocalDate data = LocalDate.parse(tfDataSessao.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalTime hora = LocalTime.parse(tfHorarioSessao.getText(), DateTimeFormatter.ofPattern("HH:mm:ss"));
 
         Filme filmeRecuperado = gerenciaFilme.consultar(new Filme(nomeFilmeSelecionado));
         Sala salaRecuperada = gerenciaSala.consultar(new Sala(nomeSalaSelecionada));
 
-        gerenciaSessao.cadastrar(new Sessao(filmeRecuperado, LocalDateTime.MAX, salaRecuperada, valorSessao));
+        gerenciaSessao.cadastrar(new Sessao(filmeRecuperado, data, hora, salaRecuperada, valorSessao));
         
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
 

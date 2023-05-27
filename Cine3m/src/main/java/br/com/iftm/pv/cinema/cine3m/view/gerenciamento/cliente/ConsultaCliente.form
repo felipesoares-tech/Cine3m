@@ -32,7 +32,6 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                               <Component id="btnConfirmarConsulta" min="-2" pref="124" max="-2" attributes="0"/>
-                              <EmptySpace pref="103" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

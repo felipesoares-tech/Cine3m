@@ -112,20 +112,15 @@ public class ApagarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lstClientesAncestorAdded
 
     private void btnConfirmarApagaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaClienteActionPerformed
-        List<Pessoa> clientesSelecionados = lstClientes.getSelectedValuesList();
-        int cont = 0;
-        Iterator<Pessoa> it = clientesSelecionados.iterator();
-
+        Pessoa clienteSelecionado = lstClientes.getSelectedValue();
         Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
                 "Apagar Cliente", WIDTH, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            while (it.hasNext()) {
-                gerenciaCliente.remover((Cliente) it.next());
-                cont++;
-            }
+            gerenciaCliente.remover((Cliente)clienteSelecionado);
+            
             lstClientesAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, String.format("Clientes removidos: %d", cont), "Remover", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Cliente removido", "Remover", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btnConfirmarApagaClienteActionPerformed

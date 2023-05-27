@@ -233,10 +233,13 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
             if (btnCadastrarFuncionario.getText().equals("Cadastrar")) {
-                gerenciaFuncionario.cadastrar(funcionario);
+                Boolean sucesso = gerenciaFuncionario.cadastrar(funcionario);
+                JOptionPane.showMessageDialog(this, sucesso ? "Funcionario cadstrado com sucesso " : "Funcionario já Cadastrado!",
+                        "Cadastro Funcionario", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
+                
             } else {
                 gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
-                JOptionPane.showMessageDialog(this, "Funcionario atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Funcionario atualizado com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
             }
             tfNomeFuncionario.setText("");

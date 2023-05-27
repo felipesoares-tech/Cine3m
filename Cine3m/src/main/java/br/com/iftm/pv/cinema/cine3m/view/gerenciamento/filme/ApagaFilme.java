@@ -18,10 +18,12 @@ import javax.swing.JOptionPane;
 public class ApagaFilme extends javax.swing.JInternalFrame {
 
     private GerenciaFilme gerenciaFilme;
+    private List<Filme> filmes;
 
     public ApagaFilme(GerenciaFilme gerenciaFilme) {
         this.gerenciaFilme = gerenciaFilme;
         initComponents();
+       this.btnConfirmarApagaFilme.setEnabled(false);
     }
 
     /**
@@ -37,8 +39,9 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
         lstFilmes = new javax.swing.JList<>();
         btnConfirmarApagaFilme = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        lstFilmes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstFilmes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lstFilmesAncestorAdded(evt);
@@ -85,7 +88,14 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lstFilmesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFilmesAncestorAdded
-        ListUtils.carregarList(lstFilmes, gerenciaFilme.relatorio());
+        filmes = gerenciaFilme.relatorio();
+        ListUtils.carregarList(lstFilmes, filmes);
+         if(!filmes.isEmpty()){
+            btnConfirmarApagaFilme.setEnabled(true);
+            lstFilmes.setSelectedIndex(0);
+        }else{
+            btnConfirmarApagaFilme.setEnabled(false);
+        }
     }//GEN-LAST:event_lstFilmesAncestorAdded
 
     private void btnConfirmarApagaFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaFilmeActionPerformed
@@ -97,7 +107,7 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
         if (resp.equals(JOptionPane.OK_OPTION)) {
             gerenciaFilme.remover(filmeSelecionado);
             lstFilmesAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, "Filme removido", "Remover", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Filme removido", "Remover", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btnConfirmarApagaFilmeActionPerformed

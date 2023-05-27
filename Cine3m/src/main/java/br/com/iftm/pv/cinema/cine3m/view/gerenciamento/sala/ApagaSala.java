@@ -6,7 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,10 +18,12 @@ import javax.swing.JOptionPane;
 public class ApagaSala extends javax.swing.JInternalFrame {
 
     private GerenciaSala gerenciaSala;
+    private List<Sala> salas;
 
     public ApagaSala(GerenciaSala gerenciaSala) {
         initComponents();
         this.gerenciaSala = gerenciaSala;
+        this.btnConfirmarApagaSala.setEnabled(false);
     }
 
     /**
@@ -34,7 +36,6 @@ public class ApagaSala extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lbTituloTelaCliente = new javax.swing.JLabel();
-        lbSala = new javax.swing.JLabel();
         btnConfirmarApagaSala = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listSala = new javax.swing.JList<>();
@@ -44,9 +45,6 @@ public class ApagaSala extends javax.swing.JInternalFrame {
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         lbTituloTelaCliente.setText("Apagar Sala");
 
-        lbSala.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lbSala.setText("Sala");
-
         btnConfirmarApagaSala.setText("Confirmar");
         btnConfirmarApagaSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +52,7 @@ public class ApagaSala extends javax.swing.JInternalFrame {
             }
         });
 
+        listSala.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listSala.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 listSalaAncestorAdded(evt);
@@ -69,70 +68,64 @@ public class ApagaSala extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(lbSala, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(120, 120, 120)
                 .addComponent(btnConfirmarApagaSala)
                 .addGap(219, 219, 219))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(109, 109, 109)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(80, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbTituloTelaCliente)
-                .addGap(50, 50, 50)
-                .addComponent(lbSala)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addComponent(btnConfirmarApagaSala, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(141, 141, 141)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(98, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarApagaSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaSalaActionPerformed
-        List<Sala> salaSelecionadas = listSala.getSelectedValuesList();
-        Iterator<Sala> it = salaSelecionadas.iterator();
-        int cont = 0;
-        Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
+        Sala salaSelecionada = listSala.getSelectedValue();
+             Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
                 "Apagar Sala", WIDTH, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            while (it.hasNext()) {
-                gerenciaSala.remover(it.next());
-                cont++;
-            }
+           gerenciaSala.remover(salaSelecionada);
             listSalaAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, String.format("Salas removidas: %d", cont), "Remover", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Sala removida!", "Remover", JOptionPane.INFORMATION_MESSAGE);
 
         }
 
     }//GEN-LAST:event_btnConfirmarApagaSalaActionPerformed
 
     private void listSalaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_listSalaAncestorAdded
-        ListUtils.carregarList(listSala, gerenciaSala.relatorio());
+        salas = gerenciaSala.relatorio();
+        ListUtils.carregarList(listSala, salas);
+         if(!salas.isEmpty()){
+            btnConfirmarApagaSala.setEnabled(true);
+            listSala.setSelectedIndex(0);
+        }else{
+            btnConfirmarApagaSala.setEnabled(false);
+        }
     }//GEN-LAST:event_listSalaAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarApagaSala;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbSala;
     private javax.swing.JLabel lbTituloTelaCliente;
     private javax.swing.JList<Sala> listSala;
     // End of variables declaration//GEN-END:variables

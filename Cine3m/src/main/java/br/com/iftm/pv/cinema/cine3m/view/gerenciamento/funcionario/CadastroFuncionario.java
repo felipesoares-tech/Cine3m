@@ -6,7 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
+import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -229,7 +229,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         String login = tfLoginFuncionario.getText().toUpperCase();
         String senha = tfSenhaFuncionario.getPassword().toString();
 
-        if (ValidaCampo.validar(nome, lbNomeFuncionario) && ValidaCampo.validar(cpf, lbCpfFuncionario)) {
+        if (ValidaCampo.validar(nome, lbNomeFuncionario,this) && ValidaCampo.validar(cpf, lbCpfFuncionario,this)) {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
             if (btnCadastrarFuncionario.getText().equals("Cadastrar")) {

@@ -7,8 +7,8 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListUtils;
-import javax.swing.JDesktopPane;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import java.util.List;
 
 /**
  *
@@ -18,11 +18,13 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
 
     private CadastroCliente cadastroCliente;
     private GerenciaCliente gerenciaCliente;
+    private List<Cliente> clientes;
 
     public ConsultaCliente(CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente) {
+        initComponents();
         this.cadastroCliente = cadastroCliente;
         this.gerenciaCliente = gerenciaCliente;
-        initComponents();
+        this.btnConfirmarConsulta.setEnabled(false);
     }
 
     /**
@@ -37,6 +39,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listClientes = new javax.swing.JList<>();
         btnConfirmarConsulta = new javax.swing.JButton();
+        lbCliente2 = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -58,27 +61,39 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        lbCliente2.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbCliente2.setForeground(new java.awt.Color(255, 255, 255));
+        lbCliente2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbCliente2.setText("Consultar Clientes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(99, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116))
             .addGroup(layout.createSequentialGroup()
-                .addGap(214, 214, 214)
-                .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(110, 110, 110)
+                                .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(lbCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(25, 25, 25)
+                .addComponent(lbCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
 
         pack();
@@ -98,13 +113,21 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnConfirmarConsultaActionPerformed
 
     private void listClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_listClientesAncestorAdded
-        ListUtils.carregarList(listClientes, gerenciaCliente.relatorio());
+        clientes = gerenciaCliente.relatorio();
+        ListUtils.carregarList(listClientes, clientes);
+        if (!clientes.isEmpty()) {
+            btnConfirmarConsulta.setEnabled(true);
+            listClientes.setSelectedIndex(0);
+        } else {
+            btnConfirmarConsulta.setEnabled(false);
+        }
     }//GEN-LAST:event_listClientesAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarConsulta;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbCliente2;
     private javax.swing.JList<Pessoa> listClientes;
     // End of variables declaration//GEN-END:variables
 }

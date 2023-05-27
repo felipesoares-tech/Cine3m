@@ -6,7 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
+import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -125,9 +125,9 @@ public class CadastroSala extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(102, Short.MAX_VALUE)
+                .addContainerGap(96, Short.MAX_VALUE)
                 .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addGap(82, 82, 82))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(114, 114, 114)
@@ -170,7 +170,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
         Integer capacidade = Integer.parseInt(cbCapacidade.getSelectedItem().toString().trim());
         String nome = tfNomeSala.getText();
         Sala sala = new Sala(nome, capacidade);
-        if (ValidaCampo.validar(nome, lbSalaNome)) {
+        if (ValidaCampo.validar(nome, lbSalaNome,this)) {
             if (btnCadastrarSala.getText().equals("Cadastrar")) {
                 System.out.println(nome + capacidade);
                 Boolean salaRecuperada = gerenciaSala.cadastrar(sala);

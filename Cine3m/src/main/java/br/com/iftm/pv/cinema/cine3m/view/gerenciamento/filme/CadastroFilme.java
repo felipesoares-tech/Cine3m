@@ -7,8 +7,8 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.enums.Genero;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ComboBoxUtils;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ValidaCampo;
+import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JButton;
@@ -275,10 +275,13 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         String descricao = tfaDescricao.getText();
         Genero genero = (Genero) cbGenero.getSelectedItem();
 
-        if (ValidaCampo.validar(nome, lbNome) && ValidaCampo.validar(diretor, lbDiretor) && ValidaCampo.validar(descricao, lbDescricao)) {
+        if (ValidaCampo.validar(nome, lbNome,this) && ValidaCampo.validar(diretor, lbDiretor,this) && ValidaCampo.validar(descricao, lbDescricao,this)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
             if (btnConfirmar.getText().equals("Cadastrar")) {
-                gerenciaFilme.cadastrar(filme);
+                Boolean sucesso = gerenciaFilme.cadastrar(filme);
+                JOptionPane.showMessageDialog(rootPane, sucesso ? "Filme cadstrado com sucesso " : "Filme já Cadastrado!",
+                        "Cadastro Filme", sucesso ? JOptionPane.PLAIN_MESSAGE : JOptionPane.ERROR_MESSAGE);
+
             } else {
                 gerenciaFilme.atualizar(filmeSelecionado, filme);
                 JOptionPane.showMessageDialog(this, "Filme atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);

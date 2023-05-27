@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.auxiliares;
+package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaIngresso;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
-import br.com.iftm.pv.cinema.cine3m.model.Ingresso;
-import br.com.iftm.pv.cinema.cine3m.model.ItemIngresso;
+import br.com.iftm.pv.cinema.cine3m.model.Venda;
+import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.ingresso.CadastroIngresso;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -31,16 +31,16 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
     private SpinnerNumberModel spinnerModelMeia;
     private Double valorTotal;
     private Double valorSessao;
-    private JList<ItemIngresso> listItensIngresso;
+    private JList<ItemVenda> listItensIngresso;
     private GerenciaSessao gerenciaSessao;
     private Sessao sessaoSelecionada;
     private ConsultaPoltronas consultaPoltronas;
-    private CadastroIngresso cadastroIngresso;
-    private GerenciaIngresso gerenciaIngresso;
+    private CadastroVenda cadastroIngresso;
+    private GerenciaVenda gerenciaIngresso;
     private Integer qtdInteira;
     private Integer qtdMeia;
 
-    public ConfirmaCompra(JList listItensIngresso, Sessao sessaoSelecionada, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroIngresso cadastroIngresso, GerenciaIngresso gerenciaIngresso) {
+    public ConfirmaCompra(JList listItensIngresso, Sessao sessaoSelecionada, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroVenda cadastroIngresso, GerenciaVenda gerenciaIngresso) {
         this.listItensIngresso = listItensIngresso;
         this.cadastroIngresso = cadastroIngresso;
         this.consultaPoltronas = consultaPoltronas;
@@ -166,20 +166,20 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         calcularValorTotal();
     }//GEN-LAST:event_jsMeiaStateChanged
 
-    private List<ItemIngresso> preencheItensVenda(JList listItens, int qtdInteiras, int qtdMeia, Double valorSessao) {
-        List<ItemIngresso> itensVenda = new ArrayList<>();
+    private List<ItemVenda> preencheItensVenda(JList listItens, int qtdInteiras, int qtdMeia, Double valorSessao) {
+        List<ItemVenda> itensVenda = new ArrayList<>();
 
-        DefaultListModel<ItemIngresso> model = (DefaultListModel<ItemIngresso>) listItens.getModel();
+        DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) listItens.getModel();
 
         for (int i = 0; i < qtdMeia; i++) {
-            ItemIngresso item = model.getElementAt(i);
+            ItemVenda item = model.getElementAt(i);
             item.setValor(valorSessao / 2.0);
             item.setTipoIngresso(TipoIngresso.MEIA);
             itensVenda.add(item);
         }
 
         for (int i = qtdMeia; i < qtdMeia + qtdInteiras; i++) {
-            ItemIngresso item = model.getElementAt(i);
+            ItemVenda item = model.getElementAt(i);
             item.setValor(valorSessao);
             item.setTipoIngresso(TipoIngresso.INTEIRA);
             itensVenda.add(item);
@@ -191,7 +191,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
 
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
         for (int i = 0; i < qtdMaxItensIngresso; i++) {
-            ItemIngresso item = (ItemIngresso) listItensIngresso.getModel().getElementAt(i);
+            ItemVenda item = (ItemVenda) listItensIngresso.getModel().getElementAt(i);
             Poltrona p = (Poltrona) item.getPoltrona();
             p.setLivre(false);
             gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);
@@ -202,8 +202,8 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         cadastroIngresso.getContentPane().remove(consultaPoltronas);
         cadastroIngresso.setConsultaPoltronas(null);
 
-        DefaultListModel<ItemIngresso> model = (DefaultListModel<ItemIngresso>) cadastroIngresso.getjList1().getModel();
-        Ingresso ingresso = new Ingresso(sessaoSelecionada, valorTotal, preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao));
+        DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroIngresso.getjList1().getModel();
+        Venda ingresso = new Venda(sessaoSelecionada, valorTotal, preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao));
         System.out.println("opa"); 
         
         

@@ -6,7 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,10 +18,12 @@ import javax.swing.JOptionPane;
 public class ApagaFilme extends javax.swing.JInternalFrame {
 
     private GerenciaFilme gerenciaFilme;
+    private List<Filme> filmes;
 
     public ApagaFilme(GerenciaFilme gerenciaFilme) {
         this.gerenciaFilme = gerenciaFilme;
         initComponents();
+       this.btnConfirmarApagaFilme.setEnabled(false);
     }
 
     /**
@@ -36,10 +38,9 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstFilmes = new javax.swing.JList<>();
         btnConfirmarApagaFilme = new javax.swing.JButton();
-
+      
         setClosable(true);
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
+        lstFilmes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstFilmes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lstFilmesAncestorAdded(evt);
@@ -86,25 +87,26 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lstFilmesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFilmesAncestorAdded
-        ListUtils.carregarList(lstFilmes, gerenciaFilme.relatorio());
+        filmes = gerenciaFilme.relatorio();
+        ListUtils.carregarList(lstFilmes, filmes);
+         if(!filmes.isEmpty()){
+            btnConfirmarApagaFilme.setEnabled(true);
+            lstFilmes.setSelectedIndex(0);
+        }else{
+            btnConfirmarApagaFilme.setEnabled(false);
+        }
     }//GEN-LAST:event_lstFilmesAncestorAdded
 
     private void btnConfirmarApagaFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaFilmeActionPerformed
-        List<Filme> filmesSelecionados = lstFilmes.getSelectedValuesList();
-        Iterator<Filme> iterator = filmesSelecionados.iterator();
+        Filme filmeSelecionado = lstFilmes.getSelectedValue();
 
-        int cont = 0;
-
-        Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
+        Integer resp = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar ??",
                 "Apagar Filme", WIDTH, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            while (iterator.hasNext()) {
-                gerenciaFilme.remover((Filme) iterator.next());
-                cont++;
-            }
+            gerenciaFilme.remover(filmeSelecionado);
             lstFilmesAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, String.format("Filmes removidos: %d", cont), "Remover", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Filme removido", "Remover", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btnConfirmarApagaFilmeActionPerformed

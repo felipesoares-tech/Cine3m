@@ -38,9 +38,8 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstFilmes = new javax.swing.JList<>();
         btnConfirmarApagaFilme = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
+      
+        setClosable(true);
         lstFilmes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstFilmes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {

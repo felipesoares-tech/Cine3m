@@ -43,7 +43,7 @@ public class ApagarCliente extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        lstClientes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        lstClientes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lstClientesAncestorAdded(evt);

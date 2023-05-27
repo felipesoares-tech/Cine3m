@@ -229,7 +229,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         String login = tfLoginFuncionario.getText().toUpperCase();
         String senha = tfSenhaFuncionario.getPassword().toString();
 
-        if (ValidaCampo.validar(nome, lbNomeFuncionario) && ValidaCampo.validar(cpf, lbCpfFuncionario)) {
+        if (ValidaCampo.validar(nome, lbNomeFuncionario,this) && ValidaCampo.validar(cpf, lbCpfFuncionario,this)) {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
             if (btnCadastrarFuncionario.getText().equals("Cadastrar")) {

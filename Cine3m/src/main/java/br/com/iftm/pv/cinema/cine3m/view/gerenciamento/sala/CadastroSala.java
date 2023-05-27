@@ -170,7 +170,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
         Integer capacidade = Integer.parseInt(cbCapacidade.getSelectedItem().toString().trim());
         String nome = tfNomeSala.getText();
         Sala sala = new Sala(nome, capacidade);
-        if (ValidaCampo.validar(nome, lbSalaNome)) {
+        if (ValidaCampo.validar(nome, lbSalaNome,this)) {
             if (btnCadastrarSala.getText().equals("Cadastrar")) {
                 System.out.println(nome + capacidade);
                 Boolean salaRecuperada = gerenciaSala.cadastrar(sala);

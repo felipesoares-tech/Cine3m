@@ -115,8 +115,6 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
     public void setTfSenhaFuncionario(JPasswordField tfSenhaFuncionario) {
         this.tfSenhaFuncionario = tfSenhaFuncionario;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -227,16 +225,19 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         String nome = tfNomeFuncionario.getText().toUpperCase();
         String cpf = tfCpfFuncionario.getText().replaceAll("[-.]", "");
         String login = tfLoginFuncionario.getText().toUpperCase();
-        String senha = tfSenhaFuncionario.getPassword().toString();
+        String senha = String.valueOf(tfSenhaFuncionario.getPassword());
 
-        if (ValidaCampo.validar(nome, lbNomeFuncionario,this) && ValidaCampo.validar(cpf, lbCpfFuncionario,this)) {
+        if (ValidaCampo.validar(nome, lbNomeFuncionario, this)
+                && ValidaCampo.validar(cpf, lbCpfFuncionario, this)
+                && ValidaCampo.validar(login, lbLoginFuncionario, this)
+                && ValidaCampo.validar(senha, lbSenhaFuncionario, this)) {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
             if (btnCadastrarFuncionario.getText().equals("Cadastrar")) {
                 Boolean sucesso = gerenciaFuncionario.cadastrar(funcionario);
                 JOptionPane.showMessageDialog(this, sucesso ? "Funcionario cadstrado com sucesso " : "Funcionario já Cadastrado!",
                         "Cadastro Funcionario", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
-                
+
             } else {
                 gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
                 JOptionPane.showMessageDialog(this, "Funcionario atualizado com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);

@@ -275,7 +275,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         String descricao = tfaDescricao.getText();
         Genero genero = (Genero) cbGenero.getSelectedItem();
 
-        if (ValidaCampo.validar(nome, lbNome) && ValidaCampo.validar(diretor, lbDiretor) && ValidaCampo.validar(descricao, lbDescricao)) {
+        if (ValidaCampo.validar(nome, lbNome,this) && ValidaCampo.validar(diretor, lbDiretor,this) && ValidaCampo.validar(descricao, lbDescricao,this)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
             if (btnConfirmar.getText().equals("Cadastrar")) {
                 Boolean sucesso = gerenciaFilme.cadastrar(filme);

@@ -55,56 +55,56 @@ import java.util.List;
 public class Principal extends javax.swing.JFrame {
 
 //Telas a serem chamadas (CRUD SESSAO)
-    private CadastroSessao cadastroSessao;
-    private ConsultaSessao consultaSessao;
-    private AtualizaSessao atualizaSessao;
-    private ApagaSessao apagaSessao;
-    private RelatorioSessao relatorioSessao;
+    private final CadastroSessao cadastroSessao;
+    private final ConsultaSessao consultaSessao;
+    private final AtualizaSessao atualizaSessao;
+    private final ApagaSessao apagaSessao;
+    private final RelatorioSessao relatorioSessao;
 
 //Telas a serem chamadas (CRUD CLIENTES)
-    private CadastroCliente cadastroCliente;
-    private ConsultaCliente consultaCliente;
-    private AtualizaCliente atualizaCliente;
-    private ApagarCliente apagaCliente;
-    private RelatorioCliente relatorioCliente;
+    private final CadastroCliente cadastroCliente;
+    private final ConsultaCliente consultaCliente;
+    private final AtualizaCliente atualizaCliente;
+    private final ApagarCliente apagaCliente;
+    private final RelatorioCliente relatorioCliente;
 
 //Telas a serem chamadas (CRUD FUNCIONARIOS)
-    private CadastroFuncionario cadastroFuncionario;
-    private ConsultaFuncionario consultaFuncionario;
-    private AtualizaFuncionario atualizaFuncionario;
-    private ApagaFuncionario apagaFuncionario;
-    private RelatorioFuncionario relatorioFuncionario;
+    private final CadastroFuncionario cadastroFuncionario;
+    private final ConsultaFuncionario consultaFuncionario;
+    private final AtualizaFuncionario atualizaFuncionario;
+    private final ApagaFuncionario apagaFuncionario;
+    private final RelatorioFuncionario relatorioFuncionario;
 
 //Telas a serem chamadas (CRUD SALA)
-    private CadastroSala cadastroSala;
-    private ConsultaSala consultaSala;
-    private AtualizaSala atualizaSala;
-    private ApagaSala apagaSala;
-    private RelatorioSala relatorioSala;
+    private final CadastroSala cadastroSala;
+    private final ConsultaSala consultaSala;
+    private final AtualizaSala atualizaSala;
+    private final ApagaSala apagaSala;
+    private final RelatorioSala relatorioSala;
 
 //Telas a serem chamadas (CRUD VENDAS)
-    private CadastroVenda cadastroVenda;
+    private final CadastroVenda cadastroVenda;
 
 //Telas a serem chamadas (CRUD FILMES)
-    private CadastroFilme cadastroFilme;
-    private ConsultaFilme consultaFilme;
-    private AtualizaFilme atualizaFilme;
-    private ApagaFilme apagaFilme;
-    private RelatorioFilme relatorioFilme;
+    private final CadastroFilme cadastroFilme;
+    private final ConsultaFilme consultaFilme;
+    private final AtualizaFilme atualizaFilme;
+    private final ApagaFilme apagaFilme;
+    private final RelatorioFilme relatorioFilme;
 
-    private TelaImportacao telaImportacao;
+    private final TelaImportacao telaImportacao;
 
-    List<Filme> filmes = new ArrayList<Filme>();
-    List<Funcionario> funcionarios = new ArrayList<Funcionario>();
-    List<Sessao> sessoes = new ArrayList<Sessao>();
-    List<Venda> vendas = new ArrayList<Venda>();
-    List<Sala> salas = new ArrayList<Sala>();
-    List<Cliente> clientes = new ArrayList<Cliente>();
+    List<Filme> filmes = new ArrayList<>();
+    List<Funcionario> funcionarios = new ArrayList<>();
+    List<Sessao> sessoes = new ArrayList<>();
+    List<Venda> vendas = new ArrayList<>();
+    List<Sala> salas = new ArrayList<>();
+    List<Cliente> clientes = new ArrayList<>();
 
     private final GerenciaCliente gerenciaCliente = new GerenciaCliente(clientes);
     private final GerenciaFilme gerenciaFilme = new GerenciaFilme(filmes);
     private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(funcionarios);
-    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(vendas);
+    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(vendas,gerenciaCliente);
     private final GerenciaSala gerenciaSala = new GerenciaSala(salas);
     private final GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes, gerenciaSala);
 
@@ -137,7 +137,7 @@ public class Principal extends javax.swing.JFrame {
         this.relatorioSala = new RelatorioSala(gerenciaSala);
 
         //Telas a serem chamadas (CRUD VENDAS)
-        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, cadastroSessao);
+        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao,cadastroCliente);
 
         //Telas a serem chamadas (CRUD FILMES)
         this.cadastroFilme = new CadastroFilme(gerenciaFilme);
@@ -723,23 +723,18 @@ public class Principal extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Principal().setVisible(true);
         });
     }
 

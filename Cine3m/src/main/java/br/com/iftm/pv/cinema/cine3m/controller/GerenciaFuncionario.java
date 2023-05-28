@@ -25,8 +25,8 @@ public class GerenciaFuncionario implements IGerencia<Funcionario>{
         return funcionarios.remove(funcionarios.indexOf(funcionario));
     }
 
-    public Funcionario atualizar(Funcionario funcionario, Funcionario funcionarioAtualizado) {
-        return funcionarios.set(funcionarios.indexOf(funcionario), funcionarioAtualizado);
+    public void atualizar(Funcionario funcionario, Funcionario funcionarioAtualizado) {
+        funcionarios.set(funcionarios.indexOf(funcionario), funcionarioAtualizado);
     }
 
     public Funcionario consultar(Funcionario funcionario) {

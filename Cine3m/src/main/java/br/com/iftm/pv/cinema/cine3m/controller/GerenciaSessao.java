@@ -26,8 +26,8 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         return sessoes.remove(sessoes.indexOf(sessao));
     }
 
-    public Sessao atualizar(Sessao sessao, Sessao sessaoAtualizado) {
-        return sessoes.set(sessoes.indexOf(sessao), sessaoAtualizado);
+    public void atualizar(Sessao sessao, Sessao sessaoAtualizado) {
+        sessoes.set(sessoes.indexOf(sessao), sessaoAtualizado);
     }
 
     public Sessao consultar(Sessao sessao) {

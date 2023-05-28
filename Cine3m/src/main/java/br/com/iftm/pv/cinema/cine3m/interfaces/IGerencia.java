@@ -7,7 +7,7 @@ import java.util.List;
 public interface IGerencia<E> {
     Boolean cadastrar (E obj);
     E remover(E obj);
-    E atualizar(E obj, E objAt);
+    void atualizar(E obj, E objAt);
     E consultar(E obj);
     List<E> relatorio();
 }

@@ -8,7 +8,6 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
-import java.util.List;
 
 /**
  *
@@ -18,7 +17,6 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
 
     CadastroCliente cadastroCliente;
     GerenciaCliente gerenciaCliente;
-    List<Cliente> listaClientes;
 
     public AtualizaCliente(CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente) {
         initComponents();
@@ -39,7 +37,7 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
         lbCliente2 = new javax.swing.JLabel();
         btnAtualizarCliente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listClientes = new javax.swing.JList<>();
+        lstClientes = new javax.swing.JList<>();
 
         setClosable(true);
 
@@ -55,53 +53,61 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        listClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
+        lstClientes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                listClientesAncestorAdded(evt);
+                lstClientesAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane1.setViewportView(listClientes);
+        jScrollPane1.setViewportView(lstClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbCliente2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addComponent(btnAtualizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(124, 124, 124)
+                .addComponent(btnAtualizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap()
                 .addComponent(lbCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAtualizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lstClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstClientesAncestorAdded
+        ListUtils.carregarList(lstClientes, gerenciaCliente.relatorio());
+
+        if (!gerenciaCliente.relatorio().isEmpty()) {
+            btnAtualizarCliente.setEnabled(true);
+            lstClientes.setSelectedIndex(0);
+        } else {
+            btnAtualizarCliente.setEnabled(false);
+        }
+    }//GEN-LAST:event_lstClientesAncestorAdded
+
     private void btnAtualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarClienteActionPerformed
-        Cliente clienteSelecionado = (Cliente) this.listClientes.getSelectedValue();
+        Cliente clienteSelecionado = (Cliente) this.lstClientes.getSelectedValue();
         this.cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
         this.cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
         this.cadastroCliente.getLbTituloTelaCliente().setText("Atualização de Cliente");
@@ -114,25 +120,11 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
         this.cadastroCliente.setVisible(true);
     }//GEN-LAST:event_btnAtualizarClienteActionPerformed
 
-    private void listClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_listClientesAncestorAdded
-        listaClientes = gerenciaCliente.relatorio();
-        ListUtils.carregarList(listClientes, listaClientes);
-
-        if (!listaClientes.isEmpty()) {
-            btnAtualizarCliente.setEnabled(true);
-            listClientes.setSelectedIndex(0);
-        } else {
-            btnAtualizarCliente.setEnabled(false);
-        }
-
-
-    }//GEN-LAST:event_listClientesAncestorAdded
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizarCliente;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCliente2;
-    private javax.swing.JList<Pessoa> listClientes;
+    private javax.swing.JList<Pessoa> lstClientes;
     // End of variables declaration//GEN-END:variables
 }

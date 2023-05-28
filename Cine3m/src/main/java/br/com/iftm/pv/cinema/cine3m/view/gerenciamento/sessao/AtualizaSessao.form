@@ -23,7 +23,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lbSessao2" alignment="0" max="32767" attributes="0"/>
-                  <Component id="cbSessoes2" alignment="0" pref="460" max="32767" attributes="0"/>
+                  <Component id="cbSessoes2" alignment="0" pref="426" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -47,7 +47,7 @@
               <Component id="lbSessao2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="cbSessoes2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace pref="150" max="32767" attributes="0"/>
               <Component id="btnConfirmar" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>

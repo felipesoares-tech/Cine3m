@@ -6,9 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
-import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
-import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
-import javax.swing.JDesktopPane;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 
 /**
  *
@@ -34,79 +32,68 @@ public class ConsultaFuncionario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnConfirmarConsulta = new javax.swing.JButton();
-        cbFuncionarios3 = new javax.swing.JComboBox<>();
-        lbConsultaFuncionario = new javax.swing.JLabel();
+        btnConsultarFuncionario = new javax.swing.JButton();
         lbTituloTelaCliente = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstFuncionarios = new javax.swing.JList<>();
 
         setClosable(true);
 
-        btnConfirmarConsulta.setText("Confirmar");
-        btnConfirmarConsulta.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarFuncionario.setText("Confirmar");
+        btnConsultarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarConsultaActionPerformed(evt);
+                btnConsultarFuncionarioActionPerformed(evt);
             }
         });
 
-        cbFuncionarios3.addAncestorListener(new javax.swing.event.AncestorListener() {
+        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setText("Consultar Funcionários");
+
+        lstFuncionarios.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cbFuncionarios3AncestorAdded(evt);
+                lstFuncionariosAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-
-        lbConsultaFuncionario.setForeground(new java.awt.Color(255, 255, 255));
-        lbConsultaFuncionario.setText("Funcionarios:");
-
-        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaCliente.setText("Consulta Funcionarios");
+        jScrollPane1.setViewportView(lstFuncionarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbConsultaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbFuncionarios3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 24, Short.MAX_VALUE)
-                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap()
+                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(btnConsultarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(lbTituloTelaCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbConsultaFuncionario)
+                .addContainerGap()
+                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbFuncionarios3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnConsultarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbFuncionarios3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbFuncionarios3AncestorAdded
-        ComboBoxUtils.carregarComboBox(cbFuncionarios3, gerenciaFuncionario.relatorio());
-    }//GEN-LAST:event_cbFuncionarios3AncestorAdded
-
-    private void btnConfirmarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarConsultaActionPerformed
-        Funcionario funcionarioSelecionado = (Funcionario) this.cbFuncionarios3.getSelectedItem();
+    private void btnConsultarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarFuncionarioActionPerformed
+        Funcionario funcionarioSelecionado = (Funcionario) this.lstFuncionarios.getSelectedValue();
         this.cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
         this.cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
         this.cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
@@ -119,13 +106,23 @@ public class ConsultaFuncionario extends javax.swing.JInternalFrame {
         this.cadastroFuncionario.getTfSenhaFuncionario().setEditable(false);
         getDesktopPane().add(cadastroFuncionario);
         this.cadastroFuncionario.setVisible(true);
-    }//GEN-LAST:event_btnConfirmarConsultaActionPerformed
+    }//GEN-LAST:event_btnConsultarFuncionarioActionPerformed
+
+    private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded
+        ListUtils.carregarList(lstFuncionarios, gerenciaFuncionario.relatorio());
+        if (!gerenciaFuncionario.relatorio().isEmpty()) {
+            btnConsultarFuncionario.setEnabled(true);
+            lstFuncionarios.setSelectedIndex(0);
+        } else {
+            btnConsultarFuncionario.setEnabled(false);
+        }
+    }//GEN-LAST:event_lstFuncionariosAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfirmarConsulta;
-    private javax.swing.JComboBox<Pessoa> cbFuncionarios3;
-    private javax.swing.JLabel lbConsultaFuncionario;
+    private javax.swing.JButton btnConsultarFuncionario;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTituloTelaCliente;
+    private javax.swing.JList<Funcionario> lstFuncionarios;
     // End of variables declaration//GEN-END:variables
 }

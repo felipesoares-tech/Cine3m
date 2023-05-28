@@ -8,7 +8,6 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
-import java.util.List;
 
 /**
  *
@@ -18,7 +17,6 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
 
     private CadastroCliente cadastroCliente;
     private GerenciaCliente gerenciaCliente;
-    private List<Cliente> clientes;
 
     public ConsultaCliente(CadastroCliente cadastroCliente, GerenciaCliente gerenciaCliente) {
         initComponents();
@@ -37,22 +35,22 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        listClientes = new javax.swing.JList<>();
+        lstClientes = new javax.swing.JList<>();
         btnConfirmarConsulta = new javax.swing.JButton();
         lbCliente2 = new javax.swing.JLabel();
 
         setClosable(true);
 
-        listClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
+        lstClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                listClientesAncestorAdded(evt);
+                lstClientesAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane1.setViewportView(listClientes);
+        jScrollPane1.setViewportView(lstClientes);
 
         btnConfirmarConsulta.setText("CONFIRMAR");
         btnConfirmarConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -71,36 +69,35 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(lbCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addGap(33, 33, 33)
+                        .addComponent(lbCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addComponent(lbCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnConfirmarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addGap(12, 12, 12))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarConsultaActionPerformed
-        Cliente clienteSelecionado = (Cliente) this.listClientes.getSelectedValue();
+        Cliente clienteSelecionado = (Cliente) this.lstClientes.getSelectedValue();
 
         this.cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
         this.cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
@@ -112,22 +109,21 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         this.cadastroCliente.setVisible(true);
     }//GEN-LAST:event_btnConfirmarConsultaActionPerformed
 
-    private void listClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_listClientesAncestorAdded
-        clientes = gerenciaCliente.relatorio();
-        ListUtils.carregarList(listClientes, clientes);
-        if (!clientes.isEmpty()) {
+    private void lstClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstClientesAncestorAdded
+        ListUtils.carregarList(lstClientes, gerenciaCliente.relatorio());
+        if (!gerenciaCliente.relatorio().isEmpty()) {
             btnConfirmarConsulta.setEnabled(true);
-            listClientes.setSelectedIndex(0);
+            lstClientes.setSelectedIndex(0);
         } else {
             btnConfirmarConsulta.setEnabled(false);
         }
-    }//GEN-LAST:event_listClientesAncestorAdded
+    }//GEN-LAST:event_lstClientesAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarConsulta;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCliente2;
-    private javax.swing.JList<Pessoa> listClientes;
+    private javax.swing.JList<Pessoa> lstClientes;
     // End of variables declaration//GEN-END:variables
 }

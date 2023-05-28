@@ -6,8 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
-import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
-import javax.swing.JDesktopPane;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 
 /**
  *
@@ -34,69 +33,66 @@ public class ConsultaSala extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lbTituloTelaCliente = new javax.swing.JLabel();
-        cbSalaConsulta = new javax.swing.JComboBox<>();
-        btnConsultar = new javax.swing.JButton();
+        btnConsultarSala = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstSalas = new javax.swing.JList<>();
 
         setClosable(true);
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaCliente.setText("Consulta de Salas");
+        lbTituloTelaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbTituloTelaCliente.setText("Consultar Salas");
 
-        cbSalaConsulta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        cbSalaConsulta.addAncestorListener(new javax.swing.event.AncestorListener() {
+        btnConsultarSala.setText("Consultar");
+        btnConsultarSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarSalaActionPerformed(evt);
+            }
+        });
+
+        lstSalas.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cbSalaConsultaAncestorAdded(evt);
+                lstSalasAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-
-        btnConsultar.setText("Consultar");
-        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(lstSalas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
-                .addComponent(cbSalaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
             .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(btnConsultar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(btnConsultarSala, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(lbTituloTelaCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addComponent(cbSalaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnConsultarSala, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbSalaConsultaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSalaConsultaAncestorAdded
-        ComboBoxUtils.carregarComboBox(cbSalaConsulta, gerenciaSala.relatorio());
-    }//GEN-LAST:event_cbSalaConsultaAncestorAdded
-
-    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        Sala salaSelecionada = (Sala) this.cbSalaConsulta.getSelectedItem();
+    private void btnConsultarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSalaActionPerformed
+        Sala salaSelecionada = (Sala) this.lstSalas.getSelectedValue();
         this.cadastroSala.getBtnCadastrarSala().setVisible(false);
         this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
         this.cadastroSala.getCbCapacidade().setSelectedItem(salaSelecionada.getCapacidade().toString());
@@ -106,12 +102,23 @@ public class ConsultaSala extends javax.swing.JInternalFrame {
         getDesktopPane().add(cadastroSala);
         this.cadastroSala.setVisible(true);
 
-    }//GEN-LAST:event_btnConsultarActionPerformed
+    }//GEN-LAST:event_btnConsultarSalaActionPerformed
+
+    private void lstSalasAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstSalasAncestorAdded
+        ListUtils.carregarList(lstSalas, gerenciaSala.relatorio());
+        if (!gerenciaSala.relatorio().isEmpty()) {
+            btnConsultarSala.setEnabled(true);
+            lstSalas.setSelectedIndex(0);
+        } else {
+            btnConsultarSala.setEnabled(false);
+        }
+    }//GEN-LAST:event_lstSalasAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsultar;
-    private javax.swing.JComboBox<Sala> cbSalaConsulta;
+    private javax.swing.JButton btnConsultarSala;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTituloTelaCliente;
+    private javax.swing.JList<Sala> lstSalas;
     // End of variables declaration//GEN-END:variables
 }

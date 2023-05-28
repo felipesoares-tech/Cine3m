@@ -27,9 +27,9 @@ import javax.swing.JOptionPane;
  */
 public class CadastroSessao extends javax.swing.JInternalFrame {
 
-    private GerenciaSessao gerenciaSessao;
-    private GerenciaSala gerenciaSala;
-    private GerenciaFilme gerenciaFilme;
+    private final GerenciaSessao gerenciaSessao;
+    private final GerenciaSala gerenciaSala;
+    private final GerenciaFilme gerenciaFilme;
     private Sessao sessaoSelecionada;
 
     public CadastroSessao(GerenciaSessao gerenciaSessao, GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme) {
@@ -37,6 +37,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         this.gerenciaFilme = gerenciaFilme;
         this.gerenciaSala = gerenciaSala;
         this.gerenciaSessao = gerenciaSessao;
+        this.btnCadastrarSessao.setEnabled(false);
     }
 
     public JButton getBtnCadastrarSessao() {
@@ -203,6 +204,15 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         lbData.setText("Data:");
 
         btnCadastrarSessao.setText("Cadastrar");
+        btnCadastrarSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                btnCadastrarSessaoAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         btnCadastrarSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarSessaoActionPerformed(evt);
@@ -291,14 +301,14 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
 
     private void cbFilmesSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbFilmesSessaoAncestorAdded
         ComboBoxUtils.carregarComboBox(cbFilmesSessao, gerenciaFilme.relatorio());
-        if(this.sessaoSelecionada != null){
+        if (this.sessaoSelecionada != null) {
             cbFilmesSessao.setSelectedItem(sessaoSelecionada.getFilme());
         }
     }//GEN-LAST:event_cbFilmesSessaoAncestorAdded
 
     private void cbSalasSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSalasSessaoAncestorAdded
         ComboBoxUtils.carregarComboBox(cbSalasSessao, gerenciaSala.relatorio());
-        if(this.sessaoSelecionada != null){
+        if (this.sessaoSelecionada != null) {
             cbSalasSessao.setSelectedItem(sessaoSelecionada.getSala());
         }
     }//GEN-LAST:event_cbSalasSessaoAncestorAdded
@@ -306,24 +316,26 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
         Filme filmeSelecionado = (Filme) cbFilmesSessao.getSelectedItem();
         Sala salaSelecionada = (Sala) cbSalasSessao.getSelectedItem();
-        Double valorSessao = Double.valueOf(tfValorSessao.getText());
-        LocalDate data = LocalDate.parse(tfDataSessao.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        LocalTime hora = LocalTime.parse(tfHorarioSessao.getText(), DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-        if (ValidaCampo.validar(data.toString(), lbData, this)
-                && ValidaCampo.validar(hora.toString(), lbHora, this)
-                && ValidaCampo.validar(valorSessao.toString(), lbValor, this)) {
+        String dataSessao = tfDataSessao.getText();
+        String horaSessao = tfHorarioSessao.getText();
+        String valorSessao = tfValorSessao.getText();
 
-            Sessao sessao = new Sessao(filmeSelecionado, data, hora, salaSelecionada, valorSessao);
+        if (ValidaCampo.validar(dataSessao.replaceAll("[/]", "").trim(), lbData, this)
+                && ValidaCampo.validar(horaSessao.replaceAll("[:]", "").trim(), lbHora, this)
+                && ValidaCampo.validar(valorSessao, lbValor, this)) {
+
+            LocalDate data = LocalDate.parse(dataSessao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            LocalTime hora = LocalTime.parse(horaSessao, DateTimeFormatter.ofPattern("HH:mm:ss"));
+            Double valor = Double.valueOf(tfValorSessao.getText());
+
+            Sessao sessao = new Sessao(filmeSelecionado, data, hora, salaSelecionada, valor);
 
             if (btnCadastrarSessao.getText().equals("Cadastrar")) {
                 Boolean sucesso = gerenciaSessao.cadastrar(sessao);
                 JOptionPane.showMessageDialog(this, sucesso ? "Sessão cadstrada com sucesso " : "Sessão já Cadastrada!",
                         "Cadastro Cliente", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
             } else {
-                Sessao s = gerenciaSessao.atualizar(sessaoSelecionada, sessao);
-                System.out.println("att filme com: " + s.getFilme().toString());
-                System.out.println("att sala com: " + s.getSala().toString());
                 JOptionPane.showMessageDialog(this, "Sessão atualizada com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
                 getDesktopPane().remove(this);
@@ -333,6 +345,13 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
             tfHorarioSessao.setText("");
         }
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
+
+    private void btnCadastrarSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoAncestorAdded
+        if (cbFilmesSessao.getModel().getSize() > 0
+                && cbSalasSessao.getModel().getSize() > 0) {
+            btnCadastrarSessao.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnCadastrarSessaoAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

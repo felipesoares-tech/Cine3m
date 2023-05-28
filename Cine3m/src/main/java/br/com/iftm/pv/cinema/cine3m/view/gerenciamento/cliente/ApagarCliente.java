@@ -55,7 +55,7 @@ public class ApagarCliente extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(lstClientes);
 
-        btnConfirmarApagaCliente.setText("Apagar");
+        btnConfirmarApagaCliente.setText("APAGAR");
         btnConfirmarApagaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarApagaClienteActionPerformed(evt);

@@ -109,7 +109,7 @@ public class Principal extends javax.swing.JDialog {
         //Telas a serem chamadas (CRUD SESSÃO) Instanciação
         this.cadastroSessao = new CadastroSessao(gerenciaSessao, gerenciaSala, gerenciaFilme);
         this.consultaSessao = new ConsultaSessao(cadastroSessao, gerenciaSessao);
-        this.atualizaSessao = new AtualizaSessao(cadastroSessao);
+        this.atualizaSessao = new AtualizaSessao(cadastroSessao,gerenciaSessao);
         this.apagaSessao = new ApagaSessao(gerenciaSessao);
         this.relatorioSessao = new RelatorioSessao(gerenciaSessao);
         //Telas a serem chamadas (CRUD CLIENTES) Instanciação
@@ -583,11 +583,10 @@ public class Principal extends javax.swing.JDialog {
     }//GEN-LAST:event_imRelatorioClienteActionPerformed
 
     private void imCadastroSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSalaActionPerformed
-        this.cadastroSala.getCbCapacidade().setEnabled(true);
+        this.cadastroSala.getJsCapacidade().setEnabled(true);
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
         this.cadastroSala.getBtnCadastrarSala().setText("Cadastrar");
         this.cadastroSala.getTfNomeSala().setText("");
-        this.cadastroSala.getCbCapacidade().setSelectedIndex(0);
         this.cadastroSala.getTfNomeSala().setEditable(true);
         jDesktopPane1.add(cadastroSala);
         this.cadastroSala.setVisible(true);

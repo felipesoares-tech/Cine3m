@@ -95,10 +95,10 @@ public class ConsultaSala extends javax.swing.JInternalFrame {
         Sala salaSelecionada = (Sala) this.lstSalas.getSelectedValue();
         this.cadastroSala.getBtnCadastrarSala().setVisible(false);
         this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
-        this.cadastroSala.getCbCapacidade().setSelectedItem(salaSelecionada.getCapacidade().toString());
-        this.cadastroSala.getCbCapacidade().setEnabled(false);
+        this.cadastroSala.getJsCapacidade().setValue(salaSelecionada.getCapacidade());
+        this.cadastroSala.getJsCapacidade().setEnabled(false);
         this.cadastroSala.getTfNomeSala().setEditable(false);
-        this.cadastroSala.getCbCapacidade().setEditable(false);
+        this.cadastroSala.getJsCapacidade().setEnabled(false);
         getDesktopPane().add(cadastroSala);
         this.cadastroSala.setVisible(true);
 

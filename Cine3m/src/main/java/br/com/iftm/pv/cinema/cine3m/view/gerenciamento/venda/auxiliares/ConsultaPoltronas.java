@@ -4,9 +4,7 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
-import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;

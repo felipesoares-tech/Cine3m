@@ -1,22 +1,25 @@
 package br.com.iftm.pv.cinema.cine3m.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-
+import java.time.LocalTime;
 
 public class Sessao {
+
     private String nome;
     private Filme filme;
-    private LocalDateTime dataHora;
+    private LocalDate data;
+    private LocalTime hora;
     private Double valor;
     private Sala sala;
 
-    public Sessao(Filme filme, LocalDateTime dataHora, Sala sala, Double valor) {
+    public Sessao(Filme filme, LocalDate data, LocalTime hora,Sala sala, Double valor) {
         this.filme = filme;
-        this.dataHora = dataHora;
+        this.data = data;
+        this.hora = hora;
         this.sala = sala;
         this.valor = valor;
-        this.nome = filme.toString() + sala.toString();
+        this.nome = filme.toString() + " - " + sala.toString();
     }
 
     @Override
@@ -31,7 +34,7 @@ public class Sessao {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     public Filme getFilme() {
         return filme;
     }
@@ -40,13 +43,23 @@ public class Sessao {
         this.filme = filme;
     }
 
-    public LocalDateTime getDataHora() {
-        return dataHora;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
+    public void setData(LocalDate data) {
+        this.data = data;
     }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
+
+
 
     public Double getValor() {
         return valor;
@@ -63,5 +76,5 @@ public class Sessao {
     public void setSala(Sala sala) {
         this.sala = sala;
     }
-    
+
 }

@@ -6,7 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
-import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 
 /**
  *
@@ -34,8 +34,11 @@ public class AtualizaFilme extends javax.swing.JInternalFrame {
 
         btnAtualizarFilme = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        cbFilme = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstFilmes = new javax.swing.JList<>();
+
         setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnAtualizarFilme.setText("Confirmar");
         btnAtualizarFilme.addActionListener(new java.awt.event.ActionListener() {
@@ -44,22 +47,22 @@ public class AtualizaFilme extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Filmes:");
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Atualizar Filmes");
 
-        cbFilme.addAncestorListener(new javax.swing.event.AncestorListener() {
+        lstFilmes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstFilmes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cbFilmeAncestorAdded(evt);
+                lstFilmesAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        cbFilme.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                cbFilmeFocusGained(evt);
-            }
-        });
+        jScrollPane1.setViewportView(lstFilmes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,32 +71,32 @@ public class AtualizaFilme extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbFilme, 0, 287, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(btnAtualizarFilme)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addGap(128, 128, 128)
+                        .addComponent(btnAtualizarFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
-                .addComponent(btnAtualizarFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAtualizarFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtualizarFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarFilmeActionPerformed
-        Filme filmeSelecionado = (Filme) this.cbFilme.getSelectedItem();
+        Filme filmeSelecionado = (Filme) this.lstFilmes.getSelectedValue();
         this.cadastroFilme.getTfNomeFilme().setText(filmeSelecionado.getNome());
         this.cadastroFilme.getTfDiretor().setText(filmeSelecionado.getDiretor());
         this.cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
@@ -110,13 +113,15 @@ public class AtualizaFilme extends javax.swing.JInternalFrame {
         this.cadastroFilme.setVisible(true);
     }//GEN-LAST:event_btnAtualizarFilmeActionPerformed
 
-    private void cbFilmeAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbFilmeAncestorAdded
-        ComboBoxUtils.carregarComboBox(cbFilme, gerenciaFilme.relatorio());
-    }//GEN-LAST:event_cbFilmeAncestorAdded
-
-    private void cbFilmeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbFilmeFocusGained
-        cbFilmeAncestorAdded(null);
-    }//GEN-LAST:event_cbFilmeFocusGained
+    private void lstFilmesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFilmesAncestorAdded
+        ListUtils.carregarList(lstFilmes, gerenciaFilme.relatorio());
+        if (!gerenciaFilme.relatorio().isEmpty()) {
+            btnAtualizarFilme.setEnabled(true);
+            lstFilmes.setSelectedIndex(0);
+        } else {
+            btnAtualizarFilme.setEnabled(false);
+        }
+    }//GEN-LAST:event_lstFilmesAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -124,7 +129,8 @@ public class AtualizaFilme extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizarFilme;
-    private javax.swing.JComboBox<Filme> cbFilme;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<Filme> lstFilmes;
     // End of variables declaration//GEN-END:variables
 }

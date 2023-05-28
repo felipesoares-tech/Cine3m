@@ -6,7 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
-import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 
 /**
  *
@@ -33,76 +33,68 @@ public class AtualizaSala extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lbTituloTelaCliente = new javax.swing.JLabel();
-        cbSala = new javax.swing.JComboBox<>();
-        btnConfirmar = new javax.swing.JButton();
+        btnAtualizarSala = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstSalas = new javax.swing.JList<>();
 
         setClosable(true);
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaCliente.setText("Atualização de Salas");
+        lbTituloTelaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbTituloTelaCliente.setText("Atualizar Salas");
 
-        cbSala.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        cbSala.addAncestorListener(new javax.swing.event.AncestorListener() {
+        btnAtualizarSala.setText("Confirmar");
+        btnAtualizarSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarSalaActionPerformed(evt);
+            }
+        });
+
+        lstSalas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstSalas.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cbSalaAncestorAdded(evt);
+                lstSalasAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        cbSala.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                cbSalaFocusGained(evt);
-            }
-        });
-
-        btnConfirmar.setText("Confirmar");
-        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(lstSalas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 29, Short.MAX_VALUE)
-                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(cbSala, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(btnConfirmar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnAtualizarSala, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbTituloTelaCliente)
-                .addGap(84, 84, 84)
-                .addComponent(cbSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAtualizarSala, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbSalaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSalaAncestorAdded
-        ComboBoxUtils.carregarComboBox(cbSala, gerenciaSala.relatorio());
-    }//GEN-LAST:event_cbSalaAncestorAdded
-
-    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        Sala salaSelecionada = (Sala) this.cbSala.getSelectedItem();
+    private void btnAtualizarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarSalaActionPerformed
+        Sala salaSelecionada = (Sala) this.lstSalas.getSelectedValue();
         this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
         this.cadastroSala.getJsCapacidade().setValue(salaSelecionada.getCapacidade());
         this.cadastroSala.getBtnCadastrarSala().setText("Atualizar");
@@ -112,16 +104,24 @@ public class AtualizaSala extends javax.swing.JInternalFrame {
         this.cadastroSala.setSalaSelecionada(salaSelecionada);
         getDesktopPane().add(cadastroSala);
         this.cadastroSala.setVisible(true);
-    }//GEN-LAST:event_btnConfirmarActionPerformed
+    }//GEN-LAST:event_btnAtualizarSalaActionPerformed
 
-    private void cbSalaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbSalaFocusGained
-        cbSalaAncestorAdded(null);
-    }//GEN-LAST:event_cbSalaFocusGained
+    private void lstSalasAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstSalasAncestorAdded
+        ListUtils.carregarList(lstSalas, gerenciaSala.relatorio());
+
+        if (!gerenciaSala.relatorio().isEmpty()) {
+            btnAtualizarSala.setEnabled(true);
+            lstSalas.setSelectedIndex(0);
+        } else {
+            btnAtualizarSala.setEnabled(false);
+        }
+    }//GEN-LAST:event_lstSalasAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfirmar;
-    private javax.swing.JComboBox<Sala> cbSala;
+    private javax.swing.JButton btnAtualizarSala;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTituloTelaCliente;
+    private javax.swing.JList<Sala> lstSalas;
     // End of variables declaration//GEN-END:variables
 }

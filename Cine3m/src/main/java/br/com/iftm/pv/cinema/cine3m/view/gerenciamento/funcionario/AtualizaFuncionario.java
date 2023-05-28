@@ -6,8 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
-import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
-import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 
 /**
  *
@@ -33,30 +32,12 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbFuncionario2 = new javax.swing.JLabel();
-        cbFuncionario2 = new javax.swing.JComboBox<>();
         btnAtualizarFuncionario = new javax.swing.JButton();
         lbTituloTelaCliente = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstFuncionarios = new javax.swing.JList<>();
 
         setClosable(true);
-
-        lbFuncionario2.setForeground(new java.awt.Color(255, 255, 255));
-        lbFuncionario2.setText("Funcionarios:");
-
-        cbFuncionario2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cbFuncionario2AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        cbFuncionario2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                cbFuncionario2FocusGained(evt);
-            }
-        });
 
         btnAtualizarFuncionario.setText("Confirmar");
         btnAtualizarFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -66,50 +47,53 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
         });
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaCliente.setText("Atualiza Funcionarios");
+        lbTituloTelaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbTituloTelaCliente.setText("Atualizar Funcionários");
+
+        lstFuncionarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstFuncionarios.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lstFuncionariosAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(lstFuncionarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(127, 127, 127)
+                        .addComponent(btnAtualizarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbFuncionario2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbFuncionario2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(btnAtualizarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbTituloTelaCliente)
-                .addGap(27, 27, 27)
-                .addComponent(lbFuncionario2)
+                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbFuncionario2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAtualizarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbFuncionario2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbFuncionario2AncestorAdded
-        ComboBoxUtils.carregarComboBox(cbFuncionario2, gerenciaFuncionario.relatorio());
-    }//GEN-LAST:event_cbFuncionario2AncestorAdded
-
     private void btnAtualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarFuncionarioActionPerformed
-        Funcionario funcionarioSelecionado = (Funcionario) this.cbFuncionario2.getSelectedItem();
+        Funcionario funcionarioSelecionado = (Funcionario) this.lstFuncionarios.getSelectedValue();
         this.cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
         this.cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
         this.cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
@@ -125,15 +109,22 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
         this.cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnAtualizarFuncionarioActionPerformed
 
-    private void cbFuncionario2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbFuncionario2FocusGained
-        cbFuncionario2AncestorAdded(null);
-    }//GEN-LAST:event_cbFuncionario2FocusGained
+    private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded
+        ListUtils.carregarList(lstFuncionarios, gerenciaFuncionario.relatorio());
+
+        if (!gerenciaFuncionario.relatorio().isEmpty()) {
+            btnAtualizarFuncionario.setEnabled(true);
+            lstFuncionarios.setSelectedIndex(0);
+        } else {
+            btnAtualizarFuncionario.setEnabled(false);
+        }
+    }//GEN-LAST:event_lstFuncionariosAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizarFuncionario;
-    private javax.swing.JComboBox<Pessoa> cbFuncionario2;
-    private javax.swing.JLabel lbFuncionario2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTituloTelaCliente;
+    private javax.swing.JList<Funcionario> lstFuncionarios;
     // End of variables declaration//GEN-END:variables
 }

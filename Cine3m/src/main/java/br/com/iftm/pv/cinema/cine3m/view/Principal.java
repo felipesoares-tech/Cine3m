@@ -83,7 +83,7 @@ public class Principal extends javax.swing.JDialog {
     AtualizaFilme atualizaFilme;
     ApagaFilme apagaFilme;
     RelatorioFilme relatorioFilme;
-    
+
     //Telas IMPORTACOES
     TelaImportacao telaImportacao;
 
@@ -109,7 +109,7 @@ public class Principal extends javax.swing.JDialog {
         //Telas a serem chamadas (CRUD SESSÃO) Instanciação
         this.cadastroSessao = new CadastroSessao(gerenciaSessao, gerenciaSala, gerenciaFilme);
         this.consultaSessao = new ConsultaSessao(cadastroSessao, gerenciaSessao);
-        this.atualizaSessao = new AtualizaSessao(cadastroSessao,gerenciaSessao);
+        this.atualizaSessao = new AtualizaSessao(cadastroSessao, gerenciaSessao);
         this.apagaSessao = new ApagaSessao(gerenciaSessao);
         this.relatorioSessao = new RelatorioSessao(gerenciaSessao);
         //Telas a serem chamadas (CRUD CLIENTES) Instanciação
@@ -173,7 +173,7 @@ public class Principal extends javax.swing.JDialog {
         this.atualizaSala.getContentPane().setBackground(corFundoPadrao);
         this.apagaSala.getContentPane().setBackground(corFundoPadrao);
         this.relatorioSala.getContentPane().setBackground(corFundoPadrao);
-        
+
         this.telaImportacao = new TelaImportacao(gerenciaFilme);
     }
 
@@ -528,6 +528,20 @@ public class Principal extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imCadastroSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSessaoActionPerformed
+        this.cadastroSessao.getBtnCadastrarSessao().setVisible(true);
+        this.cadastroSessao.getLbTituloTelaSessao().setText("Cadastro de Sessão");
+        this.cadastroSessao.getBtnCadastrarSessao().setText("Cadastrar");
+        
+        //Habilita campos
+        this.cadastroSessao.getTfDataSessao().setEditable(true);
+        this.cadastroSessao.getTfHorarioSessao().setEditable(true);
+        this.cadastroSessao.getTfValorSessao().setEditable(true);
+        this.cadastroSessao.getCbFilmesSessao().setEnabled(true);
+        this.cadastroSessao.getCbSalasSessao().setEnabled(true);
+        //Limpa campos
+        this.cadastroSessao.getTfDataSessao().setValue(null);
+        this.cadastroSessao.getTfHorarioSessao().setValue(null);
+        this.cadastroSessao.getTfValorSessao().setValue(null);
         jDesktopPane1.add(cadastroSessao);
         this.cadastroSessao.setVisible(true);
     }//GEN-LAST:event_imCadastroSessaoActionPerformed
@@ -696,7 +710,6 @@ public class Principal extends javax.swing.JDialog {
         this.telaImportacao.setVisible(true);
     }//GEN-LAST:event_imImportacaoFilmesActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */

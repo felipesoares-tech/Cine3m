@@ -357,9 +357,9 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
                 this.setVisible(false);
                 getDesktopPane().remove(this);
             }
-            tfValorSessao.setText("");
-            tfDataSessao.setText("");
-            tfHorarioSessao.setText("");
+            tfValorSessao.setValue(null);
+            tfDataSessao.setValue(null);
+            tfHorarioSessao.setValue(null);
         }
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
 

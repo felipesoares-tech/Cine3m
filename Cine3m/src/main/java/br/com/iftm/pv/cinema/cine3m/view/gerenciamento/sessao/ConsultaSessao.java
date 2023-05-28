@@ -84,7 +84,7 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
+                .addGap(184, 184, 184)
                 .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -115,6 +115,7 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
         this.cadastroSessao.getTfValorSessao().setEditable(false);
         this.cadastroSessao.getTfDataSessao().setEditable(false);
         this.cadastroSessao.getTfHorarioSessao().setEditable(false);
+        this.cadastroSessao.getLbTituloTelaSessao().setText("Consulta de Sessões");
         
         getDesktopPane().add(cadastroSessao);
         this.cadastroSessao.setVisible(true);

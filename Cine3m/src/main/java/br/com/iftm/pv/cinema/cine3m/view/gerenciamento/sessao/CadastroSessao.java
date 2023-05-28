@@ -12,6 +12,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -143,6 +144,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
     public void setTfValorSessao(JFormattedTextField tfValorSessao) {
         this.tfValorSessao = tfValorSessao;
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -325,8 +327,23 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
                 && ValidaCampo.validar(horaSessao.replaceAll("[:]", "").trim(), lbHora, this)
                 && ValidaCampo.validar(valorSessao, lbValor, this)) {
 
-            LocalDate data = LocalDate.parse(dataSessao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            LocalTime hora = LocalTime.parse(horaSessao, DateTimeFormatter.ofPattern("HH:mm:ss"));
+            LocalDate data;
+            LocalTime hora;
+
+            try {
+                data = LocalDate.parse(dataSessao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            } catch (DateTimeException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            try {
+                hora = LocalTime.parse(horaSessao, DateTimeFormatter.ofPattern("HH:mm:ss"));
+            } catch (DateTimeException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             Double valor = Double.valueOf(tfValorSessao.getText());
 
             Sessao sessao = new Sessao(filmeSelecionado, data, hora, salaSelecionada, valor);

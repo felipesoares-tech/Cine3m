@@ -46,7 +46,7 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
         lbCliente2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbCliente2.setText("Atualizar Clientes");
 
-        btnAtualizarCliente.setText("Confirmar");
+        btnAtualizarCliente.setText("CONFIRMAR");
         btnAtualizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtualizarClienteActionPerformed(evt);

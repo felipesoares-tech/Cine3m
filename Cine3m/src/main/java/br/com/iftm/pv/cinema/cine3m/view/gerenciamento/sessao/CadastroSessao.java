@@ -353,7 +353,8 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, sucesso ? "Sessão cadstrada com sucesso " : "Sessão já Cadastrada!",
                         "Cadastro Cliente", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Sessão atualizada com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
+                gerenciaSessao.atualizar(sessaoSelecionada, sessao);
+                JOptionPane.showMessageDialog(this, "Sessão atualizada com sucesso ", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
                 getDesktopPane().remove(this);
             }

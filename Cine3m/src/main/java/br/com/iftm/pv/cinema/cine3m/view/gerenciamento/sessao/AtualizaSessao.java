@@ -102,7 +102,7 @@ public class AtualizaSessao extends javax.swing.JInternalFrame {
         this.cadastroSessao.getTfDataSessao().setText(sessaoSelecionada.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         this.cadastroSessao.getTfHorarioSessao().setText(sessaoSelecionada.getHora().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         this.cadastroSessao.getTfValorSessao().setText(String.valueOf(sessaoSelecionada.getValor()));
-        this.cadastroSessao.getLbTituloTelaSessao().setText("Atualização de Sala");
+        this.cadastroSessao.getLbTituloTelaSessao().setText("Atualização de Sessão");
         this.cadastroSessao.getBtnCadastrarSessao().setText("Atualizar");
         this.cadastroSessao.getBtnCadastrarSessao().setVisible(true);
         this.cadastroSessao.getCbFilmesSessao().setEnabled(true);

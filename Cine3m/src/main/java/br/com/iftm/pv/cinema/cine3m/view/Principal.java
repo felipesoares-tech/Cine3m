@@ -228,6 +228,7 @@ public class Principal extends javax.swing.JFrame {
         imConsultaVenda = new javax.swing.JMenuItem();
         imRelatorioVenda = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        imImportacaoFilmes = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -494,7 +495,16 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Importações");
+
+        imImportacaoFilmes.setText("Filmes");
+        imImportacaoFilmes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imImportacaoFilmesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(imImportacaoFilmes);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -692,6 +702,11 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_imRelatorioVendaActionPerformed
 
+    private void imImportacaoFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imImportacaoFilmesActionPerformed
+        jDesktopPane1.add(telaImportacao);
+        telaImportacao.setVisible(true);
+    }//GEN-LAST:event_imImportacaoFilmesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -750,6 +765,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem imConsultaSala;
     private javax.swing.JMenuItem imConsultaSessao;
     private javax.swing.JMenuItem imConsultaVenda;
+    private javax.swing.JMenuItem imImportacaoFilmes;
     private javax.swing.JMenuItem imRelatorioCliente;
     private javax.swing.JMenuItem imRelatorioFilme;
     private javax.swing.JMenuItem imRelatorioFuncionario;

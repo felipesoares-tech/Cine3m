@@ -91,8 +91,8 @@ public class Principal1 extends javax.swing.JFrame {
     private AtualizaFilme atualizaFilme;
     private ApagaFilme apagaFilme;
     private RelatorioFilme relatorioFilme;
-    
-   private  TelaImportacao telaImportacao;
+
+    private TelaImportacao telaImportacao;
 
     List<Filme> filmes = new ArrayList<Filme>();
     List<Funcionario> funcionarios = new ArrayList<Funcionario>();
@@ -288,7 +288,7 @@ public class Principal1 extends javax.swing.JFrame {
 
         jMenu1.add(mCliente);
 
-        mFuncionario.setText("Funcionrio");
+        mFuncionario.setText("Funcionario");
 
         imCadastroFuncionario.setText("Cadastrar");
         imCadastroFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -526,27 +526,27 @@ public class Principal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_imCadastroClienteActionPerformed
 
     private void imConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaClienteActionPerformed
-     jDesktopPane1.add(consultaCliente);
+        jDesktopPane1.add(consultaCliente);
         consultaCliente.setVisible(true);
     }//GEN-LAST:event_imConsultaClienteActionPerformed
 
     private void imAtualizaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaClienteActionPerformed
-         jDesktopPane1.add(atualizaCliente);
-         atualizaCliente.setVisible(true);
+        jDesktopPane1.add(atualizaCliente);
+        atualizaCliente.setVisible(true);
     }//GEN-LAST:event_imAtualizaClienteActionPerformed
 
     private void imApagaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaClienteActionPerformed
-       jDesktopPane1.add(apagaCliente);
-         apagaCliente.setVisible(true);
+        jDesktopPane1.add(apagaCliente);
+        apagaCliente.setVisible(true);
     }//GEN-LAST:event_imApagaClienteActionPerformed
 
     private void imRelatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioClienteActionPerformed
-       jDesktopPane1.add(relatorioCliente);
-         relatorioCliente.setVisible(true);
+        jDesktopPane1.add(relatorioCliente);
+        relatorioCliente.setVisible(true);
     }//GEN-LAST:event_imRelatorioClienteActionPerformed
 
     private void imCadastroFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroFuncionarioActionPerformed
-     this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
+        this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
         this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("Cadastrar");
         this.cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
         this.cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
@@ -557,27 +557,27 @@ public class Principal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_imCadastroFuncionarioActionPerformed
 
     private void imConsultaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaFuncionarioActionPerformed
-       jDesktopPane1.add(consultaFuncionario);
-         consultaFuncionario.setVisible(true);
+        jDesktopPane1.add(consultaFuncionario);
+        consultaFuncionario.setVisible(true);
     }//GEN-LAST:event_imConsultaFuncionarioActionPerformed
 
     private void imAtualizaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaFuncionarioActionPerformed
-       jDesktopPane1.add(atualizaFuncionario);
-         atualizaFuncionario.setVisible(true);
+        jDesktopPane1.add(atualizaFuncionario);
+        atualizaFuncionario.setVisible(true);
     }//GEN-LAST:event_imAtualizaFuncionarioActionPerformed
 
     private void imApagaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaFuncionarioActionPerformed
-       jDesktopPane1.add(apagaFuncionario);
-         apagaFuncionario.setVisible(true);
+        jDesktopPane1.add(apagaFuncionario);
+        apagaFuncionario.setVisible(true);
     }//GEN-LAST:event_imApagaFuncionarioActionPerformed
 
     private void imRelatorioFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioFuncionarioActionPerformed
-       jDesktopPane1.add(relatorioFuncionario);
-         relatorioFuncionario.setVisible(true);
+        jDesktopPane1.add(relatorioFuncionario);
+        relatorioFuncionario.setVisible(true);
     }//GEN-LAST:event_imRelatorioFuncionarioActionPerformed
 
     private void imCadastroFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroFilmeActionPerformed
-       this.cadastroFilme.getBtnConfirmar().setText("Cadastrar");
+        this.cadastroFilme.getBtnConfirmar().setText("Cadastrar");
         this.cadastroFilme.getBtnConfirmar().setVisible(true);
         this.cadastroFilme.getTfNomeFilme().setEditable(true);
         this.cadastroFilme.getTfDiretor().setEditable(true);
@@ -592,26 +592,26 @@ public class Principal1 extends javax.swing.JFrame {
 
     private void imConsultaFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaFilmeActionPerformed
         jDesktopPane1.add(consultaFilme);
-         consultaFilme.setVisible(true);
+        consultaFilme.setVisible(true);
     }//GEN-LAST:event_imConsultaFilmeActionPerformed
 
     private void imAtualizaFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaFilmeActionPerformed
-      jDesktopPane1.add(atualizaFilme);
-         atualizaFilme.setVisible(true);
+        jDesktopPane1.add(atualizaFilme);
+        atualizaFilme.setVisible(true);
     }//GEN-LAST:event_imAtualizaFilmeActionPerformed
 
     private void imApagarFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagarFilmeActionPerformed
-      jDesktopPane1.add(apagaFilme);
-         apagaFilme.setVisible(true);
+        jDesktopPane1.add(apagaFilme);
+        apagaFilme.setVisible(true);
     }//GEN-LAST:event_imApagarFilmeActionPerformed
 
     private void imRelatorioFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioFilmeActionPerformed
-       jDesktopPane1.add(relatorioFilme);
-         relatorioFilme.setVisible(true);
+        jDesktopPane1.add(relatorioFilme);
+        relatorioFilme.setVisible(true);
     }//GEN-LAST:event_imRelatorioFilmeActionPerformed
 
     private void imCadastroSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSalaActionPerformed
-      this.cadastroSala.getJsCapacidade().setEnabled(true);
+        this.cadastroSala.getJsCapacidade().setEnabled(true);
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
         this.cadastroSala.getBtnCadastrarSala().setText("Cadastrar");
         this.cadastroSala.getTfNomeSala().setText("");
@@ -622,52 +622,52 @@ public class Principal1 extends javax.swing.JFrame {
 
     private void imConsultaSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaSalaActionPerformed
         jDesktopPane1.add(consultaSala);
-         consultaSala.setVisible(true);
+        consultaSala.setVisible(true);
     }//GEN-LAST:event_imConsultaSalaActionPerformed
 
     private void imAtualizaSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imAtualizaSalaActionPerformed
-      jDesktopPane1.add(atualizaSala);
-         atualizaSala.setVisible(true);
+        jDesktopPane1.add(atualizaSala);
+        atualizaSala.setVisible(true);
     }//GEN-LAST:event_imAtualizaSalaActionPerformed
 
     private void imApagaSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaSalaActionPerformed
         jDesktopPane1.add(apagaSala);
-         apagaSala.setVisible(true);
+        apagaSala.setVisible(true);
     }//GEN-LAST:event_imApagaSalaActionPerformed
 
     private void imRelatorioSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioSalaActionPerformed
-       jDesktopPane1.add(relatorioSala);
-         relatorioSala.setVisible(true);
+        jDesktopPane1.add(relatorioSala);
+        relatorioSala.setVisible(true);
     }//GEN-LAST:event_imRelatorioSalaActionPerformed
 
     private void imCadastroSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSessaoActionPerformed
-     jDesktopPane1.add(cadastroSessao);
-         cadastroSessao.setVisible(true);
+        jDesktopPane1.add(cadastroSessao);
+        cadastroSessao.setVisible(true);
     }//GEN-LAST:event_imCadastroSessaoActionPerformed
 
     private void imConsultaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaSessaoActionPerformed
         jDesktopPane1.add(consultaSessao);
-         consultaSessao.setVisible(true);
+        consultaSessao.setVisible(true);
     }//GEN-LAST:event_imConsultaSessaoActionPerformed
 
     private void imatualizaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imatualizaSessaoActionPerformed
-         jDesktopPane1.add(atualizaSessao);
-         atualizaSessao.setVisible(true);
+        jDesktopPane1.add(atualizaSessao);
+        atualizaSessao.setVisible(true);
     }//GEN-LAST:event_imatualizaSessaoActionPerformed
 
     private void imApagaSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaSessaoActionPerformed
-      jDesktopPane1.add(apagaSessao);
-         apagaSessao.setVisible(true);
+        jDesktopPane1.add(apagaSessao);
+        apagaSessao.setVisible(true);
     }//GEN-LAST:event_imApagaSessaoActionPerformed
 
     private void imRelatorioSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioSessaoActionPerformed
-       jDesktopPane1.add(relatorioSessao);
-         relatorioSessao.setVisible(true);
+        jDesktopPane1.add(relatorioSessao);
+        relatorioSessao.setVisible(true);
     }//GEN-LAST:event_imRelatorioSessaoActionPerformed
 
     private void imCadastroVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroVendaActionPerformed
-         jDesktopPane1.add(cadastroVenda);
-         cadastroVenda.setVisible(true);
+        jDesktopPane1.add(cadastroVenda);
+        cadastroVenda.setVisible(true);
     }//GEN-LAST:event_imCadastroVendaActionPerformed
 
     private void imConsultaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaVendaActionPerformed
@@ -677,7 +677,7 @@ public class Principal1 extends javax.swing.JFrame {
     private void imRelatorioVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioVendaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_imRelatorioVendaActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */

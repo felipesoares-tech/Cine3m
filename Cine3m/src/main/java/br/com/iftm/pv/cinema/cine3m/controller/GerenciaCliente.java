@@ -23,8 +23,8 @@ public class GerenciaCliente implements IGerencia<Cliente> {
         return clientes.remove(clientes.indexOf(cliente));
     }
 
-    public Cliente atualizar(Cliente cliente, Cliente clienteAtualizado) {
-        return clientes.set(clientes.indexOf(cliente), clienteAtualizado);
+    public void atualizar(Cliente cliente, Cliente clienteAtualizado) {
+        clientes.set(clientes.indexOf(cliente), clienteAtualizado);
     }
     
     public Cliente consultar(Cliente cliente) {

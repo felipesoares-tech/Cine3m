@@ -24,8 +24,8 @@ public class GerenciaSala implements IGerencia<Sala> {
         return salas.remove(salas.indexOf(sala));
     }
 
-    public Sala atualizar(Sala sala, Sala salaAtualizado) {
-        return salas.set(salas.indexOf(sala), salaAtualizado);
+    public void atualizar(Sala sala, Sala salaAtualizado) {
+        salas.set(salas.indexOf(sala), salaAtualizado);
     }
 
     public Sala consultar(Sala sala) {

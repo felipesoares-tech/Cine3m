@@ -24,8 +24,8 @@ public class GerenciaFilme implements IGerencia<Filme> {
         return filmes.remove(filmes.indexOf(filme));
     }
 
-    public Filme atualizar(Filme filme, Filme filmeAtualizado) {
-        return filmes.set(filmes.indexOf(filme), filmeAtualizado);
+    public void atualizar(Filme filme, Filme filmeAtualizado) {
+        filmes.set(filmes.indexOf(filme), filmeAtualizado);
     }
 
     public Filme consultar(Filme filme) {

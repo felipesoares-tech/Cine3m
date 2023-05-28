@@ -63,6 +63,11 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        listSessao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                listSessaoFocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(listSessao);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -70,7 +75,7 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,6 +130,10 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
             btnConfirmar.setEnabled(false);
         }
     }//GEN-LAST:event_listSessaoAncestorAdded
+
+    private void listSessaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_listSessaoFocusGained
+        listSessaoAncestorAdded(null);
+    }//GEN-LAST:event_listSessaoFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

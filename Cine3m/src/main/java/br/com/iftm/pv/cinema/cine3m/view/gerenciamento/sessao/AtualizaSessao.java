@@ -1,22 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
-/**
- *
- * @author Felipe Soares
- */
 public class AtualizaSessao extends javax.swing.JInternalFrame {
 
     private CadastroSessao cadastroSessao;
+    private GerenciaSessao gerenciaSessao;
+    private List<Sessao> listaSessoes;
 
-    public AtualizaSessao(CadastroSessao cadastroSessao) {
+    public AtualizaSessao(CadastroSessao cadastroSessao, GerenciaSessao gerenciaSessao) {
         initComponents();
         this.cadastroSessao = cadastroSessao;
+        this.gerenciaSessao = gerenciaSessao;
+        this.btnConfirmar.setEnabled(false);
     }
 
     /**
@@ -29,22 +29,14 @@ public class AtualizaSessao extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lbTituloTelaCliente = new javax.swing.JLabel();
-        lbSessao2 = new javax.swing.JLabel();
-        cbSessoes2 = new javax.swing.JComboBox<>();
         btnConfirmar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listSessao = new javax.swing.JList<>();
+
+        setClosable(true);
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         lbTituloTelaCliente.setText("Atualizar Sessão");
-
-        lbSessao2.setForeground(new java.awt.Color(255, 255, 255));
-        lbSessao2.setText("Sessões");
-
-        cbSessoes2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbSessoes2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbSessoes2ActionPerformed(evt);
-            }
-        });
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -53,34 +45,48 @@ public class AtualizaSessao extends javax.swing.JInternalFrame {
             }
         });
 
+        listSessao.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                listSessaoAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        listSessao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                listSessaoFocusGained(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listSessao);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbSessao2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbSessoes2, 0, 460, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(85, Short.MAX_VALUE)
                 .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(104, 104, 104))
             .addGroup(layout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lbTituloTelaCliente)
-                .addGap(40, 40, 40)
-                .addComponent(lbSessao2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbSessoes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -88,28 +94,47 @@ public class AtualizaSessao extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbSessoes2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessoes2ActionPerformed
-        this.cadastroSessao.setVisible(true);
-    }//GEN-LAST:event_cbSessoes2ActionPerformed
-
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-//        Sessao salaSelecionada = (Sessao) this.cbSessao.getSelectedItem();
-//        this.cadastroSessao.getTfNomeSessao().setText(salaSelecionada.getNome());
-//        this.cadastroSessao.getCbCapacidade().setSelectedItem(salaSelecionada.getCapacidade());
-//        this.cadastroSessao.getBtnCadastrarSessao().setText("Atualizar");
-//        this.cadastroSessao.getCbCapacidade().setEnabled(true);
-//        this.cadastroSessao.getBtnCadastrarSessao().setVisible(true);
-//        this.cadastroSessao.getTfNomeSessao().setEditable(true);
-//        this.cadastroSessao.setSessaoSelecionada(salaSelecionada);
-//        this.jdp.add(cadastroSessao);
-//        this.cadastroSessao.setVisible(true);
+        Sessao sessaoSelecionada = (Sessao) this.listSessao.getSelectedValue();
+        this.cadastroSessao.setSessaoSelecionada(sessaoSelecionada);
+        this.cadastroSessao.getCbFilmesSessao().setSelectedItem(sessaoSelecionada.getFilme());
+        this.cadastroSessao.getCbSalasSessao().setSelectedItem(sessaoSelecionada.getSala());
+        this.cadastroSessao.getTfDataSessao().setText(sessaoSelecionada.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        this.cadastroSessao.getTfHorarioSessao().setText(sessaoSelecionada.getHora().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        this.cadastroSessao.getTfValorSessao().setText(String.valueOf(sessaoSelecionada.getValor()));
+        this.cadastroSessao.getLbTituloTelaSessao().setText("Atualização de Sala");
+        this.cadastroSessao.getBtnCadastrarSessao().setText("Atualizar");
+        this.cadastroSessao.getBtnCadastrarSessao().setVisible(true);
+        this.cadastroSessao.getCbFilmesSessao().setEnabled(true);
+        this.cadastroSessao.getCbSalasSessao().setEnabled(true);
+        this.cadastroSessao.getTfValorSessao().setEditable(true);
+        this.cadastroSessao.getTfDataSessao().setEditable(true);
+        this.cadastroSessao.getTfHorarioSessao().setEditable(true);
+        getDesktopPane().add(cadastroSessao);
+        this.cadastroSessao.setVisible(true);
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void listSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_listSessaoAncestorAdded
+        listaSessoes = gerenciaSessao.relatorio();
+        ListUtils.carregarList(listSessao, listaSessoes);
+
+        if (!listaSessoes.isEmpty()) {
+            btnConfirmar.setEnabled(true);
+            listSessao.setSelectedIndex(0);
+        } else {
+            btnConfirmar.setEnabled(false);
+        }
+    }//GEN-LAST:event_listSessaoAncestorAdded
+
+    private void listSessaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_listSessaoFocusGained
+        listSessaoAncestorAdded(null);
+    }//GEN-LAST:event_listSessaoFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
-    private javax.swing.JComboBox<String> cbSessoes2;
-    private javax.swing.JLabel lbSessao2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTituloTelaCliente;
+    private javax.swing.JList<Sessao> listSessao;
     // End of variables declaration//GEN-END:variables
 }

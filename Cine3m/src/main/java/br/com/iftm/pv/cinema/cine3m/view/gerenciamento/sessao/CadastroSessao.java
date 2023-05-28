@@ -95,12 +95,20 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         this.lbSalas = lbSalas;
     }
 
-    public JLabel getLbTituloTelaCliente() {
-        return lbTituloTelaCliente;
+    public JLabel getLbTituloTelaSessao() {
+        return lbTituloTelaSessao;
     }
 
-    public void setLbTituloTelaCliente(JLabel lbTituloTelaCliente) {
-        this.lbTituloTelaCliente = lbTituloTelaCliente;
+    public void setLbTituloTelaSessao(JLabel lbTituloTelaSessao) {
+        this.lbTituloTelaSessao = lbTituloTelaSessao;
+    }
+
+    public Sessao getSessaoSelecionada() {
+        return sessaoSelecionada;
+    }
+
+    public void setSessaoSelecionada(Sessao sessaoSelecionada) {
+        this.sessaoSelecionada = sessaoSelecionada;
     }
 
     public JLabel getLbValor() {
@@ -144,7 +152,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbTituloTelaCliente = new javax.swing.JLabel();
+        lbTituloTelaSessao = new javax.swing.JLabel();
         lbFilmes = new javax.swing.JLabel();
         cbFilmesSessao = new javax.swing.JComboBox<>();
         cbSalasSessao = new javax.swing.JComboBox<>();
@@ -159,8 +167,8 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaCliente.setText("Cadastro de Sessão");
+        lbTituloTelaSessao.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaSessao.setText("Cadastro de Sessão");
 
         lbFilmes.setForeground(new java.awt.Color(255, 255, 255));
         lbFilmes.setText("FIlmes");
@@ -241,7 +249,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 68, Short.MAX_VALUE)
-                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbTituloTelaSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
             .addGroup(layout.createSequentialGroup()
                 .addGap(188, 188, 188)
@@ -252,7 +260,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbTituloTelaCliente)
+                .addComponent(lbTituloTelaSessao)
                 .addGap(33, 33, 33)
                 .addComponent(lbFilmes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -283,16 +291,21 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
 
     private void cbFilmesSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbFilmesSessaoAncestorAdded
         ComboBoxUtils.carregarComboBox(cbFilmesSessao, gerenciaFilme.relatorio());
+        if(this.sessaoSelecionada != null){
+            cbFilmesSessao.setSelectedItem(sessaoSelecionada.getFilme());
+        }
     }//GEN-LAST:event_cbFilmesSessaoAncestorAdded
 
     private void cbSalasSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSalasSessaoAncestorAdded
         ComboBoxUtils.carregarComboBox(cbSalasSessao, gerenciaSala.relatorio());
+        if(this.sessaoSelecionada != null){
+            cbSalasSessao.setSelectedItem(sessaoSelecionada.getSala());
+        }
     }//GEN-LAST:event_cbSalasSessaoAncestorAdded
 
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
         Filme filmeSelecionado = (Filme) cbFilmesSessao.getSelectedItem();
         Sala salaSelecionada = (Sala) cbSalasSessao.getSelectedItem();
-
         Double valorSessao = Double.valueOf(tfValorSessao.getText());
         LocalDate data = LocalDate.parse(tfDataSessao.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalTime hora = LocalTime.parse(tfHorarioSessao.getText(), DateTimeFormatter.ofPattern("HH:mm:ss"));
@@ -308,8 +321,12 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, sucesso ? "Sessão cadstrada com sucesso " : "Sessão já Cadastrada!",
                         "Cadastro Cliente", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
             } else {
-                gerenciaSessao.atualizar(sessaoSelecionada, sessao);
-                JOptionPane.showMessageDialog(this, "Sessão atualizada com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+                Sessao s = gerenciaSessao.atualizar(sessaoSelecionada, sessao);
+                System.out.println("att filme com: " + s.getFilme().toString());
+                System.out.println("att sala com: " + s.getSala().toString());
+                JOptionPane.showMessageDialog(this, "Sessão atualizada com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
+                this.setVisible(false);
+                getDesktopPane().remove(this);
             }
             tfValorSessao.setText("");
             tfDataSessao.setText("");
@@ -326,7 +343,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbFilmes;
     private javax.swing.JLabel lbHora;
     private javax.swing.JLabel lbSalas;
-    private javax.swing.JLabel lbTituloTelaCliente;
+    private javax.swing.JLabel lbTituloTelaSessao;
     private javax.swing.JLabel lbValor;
     private javax.swing.JFormattedTextField tfDataSessao;
     private javax.swing.JFormattedTextField tfHorarioSessao;

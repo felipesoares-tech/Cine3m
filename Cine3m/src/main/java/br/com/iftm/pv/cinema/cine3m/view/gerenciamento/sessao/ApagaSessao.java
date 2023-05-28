@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 public class ApagaSessao extends javax.swing.JInternalFrame {
 
     private GerenciaSessao gerenciaSessao;
+    private List<Sessao> sessoes;
 
     public ApagaSessao(GerenciaSessao gerenciaSessao) {
         initComponents();
@@ -43,6 +44,7 @@ public class ApagaSessao extends javax.swing.JInternalFrame {
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         lbTituloTelaCliente.setText("Apagar Sessão");
 
+        listApagaSessao.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listApagaSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 listApagaSessaoAncestorAdded(evt);
@@ -95,30 +97,30 @@ public class ApagaSessao extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listApagaSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_listApagaSessaoAncestorAdded
-        ListUtils.carregarList(listApagaSessao, gerenciaSessao.relatorio());
+        sessoes = gerenciaSessao.relatorio();
+        ListUtils.carregarList(listApagaSessao, sessoes);
+          if(!sessoes.isEmpty()){
+            btnConfirmarApagaSessao1.setEnabled(true);
+            listApagaSessao.setSelectedIndex(0);
+        }else{
+            btnConfirmarApagaSessao1.setEnabled(false);
+        }
     }//GEN-LAST:event_listApagaSessaoAncestorAdded
 
     private void btnConfirmarApagaSessao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaSessao1ActionPerformed
-        List<Sessao> sessoesSelecionadas = listApagaSessao.getSelectedValuesList();
-        Iterator<Sessao> it = sessoesSelecionadas.iterator();
-        int cont = 0;
-        Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
+        Sessao sessaoSelecionada = listApagaSessao.getSelectedValue();
+        Integer resp = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar ??",
                 "Apagar Sessao", WIDTH, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            while (it.hasNext()) {
-                gerenciaSessao.remover(it.next());
-                cont++;
-            }
+            gerenciaSessao.remover(sessaoSelecionada);
             listApagaSessaoAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, String.format("Sessões removidos: %d", cont), "Remover", JOptionPane.PLAIN_MESSAGE);
-
+            JOptionPane.showMessageDialog(this, "Sessão removido!", "Remover", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnConfirmarApagaSessao1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfirmarApagaSessao;
     private javax.swing.JButton btnConfirmarApagaSessao1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbTituloTelaCliente;

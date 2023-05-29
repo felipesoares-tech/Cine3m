@@ -59,6 +59,8 @@ public class Filme {
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
+    
+    
 
     public String getNome() {
         return nome;

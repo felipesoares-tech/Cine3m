@@ -20,10 +20,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Felipe Soares
- */
 public class CadastroFilme extends javax.swing.JInternalFrame {
 
     private GerenciaFilme gerenciaFilme;

@@ -6,6 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,7 +29,7 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         this.gerenciaCliente = gerenciaCliente;
         initComponents();
         ImageIcon icon = new ImageIcon("src/main/java/imagens/new-client.jpg");
-       
+
 //        lbImg.setIcon(icon);
         icon.setImage(icon.getImage().getScaledInstance(59, 66, 1));
         lbImg.setIcon(icon);
@@ -158,21 +159,31 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         String nome = tfNomeCliente.getText().toUpperCase();
         String cpf = tfCpfCliente.getText().replaceAll("[-.]", "");
 
-        if (ValidaCampo.validar(nome, lbNomeCliente,this) && ValidaCampo.validar(cpf, lbCpfCliente,this)) {
+        if (ValidaCampo.validar(nome, lbNomeCliente, this) && ValidaCampo.validar(cpf, lbCpfCliente, this)) {
             Cliente cliente = new Cliente(nome, cpf);
 
             if (btnCadastrarCliente.getText().equals("CADASTRAR")) {
-                Boolean sucesso = gerenciaCliente.cadastrar(cliente);
-                JOptionPane.showMessageDialog(this, sucesso ? "Cliente cadstrado com sucesso " : "Cliente já Cadastrado!",
-                        "Cadastro Cliente", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
+                if (ValidadorCPF.isCPF(cpf)) {
+                    Boolean sucesso = gerenciaCliente.cadastrar(cliente);
+                    JOptionPane.showMessageDialog(this, sucesso ? "Cliente cadstrado com sucesso " : "Cliente já Cadastrado!",
+                            "Cadastro Cliente", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
+                    limpaCampos();
+                } else {
+                    JOptionPane.showMessageDialog(this, "CPF inválido!", "Validação de CPF", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
                 gerenciaCliente.atualizar(clienteSelecionado, cliente);
                 JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+                limpaCampos();
             }
-            tfNomeCliente.setText("");
-            tfCpfCliente.setText("");
+
         }
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
+
+    public void limpaCampos() {
+        tfNomeCliente.setText("");
+        tfCpfCliente.setText("");
+    }
 
     public Cliente getClienteSelecionado() {
         return clienteSelecionado;
@@ -190,7 +201,6 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         this.btnCadastrarCliente = btnCadastrarCliente;
     }
 
-    
     public JPanel getjPanel1() {
         return jPanel1;
     }

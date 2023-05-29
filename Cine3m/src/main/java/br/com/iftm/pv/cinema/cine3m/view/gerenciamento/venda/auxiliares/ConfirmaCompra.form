@@ -34,7 +34,7 @@
                   </Group>
                   <Component id="btnFinalizarVenda" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="70" max="32767" attributes="0"/>
+              <EmptySpace min="70" pref="19" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="lbValorTotal" alignment="1" max="32767" attributes="0"/>
                   <Component id="tfValorTotal" alignment="1" max="32767" attributes="0"/>

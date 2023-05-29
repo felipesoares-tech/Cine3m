@@ -7,13 +7,13 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
+import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -26,27 +26,29 @@ import javax.swing.SpinnerNumberModel;
  */
 public class ConfirmaCompra extends javax.swing.JInternalFrame {
 
-    private Integer qtdMaxItensIngresso;
-    private SpinnerNumberModel spinnerModelInteira;
-    private SpinnerNumberModel spinnerModelMeia;
+    private final Integer qtdMaxItensIngresso;
+    private final SpinnerNumberModel spinnerModelInteira;
+    private final SpinnerNumberModel spinnerModelMeia;
     private Double valorTotal;
-    private Double valorSessao;
-    private JList<ItemVenda> listItensIngresso;
-    private GerenciaSessao gerenciaSessao;
-    private Sessao sessaoSelecionada;
-    private ConsultaPoltronas consultaPoltronas;
-    private CadastroVenda cadastroIngresso;
-    private GerenciaVenda gerenciaIngresso;
+    private final Double valorSessao;
+    private final JList<ItemVenda> listItensIngresso;
+    private final GerenciaSessao gerenciaSessao;
+    private final Sessao sessaoSelecionada;
+    private final VincularCliente vincularCliente;
+    private final ConsultaPoltronas consultaPoltronas;
+    private final CadastroVenda cadastroVenda;
+    private final GerenciaVenda gerenciaVenda;
     private Integer qtdInteira;
     private Integer qtdMeia;
 
-    public ConfirmaCompra(JList listItensIngresso, Sessao sessaoSelecionada, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroVenda cadastroIngresso, GerenciaVenda gerenciaIngresso) {
+    public ConfirmaCompra(JList listItensIngresso, Sessao sessaoSelecionada, VincularCliente vincularCliente, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroVenda cadastroVenda, GerenciaVenda gerenciaVenda) {
         this.listItensIngresso = listItensIngresso;
-        this.cadastroIngresso = cadastroIngresso;
+        this.cadastroVenda = cadastroVenda;
         this.consultaPoltronas = consultaPoltronas;
-        this.gerenciaIngresso = gerenciaIngresso;
+        this.gerenciaVenda = gerenciaVenda;
         this.gerenciaSessao = gerenciaSessao;
         this.sessaoSelecionada = sessaoSelecionada;
+        this.vincularCliente = vincularCliente;
         this.spinnerModelInteira = new SpinnerNumberModel(0, 0, listItensIngresso.getModel().getSize(), 1);
         this.spinnerModelMeia = new SpinnerNumberModel(0, 0, listItensIngresso.getModel().getSize(), 1);
         this.valorSessao = sessaoSelecionada.getValor();
@@ -117,7 +119,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btnFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(19, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lbValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tfValorTotal)
@@ -194,30 +196,36 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
             ItemVenda item = (ItemVenda) listItensIngresso.getModel().getElementAt(i);
             Poltrona p = (Poltrona) item.getPoltrona();
             p.setLivre(false);
-            gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);
+            gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);            
         }
-
-        JOptionPane.showMessageDialog(this, "Atualizado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
-        this.setVisible(false);
-        cadastroIngresso.getContentPane().remove(consultaPoltronas);
-        cadastroIngresso.setConsultaPoltronas(null);
-
-        DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroIngresso.getjList1().getModel();
-        Venda ingresso = new Venda(sessaoSelecionada, valorTotal, preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao));
-        System.out.println("opa"); 
-        
-        
-        
-        model.removeAllElements();
+        Integer total = qtdMeia +qtdInteira;
+        if (total.equals(qtdMaxItensIngresso)) {
+            JOptionPane.showMessageDialog(this, "Atualizado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
+            this.setVisible(false);
+            cadastroVenda.getContentPane().remove(consultaPoltronas);
+            cadastroVenda.setConsultaPoltronas(null);
+            Venda venda;
+            List<ItemVenda> itensVenda = preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao);
+            DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroVenda.getjList1().getModel();
+            Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
+            if (clienteSelecionado != null) {
+                venda = new Venda(sessaoSelecionada, clienteSelecionado, valorTotal, itensVenda);
+            } else {
+                venda = new Venda(sessaoSelecionada, valorTotal, itensVenda);
+            }
+            gerenciaVenda.cadastrar(venda);
+            model.removeAllElements();
+            vincularCliente.setClienteSelecionado(null);
+            cadastroVenda.getTfClienteSelecionado().setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione a quantidade certa de ingressos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 
     private void calcularValorTotal() {
-        int qtdInteira = (int) jsInteira.getValue();
-        int qtdMeia = (int) jsMeia.getValue();
-
-        double valorIngressoInteira = qtdInteira * valorSessao;
-        double valorIngressoMeia = qtdMeia * (valorSessao / 2.0);
+        double valorIngressoInteira = (int) jsInteira.getValue() * valorSessao;
+        double valorIngressoMeia = (int) jsMeia.getValue() * (valorSessao / 2.0);
 
         valorTotal = valorIngressoInteira + valorIngressoMeia;
         tfValorTotal.setText(String.valueOf(valorTotal));

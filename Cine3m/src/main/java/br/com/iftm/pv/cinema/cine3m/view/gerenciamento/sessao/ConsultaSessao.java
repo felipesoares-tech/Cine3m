@@ -16,8 +16,8 @@ import java.util.List;
  */
 public class ConsultaSessao extends javax.swing.JInternalFrame {
 
-    private CadastroSessao cadastroSessao;
-    private GerenciaSessao gerenciaSessao;
+    private final CadastroSessao cadastroSessao;
+    private final GerenciaSessao gerenciaSessao;
     private List<Sessao> sessoes;
 
     public ConsultaSessao(CadastroSessao cadastroSessao, GerenciaSessao gerenciaSessao) {
@@ -104,6 +104,7 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         Sessao sessaoSelecionada = (Sessao) this.listSessao.getSelectedValue();
+        this.cadastroSessao.setSessaoSelecionada(sessaoSelecionada);
         this.cadastroSessao.getBtnCadastrarSessao().setVisible(false);
         this.cadastroSessao.getCbFilmesSessao().setSelectedItem(sessaoSelecionada.getFilme());
         this.cadastroSessao.getCbSalasSessao().setSelectedItem(sessaoSelecionada.getSala());

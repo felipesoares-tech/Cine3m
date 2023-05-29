@@ -8,13 +8,11 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
-import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConfirmaCompra;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConsultaPoltronas;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
-import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.VincularCliente;
 import java.awt.Component;
@@ -35,21 +33,18 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
 
     private ConsultaPoltronas consultaPoltronas;
     private ConfirmaCompra confirmaCompra;
-    private GerenciaVenda gerenciaIngresso;
-    private GerenciaSessao gerenciaSessao;
+    private final GerenciaVenda gerenciaIngresso;
+    private final GerenciaSessao gerenciaSessao;
     private CadastroSessao cadastroSessao;
-    private CadastroCliente cadastroCliente;
-    private VincularCliente vincularCliente;
-    private GerenciaCliente gerenciaCliente;
+    private final CadastroCliente cadastroCliente;
+    private final VincularCliente vincularCliente;
 
     public CadastroVenda(GerenciaVenda gerenciaIngresso, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
         initComponents();
         this.gerenciaIngresso = gerenciaIngresso;
         this.gerenciaSessao = gerenciaSessao;
-        this.gerenciaCliente = gerenciaCliente;
         this.cadastroSessao = cadastroSessao;
         this.cadastroCliente = cadastroCliente;
-
         this.vincularCliente = new VincularCliente(gerenciaCliente);
     }
 
@@ -387,19 +382,18 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
 
     private void btnSelecionarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarPoltronaActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        if (!containsInternalFrame(getDesktopPane(), consultaPoltronas)) {
+       // if (!containsInternalFrame(getDesktopPane(), consultaPoltronas)) {
             if (this.consultaPoltronas == null) {
                 this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao, sessaoSelecionada);
             }
             getDesktopPane().add(consultaPoltronas);
-        }
+       // }
         consultaPoltronas.setVisible(true);
     }//GEN-LAST:event_btnSelecionarPoltronaActionPerformed
 
     private void btnContinuarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarCompraActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
-        this.confirmaCompra = new ConfirmaCompra(listItensIngresso, sessaoSelecionada, clienteSelecionado, gerenciaSessao, consultaPoltronas, this, gerenciaIngresso);
+        this.confirmaCompra = new ConfirmaCompra(listItensIngresso, sessaoSelecionada, vincularCliente, gerenciaSessao, consultaPoltronas, this, gerenciaIngresso);
         getDesktopPane().add(confirmaCompra);
         this.confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed

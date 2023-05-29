@@ -32,15 +32,18 @@ import javax.swing.JPanel;
 public class ConsultaPoltronas extends javax.swing.JInternalFrame {
 
     private List<JButton> listBotoes;
-    private JButton btnConfirmar;
-    private CadastroVenda cadastroIngresso;
-    private GerenciaSessao gerenciaSessao;
+    private final JButton btnConfirmar;
 
-    public ConsultaPoltronas(CadastroVenda cadastroIngresso, GerenciaSessao gerenciaSessao, Sessao sessaoSelecionada) {
-        this.listBotoes = new ArrayList<JButton>();
-        this.cadastroIngresso = cadastroIngresso;
-        this.gerenciaSessao = gerenciaSessao;
+    public ConsultaPoltronas(CadastroVenda cadastroVenda, GerenciaSessao gerenciaSessao, Sessao sessaoSelecionada) {
+        this.listBotoes = new ArrayList<>();
+        this.btnConfirmar = null;
 
+        initComponents();
+        initComponentsPersonalizado(sessaoSelecionada, btnConfirmar, cadastroVenda, this);
+
+    }
+
+    private void initComponentsPersonalizado(Sessao sessaoSelecionada, JButton btnConfirmar,CadastroVenda cadastroVenda, ConsultaPoltronas consultaPoltronas) {
         ListennerBtn btnListener = new ListennerBtn();
         JPanel panel = new JPanel(new GridLayout(0, 10));
 
@@ -76,9 +79,26 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
         }
         btnListener.setDefaultColor(listBotoes.get(0).getBackground());
 
-        ConsultaPoltronas.ConfirmarButtonListener confirmarListener = new ConsultaPoltronas.ConfirmarButtonListener(cadastroIngresso, this);
-        this.btnConfirmar = new JButton("Confirmar");
-        this.btnConfirmar.addActionListener(confirmarListener);
+        btnConfirmar = new JButton("Confirmar");
+
+        btnConfirmar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultListModel<ItemVenda> model = new DefaultListModel<>();
+
+                Iterator<JButton> it = listBotoes.iterator();
+                while (it.hasNext()) {
+                    JButton btn = it.next();
+                    if (btn.getBackground() == Color.GREEN) {
+                        model.addElement(new ItemVenda(new Poltrona(btn.getText())));
+                    }
+                }
+                cadastroVenda.getjList1().setModel(model);
+                consultaPoltronas.setVisible(false);
+                getDesktopPane().remove(consultaPoltronas);
+                
+            }
+        });
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -93,38 +113,11 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
         gbc.weightx = 0;
         gbc.insets = new Insets(0, 10, 0, 0);
         mainPanel.add(btnConfirmar, gbc);
-        initComponents();
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(mainPanel, BorderLayout.CENTER);
         pack();
 
-    }
-
-    private class ConfirmarButtonListener implements ActionListener {
-
-        private CadastroVenda cadastroIngresso;
-        private ConsultaPoltronas consultaPoltronas;
-
-        public ConfirmarButtonListener(CadastroVenda cadastroIngresso, ConsultaPoltronas consultaPoltronas) {
-            this.cadastroIngresso = cadastroIngresso;
-            this.consultaPoltronas = consultaPoltronas;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            DefaultListModel<ItemVenda> model = new DefaultListModel<>();
-
-            Iterator<JButton> it = listBotoes.iterator();
-            while (it.hasNext()) {
-                JButton btn = it.next();
-                if (btn.getBackground() == Color.GREEN) {
-                    model.addElement(new ItemVenda(new Poltrona(btn.getText())));
-                }
-            }
-            this.cadastroIngresso.getjList1().setModel(model);
-            this.consultaPoltronas.setVisible(false);
-        }
     }
 
     /**

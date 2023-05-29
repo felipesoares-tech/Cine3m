@@ -93,7 +93,7 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        btnCadastrarCliente.setText("Cadastrar");
+        btnCadastrarCliente.setText("CADASTRAR");
         btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarClienteActionPerformed(evt);

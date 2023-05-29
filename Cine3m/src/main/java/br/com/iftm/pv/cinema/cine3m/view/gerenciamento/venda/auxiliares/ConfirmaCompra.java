@@ -16,6 +16,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JInternalFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
@@ -25,7 +26,7 @@ import javax.swing.SpinnerNumberModel;
  * @author Felipe Soares
  */
 public class ConfirmaCompra extends javax.swing.JInternalFrame {
-
+    
     private final Integer qtdMaxItensIngresso;
     private final SpinnerNumberModel spinnerModelInteira;
     private final SpinnerNumberModel spinnerModelMeia;
@@ -34,21 +35,21 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
     private final JList<ItemVenda> listItensIngresso;
     private final GerenciaSessao gerenciaSessao;
     private final Sessao sessaoSelecionada;
-    private final Cliente clienteSelecionado;
+    private final VincularCliente vincularCliente;
     private final ConsultaPoltronas consultaPoltronas;
     private final CadastroVenda cadastroIngresso;
     private final GerenciaVenda gerenciaVenda;
     private Integer qtdInteira;
     private Integer qtdMeia;
-
-    public ConfirmaCompra(JList listItensIngresso, Sessao sessaoSelecionada, Cliente clienteSelecionado, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroVenda cadastroIngresso, GerenciaVenda gerenciaVenda) {
+    
+    public ConfirmaCompra(JList listItensIngresso, Sessao sessaoSelecionada, VincularCliente vincularCliente, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroVenda cadastroIngresso, GerenciaVenda gerenciaVenda) {
         this.listItensIngresso = listItensIngresso;
         this.cadastroIngresso = cadastroIngresso;
         this.consultaPoltronas = consultaPoltronas;
         this.gerenciaVenda = gerenciaVenda;
         this.gerenciaSessao = gerenciaSessao;
         this.sessaoSelecionada = sessaoSelecionada;
-        this.clienteSelecionado = clienteSelecionado;
+        this.vincularCliente = vincularCliente;
         this.spinnerModelInteira = new SpinnerNumberModel(0, 0, listItensIngresso.getModel().getSize(), 1);
         this.spinnerModelMeia = new SpinnerNumberModel(0, 0, listItensIngresso.getModel().getSize(), 1);
         this.valorSessao = sessaoSelecionada.getValor();
@@ -167,28 +168,28 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         spinnerModelInteira.setMaximum(qtdMaxItensIngresso - qtdMeia);
         calcularValorTotal();
     }//GEN-LAST:event_jsMeiaStateChanged
-
+    
     private List<ItemVenda> preencheItensVenda(JList listItens, int qtdInteiras, int qtdMeia, Double valorSessao) {
         List<ItemVenda> itensVenda = new ArrayList<>();
-
+        
         DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) listItens.getModel();
-
+        
         for (int i = 0; i < qtdMeia; i++) {
             ItemVenda item = model.getElementAt(i);
             item.setValor(valorSessao / 2.0);
             item.setTipoIngresso(TipoIngresso.MEIA);
             itensVenda.add(item);
         }
-
+        
         for (int i = qtdMeia; i < qtdMeia + qtdInteiras; i++) {
             ItemVenda item = model.getElementAt(i);
             item.setValor(valorSessao);
             item.setTipoIngresso(TipoIngresso.INTEIRA);
             itensVenda.add(item);
         }
-
+        
         return itensVenda;
-
+        
     }
 
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
@@ -198,7 +199,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
             p.setLivre(false);
             gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);
         }
-
+        
         JOptionPane.showMessageDialog(this, "Atualizado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
         this.setVisible(false);
         cadastroIngresso.getContentPane().remove(consultaPoltronas);
@@ -206,6 +207,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         Venda venda;
         List<ItemVenda> itensVenda = preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao);
         DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroIngresso.getjList1().getModel();
+        Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
         if (clienteSelecionado != null) {
             venda = new Venda(sessaoSelecionada, clienteSelecionado, valorTotal, itensVenda);
         } else {
@@ -213,13 +215,14 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         }
         gerenciaVenda.cadastrar(venda);
         model.removeAllElements();
-
+        vincularCliente.setClienteSelecionado(null);
+        
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
-
+    
     private void calcularValorTotal() {
         double valorIngressoInteira = (int) jsInteira.getValue() * valorSessao;
         double valorIngressoMeia = (int) jsMeia.getValue() * (valorSessao / 2.0);
-
+        
         valorTotal = valorIngressoInteira + valorIngressoMeia;
         tfValorTotal.setText(String.valueOf(valorTotal));
     }

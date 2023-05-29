@@ -528,7 +528,7 @@ public class Principal extends javax.swing.JFrame {
     private void imCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroClienteActionPerformed
         this.cadastroCliente.getBtnCadastrarCliente().setVisible(true);
         this.cadastroCliente.getLbTituloTelaCliente().setText("Cadastro de Cliente");
-        this.cadastroCliente.getBtnCadastrarCliente().setText("Cadastrar");
+        this.cadastroCliente.getBtnCadastrarCliente().setText("CADASTRAR");
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
         jDesktopPane1.add(cadastroCliente);

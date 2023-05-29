@@ -196,26 +196,31 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
             ItemVenda item = (ItemVenda) listItensIngresso.getModel().getElementAt(i);
             Poltrona p = (Poltrona) item.getPoltrona();
             p.setLivre(false);
-            gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);
+            gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);            
+        }
+        Integer total = qtdMeia +qtdInteira;
+        if (total.equals(qtdMaxItensIngresso)) {
+            JOptionPane.showMessageDialog(this, "Atualizado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
+            this.setVisible(false);
+            cadastroVenda.getContentPane().remove(consultaPoltronas);
+            cadastroVenda.setConsultaPoltronas(null);
+            Venda venda;
+            List<ItemVenda> itensVenda = preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao);
+            DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroVenda.getjList1().getModel();
+            Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
+            if (clienteSelecionado != null) {
+                venda = new Venda(sessaoSelecionada, clienteSelecionado, valorTotal, itensVenda);
+            } else {
+                venda = new Venda(sessaoSelecionada, valorTotal, itensVenda);
+            }
+            gerenciaVenda.cadastrar(venda);
+            model.removeAllElements();
+            vincularCliente.setClienteSelecionado(null);
+            cadastroVenda.getTfClienteSelecionado().setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione a quantidade certa de ingressos!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
-        JOptionPane.showMessageDialog(this, "Atualizado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
-        this.setVisible(false);
-        cadastroVenda.getContentPane().remove(consultaPoltronas);
-        cadastroVenda.setConsultaPoltronas(null);
-        Venda venda;
-        List<ItemVenda> itensVenda = preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao);
-        DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroVenda.getjList1().getModel();
-        Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
-        if (clienteSelecionado != null) {
-            venda = new Venda(sessaoSelecionada, clienteSelecionado, valorTotal, itensVenda);
-        } else {
-            venda = new Venda(sessaoSelecionada, valorTotal, itensVenda);
-        }
-        gerenciaVenda.cadastrar(venda);
-        model.removeAllElements();
-        vincularCliente.setClienteSelecionado(null);
-        cadastroVenda.getTfClienteSelecionado().setText("");
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 
     private void calcularValorTotal() {

@@ -28,7 +28,7 @@ import javax.swing.JTextField;
  * @author Felipe Soares
  */
 public class CadastroVenda extends javax.swing.JInternalFrame {
-
+    
     private ConsultaPoltronas consultaPoltronas;
     private ConfirmaCompra confirmaCompra;
     private final GerenciaVenda gerenciaIngresso;
@@ -36,108 +36,108 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
     private CadastroSessao cadastroSessao;
     private final CadastroCliente cadastroCliente;
     private final VincularCliente vincularCliente;
-
+    
     public JTextField getTfClienteSelecionado() {
         return tfClienteSelecionado;
     }
-
+    
     public void setTfClienteSelecionado(JTextField tfClienteSelecionado) {
         this.tfClienteSelecionado = tfClienteSelecionado;
     }
-
+    
     public CadastroVenda(GerenciaVenda gerenciaIngresso, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
         initComponents();
         this.gerenciaIngresso = gerenciaIngresso;
         this.gerenciaSessao = gerenciaSessao;
         this.cadastroSessao = cadastroSessao;
         this.cadastroCliente = cadastroCliente;
-        this.vincularCliente = new VincularCliente(gerenciaCliente,this);
+        this.vincularCliente = new VincularCliente(gerenciaCliente, this);
     }
-
+    
     public ConsultaPoltronas getConsultaPoltronas() {
         return consultaPoltronas;
     }
-
+    
     public void setConsultaPoltronas(ConsultaPoltronas consultaPoltronas) {
         this.consultaPoltronas = consultaPoltronas;
     }
-
+    
     public ConfirmaCompra getConfirmaCompra() {
         return confirmaCompra;
     }
-
+    
     public void setConfirmaCompra(ConfirmaCompra confirmaCompra) {
         this.confirmaCompra = confirmaCompra;
     }
-
+    
     public CadastroSessao getCadastroSessao() {
         return cadastroSessao;
     }
-
+    
     public void setCadastroSessao(CadastroSessao cadastroSessao) {
         this.cadastroSessao = cadastroSessao;
     }
-
+    
     public JButton getBtnConsultarPoltrona() {
         return btnSelecionarPoltrona;
     }
-
+    
     public void setBtnConsultarPoltrona(JButton btnConsultarPoltrona) {
         this.btnSelecionarPoltrona = btnConsultarPoltrona;
     }
-
+    
     public JButton getBtnContinuarCompra() {
         return btnContinuarCompra;
     }
-
+    
     public void setBtnContinuarCompra(JButton btnContinuarCompra) {
         this.btnContinuarCompra = btnContinuarCompra;
     }
-
+    
     public JComboBox<Sessao> getCbSessaoVenda() {
         return cbSessaoVenda;
     }
-
+    
     public void setCbSessaoVenda(JComboBox<Sessao> cbSessaoVenda) {
         this.cbSessaoVenda = cbSessaoVenda;
     }
-
+    
     public JButton getjButton1() {
         return jButton1;
     }
-
+    
     public void setjButton1(JButton jButton1) {
         this.jButton1 = jButton1;
     }
-
+    
     public JLabel getjLabel1() {
         return jLabel1;
     }
-
+    
     public void setjLabel1(JLabel jLabel1) {
         this.jLabel1 = jLabel1;
     }
-
+    
     public JLabel getjLabel3() {
         return jLabel3;
     }
-
+    
     public void setjLabel3(JLabel jLabel3) {
         this.jLabel3 = jLabel3;
     }
-
+    
     public JList<ItemVenda> getjList1() {
         return listItensIngresso;
     }
-
+    
     public void setjList1(JList<ItemVenda> jList1) {
         this.listItensIngresso = jList1;
     }
-
+    
     public JScrollPane getjScrollPane1() {
         return jScrollPane1;
     }
-
+    
     public void setjScrollPane1(JScrollPane jScrollPane1) {
         this.jScrollPane1 = jScrollPane1;
     }
@@ -170,6 +170,23 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
         btnContinuarCompra = new javax.swing.JButton();
 
         setClosable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         btnVincularCliente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnVincularCliente.setText("Vincular Cliente");
@@ -290,7 +307,7 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,11 +399,11 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbSessaoVendaAncestorAdded
 
     private void cbSessaoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSessaoVendaActionPerformed
-
+        
         DefaultListModel<ItemVenda> model = new DefaultListModel<>();
         this.listItensIngresso.setModel(model);
         this.consultaPoltronas = null;
-
+        
 
     }//GEN-LAST:event_cbSessaoVendaActionPerformed
 
@@ -425,6 +442,11 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
         getDesktopPane().add(vincularCliente);
         vincularCliente.setVisible(true);
     }//GEN-LAST:event_btnVincularClienteActionPerformed
+
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+        getTfClienteSelecionado().setText("");
+        vincularCliente.setClienteSelecionado(null);
+    }//GEN-LAST:event_formInternalFrameClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinuarCompra;

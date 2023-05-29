@@ -41,6 +41,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
+        lstClientes.setBackground(new java.awt.Color(102, 102, 102));
         lstClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lstClientesAncestorAdded(evt);

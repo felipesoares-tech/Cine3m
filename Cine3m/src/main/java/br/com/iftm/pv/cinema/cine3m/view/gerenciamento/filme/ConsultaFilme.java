@@ -94,6 +94,7 @@ public class ConsultaFilme extends javax.swing.JInternalFrame {
 
     private void btnConsultarFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarFilmeActionPerformed
         Filme filmeSelecionado = (Filme) lstFilmes.getSelectedValue();
+        this.cadastroFilme.setFilmeSelecionado(filmeSelecionado);
         this.cadastroFilme.getTfNomeFilme().setText(filmeSelecionado.getNome());
         this.cadastroFilme.getTfDiretor().setText(filmeSelecionado.getDiretor());
         this.cadastroFilme.getTfaDescricao().setText(filmeSelecionado.getDescricao());

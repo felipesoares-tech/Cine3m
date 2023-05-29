@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.com.iftm.pv.cinema.cine3m.view;
+
 import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
@@ -19,6 +20,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
+import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.ApagarCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.AtualizaCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
@@ -33,6 +35,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.ApagaFunciona
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.AtualizaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.CadastroFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.ConsultaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.LoginFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.RelatorioFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.ApagaSala;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.AtualizaSala;
@@ -77,6 +80,7 @@ public class Principal extends javax.swing.JFrame {
     private final AtualizaFuncionario atualizaFuncionario;
     private final ApagaFuncionario apagaFuncionario;
     private final RelatorioFuncionario relatorioFuncionario;
+    private final LoginFuncionario loginFuncionario;
 
 //Telas a serem chamadas (CRUD SALA)
     private final CadastroSala cadastroSala;
@@ -105,10 +109,11 @@ public class Principal extends javax.swing.JFrame {
     List<Sala> salas = new ArrayList<>();
     List<Cliente> clientes = new ArrayList<>();
 
+    private final GerenciaArquivo gerenciaArquivo = new GerenciaArquivo();
     private final GerenciaCliente gerenciaCliente = new GerenciaCliente(clientes);
     private final GerenciaFilme gerenciaFilme = new GerenciaFilme(filmes);
     private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(funcionarios);
-    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(vendas,gerenciaCliente);
+    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(vendas, gerenciaCliente);
     private final GerenciaSala gerenciaSala = new GerenciaSala(salas);
     private final GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes, gerenciaSala);
 
@@ -132,6 +137,8 @@ public class Principal extends javax.swing.JFrame {
         this.atualizaFuncionario = new AtualizaFuncionario(cadastroFuncionario, gerenciaFuncionario);
         this.apagaFuncionario = new ApagaFuncionario(gerenciaFuncionario);
         this.relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
+        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo);
+ 
 
         //Telas a serem chamadas (CRUD SALA)
         this.cadastroSala = new CadastroSala(gerenciaSala);
@@ -141,7 +148,7 @@ public class Principal extends javax.swing.JFrame {
         this.relatorioSala = new RelatorioSala(gerenciaSala);
 
         //Telas a serem chamadas (CRUD VENDAS)
-        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao,cadastroCliente);
+        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, cadastroCliente);
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
 
         //Telas a serem chamadas (CRUD FILMES)
@@ -183,7 +190,21 @@ public class Principal extends javax.swing.JFrame {
         this.apagaSala.getContentPane().setBackground(corFundoPadrao);
         this.relatorioSala.getContentPane().setBackground(corFundoPadrao);
 
+        //CORES PARA TELAS FILME
+        this.cadastroFilme.getContentPane().setBackground(corFundoPadrao);
+        this.consultaFilme.getContentPane().setBackground(corFundoPadrao);
+        this.atualizaFilme.getContentPane().setBackground(corFundoPadrao);
+        this.apagaFilme.getContentPane().setBackground(corFundoPadrao);
+        this.relatorioFilme.getContentPane().setBackground(corFundoPadrao);
+
         this.telaImportacao = new TelaImportacao(gerenciaFilme);
+
+        //TELA LOGIN
+        loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
+                (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
+        jDesktopPane1.add(loginFuncionario);
+        loginFuncionario.setVisible(true);
+        jMenuBar1.setVisible(false);
     }
 
     /**
@@ -741,7 +762,7 @@ public class Principal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 

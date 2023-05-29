@@ -11,8 +11,6 @@ public class GerenciaFuncionario implements IGerencia<Funcionario>{
     public GerenciaFuncionario(List<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
     }
-    
-    
 
      public Boolean cadastrar(Funcionario funcionario) {
         if (!funcionarios.contains(funcionario)) {

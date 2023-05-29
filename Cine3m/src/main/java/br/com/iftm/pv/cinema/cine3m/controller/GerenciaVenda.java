@@ -10,7 +10,6 @@ public class GerenciaVenda implements IGerencia<Venda> {
 
     private final List<Venda> vendas;
     private final GerenciaCliente gerenciaCliente;
-    private boolean desconto;
 
     public GerenciaVenda(List<Venda> vendas, GerenciaCliente gerenciaCliente) {
         this.vendas = vendas;
@@ -25,7 +24,7 @@ public class GerenciaVenda implements IGerencia<Venda> {
             Cliente clienteAntigo = gerenciaCliente.consultar(clienteVenda);
             if (clienteVenda.getQtdFilmesAssistidos() == 3) {
                 venda.setValorFinal(venda.getValorFinal() - (venda.getValorFinal() * 0.1));
-                setDesconto(true);
+                venda.setDesconto(true);
                 clienteVenda.setQtdFilmesAssistidos(0);
                 JOptionPane.showMessageDialog(null, "Cliente com promoção", "promoção", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -53,13 +52,4 @@ public class GerenciaVenda implements IGerencia<Venda> {
     public List<Venda> relatorio() {
         return this.vendas;
     }
-
-    public boolean isDesconto() {
-        return desconto;
-    }
-
-    public void setDesconto(boolean desconto) {
-        this.desconto = desconto;
-    }
-
 }

@@ -7,7 +7,6 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.view.util.TableModelGenerico;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,8 +14,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RelatorioCliente extends javax.swing.JInternalFrame {
 
-    private GerenciaCliente gerenciaCliente;
-    private TableModelGenerico modelo;
+    private final GerenciaCliente gerenciaCliente;
+    private final TableModelGenerico modelo;
 
     public RelatorioCliente(GerenciaCliente gerenciaCliente) {
         this.gerenciaCliente = gerenciaCliente;

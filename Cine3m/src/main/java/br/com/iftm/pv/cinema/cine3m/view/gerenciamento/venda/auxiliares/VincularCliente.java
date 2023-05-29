@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class VincularCliente extends javax.swing.JInternalFrame {
 
-    private GerenciaCliente gerenciaCliente;
+    private final GerenciaCliente gerenciaCliente;
     private Cliente clienteSelecionado;
 
     public VincularCliente(GerenciaCliente gerenciaCliente) {
@@ -123,8 +123,8 @@ public class VincularCliente extends javax.swing.JInternalFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         setClienteSelecionado((Cliente) cbVendaClientes.getSelectedItem());
-        this.setVisible(false);
         JOptionPane.showMessageDialog(this, "Cliente Vinculado!", "Vínculo", JOptionPane.INFORMATION_MESSAGE);
+        this.setVisible(false);
         getDesktopPane().remove(this);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 

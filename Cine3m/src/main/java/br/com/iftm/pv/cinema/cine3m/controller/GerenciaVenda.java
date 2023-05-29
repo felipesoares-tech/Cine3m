@@ -21,19 +21,17 @@ public class GerenciaVenda implements IGerencia<Venda> {
     public Boolean cadastrar(Venda venda) {
         Cliente clienteVenda = venda.getCliente();
         if (clienteVenda != null) {
+            clienteVenda.setQtdFilmesAssistidos(clienteVenda.getQtdFilmesAssistidos() + 1);
+            Cliente clienteAntigo = gerenciaCliente.consultar(clienteVenda);
             if (clienteVenda.getQtdFilmesAssistidos() == 3) {
                 venda.setValorFinal(venda.getValorFinal() - (venda.getValorFinal() * 0.1));
                 setDesconto(true);
                 clienteVenda.setQtdFilmesAssistidos(0);
-                Cliente clienteAntigo = gerenciaCliente.consultar(clienteVenda);
-                gerenciaCliente.atualizar(clienteAntigo, clienteVenda);
                 JOptionPane.showMessageDialog(null, "Cliente com promoção", "promoção", JOptionPane.INFORMATION_MESSAGE);
             }
-
+            gerenciaCliente.atualizar(clienteAntigo, clienteVenda);
         }
-
         return vendas.add(venda);
-
     }
 
     @Override

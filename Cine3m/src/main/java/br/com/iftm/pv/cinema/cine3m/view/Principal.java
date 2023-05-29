@@ -45,6 +45,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.RelatorioVenda;
 import br.com.iftm.pv.cinema.cine3m.view.importacoes.TelaImportacao;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ public class Principal extends javax.swing.JFrame {
 
 //Telas a serem chamadas (CRUD VENDAS)
     private final CadastroVenda cadastroVenda;
+    private final RelatorioVenda relatorioVenda;
 
 //Telas a serem chamadas (CRUD FILMES)
     private final CadastroFilme cadastroFilme;
@@ -140,6 +142,7 @@ public class Principal extends javax.swing.JFrame {
 
         //Telas a serem chamadas (CRUD VENDAS)
         this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao,cadastroCliente);
+        this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
 
         //Telas a serem chamadas (CRUD FILMES)
         this.cadastroFilme = new CadastroFilme(gerenciaFilme);
@@ -708,7 +711,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_imConsultaVendaActionPerformed
 
     private void imRelatorioVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioVendaActionPerformed
-        // TODO add your handling code here:
+        jDesktopPane1.add(relatorioVenda);
+        relatorioVenda.setVisible(true);
     }//GEN-LAST:event_imRelatorioVendaActionPerformed
 
     private void imImportacaoFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imImportacaoFilmesActionPerformed

@@ -1,15 +1,14 @@
-
 package br.com.iftm.pv.cinema.cine3m.model;
 
 import java.util.List;
 
-
 public class Venda {
+
     private Sessao sessao;
     private Cliente cliente;
     private Double valorFinal;
     private List<ItemVenda> itensVenda;
-
+    private boolean desconto;
 
     public Sessao getSessao() {
         return sessao;
@@ -55,7 +54,13 @@ public class Venda {
         this.valorFinal = valorFinal;
         this.itensVenda = itensVenda;
     }
-    
-    
-    
+
+    public boolean isDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(boolean desconto) {
+        this.desconto = desconto;
+    }
+
 }

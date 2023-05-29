@@ -7,6 +7,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
 import javax.swing.JOptionPane;
 
@@ -18,12 +19,14 @@ public class VincularCliente extends javax.swing.JInternalFrame {
 
     private final GerenciaCliente gerenciaCliente;
     private Cliente clienteSelecionado;
+    private final CadastroVenda cadastroVenda;
 
-    public VincularCliente(GerenciaCliente gerenciaCliente) {
+    public VincularCliente(GerenciaCliente gerenciaCliente, CadastroVenda cadastroVenda) {
         initComponents();
         this.gerenciaCliente = gerenciaCliente;
         btnConfirmar.setEnabled(false);
         this.clienteSelecionado = null;
+        this.cadastroVenda = cadastroVenda;
     }
 
     public Cliente getClienteSelecionado() {
@@ -123,6 +126,7 @@ public class VincularCliente extends javax.swing.JInternalFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         setClienteSelecionado((Cliente) cbVendaClientes.getSelectedItem());
+        cadastroVenda.getTfClienteSelecionado().setText(clienteSelecionado.getNome());
         JOptionPane.showMessageDialog(this, "Cliente Vinculado!", "Vínculo", JOptionPane.INFORMATION_MESSAGE);
         this.setVisible(false);
         getDesktopPane().remove(this);

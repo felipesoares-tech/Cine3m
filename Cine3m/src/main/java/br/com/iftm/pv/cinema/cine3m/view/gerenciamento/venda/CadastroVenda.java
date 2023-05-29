@@ -15,12 +15,9 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.VincularCliente;
-import java.awt.Component;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDesktopPane;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -382,12 +379,10 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
 
     private void btnSelecionarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarPoltronaActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-       // if (!containsInternalFrame(getDesktopPane(), consultaPoltronas)) {
-            if (this.consultaPoltronas == null) {
-                this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao, sessaoSelecionada);
-            }
-            getDesktopPane().add(consultaPoltronas);
-       // }
+        if (this.consultaPoltronas == null) {
+            this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao, sessaoSelecionada);
+        }
+        getDesktopPane().add(consultaPoltronas);
         consultaPoltronas.setVisible(true);
     }//GEN-LAST:event_btnSelecionarPoltronaActionPerformed
 
@@ -407,19 +402,6 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
         getDesktopPane().add(vincularCliente);
         vincularCliente.setVisible(true);
     }//GEN-LAST:event_btnVincularClienteActionPerformed
-
-    public boolean containsInternalFrame(JDesktopPane desktopPane, JInternalFrame internalFrame) {
-        Component[] components = desktopPane.getComponents();
-        for (Component component : components) {
-            if (component instanceof JInternalFrame) {
-                JInternalFrame frame = (JInternalFrame) component;
-                if (frame.equals(internalFrame)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinuarCompra;

@@ -28,6 +28,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
     public CadastroFuncionario(GerenciaFuncionario gerenciaFuncionario) {
         initComponents();
         this.gerenciaFuncionario = gerenciaFuncionario;
+        this.criptografarSenha = new CriptografarSenha();
     }
 
     public Funcionario getFuncionarioSelecionado() {

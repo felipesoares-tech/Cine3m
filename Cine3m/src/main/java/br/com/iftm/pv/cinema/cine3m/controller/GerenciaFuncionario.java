@@ -1,18 +1,22 @@
-
 package br.com.iftm.pv.cinema.cine3m.controller;
 
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import java.util.List;
 
-public class GerenciaFuncionario implements IGerencia<Funcionario>{
+public class GerenciaFuncionario implements IGerencia<Funcionario> {
+
     private List<Funcionario> funcionarios;
 
     public GerenciaFuncionario(List<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
     }
 
-     public Boolean cadastrar(Funcionario funcionario) {
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+    
+    public Boolean cadastrar(Funcionario funcionario) {
         if (!funcionarios.contains(funcionario)) {
             return funcionarios.add(funcionario);
         }

@@ -3,11 +3,14 @@ package br.com.iftm.pv.cinema.cine3m.config;
 import java.awt.Color;
 
 public class ParametrosSistema {
+
     private static ParametrosSistema instancia;
     private Color corDeFundo;
+    private Color corPanel;
 
     private ParametrosSistema() {
         this.corDeFundo = Color.DARK_GRAY; // Cor de fundo padrão
+        this.corPanel = Color.RED;
     }
 
     public static synchronized ParametrosSistema getInstance() {
@@ -23,6 +26,10 @@ public class ParametrosSistema {
 
     public void setCorDeFundo(Color corDeFundo) {
         this.corDeFundo = corDeFundo;
+    }
+
+    public Color getCorPanel() {
+        return corPanel;
     }
 
 }

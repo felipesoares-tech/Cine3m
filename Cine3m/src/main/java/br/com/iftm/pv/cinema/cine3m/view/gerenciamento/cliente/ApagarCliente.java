@@ -8,8 +8,8 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
-import java.util.Iterator;
 import java.util.List;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -124,6 +124,10 @@ public class ApagarCliente extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_btnConfirmarApagaClienteActionPerformed
+
+    public JList<Pessoa> getLstClientes() {
+        return lstClientes;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

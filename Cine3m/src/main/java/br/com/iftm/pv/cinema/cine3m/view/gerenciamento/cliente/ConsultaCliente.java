@@ -8,6 +8,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import javax.swing.JList;
 
 /**
  *
@@ -120,6 +121,10 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
             btnConfirmarConsulta.setEnabled(false);
         }
     }//GEN-LAST:event_lstClientesAncestorAdded
+
+    public JList<Pessoa> getLstClientes() {
+        return lstClientes;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

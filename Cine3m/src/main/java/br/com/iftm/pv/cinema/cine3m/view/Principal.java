@@ -153,6 +153,7 @@ public class Principal extends javax.swing.JFrame {
 
         //Configurações para as telas;
         Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
+        Color corPanelPadrao = ParametrosSistema.getInstance().getCorPanel();
         this.getContentPane().setBackground(corFundoPadrao);
 
         //CORES PARA TELAS CLIENTE
@@ -161,6 +162,13 @@ public class Principal extends javax.swing.JFrame {
         this.atualizaCliente.getContentPane().setBackground(corFundoPadrao);
         this.apagaCliente.getContentPane().setBackground(corFundoPadrao);
         this.relatorioCliente.getContentPane().setBackground(corFundoPadrao);
+        
+        // PANEL/LIST CLIENTES
+        this.cadastroCliente.getjPanel8().setBackground(corPanelPadrao);
+        this.consultaCliente.getLstClientes().setBackground(corPanelPadrao);
+        this.atualizaCliente.getLstClientes().setBackground(corPanelPadrao);
+        this.apagaCliente.getLstClientes().setBackground(corPanelPadrao);
+        
 
         //CORES PARA TELAS FUNCIONARIO
         this.cadastroFuncionario.getContentPane().setBackground(corFundoPadrao);

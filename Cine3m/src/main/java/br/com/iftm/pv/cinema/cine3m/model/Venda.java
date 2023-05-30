@@ -6,6 +6,7 @@ public class Venda {
 
     private Sessao sessao;
     private Cliente cliente;
+    private String identificador;
     private Double valorFinal;
     private List<ItemVenda> itensVenda;
     private boolean desconto;
@@ -46,6 +47,7 @@ public class Venda {
         this.sessao = sessao;
         this.valorFinal = valorFinal;
         this.itensVenda = itensVenda;
+        this.identificador = itensVenda.toString() + sessao.toString();
     }
 
     public Venda(Sessao sessao, Cliente cliente, Double valorFinal, List<ItemVenda> itensVenda) {

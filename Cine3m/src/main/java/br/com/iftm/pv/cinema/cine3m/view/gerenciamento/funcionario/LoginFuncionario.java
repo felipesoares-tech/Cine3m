@@ -5,6 +5,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -12,8 +13,10 @@ import javax.swing.JTextField;
 public class LoginFuncionario extends javax.swing.JInternalFrame {
 
     GerenciaArquivo gerenciaArquivo;
+    JMenuBar menuBar;
 
-    public LoginFuncionario(GerenciaArquivo gerenciaArquivo) {
+    public LoginFuncionario(GerenciaArquivo gerenciaArquivo, JMenuBar menuBar) {
+        this.menuBar = menuBar;
         this.gerenciaArquivo = gerenciaArquivo;
         initComponents();
     }
@@ -93,6 +96,7 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
         Boolean sucesso = gerenciaArquivo.checarCredenciais(tfUsuario.getText(), String.valueOf(jpfSenha.getPassword()));
         if(sucesso){
             JOptionPane.showMessageDialog(this, "Login bem sucedido!", null, JOptionPane.INFORMATION_MESSAGE);
+            menuBar.setVisible(true);
             dispose();
         }else
             JOptionPane.showMessageDialog(this, "Login ou senha incorretos!", null, JOptionPane.ERROR_MESSAGE);

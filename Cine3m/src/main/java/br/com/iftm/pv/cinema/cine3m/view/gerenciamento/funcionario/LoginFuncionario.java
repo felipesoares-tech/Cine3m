@@ -97,7 +97,8 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
         if(sucesso){
             JOptionPane.showMessageDialog(this, "Login bem sucedido!", null, JOptionPane.INFORMATION_MESSAGE);
             menuBar.setVisible(true);
-            dispose();
+            this.setVisible(false);
+            getDesktopPane().remove(this);
         }else
             JOptionPane.showMessageDialog(this, "Login ou senha incorretos!", null, JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btLoginActionPerformed

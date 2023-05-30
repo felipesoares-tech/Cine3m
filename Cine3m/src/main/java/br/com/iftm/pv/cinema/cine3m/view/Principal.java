@@ -810,6 +810,7 @@ public class Principal extends javax.swing.JFrame {
             jDesktopPane1.add(loginFuncionario);
             loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
                     (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
+            
             loginFuncionario.setVisible(true);
             jMenuBar1.setVisible(false);
         }

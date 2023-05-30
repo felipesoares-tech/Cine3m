@@ -198,13 +198,16 @@ public class Principal extends javax.swing.JFrame {
         this.relatorioFilme.getContentPane().setBackground(corFundoPadrao);
 
         this.telaImportacao = new TelaImportacao(gerenciaFilme);
+        
+        //CORES PARA A TELA IMPORTACAO
+        this.telaImportacao.getContentPane().setBackground(corFundoPadrao);
 
         //TELA LOGIN
-        loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
-                (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
-        jDesktopPane1.add(loginFuncionario);
-        loginFuncionario.setVisible(true);
-        jMenuBar1.setVisible(false);
+//        loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
+//                (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
+//        jDesktopPane1.add(loginFuncionario);
+//        loginFuncionario.setVisible(true);
+//        jMenuBar1.setVisible(false);
     }
 
     /**
@@ -262,6 +265,7 @@ public class Principal extends javax.swing.JFrame {
         imRelatorioVenda = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         imImportacaoFilmes = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -540,6 +544,14 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Logout");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -741,6 +753,10 @@ public class Principal extends javax.swing.JFrame {
         telaImportacao.setVisible(true);
     }//GEN-LAST:event_imImportacaoFilmesActionPerformed
 
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        loginFuncionario.setVisible(true);
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -805,6 +821,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu mCliente;
     private javax.swing.JMenu mFilme;

@@ -6,6 +6,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
+import br.com.iftm.pv.cinema.cine3m.util.CriptografarSenha;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -22,6 +23,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
 
     private GerenciaFuncionario gerenciaFuncionario;
     private Funcionario funcionarioSelecionado;
+    private CriptografarSenha criptografarSenha;
 
     public CadastroFuncionario(GerenciaFuncionario gerenciaFuncionario) {
         initComponents();
@@ -225,7 +227,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         String nome = tfNomeFuncionario.getText().toUpperCase();
         String cpf = tfCpfFuncionario.getText().replaceAll("[-.]", "");
         String login = tfLoginFuncionario.getText();
-        String senha = String.valueOf(tfSenhaFuncionario.getPassword());
+        String senha = criptografarSenha.criptografarSenha(String.valueOf(tfSenhaFuncionario.getPassword()));
 
         if (ValidaCampo.validar(nome, lbNomeFuncionario, this)
                 && ValidaCampo.validar(cpf, lbCpfFuncionario, this)

@@ -200,11 +200,11 @@ public class Principal extends javax.swing.JFrame {
         this.telaImportacao = new TelaImportacao(gerenciaFilme);
 
         //TELA LOGIN
-        loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
-                (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
-        jDesktopPane1.add(loginFuncionario);
-        loginFuncionario.setVisible(true);
-        jMenuBar1.setVisible(false);
+//        loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
+//                (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
+//        jDesktopPane1.add(loginFuncionario);
+//        loginFuncionario.setVisible(true);
+//        jMenuBar1.setVisible(false);
     }
 
     /**

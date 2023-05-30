@@ -48,6 +48,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.ConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.RelatorioVenda;
 import br.com.iftm.pv.cinema.cine3m.view.importacoes.TelaImportacao;
 import java.awt.Color;
@@ -92,6 +93,7 @@ public class Principal extends javax.swing.JFrame {
 //Telas a serem chamadas (CRUD VENDAS)
     private final CadastroVenda cadastroVenda;
     private final RelatorioVenda relatorioVenda;
+    private final ConsultaVenda consultaVenda;
 
 //Telas a serem chamadas (CRUD FILMES)
     private final CadastroFilme cadastroFilme;
@@ -149,6 +151,7 @@ public class Principal extends javax.swing.JFrame {
         //Telas a serem chamadas (CRUD VENDAS)
         this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, cadastroCliente);
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
+        this.consultaVenda = new ConsultaVenda(gerenciaVenda);
 
         //Telas a serem chamadas (CRUD FILMES)
         this.cadastroFilme = new CadastroFilme(gerenciaFilme);

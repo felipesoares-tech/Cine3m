@@ -46,11 +46,6 @@ public class GerenciaArquivo {
                 arquivo.delete();
             }
             boolean criado = arquivo.createNewFile();
-            if (criado) {
-                System.out.println("Arquivo criado em: " + arquivo.getAbsolutePath());
-            } else {
-                System.out.println("Arquivo já existe em: " + arquivo.getAbsolutePath());
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,51 +62,6 @@ public class GerenciaArquivo {
         }
 
         return new HashMap<>();
-    }
-
-    public void mudarNomeUsuarioESenha(String login, String novoLogin, String novaSenha) {
-        try {
-            File arquivo = new File("dados_login");
-            if (arquivo.exists() && arquivo.length() > 0) {
-                FileInputStream fis = new FileInputStream("dados_login");
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                usuarioSenhas = (HashMap<String, String>) ois.readObject();
-                ois.close();
-            } else {
-                usuarioSenhas = new HashMap<>();
-            }
-
-            if (usuarioSenhas.containsKey(login)) {
-                usuarioSenhas.remove(login);
-
-                guardarSenha(novoLogin, novaSenha);
-
-                FileOutputStream fos = new FileOutputStream("dados_login");
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(usuarioSenhas);
-                oos.close();
-
-                System.out.println("Nome de usuário e senha alterados com sucesso!");
-            } else {
-                System.out.println("Nome de usuário não encontrado no arquivo.");
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void removerUsuario(String usuarioNome) {
-        if (usuarioSenhas.containsKey(usuarioNome)) {
-            usuarioSenhas.remove(usuarioNome);
-            try {
-                guardarSenhas();
-                System.out.println("Usuário removido com sucesso!");
-            } catch (IOException e) {
-                System.out.println("Erro ao remover usuário: " + e.getMessage());
-            }
-        } else {
-            System.out.println("Usuário não encontrado.");
-        }
     }
 
     public boolean checarCredenciais(String usuarioNome, String senha) {

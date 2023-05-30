@@ -52,14 +52,6 @@ public class GerenciaArquivo {
         }
     }
 
-//    public boolean checarCredenciais(String usuarioNome, String senha) {
-//        if (usuarioSenhas.containsKey(usuarioNome)) {
-//            String senhaGuardada = usuarioSenhas.get(usuarioNome);
-//            return criptografarSenha.criptografarSenha(senha).equals(senhaGuardada);
-//        }
-//        return false;
-//    }
-
     public boolean checarCredenciais(String usuarioNome, String senha) {
         try (FileInputStream fis = new FileInputStream(pathArquivo); 
                 ObjectInputStream ois = new ObjectInputStream(fis)) {

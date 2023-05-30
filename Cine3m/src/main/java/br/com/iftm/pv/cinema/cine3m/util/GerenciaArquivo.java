@@ -23,7 +23,6 @@ public class GerenciaArquivo {
         this.pathArquivo = "dados_login";
         this.criptografarSenha = new CriptografarSenha();
         criarArquivo();
-        lerSenhas();
         guardarSenha("admin", criptografarSenha.criptografarSenha("admin"));
     }
 
@@ -46,31 +45,34 @@ public class GerenciaArquivo {
         try {
             File arquivo = new File(pathArquivo);
             if (!arquivo.exists()) {
-                boolean criado = arquivo.createNewFile();
+                arquivo.createNewFile();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private HashMap<String, String> lerSenhas() {
-        try (FileInputStream fis = new FileInputStream("dados_login")) {
-            if (fis.available() > 0) {
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                return (HashMap<String, String>) ois.readObject();
+//    public boolean checarCredenciais(String usuarioNome, String senha) {
+//        if (usuarioSenhas.containsKey(usuarioNome)) {
+//            String senhaGuardada = usuarioSenhas.get(usuarioNome);
+//            return criptografarSenha.criptografarSenha(senha).equals(senhaGuardada);
+//        }
+//        return false;
+//    }
+
+    public boolean checarCredenciais(String usuarioNome, String senha) {
+        try (FileInputStream fis = new FileInputStream(pathArquivo); 
+                ObjectInputStream ois = new ObjectInputStream(fis)) {
+            HashMap<String, String> usuarioSenhas = (HashMap<String, String>) ois.readObject();
+
+            if (usuarioSenhas.containsKey(usuarioNome)) {
+                String senhaGuardada = usuarioSenhas.get(usuarioNome);
+                return criptografarSenha.criptografarSenha(senha).equals(senhaGuardada);
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        return new HashMap<>();
-    }
-
-    public boolean checarCredenciais(String usuarioNome, String senha) {
-        if (usuarioSenhas.containsKey(usuarioNome)) {
-            String senhaGuardada = usuarioSenhas.get(usuarioNome);
-            return criptografarSenha.criptografarSenha(senha).equals(senhaGuardada);
-        }
         return false;
     }
 
@@ -80,7 +82,7 @@ public class GerenciaArquivo {
         for (Funcionario funcionario : funcionarios) {
             String login = funcionario.getLogin();
             String senha = funcionario.getSenha();
-            usuarioSenhas.put(login, senha); 
+            usuarioSenhas.put(login, senha);
         }
         guardarSenhas();
     }

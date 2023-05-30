@@ -65,4 +65,13 @@ public class Venda {
         this.desconto = desconto;
     }
 
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    @Override
+    public String toString() {
+        return getIdentificador();
+    }
+
 }

@@ -5,19 +5,22 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
+import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxiliarConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author Felipe Soares
  */
 public class ConsultaVenda extends javax.swing.JInternalFrame {
-    
+
     private TelaAuxiliarConsultaVenda telaAuxiliarConsultaVenda;
     private GerenciaVenda gerenciaVenda;
-    
+
     public ConsultaVenda(GerenciaVenda gerenciaVenda) {
         initComponents();
         this.telaAuxiliarConsultaVenda = new TelaAuxiliarConsultaVenda();
@@ -37,6 +40,8 @@ public class ConsultaVenda extends javax.swing.JInternalFrame {
         btnConsultarVendas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstVendas = new javax.swing.JList<>();
+
+        setClosable(true);
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         lbTituloTelaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -96,7 +101,25 @@ public class ConsultaVenda extends javax.swing.JInternalFrame {
     private void btnConsultarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarVendasActionPerformed
         Venda vendaSelecionada = (Venda) this.lstVendas.getSelectedValue();
         telaAuxiliarConsultaVenda.setVendaSelecionada(vendaSelecionada);
+        getDesktopPane().add(telaAuxiliarConsultaVenda);
+        
+        
+        String nomeClienteVenda = vendaSelecionada.getCliente().getNome();
+        String nomeSessaoVenda = vendaSelecionada.getSessao().getNome();
+        //String nomeFuncionarioVenda = vendaSelecionada.getFuncionario().getNome(); ainda precisa implementar
+        List<ItemVenda> itensVenda = vendaSelecionada.getItensIngresso();
+        Double valorTotal = vendaSelecionada.getValorFinal();
+        boolean desconto = vendaSelecionada.isDesconto();
+        
+        telaAuxiliarConsultaVenda.getTfClienteConsulta().setText(nomeClienteVenda);
+        telaAuxiliarConsultaVenda.getTfSessaoConsulta().setText(nomeSessaoVenda);
+        telaAuxiliarConsultaVenda.getTfValorTotal().setText(String.valueOf(valorTotal));
+        telaAuxiliarConsultaVenda.getjCheckBox1().setSelected(desconto);
+        DefaultListModel<ItemVenda> model = new DefaultListModel<>();
+        model.addAll(itensVenda);
+        telaAuxiliarConsultaVenda.getListItensIngresso().setModel(model);
         this.telaAuxiliarConsultaVenda.setVisible(true);
+        
     }//GEN-LAST:event_btnConsultarVendasActionPerformed
 
     private void lstVendasAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstVendasAncestorAdded

@@ -4,6 +4,7 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
+import br.com.iftm.pv.cinema.cine3m.config.ParametrosSistema;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
@@ -40,6 +41,7 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
 
         initComponents();
         initComponentsPersonalizado(sessaoSelecionada, btnConfirmar, cadastroVenda, this);
+        this.getContentPane().setBackground(ParametrosSistema.getInstance().getCorDeFundo());
 
     }
 
@@ -48,16 +50,17 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
         JPanel panel = new JPanel(new GridLayout(0, 10));
 
         int capacidadeTotal = sessaoSelecionada.getSala().getCapacidade();
+        Color btnDefaultColor = Color.getHSBColor(0.66371644f, 0.6097561f, 0.76862746f);
 
-        // int rowMax = (capacidadeTotal % 10 == 0) ? (capacidadeTotal / 10) : (capacidadeTotal / 10) + 1;
         char row = 'A';
         int col = 1;
 
         for (int i = 1; i <= capacidadeTotal; i++) {
             String PoltronaID = Character.toString(row) + col;
             JButton button = new JButton(PoltronaID);
-            button.setBackground(Color.getHSBColor(102,102,255));
-           button.setForeground(Color.WHITE);
+
+            button.setBackground(btnDefaultColor);
+            button.setForeground(Color.WHITE);
 
             int pos = sessaoSelecionada.getSala().getPoltronas().indexOf(new Poltrona(PoltronaID));
             Poltrona pol = sessaoSelecionada.getSala().getPoltronas().get(pos);
@@ -79,8 +82,7 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
                 col++;
             }
         }
-        btnListener.setDefaultColor(Color.BLUE);
-
+        btnListener.setDefaultColor(btnDefaultColor);
         btnConfirmar = new JButton("Confirmar");
 
         btnConfirmar.addActionListener(new ActionListener() {
@@ -91,7 +93,7 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
                 Iterator<JButton> it = listBotoes.iterator();
                 while (it.hasNext()) {
                     JButton btn = it.next();
-                    if (btn.getBackground() == Color.GREEN) {
+                    if (btn.getBackground().equals(Color.getHSBColor(0.4036159f, 0.95801526f, 0.6392157f))) {
                         model.addElement(new ItemVenda(new Poltrona(btn.getText())));
                     }
                 }

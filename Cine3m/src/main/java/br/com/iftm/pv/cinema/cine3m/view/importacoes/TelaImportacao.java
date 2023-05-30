@@ -17,6 +17,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -71,6 +72,7 @@ public class TelaImportacao extends javax.swing.JInternalFrame {
         jLabel1.setText("Arquivo:");
 
         btnProcurar.setText("Procurar");
+        btnProcurar.setToolTipText("Procurar arquivo xml");
         btnProcurar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProcurarActionPerformed(evt);
@@ -88,6 +90,7 @@ public class TelaImportacao extends javax.swing.JInternalFrame {
 
             }
         ));
+        tbRelFilmes.setToolTipText("");
         tbRelFilmes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbRelFilmes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -160,6 +163,8 @@ public class TelaImportacao extends javax.swing.JInternalFrame {
         try {
             JFileChooser fc = new JFileChooser();
             fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fc.setAcceptAllFileFilterUsed(false);
+            fc.setFileFilter(new FileNameExtensionFilter("Arquivos XML", "xml"));
             fc.showOpenDialog(this);
             File f = fc.getSelectedFile();
 

@@ -52,8 +52,14 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.ConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.RelatorioVenda;
 import br.com.iftm.pv.cinema.cine3m.view.importacoes.TelaImportacao;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -221,13 +227,27 @@ public class Principal extends javax.swing.JFrame {
 //                jMenuBar1.setVisible(false);
 //            }
 //        });
-
         //TELA LOGIN
         loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
                 (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
         jDesktopPane1.add(loginFuncionario);
         loginFuncionario.setVisible(true);
         jMenuBar1.setVisible(false);
+
+        //EVENTO QUANDO PRINCIPAL FOR FECHADO
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (!gerenciaFuncionario.getFuncionarios().isEmpty()) {
+                    try {
+                        gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+
     }
 
     /**
@@ -775,11 +795,24 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_imImportacaoFilmesActionPerformed
 
     private void jMenu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MousePressed
-        jDesktopPane1.add(loginFuncionario);
-        loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
-                (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
-        loginFuncionario.setVisible(true);
-        jMenuBar1.setVisible(false);
+        Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja deslogar?",
+                "Logout", WIDTH, JOptionPane.WARNING_MESSAGE);
+        if (resp.equals(JOptionPane.OK_OPTION)) {
+            if (!gerenciaFuncionario.getFuncionarios().isEmpty()) {
+                try {
+                    gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario);
+                } catch (IOException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            loginFuncionario.getTfUsuario().setText("");
+            loginFuncionario.getJpfSenha().setText("");
+            jDesktopPane1.add(loginFuncionario);
+            loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
+                    (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
+            loginFuncionario.setVisible(true);
+            jMenuBar1.setVisible(false);
+        }
     }//GEN-LAST:event_jMenu3MousePressed
 
     /**

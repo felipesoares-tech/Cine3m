@@ -53,6 +53,7 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         lbTituloTelaCliente.setText("Consulta Sessões");
 
+        listSessao.setForeground(new java.awt.Color(102, 102, 255));
         listSessao.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {

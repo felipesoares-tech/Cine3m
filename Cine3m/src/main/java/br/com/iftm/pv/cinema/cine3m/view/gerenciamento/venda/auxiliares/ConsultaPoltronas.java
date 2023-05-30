@@ -56,6 +56,8 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
         for (int i = 1; i <= capacidadeTotal; i++) {
             String PoltronaID = Character.toString(row) + col;
             JButton button = new JButton(PoltronaID);
+            button.setBackground(Color.getHSBColor(102,102,255));
+           button.setForeground(Color.WHITE);
 
             int pos = sessaoSelecionada.getSala().getPoltronas().indexOf(new Poltrona(PoltronaID));
             Poltrona pol = sessaoSelecionada.getSala().getPoltronas().get(pos);
@@ -77,7 +79,7 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
                 col++;
             }
         }
-        btnListener.setDefaultColor(listBotoes.get(0).getBackground());
+        btnListener.setDefaultColor(Color.BLUE);
 
         btnConfirmar = new JButton("Confirmar");
 

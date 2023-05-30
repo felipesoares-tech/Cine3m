@@ -10,7 +10,7 @@ public class ParametrosSistema {
 
     private ParametrosSistema() {
         this.corDeFundo = Color.DARK_GRAY; // Cor de fundo padrão
-        this.corPanel = Color.RED;
+        this.corPanel = Color.GRAY;
     }
 
     public static synchronized ParametrosSistema getInstance() {

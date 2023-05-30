@@ -137,8 +137,7 @@ public class Principal extends javax.swing.JFrame {
         this.atualizaFuncionario = new AtualizaFuncionario(cadastroFuncionario, gerenciaFuncionario);
         this.apagaFuncionario = new ApagaFuncionario(gerenciaFuncionario);
         this.relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
-        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo);
- 
+        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, jMenuBar1);
 
         //Telas a serem chamadas (CRUD SALA)
         this.cadastroSala = new CadastroSala(gerenciaSala);
@@ -169,13 +168,12 @@ public class Principal extends javax.swing.JFrame {
         this.atualizaCliente.getContentPane().setBackground(corFundoPadrao);
         this.apagaCliente.getContentPane().setBackground(corFundoPadrao);
         this.relatorioCliente.getContentPane().setBackground(corFundoPadrao);
-        
+
         // PANEL/LIST CLIENTES
         this.cadastroCliente.getjPanel8().setBackground(corPanelPadrao);
         this.consultaCliente.getLstClientes().setBackground(corPanelPadrao);
         this.atualizaCliente.getLstClientes().setBackground(corPanelPadrao);
         this.apagaCliente.getLstClientes().setBackground(corPanelPadrao);
-        
 
         //CORES PARA TELAS FUNCIONARIO
         this.cadastroFuncionario.getContentPane().setBackground(corFundoPadrao);
@@ -183,6 +181,7 @@ public class Principal extends javax.swing.JFrame {
         this.apagaFuncionario.getContentPane().setBackground(corFundoPadrao);
         this.atualizaFuncionario.getContentPane().setBackground(corFundoPadrao);
         this.relatorioFuncionario.getContentPane().setBackground(corFundoPadrao);
+        this.loginFuncionario.getContentPane().setBackground(corFundoPadrao);
 
         //CORES PARA TELAS SESSAO
         this.cadastroSessao.getContentPane().setBackground(corFundoPadrao);
@@ -206,16 +205,26 @@ public class Principal extends javax.swing.JFrame {
         this.relatorioFilme.getContentPane().setBackground(corFundoPadrao);
 
         this.telaImportacao = new TelaImportacao(gerenciaFilme);
-        
+
         //CORES PARA A TELA IMPORTACAO
         this.telaImportacao.getContentPane().setBackground(corFundoPadrao);
 
+//        addWindowListener(new WindowAdapter() {
+//            public void windowOpened(WindowEvent e) {
+//                loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
+//                        (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
+//                jDesktopPane1.add(loginFuncionario);
+//                loginFuncionario.setVisible(true);
+//                jMenuBar1.setVisible(false);
+//            }
+//        });
+
         //TELA LOGIN
-//        loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
-//                (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
-//        jDesktopPane1.add(loginFuncionario);
-//        loginFuncionario.setVisible(true);
-//        jMenuBar1.setVisible(false);
+        loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
+                (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
+        jDesktopPane1.add(loginFuncionario);
+        loginFuncionario.setVisible(true);
+        jMenuBar1.setVisible(false);
     }
 
     /**
@@ -553,9 +562,9 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Logout");
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu3MousePressed(evt);
             }
         });
         jMenuBar1.add(jMenu3);
@@ -577,6 +586,7 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
 
     private void imCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroClienteActionPerformed
         this.cadastroCliente.getBtnCadastrarCliente().setVisible(true);
@@ -761,9 +771,13 @@ public class Principal extends javax.swing.JFrame {
         telaImportacao.setVisible(true);
     }//GEN-LAST:event_imImportacaoFilmesActionPerformed
 
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+    private void jMenu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MousePressed
+        jDesktopPane1.add(loginFuncionario);
+        loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
+                (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
         loginFuncionario.setVisible(true);
-    }//GEN-LAST:event_jMenu3ActionPerformed
+        jMenuBar1.setVisible(false);
+    }//GEN-LAST:event_jMenu3MousePressed
 
     /**
      * @param args the command line arguments

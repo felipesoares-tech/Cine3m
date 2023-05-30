@@ -6,8 +6,8 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
-import java.awt.event.ItemEvent;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -123,12 +123,12 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         this.jScrollPane1 = jScrollPane1;
     }
 
-    public JTextField getjTextField1() {
-        return jTextField1;
+    public JTextField getTfValorTotal() {
+        return tfValorTotal;
     }
 
-    public void setjTextField1(JTextField jTextField1) {
-        this.jTextField1 = jTextField1;
+    public void setTfValorTotal(JTextField tfValorTotal) {
+        this.tfValorTotal = tfValorTotal;
     }
 
     public JLabel getLbTituloTelaCliente() {
@@ -194,19 +194,11 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tfValorTotal = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
         lbTituloTelaCliente = new javax.swing.JLabel();
 
-        addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                formAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
+        setClosable(true);
 
         tfSessaoConsulta.setEditable(false);
 
@@ -283,7 +275,7 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                .addComponent(tfValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
             .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -291,7 +283,7 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox1)
                 .addGap(0, 27, Short.MAX_VALUE))
@@ -361,16 +353,6 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
-        String nomeClienteVenda = vendaSelecionada.getCliente().getNome();
-        String nomeSessaoVenda = vendaSelecionada.getSessao().getNome();
-        //String nomeFuncionarioVenda = vendaSelecionada.getFuncionario().getNome(); ainda precisa implementar
-        List<ItemVenda> itensVenda = vendaSelecionada.getItensIngresso();
-        Double valorTotal = vendaSelecionada.getValorFinal();
-        boolean desconto = vendaSelecionada.isDesconto();
-    
-    }//GEN-LAST:event_formAncestorAdded
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBox1;
@@ -384,11 +366,11 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbTituloTelaCliente;
     private javax.swing.JList<br.com.iftm.pv.cinema.cine3m.model.ItemVenda> listItensIngresso;
     private javax.swing.JTextField tfClienteConsulta;
     private javax.swing.JTextField tfFuncionarioConsulta;
     private javax.swing.JTextField tfSessaoConsulta;
+    private javax.swing.JTextField tfValorTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -50,6 +50,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.ConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.RelatorioVenda;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxiliarConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.importacoes.TelaImportacao;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
@@ -781,7 +782,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_imCadastroVendaActionPerformed
 
     private void imConsultaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaVendaActionPerformed
-        // TODO add your handling code here:
+        jDesktopPane1.add(consultaVenda);
+        consultaVenda.setVisible(true);
     }//GEN-LAST:event_imConsultaVendaActionPerformed
 
     private void imRelatorioVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioVendaActionPerformed

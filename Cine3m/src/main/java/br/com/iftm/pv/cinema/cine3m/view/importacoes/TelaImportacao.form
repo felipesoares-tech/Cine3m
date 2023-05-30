@@ -89,6 +89,7 @@
     <Component class="javax.swing.JButton" name="btnProcurar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Procurar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Procurar arquivo xml"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProcurarActionPerformed"/>
@@ -106,6 +107,7 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="0" rowCount="4"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>

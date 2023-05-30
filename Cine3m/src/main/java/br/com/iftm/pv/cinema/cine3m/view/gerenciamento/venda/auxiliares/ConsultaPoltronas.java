@@ -43,7 +43,7 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
 
     }
 
-    private void initComponentsPersonalizado(Sessao sessaoSelecionada, JButton btnConfirmar,CadastroVenda cadastroVenda, ConsultaPoltronas consultaPoltronas) {
+    private void initComponentsPersonalizado(Sessao sessaoSelecionada, JButton btnConfirmar, CadastroVenda cadastroVenda, ConsultaPoltronas consultaPoltronas) {
         ListennerBtn btnListener = new ListennerBtn();
         JPanel panel = new JPanel(new GridLayout(0, 10));
 
@@ -94,9 +94,14 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
                     }
                 }
                 cadastroVenda.getjList1().setModel(model);
+                if (cadastroVenda.getjList1().getModel().getSize() > 0) {
+                    cadastroVenda.getBtnContinuarCompra().setEnabled(true);
+                } else {
+                    cadastroVenda.getBtnContinuarCompra().setEnabled(false);
+                }
                 consultaPoltronas.setVisible(false);
                 getDesktopPane().remove(consultaPoltronas);
-                
+
             }
         });
 

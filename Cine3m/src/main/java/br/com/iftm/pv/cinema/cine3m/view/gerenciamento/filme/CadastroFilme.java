@@ -21,116 +21,116 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class CadastroFilme extends javax.swing.JInternalFrame {
-    
+
     private GerenciaFilme gerenciaFilme;
     private Filme filmeSelecionado;
-    
+
     public CadastroFilme(GerenciaFilme gerenciaFilme) {
         initComponents();
         this.gerenciaFilme = gerenciaFilme;
-        
+
     }
-    
+
     public Filme getFilmeSelecionado() {
         return filmeSelecionado;
     }
-    
+
     public void setFilmeSelecionado(Filme filmeSelecionado) {
         this.filmeSelecionado = filmeSelecionado;
     }
-    
+
     public JButton getBtnConfirmar() {
         return btnConfirmar;
     }
-    
+
     public void setBtnConfirmar(JButton btnConfirmar) {
         this.btnConfirmar = btnConfirmar;
     }
-    
+
     public JComboBox<Genero> getCbGenero() {
         return cbGenero;
     }
-    
+
     public void setCbGenero(JComboBox<Genero> cbGenero) {
         this.cbGenero = cbGenero;
     }
-    
+
     public JPanel getjPanel1() {
         return jPanel1;
     }
-    
+
     public void setjPanel1(JPanel jPanel1) {
         this.jPanel1 = jPanel1;
     }
-    
+
     public JScrollPane getjScrollPane1() {
         return jScrollPane1;
     }
-    
+
     public void setjScrollPane1(JScrollPane jScrollPane1) {
         this.jScrollPane1 = jScrollPane1;
     }
-    
+
     public JLabel getLbDescricao() {
         return lbDescricao;
     }
-    
+
     public void setLbDescricao(JLabel lbDescricao) {
         this.lbDescricao = lbDescricao;
     }
-    
+
     public JLabel getLbDiretor() {
         return lbDiretor;
     }
-    
+
     public void setLbDiretor(JLabel lbDiretor) {
         this.lbDiretor = lbDiretor;
     }
-    
+
     public JLabel getLbGenero() {
         return lbGenero;
     }
-    
+
     public void setLbGenero(JLabel lbGenero) {
         this.lbGenero = lbGenero;
     }
-    
+
     public JLabel getLbNome() {
         return lbNome;
     }
-    
+
     public void setLbNome(JLabel lbNome) {
         this.lbNome = lbNome;
     }
-    
+
     public JLabel getLbTituloTelaFilme() {
         return lbTituloTelaFilme;
     }
-    
+
     public void setLbTituloTelaFilme(JLabel lbTituloTelaFilme) {
         this.lbTituloTelaFilme = lbTituloTelaFilme;
     }
-    
+
     public JTextField getTfDiretor() {
         return tfDiretor;
     }
-    
+
     public void setTfDiretor(JTextField tfDiretor) {
         this.tfDiretor = tfDiretor;
     }
-    
+
     public JTextField getTfNomeFilme() {
         return tfNomeFilme;
     }
-    
+
     public void setTfNomeFilme(JTextField tfNomeFilme) {
         this.tfNomeFilme = tfNomeFilme;
     }
-    
+
     public JTextArea getTfaDescricao() {
         return tfaDescricao;
     }
-    
+
     public void setTfaDescricao(JTextArea tfaDescricao) {
         this.tfaDescricao = tfaDescricao;
     }
@@ -272,20 +272,20 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         String diretor = tfDiretor.getText();
         String descricao = tfaDescricao.getText();
         Genero genero = (Genero) cbGenero.getSelectedItem();
-        
+
         if (ValidaCampo.validar(nome, lbNome, this) && ValidaCampo.validar(diretor, lbDiretor, this) && ValidaCampo.validar(descricao, lbDescricao, this)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
             if (btnConfirmar.getText().equals("Cadastrar")) {
                 Boolean sucesso = gerenciaFilme.cadastrar(filme);
                 JOptionPane.showMessageDialog(rootPane, sucesso ? "Filme cadstrado com sucesso " : "Filme já Cadastrado!",
                         "Cadastro Filme", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
-                
+
             } else {
                 gerenciaFilme.atualizar(filmeSelecionado, filme);
                 JOptionPane.showMessageDialog(this, "Filme atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
                 this.setVisible(false);
                 this.getParent().setVisible(false);
-                
+
             }
             tfNomeFilme.setText("");
             tfDiretor.setText("");

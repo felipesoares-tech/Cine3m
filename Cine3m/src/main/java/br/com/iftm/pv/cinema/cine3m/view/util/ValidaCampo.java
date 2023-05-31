@@ -4,7 +4,6 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.util;
 
-import java.awt.Dialog;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

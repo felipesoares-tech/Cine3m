@@ -10,6 +10,7 @@ import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
@@ -100,6 +101,10 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
     public void setTfNomeSala(JTextField tfNomeSala) {
         this.tfNomeSala = tfNomeSala;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
     }
 
     /**

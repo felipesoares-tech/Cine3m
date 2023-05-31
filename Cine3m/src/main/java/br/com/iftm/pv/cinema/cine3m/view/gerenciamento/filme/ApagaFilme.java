@@ -8,6 +8,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.util.List;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,11 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
        this.btnConfirmarApagaFilme.setEnabled(false);
     }
 
+    public JList<Filme> getLstFilmes() {
+        return lstFilmes;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

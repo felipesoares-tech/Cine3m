@@ -7,6 +7,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import javax.swing.JList;
 
 /**
  *
@@ -93,6 +94,10 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JList<Funcionario> getLstFuncionarios() {
+        return lstFuncionarios;
+    }
+    
     private void btnAtualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarFuncionarioActionPerformed
         Funcionario funcionarioSelecionado = (Funcionario) this.lstFuncionarios.getSelectedValue();
         this.cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());

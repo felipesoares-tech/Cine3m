@@ -11,6 +11,7 @@ import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -95,6 +96,10 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JList<Pessoa> getLstFuncionarios() {
+        return lstFuncionarios;
+    }
+    
     private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded
         ListUtils.carregarList(lstFuncionarios, gerenciaFuncionario.relatorio());
     }//GEN-LAST:event_lstFuncionariosAncestorAdded

@@ -21,6 +21,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -145,6 +146,9 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         this.tfValorSessao = tfValorSessao;
     }
 
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

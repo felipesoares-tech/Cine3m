@@ -9,6 +9,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.JList;
 
 /**
  *
@@ -101,6 +102,10 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JList<Sessao> getListSessao() {
+        return listSessao;
+    }
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         Sessao sessaoSelecionada = (Sessao) this.listSessao.getSelectedValue();

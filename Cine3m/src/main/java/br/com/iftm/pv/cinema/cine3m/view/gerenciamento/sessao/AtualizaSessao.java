@@ -5,6 +5,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.JList;
 
 public class AtualizaSessao extends javax.swing.JInternalFrame {
 
@@ -19,6 +20,10 @@ public class AtualizaSessao extends javax.swing.JInternalFrame {
         this.btnConfirmar.setEnabled(false);
     }
 
+    public JList<Sessao> getListSessao() {
+        return listSessao;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

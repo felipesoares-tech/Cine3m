@@ -7,6 +7,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import javax.swing.JList;
 
 /**
  *
@@ -23,6 +24,9 @@ public class ConsultaFilme extends javax.swing.JInternalFrame {
         this.gerenciaFilme = gerenciaFilme;
     }
 
+    public JList<Filme> getLstFilmes() {
+        return lstFilmes;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

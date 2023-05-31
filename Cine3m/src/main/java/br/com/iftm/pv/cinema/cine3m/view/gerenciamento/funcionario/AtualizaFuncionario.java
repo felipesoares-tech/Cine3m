@@ -111,7 +111,7 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
         this.cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
         this.cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
         this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("ATUALIZAR");
-        this.cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualizar Funcionário");
+        this.cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualização de Funcionário");
         this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
         this.cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
         this.cadastroFuncionario.getTfCpfFuncionario().setEditable(true);

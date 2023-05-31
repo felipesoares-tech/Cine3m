@@ -10,7 +10,7 @@ public class CriptografarSenha {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] encodedHash = digest.digest(senha.getBytes(StandardCharsets.UTF_8));
-            return byteArrayToHexString(encodedHash);
+            return "CRYPT:" + byteArrayToHexString(encodedHash);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

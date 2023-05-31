@@ -112,7 +112,7 @@ public class Principal extends javax.swing.JFrame {
     private final TelaImportacao telaImportacao;
 
     List<Filme> filmes = new ArrayList<>();
-    List<Funcionario> funcionarios = new ArrayList<>();
+//    List<Funcionario> funcionarios = new ArrayList<>(); VOU REMOVER POIS FIZ UMA FUNCAO QUE VAI MANDAR UM LIST DE FUNCIONARIO PARA GERENCIAFUNCIONARIO
     List<Sessao> sessoes = new ArrayList<>();
     List<Venda> vendas = new ArrayList<>();
     List<Sala> salas = new ArrayList<>();
@@ -121,7 +121,8 @@ public class Principal extends javax.swing.JFrame {
     private final GerenciaArquivo gerenciaArquivo = new GerenciaArquivo();
     private final GerenciaCliente gerenciaCliente = new GerenciaCliente(clientes);
     private final GerenciaFilme gerenciaFilme = new GerenciaFilme(filmes);
-    private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(funcionarios);
+    private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(
+            gerenciaArquivo.obterFuncionarios());
     private final GerenciaVenda gerenciaVenda = new GerenciaVenda(vendas, gerenciaCliente);
     private final GerenciaSala gerenciaSala = new GerenciaSala(salas);
     private final GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes, gerenciaSala);

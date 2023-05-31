@@ -113,12 +113,13 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lstFuncionariosAncestorAdded
 
     private void btnConfirmarApagaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaFuncionarioActionPerformed
-        Funcionario funcionariosSelecionados = (Funcionario) lstFuncionarios.getSelectedValue();
-
+        Funcionario funcionarioSelecionado = (Funcionario) lstFuncionarios.getSelectedValue();
+        
         Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
-                "Apagar Cliente", WIDTH, JOptionPane.WARNING_MESSAGE);
+                "Apagar Funcionario", WIDTH, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
+            gerenciaFuncionario.remover(funcionarioSelecionado);
             lstFuncionariosAncestorAdded(null);
             JOptionPane.showMessageDialog(this, "Funcionario removido", "Remover", JOptionPane.INFORMATION_MESSAGE);
         }

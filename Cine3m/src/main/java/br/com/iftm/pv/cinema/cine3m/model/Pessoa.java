@@ -1,7 +1,8 @@
 package br.com.iftm.pv.cinema.cine3m.model;
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable{
     private String nome;
     private String cpf;
 

@@ -4,6 +4,7 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
@@ -14,6 +15,7 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
 
     GerenciaArquivo gerenciaArquivo;
     JMenuBar menuBar;
+    Funcionario funcionarioSelecionado;
 
     public LoginFuncionario(GerenciaArquivo gerenciaArquivo, JMenuBar menuBar) {
         this.menuBar = menuBar;
@@ -99,10 +101,15 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
             menuBar.setVisible(true);
             this.setVisible(false);
             getDesktopPane().remove(this);
+            funcionarioSelecionado = gerenciaArquivo.obterFuncionario(tfUsuario.getText());
         }else
             JOptionPane.showMessageDialog(this, "Login ou senha incorretos!", null, JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btLoginActionPerformed
 
+    public Funcionario getFuncionarioSelecionado() {
+        return funcionarioSelecionado;
+    }
+    
     public JPasswordField getJpfSenha() {
         return jpfSenha;
     }

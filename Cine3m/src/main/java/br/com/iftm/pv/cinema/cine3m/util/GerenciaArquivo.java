@@ -57,9 +57,6 @@ public class GerenciaArquivo {
             if (funcionarioDados.containsKey(usuarioNome)) {
                 Funcionario funcionario = funcionarioDados.get(usuarioNome);
                 String senhaGuardada = funcionario.getSenha();
-                // Aqui você pode comparar a senha fornecida com a senha guardada do Funcionario
-                System.out.println(senhaGuardada + "senha guardada");
-                System.out.println(criptografarSenha.criptografarSenha(senha) + "senha tentada");
                 return criptografarSenha.criptografarSenha(senha).equals(senhaGuardada);
             }
         } catch (IOException | ClassNotFoundException e) {
@@ -72,17 +69,14 @@ public class GerenciaArquivo {
     public void adicionaUsuarios(GerenciaFuncionario gerenciaFuncionario) throws IOException {
         List<Funcionario> funcionarios = gerenciaFuncionario.getFuncionarios();
         limparArquivo();
-        System.out.println(funcionarios + "Lista de funcionarios");
         for (Funcionario funcionario : funcionarios) {
-            System.out.println(funcionario + " funcionario no for de adicionaUsuarios");
             String login = funcionario.getLogin();
             String senha = funcionario.getSenha();
-            if(!funcionario.getSenha().startsWith("CRYPT:"))
+            if (!funcionario.getSenha().startsWith("CRYPT:")) {
                 funcionario.setSenha(criptografarSenha.criptografarSenha(senha));
-            else
+            } else {
                 funcionario.setSenha(senha);
-            System.out.println(funcionario.getLogin());
-            System.out.println(funcionario.getSenha());
+            }
             usuarioSenhas.put(login, funcionario);
         }
         guardarSenhas();
@@ -92,7 +86,6 @@ public class GerenciaArquivo {
         try {
             usuarioSenhas.clear();
             guardarSenhas();
-            System.out.println("Arquivo limpo com sucesso.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,5 +102,12 @@ public class GerenciaArquivo {
         }
 
         return funcionarios;
+    }
+
+    public Funcionario obterFuncionario(String chave) {
+        if (usuarioSenhas.containsKey(chave)) {
+            return usuarioSenhas.get(chave);
+        }
+        return null;
     }
 }

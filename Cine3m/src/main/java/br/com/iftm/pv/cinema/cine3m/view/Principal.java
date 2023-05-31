@@ -16,7 +16,6 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
-import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
@@ -112,7 +111,6 @@ public class Principal extends javax.swing.JFrame {
     private final TelaImportacao telaImportacao;
 
     List<Filme> filmes = new ArrayList<>();
-//    List<Funcionario> funcionarios = new ArrayList<>(); VOU REMOVER POIS FIZ UMA FUNCAO QUE VAI MANDAR UM LIST DE FUNCIONARIO PARA GERENCIAFUNCIONARIO
     List<Sessao> sessoes = new ArrayList<>();
     List<Venda> vendas = new ArrayList<>();
     List<Sala> salas = new ArrayList<>();
@@ -244,21 +242,16 @@ public class Principal extends javax.swing.JFrame {
         //CORES PARA A TELA IMPORTACAO
         this.telaImportacao.getContentPane().setBackground(corFundoPadrao);
 
-//        addWindowListener(new WindowAdapter() {
-//            public void windowOpened(WindowEvent e) {
-//                loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
-//                        (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
-//                jDesktopPane1.add(loginFuncionario);
-//                loginFuncionario.setVisible(true);
-//                jMenuBar1.setVisible(false);
-//            }
-//        });
-        //TELA LOGIN
-        loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
-                (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
-        jDesktopPane1.add(loginFuncionario);
-        loginFuncionario.setVisible(true);
-        jMenuBar1.setVisible(false);
+        //EVENTO QUANDO PRINCIPAL FOR FECHADO
+        addWindowListener(new WindowAdapter() {
+            public void windowOpened(WindowEvent e) {
+                loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
+                        (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
+                jDesktopPane1.add(loginFuncionario);
+                loginFuncionario.setVisible(true);
+                jMenuBar1.setVisible(false);
+            }
+        });
 
         //EVENTO QUANDO PRINCIPAL FOR FECHADO
         addWindowListener(new WindowAdapter() {

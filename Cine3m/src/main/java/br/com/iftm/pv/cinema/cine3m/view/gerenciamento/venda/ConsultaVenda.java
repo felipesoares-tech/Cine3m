@@ -5,12 +5,9 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
-import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxiliarConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
-import java.util.List;
-import javax.swing.DefaultListModel;
 
 /**
  *
@@ -18,8 +15,8 @@ import javax.swing.DefaultListModel;
  */
 public class ConsultaVenda extends javax.swing.JInternalFrame {
 
-    private TelaAuxiliarConsultaVenda telaAuxiliarConsultaVenda;
-    private GerenciaVenda gerenciaVenda;
+    private final TelaAuxiliarConsultaVenda telaAuxiliarConsultaVenda;
+    private final GerenciaVenda gerenciaVenda;
 
     public ConsultaVenda(GerenciaVenda gerenciaVenda) {
         initComponents();
@@ -72,16 +69,15 @@ public class ConsultaVenda extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(179, 179, 179)
-                                .addComponent(btnConsultarVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(254, 254, 254)
+                        .addComponent(btnConsultarVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(138, 138, 138)
-                        .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                        .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,6 +103,7 @@ public class ConsultaVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnConsultarVendasActionPerformed
 
     private void lstVendasAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstVendasAncestorAdded
+        System.out.println(gerenciaVenda.relatorio());
         ListUtils.carregarList(lstVendas, gerenciaVenda.relatorio());
         if (!gerenciaVenda.relatorio().isEmpty()) {
             btnConsultarVendas.setEnabled(true);

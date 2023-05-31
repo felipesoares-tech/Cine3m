@@ -103,6 +103,7 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
     private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded
         funcionarios = gerenciaFuncionario.relatorio();
         ListUtils.carregarList(lstFuncionarios, funcionarios);
+
         if (!funcionarios.isEmpty()) {
             btnConfirmarApagaFuncionario.setEnabled(true);
             lstFuncionarios.setSelectedIndex(0);

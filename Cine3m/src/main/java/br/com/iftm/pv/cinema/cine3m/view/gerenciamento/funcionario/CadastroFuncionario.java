@@ -249,7 +249,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         String nome = tfNomeFuncionario.getText().toUpperCase();
         String cpf = tfCpfFuncionario.getText().replaceAll("[-.]", "");
         String login = tfLoginFuncionario.getText();
-        String senha = criptografarSenha.criptografarSenha(String.valueOf(tfSenhaFuncionario.getPassword()));
+        String senha = String.valueOf(tfSenhaFuncionario.getPassword());
 
         if (ValidaCampo.validar(nome, lbNomeFuncionario, this)
                 && ValidaCampo.validar(cpf, lbCpfFuncionario, this)

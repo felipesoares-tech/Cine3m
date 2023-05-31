@@ -23,17 +23,17 @@ public class GerenciaArquivo {
         this.pathArquivo = "dados_login";
         this.criptografarSenha = new CriptografarSenha();
         criarArquivo();
-        guardarSenha("admin", criptografarSenha.criptografarSenha("admin"));
+        guardarSenha("admin", "admin");
     }
 
     public void guardarSenha(String login, String senha) {
         try {
-            usuarioSenhas.put(login, senha);
+            usuarioSenhas.put(login, criptografarSenha.criptografarSenha(senha));
             guardarSenhas();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }//usada somente para adicionar o admin
 
     private void guardarSenhas() throws IOException {
         try (FileOutputStream fos = new FileOutputStream(pathArquivo); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
@@ -74,7 +74,7 @@ public class GerenciaArquivo {
         for (Funcionario funcionario : funcionarios) {
             String login = funcionario.getLogin();
             String senha = funcionario.getSenha();
-            usuarioSenhas.put(login, senha);
+            usuarioSenhas.put(login, criptografarSenha.criptografarSenha(senha));
         }
         guardarSenhas();
     }

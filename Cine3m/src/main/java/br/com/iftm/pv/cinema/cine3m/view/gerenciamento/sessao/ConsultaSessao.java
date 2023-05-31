@@ -121,7 +121,7 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
         this.cadastroSessao.getTfValorSessao().setEditable(false);
         this.cadastroSessao.getTfDataSessao().setEditable(false);
         this.cadastroSessao.getTfHorarioSessao().setEditable(false);
-        this.cadastroSessao.getLbTituloTelaSessao().setText("Consulta de Sessões");
+        this.cadastroSessao.getLbTituloTelaSessao().setText("Consulta de Sessão");
         
         getDesktopPane().add(cadastroSessao);
         this.cadastroSessao.setVisible(true);

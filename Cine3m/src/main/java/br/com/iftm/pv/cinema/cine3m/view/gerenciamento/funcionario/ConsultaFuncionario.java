@@ -109,7 +109,7 @@ public class ConsultaFuncionario extends javax.swing.JInternalFrame {
         cadastroFuncionario.getTfCpfFuncionario().setEditable(false);
         cadastroFuncionario.getTfLoginFuncionario().setEditable(false);
         cadastroFuncionario.getTfSenhaFuncionario().setEditable(false);
-        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Consultar Funcionário");
+        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Consulta de Funcionário");
         getDesktopPane().add(cadastroFuncionario);
         cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnConsultarFuncionarioActionPerformed

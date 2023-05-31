@@ -104,6 +104,7 @@ public class AtualizaSala extends javax.swing.JInternalFrame {
         this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
         this.cadastroSala.getJsCapacidade().setValue(salaSelecionada.getCapacidade());
         this.cadastroSala.getBtnCadastrarSala().setText("ATUALIZAR");
+        this.cadastroSala.getLbTituloTelaSala().setText("Atualização de Sala");
         this.cadastroSala.getJsCapacidade().setEnabled(true);
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
         this.cadastroSala.getTfNomeSala().setEditable(true);

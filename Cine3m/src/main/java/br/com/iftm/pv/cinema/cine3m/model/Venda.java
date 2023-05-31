@@ -58,7 +58,7 @@ public class Venda {
         this.identificador = "VENDA" + " - " + itensVenda.toString() + " - " + sessao.toString();
     }
 
-    public boolean isDesconto() {
+    public boolean hasDesconto() {
         return desconto;
     }
 

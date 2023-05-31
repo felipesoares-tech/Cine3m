@@ -19,6 +19,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 /**
  *
@@ -56,6 +58,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         initComponents();
         this.jsInteira.setModel(spinnerModelInteira);
         this.jsMeia.setModel(spinnerModelMeia);
+        
     }
 
     /**
@@ -200,7 +203,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         }
         Integer total = qtdMeia + qtdInteira;
         if (total.equals(qtdMaxItensIngresso)) {
-            JOptionPane.showMessageDialog(this, "Atualizado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Cadastrado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
             this.setVisible(false);
             cadastroVenda.getContentPane().remove(consultaPoltronas);
             cadastroVenda.setConsultaPoltronas(null);
@@ -220,6 +223,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Selecione a quantidade certa de ingressos!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
+        cadastroVenda.getBtnContinuarCompra().setEnabled(false);
 
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 

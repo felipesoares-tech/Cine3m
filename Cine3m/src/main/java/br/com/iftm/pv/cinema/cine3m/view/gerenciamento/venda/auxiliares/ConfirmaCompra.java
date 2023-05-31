@@ -59,12 +59,6 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         this.jsInteira.setModel(spinnerModelInteira);
         this.jsMeia.setModel(spinnerModelMeia);
         
-        this.addInternalFrameListener(new InternalFrameAdapter() {
-            @Override
-            public void internalFrameClosing(InternalFrameEvent e) {
-              cadastroVenda.getBtnContinuarCompra().setEnabled(false);              
-            }
-        });
     }
 
     /**

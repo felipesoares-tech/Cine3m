@@ -8,6 +8,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxiliarConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import javax.swing.JList;
 
 /**
  *
@@ -24,6 +25,15 @@ public class ConsultaVenda extends javax.swing.JInternalFrame {
         this.gerenciaVenda = gerenciaVenda;
     }
 
+    public JList<Venda> getLstVendas() {
+        return lstVendas;
+    }
+
+    public void setLstVendas(JList<Venda> lstVendas) {
+        this.lstVendas = lstVendas;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

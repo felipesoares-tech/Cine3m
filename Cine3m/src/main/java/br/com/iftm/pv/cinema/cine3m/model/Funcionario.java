@@ -1,8 +1,10 @@
 
 package br.com.iftm.pv.cinema.cine3m.model;
 
+import java.io.Serializable;
 
-public class Funcionario extends Pessoa{
+
+public class Funcionario extends Pessoa implements Serializable{
     private String login;
     private String senha;
     

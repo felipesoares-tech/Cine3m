@@ -645,12 +645,20 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_imRelatorioClienteActionPerformed
 
     private void imCadastroFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroFuncionarioActionPerformed
-        this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
-        this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("Cadastrar");
-        this.cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
-        this.cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
-        this.cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
-        this.cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
+        cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
+        cadastroFuncionario.getBtnCadastrarFuncionario().setText("Cadastrar");
+        cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
+        cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
+        cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
+        cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
+        
+        cadastroFuncionario.getTfNomeFuncionario().setText("");
+        cadastroFuncionario.getTfCpfFuncionario().setText("");
+        cadastroFuncionario.getTfLoginFuncionario().setText("");
+        cadastroFuncionario.getTfSenhaFuncionario().setText("");
+        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Cadastrar Funcionário");
+        
+        
         jDesktopPane1.add(cadastroFuncionario);
         this.cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_imCadastroFuncionarioActionPerformed

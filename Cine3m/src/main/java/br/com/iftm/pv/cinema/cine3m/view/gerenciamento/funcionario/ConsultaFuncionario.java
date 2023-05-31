@@ -93,18 +93,19 @@ public class ConsultaFuncionario extends javax.swing.JInternalFrame {
 
     private void btnConsultarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarFuncionarioActionPerformed
         Funcionario funcionarioSelecionado = (Funcionario) this.lstFuncionarios.getSelectedValue();
-        this.cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
-        this.cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
-        this.cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
-        this.cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
+        cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
+        cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
+        cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
+        cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
 
-        this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(false);
-        this.cadastroFuncionario.getTfNomeFuncionario().setEditable(false);
-        this.cadastroFuncionario.getTfCpfFuncionario().setEditable(false);
-        this.cadastroFuncionario.getTfLoginFuncionario().setEditable(false);
-        this.cadastroFuncionario.getTfSenhaFuncionario().setEditable(false);
+        cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(false);
+        cadastroFuncionario.getTfNomeFuncionario().setEditable(false);
+        cadastroFuncionario.getTfCpfFuncionario().setEditable(false);
+        cadastroFuncionario.getTfLoginFuncionario().setEditable(false);
+        cadastroFuncionario.getTfSenhaFuncionario().setEditable(false);
+        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Consultar Funcionário");
         getDesktopPane().add(cadastroFuncionario);
-        this.cadastroFuncionario.setVisible(true);
+        cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnConsultarFuncionarioActionPerformed
 
     private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded

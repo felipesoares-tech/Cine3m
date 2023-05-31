@@ -237,6 +237,15 @@ public class Principal extends javax.swing.JFrame {
         this.atualizaFilme.getLstFilmes().setBackground(corPanelPadrao);
         this.apagaFilme.getLstFilmes().setBackground(corPanelPadrao);
 
+        this.cadastroVenda.getContentPane().setBackground(corFundoPadrao);
+        this.consultaVenda.getContentPane().setBackground(corFundoPadrao);
+        this.relatorioVenda.getContentPane().setBackground(corFundoPadrao);
+        this.cadastroVenda.getPanelCadastroVenda().setBackground(corPanelPadrao);
+
+        this.cadastroVenda.getPanelBotoes().setBackground(corPanelPadrao);
+        this.cadastroVenda.getPanelDados().setBackground(corPanelPadrao);
+        this.consultaVenda.getLstVendas().setBackground(corPanelPadrao);
+
         this.telaImportacao = new TelaImportacao(gerenciaFilme);
 
         //CORES PARA A TELA IMPORTACAO
@@ -636,7 +645,7 @@ public class Principal extends javax.swing.JFrame {
         this.cadastroCliente.getBtnCadastrarCliente().setText("CADASTRAR");
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
-         this.cadastroCliente.getTfNomeCliente().setText("");
+        this.cadastroCliente.getTfNomeCliente().setText("");
         this.cadastroCliente.getTfCpfCliente().setText("");
         jDesktopPane1.add(cadastroCliente);
         cadastroCliente.setVisible(true);
@@ -669,14 +678,13 @@ public class Principal extends javax.swing.JFrame {
         cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
         cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
         cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
-        
+
         cadastroFuncionario.getTfNomeFuncionario().setText("");
         cadastroFuncionario.getTfCpfFuncionario().setText("");
         cadastroFuncionario.getTfLoginFuncionario().setText("");
         cadastroFuncionario.getTfSenhaFuncionario().setText("");
         cadastroFuncionario.getLbTituloTelaFuncionario().setText("Cadastrar Funcionário");
-        
-        
+
         jDesktopPane1.add(cadastroFuncionario);
         this.cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_imCadastroFuncionarioActionPerformed
@@ -840,7 +848,7 @@ public class Principal extends javax.swing.JFrame {
             jDesktopPane1.add(loginFuncionario);
             loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
                     (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
-            
+
             loginFuncionario.setVisible(true);
             jMenuBar1.setVisible(false);
         }

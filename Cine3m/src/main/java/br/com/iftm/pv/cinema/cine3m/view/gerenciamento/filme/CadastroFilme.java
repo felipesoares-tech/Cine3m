@@ -163,6 +163,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         tfaDescricao.setRows(5);
         jScrollPane1.setViewportView(tfaDescricao);
 
+        lbGenero.setForeground(new java.awt.Color(51, 51, 51));
         lbGenero.setText("Genero");
 
         cbGenero.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -175,10 +176,13 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
             }
         });
 
+        lbDescricao.setForeground(new java.awt.Color(51, 51, 51));
         lbDescricao.setText("Descrição");
 
+        lbNome.setForeground(new java.awt.Color(51, 51, 51));
         lbNome.setText("Nome");
 
+        lbDiretor.setForeground(new java.awt.Color(51, 51, 51));
         lbDiretor.setText("Diretor");
 
         btnConfirmar.setText("Cadastrar");

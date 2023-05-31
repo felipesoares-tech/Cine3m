@@ -206,7 +206,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
             cadastroVenda.setConsultaPoltronas(null);
             Venda venda;
             List<ItemVenda> itensVenda = preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao);
-            DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroVenda.getjList1().getModel();
+            DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroVenda.getListItensIngresso().getModel();
             Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
             if (clienteSelecionado != null) {
                 venda = new Venda(sessaoSelecionada, clienteSelecionado, valorTotal, itensVenda);

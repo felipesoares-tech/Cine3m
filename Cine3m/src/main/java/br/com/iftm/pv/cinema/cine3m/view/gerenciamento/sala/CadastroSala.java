@@ -131,9 +131,11 @@ public class CadastroSala extends javax.swing.JInternalFrame {
         lbTituloTelaCliente.setText("Cadastro de salas");
 
         lbSalaCapacidade.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbSalaCapacidade.setForeground(new java.awt.Color(51, 51, 51));
         lbSalaCapacidade.setText("Capacidade");
 
         lbSalaNome.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbSalaNome.setForeground(new java.awt.Color(51, 51, 51));
         lbSalaNome.setText("Nome");
 
         btnCadastrarSala.setText("Cadastrar");

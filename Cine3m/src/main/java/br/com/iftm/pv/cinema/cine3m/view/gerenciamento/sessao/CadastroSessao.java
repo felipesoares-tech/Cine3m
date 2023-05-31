@@ -194,18 +194,18 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
             }
         });
 
-        lbFilmes.setForeground(new java.awt.Color(255, 255, 255));
+        lbFilmes.setForeground(new java.awt.Color(51, 51, 51));
         lbFilmes.setText("FIlmes");
 
-        lbSalas.setForeground(new java.awt.Color(255, 255, 255));
+        lbSalas.setForeground(new java.awt.Color(51, 51, 51));
         lbSalas.setText("Salas");
 
-        lbValor.setForeground(new java.awt.Color(255, 255, 255));
+        lbValor.setForeground(new java.awt.Color(51, 51, 51));
         lbValor.setText("Valor");
 
         tfValorSessao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
-        lbData.setForeground(new java.awt.Color(255, 255, 255));
+        lbData.setForeground(new java.awt.Color(51, 51, 51));
         lbData.setText("Data:");
 
         try {
@@ -214,7 +214,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        lbHora.setForeground(new java.awt.Color(255, 255, 255));
+        lbHora.setForeground(new java.awt.Color(51, 51, 51));
         lbHora.setText("Hora");
 
         try {

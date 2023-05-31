@@ -150,7 +150,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
 
         lbTituloTelaFuncionario.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         lbTituloTelaFuncionario.setForeground(new java.awt.Color(204, 204, 204));
-        lbTituloTelaFuncionario.setText("Cadastro Funcionario");
+        lbTituloTelaFuncionario.setText("Cadastro de Funcionários");
 
         lbNomeFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         lbNomeFuncionario.setText("Nome:");
@@ -232,7 +232,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbTituloTelaFuncionario))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

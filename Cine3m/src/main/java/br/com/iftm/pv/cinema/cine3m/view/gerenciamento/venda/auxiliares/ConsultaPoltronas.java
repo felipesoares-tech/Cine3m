@@ -97,8 +97,8 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
                         model.addElement(new ItemVenda(new Poltrona(btn.getText())));
                     }
                 }
-                cadastroVenda.getjList1().setModel(model);
-                if (cadastroVenda.getjList1().getModel().getSize() > 0) {
+                cadastroVenda.getListItensIngresso().setModel(model);
+                if (cadastroVenda.getListItensIngresso().getModel().getSize() > 0) {
                     cadastroVenda.getBtnContinuarCompra().setEnabled(true);
                 } else {
                     cadastroVenda.getBtnContinuarCompra().setEnabled(false);

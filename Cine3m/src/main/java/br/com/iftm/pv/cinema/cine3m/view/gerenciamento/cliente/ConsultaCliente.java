@@ -102,7 +102,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
 
         this.cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
         this.cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
-        this.cadastroCliente.getLbTituloTelaCliente().setText("Consultar Cliente");
+        this.cadastroCliente.getLbTituloTelaCliente().setText("Consulta de Cliente");
 
         this.cadastroCliente.getBtnCadastrarCliente().setVisible(false);
         this.cadastroCliente.getTfNomeCliente().setEditable(false);

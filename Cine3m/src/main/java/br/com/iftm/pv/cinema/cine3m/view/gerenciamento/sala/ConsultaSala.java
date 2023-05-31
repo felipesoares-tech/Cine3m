@@ -105,6 +105,7 @@ public class ConsultaSala extends javax.swing.JInternalFrame {
         this.cadastroSala.getJsCapacidade().setEnabled(false);
         this.cadastroSala.getTfNomeSala().setEditable(false);
         this.cadastroSala.getJsCapacidade().setEnabled(false);
+        this.cadastroSala.getLbTituloTelaSala().setText("Consulta de Sala");
         getDesktopPane().add(cadastroSala);
         this.cadastroSala.setVisible(true);
 

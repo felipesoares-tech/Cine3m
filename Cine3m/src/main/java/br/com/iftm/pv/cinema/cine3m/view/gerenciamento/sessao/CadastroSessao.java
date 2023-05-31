@@ -145,7 +145,6 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         this.tfValorSessao = tfValorSessao;
     }
 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -170,20 +169,20 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         tfHorarioSessao = new javax.swing.JFormattedTextField();
 
         setClosable(true);
-
-        lbTituloTelaSessao.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaSessao.setText("Cadastro de Sessão");
-
-        btnCadastrarSessao.setText("Cadastrar");
-        btnCadastrarSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
+        addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                btnCadastrarSessaoAncestorAdded(evt);
+                formAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+
+        lbTituloTelaSessao.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaSessao.setText("Cadastro de Sessão");
+
+        btnCadastrarSessao.setText("Cadastrar");
         btnCadastrarSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarSessaoActionPerformed(evt);
@@ -193,28 +192,8 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         lbFilmes.setForeground(new java.awt.Color(255, 255, 255));
         lbFilmes.setText("FIlmes");
 
-        cbFilmesSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cbFilmesSessaoAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-
         lbSalas.setForeground(new java.awt.Color(255, 255, 255));
         lbSalas.setText("Salas");
-
-        cbSalasSessao.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cbSalasSessaoAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
 
         lbValor.setForeground(new java.awt.Color(255, 255, 255));
         lbValor.setText("Valor");
@@ -321,20 +300,6 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbFilmesSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbFilmesSessaoAncestorAdded
-        ComboBoxUtils.carregarComboBox(cbFilmesSessao, gerenciaFilme.relatorio());
-        if (this.sessaoSelecionada != null) {
-            cbFilmesSessao.setSelectedItem(sessaoSelecionada.getFilme());
-        }
-    }//GEN-LAST:event_cbFilmesSessaoAncestorAdded
-
-    private void cbSalasSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSalasSessaoAncestorAdded
-        ComboBoxUtils.carregarComboBox(cbSalasSessao, gerenciaSala.relatorio());
-        if (this.sessaoSelecionada != null) {
-            cbSalasSessao.setSelectedItem(sessaoSelecionada.getSala());
-        }
-    }//GEN-LAST:event_cbSalasSessaoAncestorAdded
-
     private void btnCadastrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoActionPerformed
         Filme filmeSelecionado = (Filme) cbFilmesSessao.getSelectedItem();
         Sala salaSelecionada = (Sala) cbSalasSessao.getSelectedItem();
@@ -384,12 +349,22 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
 
-    private void btnCadastrarSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btnCadastrarSessaoAncestorAdded
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        ComboBoxUtils.carregarComboBox(cbSalasSessao, gerenciaSala.relatorio());
+        if (this.sessaoSelecionada != null) {
+            cbSalasSessao.setSelectedItem(sessaoSelecionada.getSala());
+        }
+
+        ComboBoxUtils.carregarComboBox(cbFilmesSessao, gerenciaFilme.relatorio());
+        if (this.sessaoSelecionada != null) {
+            cbFilmesSessao.setSelectedItem(sessaoSelecionada.getFilme());
+        }
+
         if (cbFilmesSessao.getModel().getSize() > 0
                 && cbSalasSessao.getModel().getSize() > 0) {
             btnCadastrarSessao.setEnabled(true);
         }
-    }//GEN-LAST:event_btnCadastrarSessaoAncestorAdded
+    }//GEN-LAST:event_formAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

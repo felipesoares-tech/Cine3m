@@ -8,7 +8,6 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -63,6 +62,7 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
         });
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaCliente.setText("Apagar Funcionário");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

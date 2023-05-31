@@ -233,6 +233,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         );
 
         lbTituloTelaFilme.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaFilme.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaFilme.setText("Cadastro de filmes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

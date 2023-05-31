@@ -149,6 +149,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         setClosable(true);
 
         lbTituloTelaFuncionario.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaFuncionario.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaFuncionario.setText("Cadastro Funcionario");
 
         lbNomeFuncionario.setForeground(new java.awt.Color(255, 255, 255));

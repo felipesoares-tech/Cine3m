@@ -170,7 +170,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         lbSenhaFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         lbSenhaFuncionario.setText("Senha:");
 
-        btnCadastrarFuncionario.setText("Cadastrar");
+        btnCadastrarFuncionario.setText("CADASTRAR");
         btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarFuncionarioActionPerformed(evt);
@@ -259,7 +259,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
                 && ValidaCampo.validar(senha, lbSenhaFuncionario, this)) {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
-            if (btnCadastrarFuncionario.getText().equals("Cadastrar")) {
+            if (btnCadastrarFuncionario.getText().equals("CADASTRAR")) {
                 Boolean sucesso = gerenciaFuncionario.cadastrar(funcionario);
                 JOptionPane.showMessageDialog(this, sucesso ? "Funcionario cadstrado com sucesso " : "Funcionario já Cadastrado!",
                         "Cadastro Funcionario", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);

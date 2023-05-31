@@ -60,7 +60,7 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(lstFilmes);
 
-        btnConfirmarApagaFilme.setText("Apagar");
+        btnConfirmarApagaFilme.setText("APAGAR");
         btnConfirmarApagaFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarApagaFilmeActionPerformed(evt);

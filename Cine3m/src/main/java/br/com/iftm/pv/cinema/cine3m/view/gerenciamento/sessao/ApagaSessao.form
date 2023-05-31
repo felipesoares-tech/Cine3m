@@ -91,7 +91,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnConfirmarApagaSessao1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Confirmar"/>
+        <Property name="text" type="java.lang.String" value="APAGAR"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmarApagaSessao1ActionPerformed"/>

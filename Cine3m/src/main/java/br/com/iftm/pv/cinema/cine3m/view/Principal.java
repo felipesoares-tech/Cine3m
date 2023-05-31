@@ -193,12 +193,24 @@ public class Principal extends javax.swing.JFrame {
         this.relatorioFuncionario.getContentPane().setBackground(corFundoPadrao);
         this.loginFuncionario.getContentPane().setBackground(corFundoPadrao);
 
+        // PANEL/LIST FUNCIONARIOS
+        this.cadastroFuncionario.getjPanel1().setBackground(corPanelPadrao);
+        this.consultaFuncionario.getLstFuncionarios().setBackground(corPanelPadrao);
+        this.atualizaFuncionario.getLstFuncionarios().setBackground(corPanelPadrao);
+        this.apagaFuncionario.getLstFuncionarios().setBackground(corPanelPadrao);
+
         //CORES PARA TELAS SESSAO
         this.cadastroSessao.getContentPane().setBackground(corFundoPadrao);
         this.consultaSessao.getContentPane().setBackground(corFundoPadrao);
         this.atualizaSessao.getContentPane().setBackground(corFundoPadrao);
         this.apagaSessao.getContentPane().setBackground(corFundoPadrao);
         this.relatorioSessao.getContentPane().setBackground(corFundoPadrao);
+
+        // PANEL/LIST SESSOES
+        this.cadastroSessao.getjPanel1().setBackground(corPanelPadrao);
+        this.consultaSessao.getListSessao().setBackground(corPanelPadrao);
+        this.atualizaSessao.getListSessao().setBackground(corPanelPadrao);
+        this.apagaSessao.getListApagaSessao().setBackground(corPanelPadrao);
 
         //CORES PARA TELAS SALA
         this.cadastroSala.getContentPane().setBackground(corFundoPadrao);
@@ -207,12 +219,24 @@ public class Principal extends javax.swing.JFrame {
         this.apagaSala.getContentPane().setBackground(corFundoPadrao);
         this.relatorioSala.getContentPane().setBackground(corFundoPadrao);
 
+        // PANEL/LIST SALAS
+        this.cadastroSala.getjPanel1().setBackground(corPanelPadrao);
+        this.consultaSala.getLstSalas().setBackground(corPanelPadrao);
+        this.atualizaSala.getLstSalas().setBackground(corPanelPadrao);
+        this.apagaSala.getListSala().setBackground(corPanelPadrao);
+
         //CORES PARA TELAS FILME
         this.cadastroFilme.getContentPane().setBackground(corFundoPadrao);
         this.consultaFilme.getContentPane().setBackground(corFundoPadrao);
         this.atualizaFilme.getContentPane().setBackground(corFundoPadrao);
         this.apagaFilme.getContentPane().setBackground(corFundoPadrao);
         this.relatorioFilme.getContentPane().setBackground(corFundoPadrao);
+
+        // PANEL/LIST FILMES
+        this.cadastroFilme.getjPanel1().setBackground(corPanelPadrao);
+        this.consultaFilme.getLstFilmes().setBackground(corPanelPadrao);
+        this.atualizaFilme.getLstFilmes().setBackground(corPanelPadrao);
+        this.apagaFilme.getLstFilmes().setBackground(corPanelPadrao);
 
         this.telaImportacao = new TelaImportacao(gerenciaFilme);
 

@@ -9,6 +9,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -93,6 +94,10 @@ public class ApagaSala extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JList<Sala> getListSala() {
+        return listSala;
+    }
 
     private void btnConfirmarApagaSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaSalaActionPerformed
         Sala salaSelecionada = listSala.getSelectedValue();

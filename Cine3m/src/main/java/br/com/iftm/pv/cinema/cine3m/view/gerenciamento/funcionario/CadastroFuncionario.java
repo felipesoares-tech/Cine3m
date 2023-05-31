@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -118,6 +119,10 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
 
     public void setTfSenhaFuncionario(JPasswordField tfSenhaFuncionario) {
         this.tfSenhaFuncionario = tfSenhaFuncionario;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
     }
 
     /**

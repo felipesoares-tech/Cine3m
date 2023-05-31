@@ -283,8 +283,8 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
             } else {
                 gerenciaFilme.atualizar(filmeSelecionado, filme);
                 JOptionPane.showMessageDialog(this, "Filme atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
-                this.setVisible(false);
-                this.getParent().setVisible(false);
+                setVisible(false);
+                getDesktopPane().remove(this);
 
             }
             tfNomeFilme.setText("");

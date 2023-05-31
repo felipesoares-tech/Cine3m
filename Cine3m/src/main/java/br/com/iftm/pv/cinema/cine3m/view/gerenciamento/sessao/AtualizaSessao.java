@@ -9,8 +9,8 @@ import javax.swing.JList;
 
 public class AtualizaSessao extends javax.swing.JInternalFrame {
 
-    private CadastroSessao cadastroSessao;
-    private GerenciaSessao gerenciaSessao;
+    private final CadastroSessao cadastroSessao;
+    private final GerenciaSessao gerenciaSessao;
     private List<Sessao> listaSessoes;
 
     public AtualizaSessao(CadastroSessao cadastroSessao, GerenciaSessao gerenciaSessao) {

@@ -50,6 +50,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.ConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.RelatorioVenda;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxiliarConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.importacoes.TelaImportacao;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
@@ -390,7 +391,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu1.add(mCliente);
 
-        mFuncionario.setText("Funcionrio");
+        mFuncionario.setText("Funcionario");
 
         imCadastroFuncionario.setText("Cadastrar");
         imCadastroFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -641,6 +642,8 @@ public class Principal extends javax.swing.JFrame {
         this.cadastroCliente.getBtnCadastrarCliente().setText("CADASTRAR");
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
+         this.cadastroCliente.getTfNomeCliente().setText("");
+        this.cadastroCliente.getTfCpfCliente().setText("");
         jDesktopPane1.add(cadastroCliente);
         cadastroCliente.setVisible(true);
     }//GEN-LAST:event_imCadastroClienteActionPerformed
@@ -666,12 +669,20 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_imRelatorioClienteActionPerformed
 
     private void imCadastroFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroFuncionarioActionPerformed
-        this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
-        this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("Cadastrar");
-        this.cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
-        this.cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
-        this.cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
-        this.cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
+        cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
+        cadastroFuncionario.getBtnCadastrarFuncionario().setText("Cadastrar");
+        cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
+        cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
+        cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
+        cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
+        
+        cadastroFuncionario.getTfNomeFuncionario().setText("");
+        cadastroFuncionario.getTfCpfFuncionario().setText("");
+        cadastroFuncionario.getTfLoginFuncionario().setText("");
+        cadastroFuncionario.getTfSenhaFuncionario().setText("");
+        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Cadastrar Funcionário");
+        
+        
         jDesktopPane1.add(cadastroFuncionario);
         this.cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_imCadastroFuncionarioActionPerformed
@@ -805,7 +816,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_imCadastroVendaActionPerformed
 
     private void imConsultaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaVendaActionPerformed
-        // TODO add your handling code here:
+        jDesktopPane1.add(consultaVenda);
+        consultaVenda.setVisible(true);
     }//GEN-LAST:event_imConsultaVendaActionPerformed
 
     private void imRelatorioVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioVendaActionPerformed
@@ -834,6 +846,7 @@ public class Principal extends javax.swing.JFrame {
             jDesktopPane1.add(loginFuncionario);
             loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
                     (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
+            
             loginFuncionario.setVisible(true);
             jMenuBar1.setVisible(false);
         }

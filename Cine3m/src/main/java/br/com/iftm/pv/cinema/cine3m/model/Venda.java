@@ -47,7 +47,7 @@ public class Venda {
         this.sessao = sessao;
         this.valorFinal = valorFinal;
         this.itensVenda = itensVenda;
-        this.identificador = itensVenda.toString() + sessao.toString();
+        this.identificador = "VENDA" + " - " + itensVenda.toString() + " - " + sessao.toString();
     }
 
     public Venda(Sessao sessao, Cliente cliente, Double valorFinal, List<ItemVenda> itensVenda) {
@@ -55,6 +55,7 @@ public class Venda {
         this.cliente = cliente;
         this.valorFinal = valorFinal;
         this.itensVenda = itensVenda;
+        this.identificador = "VENDA" + " - " + itensVenda.toString() + " - " + sessao.toString();
     }
 
     public boolean isDesconto() {
@@ -63,6 +64,15 @@ public class Venda {
 
     public void setDesconto(boolean desconto) {
         this.desconto = desconto;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    @Override
+    public String toString() {
+        return getIdentificador();
     }
 
 }

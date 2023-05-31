@@ -61,6 +61,11 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        lstFuncionarios.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lstFuncionariosFocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstFuncionarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,6 +110,7 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
         this.cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
         this.cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
         this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("Atualizar");
+        this.cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualizar Funcionário");
         this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
         this.cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
         this.cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
@@ -125,6 +131,10 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
             btnAtualizarFuncionario.setEnabled(false);
         }
     }//GEN-LAST:event_lstFuncionariosAncestorAdded
+
+    private void lstFuncionariosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lstFuncionariosFocusGained
+        lstFuncionariosAncestorAdded(null);
+    }//GEN-LAST:event_lstFuncionariosFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

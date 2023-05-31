@@ -58,7 +58,7 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="mFuncionario">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Funcionrio"/>
+                <Property name="text" type="java.lang.String" value="Funcionario"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="imCadastroFuncionario">

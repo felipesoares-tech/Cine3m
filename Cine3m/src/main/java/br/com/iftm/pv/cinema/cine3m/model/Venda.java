@@ -47,7 +47,7 @@ public class Venda {
         this.sessao = sessao;
         this.valorFinal = valorFinal;
         this.itensVenda = itensVenda;
-        this.identificador = itensVenda.toString() + sessao.toString();
+        this.identificador = "VENDA" + " - " + itensVenda.toString() + " - " + sessao.toString();
     }
 
     public Venda(Sessao sessao, Cliente cliente, Double valorFinal, List<ItemVenda> itensVenda) {

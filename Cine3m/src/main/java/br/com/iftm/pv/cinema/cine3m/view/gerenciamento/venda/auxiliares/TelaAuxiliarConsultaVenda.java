@@ -7,6 +7,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
@@ -144,11 +145,11 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         this.lbTituloTelaCliente = lbTituloTelaCliente;
     }
 
-    public JList<ItemVenda> getListItensIngresso() {
+    public JList<String> getListItensIngresso() {
         return listItensIngresso;
     }
 
-    public void setListItensIngresso(JList<ItemVenda> listItensIngresso) {
+    public void setListItensIngresso(JList<String> listItensIngresso) {
         this.listItensIngresso = listItensIngresso;
     }
 
@@ -380,8 +381,12 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         getTfSessaoConsulta().setText(nomeSessaoVenda);
         getTfValorTotal().setText(String.valueOf(valorTotal));
         getjCheckBox1().setSelected(desconto);
-        DefaultListModel<ItemVenda> model = new DefaultListModel<>();
-        model.addAll(itensVenda);
+        DefaultListModel<String> model = new DefaultListModel<>();
+        Iterator<ItemVenda> it = itensVenda.iterator();
+        while (it.hasNext()) {
+            ItemVenda itemVenda = (ItemVenda) it.next();
+            model.addElement(itemVenda.getPoltrona() + " - " + itemVenda.getTipoIngresso() + " - " + "R$ " + String.valueOf(itemVenda.getValor()));
+        }
         getListItensIngresso().setModel(model);
     }//GEN-LAST:event_formAncestorAdded
 
@@ -399,7 +404,7 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTituloTelaCliente;
-    private javax.swing.JList<br.com.iftm.pv.cinema.cine3m.model.ItemVenda> listItensIngresso;
+    private javax.swing.JList<String> listItensIngresso;
     private javax.swing.JTextField tfClienteConsulta;
     private javax.swing.JTextField tfFuncionarioConsulta;
     private javax.swing.JTextField tfSessaoConsulta;

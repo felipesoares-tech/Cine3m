@@ -218,9 +218,11 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         tfSessaoConsulta.setEditable(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Sessão");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Cliente");
 
         tfClienteConsulta.setEditable(false);
@@ -228,6 +230,7 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         tfFuncionarioConsulta.setEditable(false);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Funcionario");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -277,10 +280,13 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
 
         jScrollPane1.setViewportView(listItensIngresso);
 
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Itens Ingresso:");
 
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Valor Total:");
 
+        jCheckBox1.setForeground(new java.awt.Color(51, 51, 51));
         jCheckBox1.setText("Desconto");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

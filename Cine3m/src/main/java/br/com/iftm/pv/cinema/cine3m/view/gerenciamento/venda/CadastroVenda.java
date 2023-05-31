@@ -249,9 +249,11 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Sessão");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Cliente");
 
         tfClienteSelecionado.setEditable(false);
@@ -326,6 +328,7 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
 
         jScrollPane1.setViewportView(listItensIngresso);
 
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Ingresso :");
 
         btnContinuarCompra.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N

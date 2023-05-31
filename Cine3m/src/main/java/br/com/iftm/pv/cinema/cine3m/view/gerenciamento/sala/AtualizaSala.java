@@ -45,7 +45,7 @@ public class AtualizaSala extends javax.swing.JInternalFrame {
         lbTituloTelaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTituloTelaCliente.setText("Atualizar Sala");
 
-        btnAtualizarSala.setText("Confirmar");
+        btnAtualizarSala.setText("CONFIRMAR");
         btnAtualizarSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtualizarSalaActionPerformed(evt);
@@ -103,7 +103,7 @@ public class AtualizaSala extends javax.swing.JInternalFrame {
         Sala salaSelecionada = (Sala) this.lstSalas.getSelectedValue();
         this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
         this.cadastroSala.getJsCapacidade().setValue(salaSelecionada.getCapacidade());
-        this.cadastroSala.getBtnCadastrarSala().setText("Atualizar");
+        this.cadastroSala.getBtnCadastrarSala().setText("ATUALIZAR");
         this.cadastroSala.getJsCapacidade().setEnabled(true);
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
         this.cadastroSala.getTfNomeSala().setEditable(true);

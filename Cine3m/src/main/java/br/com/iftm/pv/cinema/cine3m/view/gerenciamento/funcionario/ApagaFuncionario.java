@@ -54,7 +54,7 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(lstFuncionarios);
 
-        btnConfirmarApagaFuncionario.setText("Apagar");
+        btnConfirmarApagaFuncionario.setText("APAGAR");
         btnConfirmarApagaFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarApagaFuncionarioActionPerformed(evt);

@@ -185,7 +185,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         lbDiretor.setForeground(new java.awt.Color(51, 51, 51));
         lbDiretor.setText("Diretor");
 
-        btnConfirmar.setText("Cadastrar");
+        btnConfirmar.setText("CADASTRAR");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
@@ -280,7 +280,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
 
         if (ValidaCampo.validar(nome, lbNome, this) && ValidaCampo.validar(diretor, lbDiretor, this) && ValidaCampo.validar(descricao, lbDescricao, this)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
-            if (btnConfirmar.getText().equals("Cadastrar")) {
+            if (btnConfirmar.getText().equals("CADASTRAR")) {
                 Boolean sucesso = gerenciaFilme.cadastrar(filme);
                 JOptionPane.showMessageDialog(rootPane, sucesso ? "Filme cadstrado com sucesso " : "Filme já Cadastrado!",
                         "Cadastro Filme", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);

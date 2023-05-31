@@ -48,7 +48,7 @@ public class ConsultaFilme extends javax.swing.JInternalFrame {
         lbTituloTelaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTituloTelaCliente.setText("Consultar Filmes");
 
-        btnConsultarFilme.setText("Confirmar");
+        btnConsultarFilme.setText("CONFIRMAR");
         btnConsultarFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarFilmeActionPerformed(evt);

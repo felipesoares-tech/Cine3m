@@ -40,7 +40,7 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        btnAtualizarFuncionario.setText("Confirmar");
+        btnAtualizarFuncionario.setText("CONFIRMAR");
         btnAtualizarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtualizarFuncionarioActionPerformed(evt);
@@ -110,7 +110,7 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
         this.cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
         this.cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
         this.cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
-        this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("Atualizar");
+        this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("ATUALIZAR");
         this.cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualizar Funcionário");
         this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
         this.cadastroFuncionario.getTfNomeFuncionario().setEditable(true);

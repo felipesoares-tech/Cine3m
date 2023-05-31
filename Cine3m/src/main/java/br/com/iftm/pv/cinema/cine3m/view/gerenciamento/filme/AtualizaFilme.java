@@ -44,7 +44,7 @@ public class AtualizaFilme extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnAtualizarFilme.setText("Confirmar");
+        btnAtualizarFilme.setText("CONFIRMAR");
         btnAtualizarFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtualizarFilmeActionPerformed(evt);
@@ -111,7 +111,7 @@ public class AtualizaFilme extends javax.swing.JInternalFrame {
         this.cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
         this.cadastroFilme.getTfaDescricao().setText(filmeSelecionado.getDescricao());
         this.cadastroFilme.getLbTituloTelaFilme().setText("Atualização de Filme");
-        this.cadastroFilme.getBtnConfirmar().setText("Atualizar");
+        this.cadastroFilme.getBtnConfirmar().setText("ATUALIZAR");
         this.cadastroFilme.getBtnConfirmar().setVisible(true);
         this.cadastroFilme.getTfNomeFilme().setEditable(true);
         this.cadastroFilme.getTfDiretor().setEditable(true);

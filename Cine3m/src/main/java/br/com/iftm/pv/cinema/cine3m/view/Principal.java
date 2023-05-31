@@ -673,7 +673,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imCadastroFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroFuncionarioActionPerformed
         cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
-        cadastroFuncionario.getBtnCadastrarFuncionario().setText("Cadastrar");
+        cadastroFuncionario.getBtnCadastrarFuncionario().setText("CADASTRAR");
         cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
         cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
         cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
@@ -710,7 +710,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_imRelatorioFuncionarioActionPerformed
 
     private void imCadastroFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroFilmeActionPerformed
-        this.cadastroFilme.getBtnConfirmar().setText("Cadastrar");
+        this.cadastroFilme.getBtnConfirmar().setText("CADASTRAR");
         this.cadastroFilme.getBtnConfirmar().setVisible(true);
         this.cadastroFilme.getTfNomeFilme().setEditable(true);
         this.cadastroFilme.getTfDiretor().setEditable(true);
@@ -746,7 +746,7 @@ public class Principal extends javax.swing.JFrame {
     private void imCadastroSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSalaActionPerformed
         this.cadastroSala.getJsCapacidade().setEnabled(true);
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
-        this.cadastroSala.getBtnCadastrarSala().setText("Cadastrar");
+        this.cadastroSala.getBtnCadastrarSala().setText("CADASTRAR");
         this.cadastroSala.getTfNomeSala().setText("");
         this.cadastroSala.getTfNomeSala().setEditable(true);
         jDesktopPane1.add(cadastroSala);
@@ -776,7 +776,7 @@ public class Principal extends javax.swing.JFrame {
     private void imCadastroSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSessaoActionPerformed
         this.cadastroSessao.getBtnCadastrarSessao().setVisible(true);
         this.cadastroSessao.getLbTituloTelaSessao().setText("Cadastro de Sessão");
-        this.cadastroSessao.getBtnCadastrarSessao().setText("Cadastrar");
+        this.cadastroSessao.getBtnCadastrarSessao().setText("CADASTRAR");
 
         //Habilita campos
         this.cadastroSessao.getTfDataSessao().setEditable(true);

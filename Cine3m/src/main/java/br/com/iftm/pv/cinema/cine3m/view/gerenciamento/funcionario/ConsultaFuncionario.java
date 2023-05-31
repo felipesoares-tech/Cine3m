@@ -40,7 +40,7 @@ public class ConsultaFuncionario extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        btnConsultarFuncionario.setText("Confirmar");
+        btnConsultarFuncionario.setText("CONFIRMAR");
         btnConsultarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarFuncionarioActionPerformed(evt);

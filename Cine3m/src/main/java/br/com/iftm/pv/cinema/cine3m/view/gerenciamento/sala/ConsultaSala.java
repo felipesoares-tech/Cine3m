@@ -45,7 +45,7 @@ public class ConsultaSala extends javax.swing.JInternalFrame {
         lbTituloTelaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTituloTelaCliente.setText("Consultar Sala");
 
-        btnConsultarSala.setText("Consultar");
+        btnConsultarSala.setText("CONFIRMAR");
         btnConsultarSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarSalaActionPerformed(evt);

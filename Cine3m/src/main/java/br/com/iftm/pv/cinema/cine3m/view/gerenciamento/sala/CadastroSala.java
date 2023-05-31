@@ -138,7 +138,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
         lbSalaNome.setForeground(new java.awt.Color(51, 51, 51));
         lbSalaNome.setText("Nome");
 
-        btnCadastrarSala.setText("Cadastrar");
+        btnCadastrarSala.setText("CADASTRAR");
         btnCadastrarSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarSalaActionPerformed(evt);
@@ -211,7 +211,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
         String nome = tfNomeSala.getText();
         Sala sala = new Sala(nome, capacidade);
         if (ValidaCampo.validar(nome, lbSalaNome, this)) {
-            if (btnCadastrarSala.getText().equals("Cadastrar")) {
+            if (btnCadastrarSala.getText().equals("CADASTRAR")) {
                 Boolean sucesso = gerenciaSala.cadastrar(sala);
                 JOptionPane.showMessageDialog(this, sucesso ? "Sala cadastrada com sucesso !" : "Sala já cadastrada!",
                         "Cadastro Sala", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);

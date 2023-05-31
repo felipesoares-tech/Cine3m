@@ -52,6 +52,7 @@ public class ConsultaSessao extends javax.swing.JInternalFrame {
         });
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaCliente.setText("Consultar Sessão");
 
         listSessao.setForeground(new java.awt.Color(102, 102, 255));

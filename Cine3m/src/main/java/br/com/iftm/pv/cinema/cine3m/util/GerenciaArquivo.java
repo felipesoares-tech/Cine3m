@@ -23,17 +23,7 @@ public class GerenciaArquivo {
         this.pathArquivo = "dados_login";
         this.criptografarSenha = new CriptografarSenha();
         criarArquivo();
-        guardarSenha("admin", "admin");
     }
-
-    public void guardarSenha(String login, String senha) {
-        try {
-            usuarioSenhas.put(login, criptografarSenha.criptografarSenha(senha));
-            guardarSenhas();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }//usada somente para adicionar o admin
 
     private void guardarSenhas() throws IOException {
         try (FileOutputStream fos = new FileOutputStream(pathArquivo); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
@@ -46,6 +36,12 @@ public class GerenciaArquivo {
             File arquivo = new File(pathArquivo);
             if (!arquivo.exists()) {
                 arquivo.createNewFile();
+                try {
+                    usuarioSenhas.put("admin", criptografarSenha.criptografarSenha("admin"));
+                    guardarSenhas();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,8 +49,7 @@ public class GerenciaArquivo {
     }
 
     public boolean checarCredenciais(String usuarioNome, String senha) {
-        try (FileInputStream fis = new FileInputStream(pathArquivo); 
-                ObjectInputStream ois = new ObjectInputStream(fis)) {
+        try (FileInputStream fis = new FileInputStream(pathArquivo); ObjectInputStream ois = new ObjectInputStream(fis)) {
             HashMap<String, String> usuarioSenhas = (HashMap<String, String>) ois.readObject();
 
             if (usuarioSenhas.containsKey(usuarioNome)) {

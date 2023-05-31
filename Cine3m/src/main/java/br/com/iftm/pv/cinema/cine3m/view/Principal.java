@@ -367,7 +367,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu1.add(mCliente);
 
-        mFuncionario.setText("Funcionrio");
+        mFuncionario.setText("Funcionario");
 
         imCadastroFuncionario.setText("Cadastrar");
         imCadastroFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -618,6 +618,8 @@ public class Principal extends javax.swing.JFrame {
         this.cadastroCliente.getBtnCadastrarCliente().setText("CADASTRAR");
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
+         this.cadastroCliente.getTfNomeCliente().setText("");
+        this.cadastroCliente.getTfCpfCliente().setText("");
         jDesktopPane1.add(cadastroCliente);
         cadastroCliente.setVisible(true);
     }//GEN-LAST:event_imCadastroClienteActionPerformed

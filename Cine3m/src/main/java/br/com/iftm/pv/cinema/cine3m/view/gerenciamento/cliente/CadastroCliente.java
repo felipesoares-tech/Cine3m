@@ -167,7 +167,7 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
                 limpaCampos();
             }
-
+           
         }
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 

@@ -4,6 +4,7 @@
  */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
+import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import java.util.List;
@@ -25,6 +26,10 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
 
     public TelaAuxiliarConsultaVenda() {
         initComponents();
+        this.tfClienteConsulta.setEnabled(false);
+        this.tfSessaoConsulta.setEnabled(false);
+        this.tfValorTotal.setEnabled(false);
+        this.jCheckBox1.setEnabled(false);
     }
 
     public Venda getVendaSelecionada() {
@@ -199,6 +204,15 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         lbTituloTelaCliente = new javax.swing.JLabel();
 
         setClosable(true);
+        addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                formAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         tfSessaoConsulta.setEditable(false);
 
@@ -352,6 +366,24 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        Cliente clienteVenda = vendaSelecionada.getCliente();
+        String nomeClienteVenda = clienteVenda != null ? clienteVenda.getNome() : "";
+        String nomeSessaoVenda = vendaSelecionada.getSessao().getNome();
+        //String nomeFuncionarioVenda = vendaSelecionada.getFuncionario().getNome(); ainda precisa implementar
+        List<ItemVenda> itensVenda = vendaSelecionada.getItensIngresso();
+        Double valorTotal = vendaSelecionada.getValorFinal();
+        boolean desconto = vendaSelecionada.isDesconto();
+
+        getTfClienteConsulta().setText(nomeClienteVenda);
+        getTfSessaoConsulta().setText(nomeSessaoVenda);
+        getTfValorTotal().setText(String.valueOf(valorTotal));
+        getjCheckBox1().setSelected(desconto);
+        DefaultListModel<ItemVenda> model = new DefaultListModel<>();
+        model.addAll(itensVenda);
+        getListItensIngresso().setModel(model);
+    }//GEN-LAST:event_formAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

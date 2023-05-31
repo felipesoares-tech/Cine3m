@@ -102,22 +102,6 @@ public class ConsultaVenda extends javax.swing.JInternalFrame {
         Venda vendaSelecionada = (Venda) this.lstVendas.getSelectedValue();
         telaAuxiliarConsultaVenda.setVendaSelecionada(vendaSelecionada);
         getDesktopPane().add(telaAuxiliarConsultaVenda);
-        
-        
-        String nomeClienteVenda = vendaSelecionada.getCliente().getNome();
-        String nomeSessaoVenda = vendaSelecionada.getSessao().getNome();
-        //String nomeFuncionarioVenda = vendaSelecionada.getFuncionario().getNome(); ainda precisa implementar
-        List<ItemVenda> itensVenda = vendaSelecionada.getItensIngresso();
-        Double valorTotal = vendaSelecionada.getValorFinal();
-        boolean desconto = vendaSelecionada.isDesconto();
-        
-        telaAuxiliarConsultaVenda.getTfClienteConsulta().setText(nomeClienteVenda);
-        telaAuxiliarConsultaVenda.getTfSessaoConsulta().setText(nomeSessaoVenda);
-        telaAuxiliarConsultaVenda.getTfValorTotal().setText(String.valueOf(valorTotal));
-        telaAuxiliarConsultaVenda.getjCheckBox1().setSelected(desconto);
-        DefaultListModel<ItemVenda> model = new DefaultListModel<>();
-        model.addAll(itensVenda);
-        telaAuxiliarConsultaVenda.getListItensIngresso().setModel(model);
         this.telaAuxiliarConsultaVenda.setVisible(true);
         
     }//GEN-LAST:event_btnConsultarVendasActionPerformed

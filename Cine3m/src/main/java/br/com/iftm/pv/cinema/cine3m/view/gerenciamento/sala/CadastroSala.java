@@ -220,6 +220,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
                 gerenciaSala.atualizar(salaSelecionada, sala);
                 JOptionPane.showMessageDialog(this, "Sala atualizada com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
                 this.setVisible(false);
+                getDesktopPane().remove(this);
             }
             tfNomeSala.setText("");
         }

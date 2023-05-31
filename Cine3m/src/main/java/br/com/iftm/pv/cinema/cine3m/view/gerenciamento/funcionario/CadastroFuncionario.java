@@ -79,14 +79,15 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         this.lbSenhaFuncionario = lbSenhaFuncionario;
     }
 
-    public JLabel getLbTituloTelaCliente() {
-        return lbTituloTelaCliente;
+    public JLabel getLbTituloTelaFuncionario() {
+        return lbTituloTelaFuncionario;
     }
 
-    public void setLbTituloTelaCliente(JLabel lbTituloTelaCliente) {
-        this.lbTituloTelaCliente = lbTituloTelaCliente;
+    public void setLbTituloTelaFuncionario(JLabel lbTituloTelaFuncionario) {
+        this.lbTituloTelaFuncionario = lbTituloTelaFuncionario;
     }
 
+ 
     public JFormattedTextField getTfCpfFuncionario() {
         return tfCpfFuncionario;
     }
@@ -128,7 +129,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbTituloTelaCliente = new javax.swing.JLabel();
+        lbTituloTelaFuncionario = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lbNomeFuncionario = new javax.swing.JLabel();
         tfNomeFuncionario = new javax.swing.JTextField();
@@ -142,8 +143,8 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaCliente.setText("Cadastro Funcionario");
+        lbTituloTelaFuncionario.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaFuncionario.setText("Cadastro Funcionario");
 
         lbNomeFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         lbNomeFuncionario.setText("Nome:");
@@ -224,14 +225,14 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTituloTelaCliente))
+                    .addComponent(lbTituloTelaFuncionario))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(lbTituloTelaCliente)
+                .addComponent(lbTituloTelaFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -261,6 +262,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
                 gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
                 JOptionPane.showMessageDialog(this, "Funcionario atualizado com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
+                getDesktopPane().remove(this);
             }
             tfNomeFuncionario.setText("");
             tfCpfFuncionario.setText("");
@@ -277,7 +279,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbLoginFuncionario;
     private javax.swing.JLabel lbNomeFuncionario;
     private javax.swing.JLabel lbSenhaFuncionario;
-    private javax.swing.JLabel lbTituloTelaCliente;
+    private javax.swing.JLabel lbTituloTelaFuncionario;
     private javax.swing.JFormattedTextField tfCpfFuncionario;
     private javax.swing.JTextField tfLoginFuncionario;
     private javax.swing.JTextField tfNomeFuncionario;

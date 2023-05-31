@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 public class ApagaFuncionario extends javax.swing.JInternalFrame {
 
     private GerenciaFuncionario gerenciaFuncionario;
+    private List<Funcionario> funcionarios;
 
     public ApagaFuncionario(GerenciaFuncionario gerenciaFuncionario) {
         initComponents();
@@ -96,7 +97,14 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded
-        ListUtils.carregarList(lstFuncionarios, gerenciaFuncionario.relatorio());
+        funcionarios = gerenciaFuncionario.relatorio();
+        ListUtils.carregarList(lstFuncionarios, funcionarios);
+         if(!funcionarios.isEmpty()){
+            btnConfirmarApagaFuncionario.setEnabled(true);
+            lstFuncionarios.setSelectedIndex(0);
+        } else {
+            btnConfirmarApagaFuncionario.setEnabled(false);
+        }
     }//GEN-LAST:event_lstFuncionariosAncestorAdded
 
     private void btnConfirmarApagaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaFuncionarioActionPerformed

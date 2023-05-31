@@ -55,6 +55,7 @@ public class Venda {
         this.cliente = cliente;
         this.valorFinal = valorFinal;
         this.itensVenda = itensVenda;
+        this.identificador = "VENDA" + " - " + itensVenda.toString() + " - " + sessao.toString();
     }
 
     public boolean isDesconto() {

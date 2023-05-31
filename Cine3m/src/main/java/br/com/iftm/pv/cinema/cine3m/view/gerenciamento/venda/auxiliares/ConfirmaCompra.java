@@ -196,9 +196,9 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
             ItemVenda item = (ItemVenda) listItensIngresso.getModel().getElementAt(i);
             Poltrona p = (Poltrona) item.getPoltrona();
             p.setLivre(false);
-            gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);            
+            gerenciaSessao.AtualizaPoltronaSessao(this.sessaoSelecionada, p);
         }
-        Integer total = qtdMeia +qtdInteira;
+        Integer total = qtdMeia + qtdInteira;
         if (total.equals(qtdMaxItensIngresso)) {
             JOptionPane.showMessageDialog(this, "Atualizado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
             this.setVisible(false);

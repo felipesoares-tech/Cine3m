@@ -9,6 +9,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -93,6 +94,10 @@ public class ApagaSessao extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JList<Sessao> getListApagaSessao() {
+        return listApagaSessao;
+    }
 
     private void listApagaSessaoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_listApagaSessaoAncestorAdded
         sessoes = gerenciaSessao.relatorio();

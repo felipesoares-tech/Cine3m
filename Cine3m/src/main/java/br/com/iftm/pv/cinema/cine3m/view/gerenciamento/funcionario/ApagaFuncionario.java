@@ -7,10 +7,10 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
-import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,7 +43,7 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        lstFuncionarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        lstFuncionarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstFuncionarios.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lstFuncionariosAncestorAdded(evt);
@@ -96,10 +96,15 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JList<Pessoa> getLstFuncionarios() {
+        return lstFuncionarios;
+    }
+    
     private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded
         funcionarios = gerenciaFuncionario.relatorio();
         ListUtils.carregarList(lstFuncionarios, funcionarios);
-         if(!funcionarios.isEmpty()){
+
+        if (!funcionarios.isEmpty()) {
             btnConfirmarApagaFuncionario.setEnabled(true);
             lstFuncionarios.setSelectedIndex(0);
         } else {
@@ -108,20 +113,14 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lstFuncionariosAncestorAdded
 
     private void btnConfirmarApagaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaFuncionarioActionPerformed
-        List<Pessoa> funcionariosSelecionados = lstFuncionarios.getSelectedValuesList();
-        int cont = 0;
-        Iterator<Pessoa> it = funcionariosSelecionados.iterator();
+        Funcionario funcionariosSelecionados = (Funcionario) lstFuncionarios.getSelectedValue();
 
         Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
                 "Apagar Cliente", WIDTH, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            while (it.hasNext()) {
-                gerenciaFuncionario.remover((Funcionario) it.next());
-                cont++;
-            }
             lstFuncionariosAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, String.format("Funcionarios removidos: %d", cont), "Remover", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Funcionario removido", "Remover", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnConfirmarApagaFuncionarioActionPerformed
 

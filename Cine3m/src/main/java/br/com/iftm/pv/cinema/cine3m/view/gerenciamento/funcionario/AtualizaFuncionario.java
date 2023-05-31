@@ -7,6 +7,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import javax.swing.JList;
 
 /**
  *
@@ -60,6 +61,11 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        lstFuncionarios.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lstFuncionariosFocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstFuncionarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -93,6 +99,10 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JList<Funcionario> getLstFuncionarios() {
+        return lstFuncionarios;
+    }
+    
     private void btnAtualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarFuncionarioActionPerformed
         Funcionario funcionarioSelecionado = (Funcionario) this.lstFuncionarios.getSelectedValue();
         this.cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
@@ -100,6 +110,7 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
         this.cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
         this.cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
         this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("Atualizar");
+        this.cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualizar Funcionário");
         this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
         this.cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
         this.cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
@@ -120,6 +131,10 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
             btnAtualizarFuncionario.setEnabled(false);
         }
     }//GEN-LAST:event_lstFuncionariosAncestorAdded
+
+    private void lstFuncionariosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lstFuncionariosFocusGained
+        lstFuncionariosAncestorAdded(null);
+    }//GEN-LAST:event_lstFuncionariosFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

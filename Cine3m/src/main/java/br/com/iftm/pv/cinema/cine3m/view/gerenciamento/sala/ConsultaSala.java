@@ -7,6 +7,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import javax.swing.JList;
 
 /**
  *
@@ -90,6 +91,10 @@ public class ConsultaSala extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JList<Sala> getLstSalas() {
+        return lstSalas;
+    }
 
     private void btnConsultarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSalaActionPerformed
         Sala salaSelecionada = (Sala) this.lstSalas.getSelectedValue();

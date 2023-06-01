@@ -91,7 +91,7 @@ public class GerenciaArquivo {
         }
     }
 
-    public List<Funcionario> obterFuncionarios() {;;
+    public List<Funcionario> obterFuncionarios() {
         List<Funcionario> funcionarios = new ArrayList<>();
 
         try (FileInputStream fis = new FileInputStream(pathArquivo); ObjectInputStream ois = new ObjectInputStream(fis)) {

@@ -8,6 +8,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
@@ -211,10 +212,11 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
             List<ItemVenda> itensVenda = preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao);
             DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroVenda.getListItensIngresso().getModel();
             Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
+            Funcionario funcionarioSelecionado = cadastroVenda.getFuncionario();
             if (clienteSelecionado != null) {
-                venda = new Venda(sessaoSelecionada, clienteSelecionado, valorTotal, itensVenda);
+                venda = new Venda(funcionarioSelecionado,sessaoSelecionada, clienteSelecionado, valorTotal, itensVenda);
             } else {
-                venda = new Venda(sessaoSelecionada, valorTotal, itensVenda);
+                venda = new Venda(funcionarioSelecionado,sessaoSelecionada, valorTotal, itensVenda);
             }
             gerenciaVenda.cadastrar(venda);
             model.removeAllElements();

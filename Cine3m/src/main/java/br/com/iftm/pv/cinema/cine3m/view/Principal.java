@@ -49,7 +49,6 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.ConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.RelatorioVenda;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxiliarConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.importacoes.TelaImportacao;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
@@ -139,6 +138,11 @@ public class Principal extends javax.swing.JFrame {
         this.atualizaCliente = new AtualizaCliente(cadastroCliente, gerenciaCliente);
         this.apagaCliente = new ApagarCliente(gerenciaCliente);
         this.relatorioCliente = new RelatorioCliente(gerenciaCliente);
+        //Telas a serem chamadas (CRUD VENDAS)
+        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, cadastroCliente);
+        this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
+        this.consultaVenda = new ConsultaVenda(gerenciaVenda);
+
         //Telas a serem chamadas (CRUD FUNCIONARIOS) Instanciação
         this.cadastroFuncionario = new CadastroFuncionario(gerenciaFuncionario);
         this.consultaFuncionario = new ConsultaFuncionario(cadastroFuncionario, gerenciaFuncionario);
@@ -153,11 +157,6 @@ public class Principal extends javax.swing.JFrame {
         this.atualizaSala = new AtualizaSala(cadastroSala, gerenciaSala);
         this.apagaSala = new ApagaSala(gerenciaSala);
         this.relatorioSala = new RelatorioSala(gerenciaSala);
-
-        //Telas a serem chamadas (CRUD VENDAS)
-        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, cadastroCliente);
-        this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
-        this.consultaVenda = new ConsultaVenda(gerenciaVenda);
 
         //Telas a serem chamadas (CRUD FILMES)
         this.cadastroFilme = new CadastroFilme(gerenciaFilme);
@@ -747,7 +746,7 @@ public class Principal extends javax.swing.JFrame {
     private void imCadastroSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSalaActionPerformed
         this.cadastroSala.getJsCapacidade().setEnabled(true);
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
-          this.cadastroSala.getLbTituloTelaSala().setText("Cadastro de Salas");        
+        this.cadastroSala.getLbTituloTelaSala().setText("Cadastro de Salas");
         this.cadastroSala.getBtnCadastrarSala().setText("CADASTRAR");
         this.cadastroSala.getTfNomeSala().setText("");
         this.cadastroSala.getTfNomeSala().setEditable(true);

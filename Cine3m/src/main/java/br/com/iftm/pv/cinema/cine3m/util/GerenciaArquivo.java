@@ -21,7 +21,7 @@ public class GerenciaArquivo {
 
     public GerenciaArquivo() {
         this.usuarioSenhas = new HashMap<>();
-        this.pathArquivo = "dados_login";
+        this.pathArquivo = "dados_login.bin";
         this.criptografarSenha = new CriptografarSenha();
         this.admin = new Funcionario("ADMIN", "000.000.000-00", "admin", criptografarSenha.criptografarSenha("admin"));
         criarArquivo();

@@ -108,7 +108,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
     public JPanel getjPanel1() {
         return jPanel1;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

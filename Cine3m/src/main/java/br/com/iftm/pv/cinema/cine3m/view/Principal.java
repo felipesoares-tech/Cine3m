@@ -611,7 +611,7 @@ public class Principal extends javax.swing.JFrame {
         this.cadastroCliente.getTfCpfCliente().setText("");
 //        jDesktopPane1.add(cadastroCliente);
 //        cadastroCliente.setVisible(true);
-            ValidaTela.abrirTela(cadastroCliente, jDesktopPane1);
+        ValidaTela.abrirTela(cadastroCliente, jDesktopPane1);
     }//GEN-LAST:event_imCadastroClienteActionPerformed
 
     private void imConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaClienteActionPerformed
@@ -806,7 +806,7 @@ public class Principal extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
+            } // bug de um funcionario no arquivo e nenhum no funcionario.
             loginFuncionario.getTfUsuario().setText("");
             loginFuncionario.getJpfSenha().setText("");
             jDesktopPane1.add(loginFuncionario);

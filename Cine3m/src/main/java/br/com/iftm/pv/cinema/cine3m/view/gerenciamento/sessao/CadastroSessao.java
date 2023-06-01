@@ -297,10 +297,11 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         String dataSessao = tfDataSessao.getText();
         String horaSessao = tfHorarioSessao.getText();
         String valorSessao = tfValorSessao.getText();
+        LocalDate validarData = LocalDate.parse(dataSessao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         if (ValidaCampo.validar(dataSessao.replaceAll("[/]", "").trim(), lbData, this)
                 && ValidaCampo.validar(horaSessao.replaceAll("[:]", "").trim(), lbHora, this)
-                && ValidaCampo.validar(valorSessao, lbValor, this)) {
+                && ValidaCampo.validar(valorSessao, lbValor, this)&& ValidaCampo.validar(validarData, lbData, this)) {
 
             LocalDate data;
             LocalTime hora;

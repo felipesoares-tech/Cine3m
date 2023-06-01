@@ -38,8 +38,8 @@ public class GerenciaArquivo {
             if (!arquivo.exists()) {
                 arquivo.createNewFile();
                 try {
-                    Funcionario admin = new Funcionario("EDWAR", "000.000.000-00", "admin", criptografarSenha.criptografarSenha("admin"));
-                    usuarioSenhas.put("admin", admin);
+                    Funcionario funcionario = new Funcionario("EDWAR", "000.000.000-00", "admin", criptografarSenha.criptografarSenha("admin"));
+                    usuarioSenhas.put("admin", funcionario);
                     guardarSenhas();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -110,4 +110,5 @@ public class GerenciaArquivo {
         }
         return null;
     }
+    
 }

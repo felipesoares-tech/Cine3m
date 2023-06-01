@@ -101,7 +101,6 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnConfirmarConsultaActionPerformed
 
     private void lstClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstClientesAncestorAdded
-        ValidaTela.fecharTela(cadastroCliente, getDesktopPane());
         ListUtils.carregarList(lstClientes, gerenciaCliente.relatorio());
         if (!gerenciaCliente.relatorio().isEmpty()) {
             btnConfirmarConsulta.setEnabled(true);

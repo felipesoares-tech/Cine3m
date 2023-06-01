@@ -72,7 +72,7 @@ public class GerenciaArquivo {
         for (Funcionario funcionario : funcionarios) {
             String login = funcionario.getLogin();
             String senha = funcionario.getSenha();
-            if (!funcionario.getSenha().startsWith("CRYPT:")) {
+            if (!funcionario.getSenha().startsWith("CRYPT:") && funcionario.getSenha().length() != 70) {
                 funcionario.setSenha(criptografarSenha.criptografarSenha(senha));
             } else {
                 funcionario.setSenha(senha);

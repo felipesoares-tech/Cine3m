@@ -51,7 +51,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         initComponents();
         this.jsInteira.setModel(spinnerModelInteira);
         this.jsMeia.setModel(spinnerModelMeia);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -192,20 +192,25 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         Integer total = qtdMeia + qtdInteira;
         if (total.equals(qtdMaxItensIngresso)) {
             JOptionPane.showMessageDialog(this, "Cadastrado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
-            this.setVisible(false);
-            cadastroVenda.getContentPane().remove(consultaPoltronas);
-            cadastroVenda.setConsultaPoltronas(null);
             Venda venda;
             List<ItemVenda> itensVenda = preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao);
             DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroVenda.getListItensIngresso().getModel();
             Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
             Funcionario funcionarioSelecionado = cadastroVenda.getFuncionario();
             if (clienteSelecionado != null) {
-                venda = new Venda(funcionarioSelecionado,sessaoSelecionada, clienteSelecionado, valorTotal, itensVenda);
+                venda = new Venda(funcionarioSelecionado, sessaoSelecionada, clienteSelecionado, valorTotal, itensVenda);
             } else {
-                venda = new Venda(funcionarioSelecionado,sessaoSelecionada, valorTotal, itensVenda);
+                venda = new Venda(funcionarioSelecionado, sessaoSelecionada, valorTotal, itensVenda);
             }
-            gerenciaVenda.cadastrar(venda);
+            Venda vendaRealizada = gerenciaVenda.cadastrar(venda);
+            if (vendaRealizada != null) {
+                cadastroVenda.getContentPane().remove(consultaPoltronas);
+                cadastroVenda.setConsultaPoltronas(null);
+                if (vendaRealizada.hasDesconto()) {
+                    JOptionPane.showMessageDialog(this, "Cliente com promoção", "promoção", JOptionPane.INFORMATION_MESSAGE);
+                }
+                 this.setVisible(false);
+            }
             model.removeAllElements();
             vincularCliente.setClienteSelecionado(null);
             cadastroVenda.getTfClienteSelecionado().setText("");

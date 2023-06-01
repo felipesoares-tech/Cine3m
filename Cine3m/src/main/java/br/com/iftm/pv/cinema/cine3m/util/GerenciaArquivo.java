@@ -1,6 +1,5 @@
 package br.com.iftm.pv.cinema.cine3m.util;
 
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,11 +17,13 @@ public class GerenciaArquivo {
     private Map<String, Funcionario> usuarioSenhas;
     private String pathArquivo;
     private CriptografarSenha criptografarSenha;
+    private Funcionario admin;
 
     public GerenciaArquivo() {
         this.usuarioSenhas = new HashMap<>();
         this.pathArquivo = "dados_login";
         this.criptografarSenha = new CriptografarSenha();
+        this.admin = new Funcionario("ADMIN", "000.000.000-00", "admin", criptografarSenha.criptografarSenha("admin"));
         criarArquivo();
         carregarDadosArquivo(pathArquivo);  
     }
@@ -39,7 +40,7 @@ public class GerenciaArquivo {
             if (!arquivo.exists()) {
                 arquivo.createNewFile();
                 try {
-                    Funcionario funcionario = new Funcionario("EDWAR", "000.000.000-00", "admin", criptografarSenha.criptografarSenha("admin"));
+                    Funcionario funcionario = admin;
                     usuarioSenhas.put("admin", funcionario);
                     guardarSenhas();
                 } catch (IOException e) {
@@ -67,10 +68,10 @@ public class GerenciaArquivo {
         return false;
     }
 
-    public void adicionaUsuarios(GerenciaFuncionario gerenciaFuncionario) throws IOException {
-        List<Funcionario> funcionarios = gerenciaFuncionario.getFuncionarios();
+    public void adicionaUsuarios(List<Funcionario> funcionarios) throws IOException {
+        List<Funcionario> usuarios = funcionarios;
         limparArquivo();
-        for (Funcionario funcionario : funcionarios) {
+        for (Funcionario funcionario : usuarios) {
             String login = funcionario.getLogin();
             String senha = funcionario.getSenha();
             if (!funcionario.getSenha().startsWith("CRYPT:") && funcionario.getSenha().length() != 70) {
@@ -118,6 +119,10 @@ public class GerenciaArquivo {
             return usuarioSenhas.get(chave);
         }
         return null;
+    }
+
+    public Funcionario getAdmin() {
+        return admin;
     }
 
 }

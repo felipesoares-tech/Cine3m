@@ -128,9 +128,9 @@ public class Principal extends javax.swing.JFrame {
 
         this.cadastroFuncionario = new CadastroFuncionario(gerenciaFuncionario);
         this.consultaFuncionario = new ConsultaFuncionario(cadastroFuncionario, gerenciaFuncionario);
-        this.atualizaFuncionario = new AtualizaFuncionario(cadastroFuncionario, gerenciaFuncionario);
-        this.apagaFuncionario = new ApagaFuncionario(gerenciaFuncionario);
-        this.relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);        
+        this.atualizaFuncionario = new AtualizaFuncionario(cadastroFuncionario, gerenciaFuncionario, gerenciaArquivo.getAdmin());
+        this.apagaFuncionario = new ApagaFuncionario(gerenciaFuncionario, gerenciaArquivo.getAdmin());
+        this.relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
 
         this.cadastroSala = new CadastroSala(gerenciaSala);
         this.consultaSala = new ConsultaSala(cadastroSala, gerenciaSala);
@@ -236,7 +236,7 @@ public class Principal extends javax.swing.JFrame {
             public void windowClosing(WindowEvent e) {
                 if (!gerenciaFuncionario.getFuncionarios().isEmpty()) {
                     try {
-                        gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario);
+                        gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario.getFuncionarios());
                     } catch (IOException ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -665,6 +665,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imApagaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imApagaFuncionarioActionPerformed
         jDesktopPane1.add(apagaFuncionario);
+        apagaFuncionario.setFuncionarioLogado(loginFuncionario.getFuncionarioSelecionado());
         apagaFuncionario.setVisible(true);
     }//GEN-LAST:event_imApagaFuncionarioActionPerformed
 
@@ -711,7 +712,7 @@ public class Principal extends javax.swing.JFrame {
     private void imCadastroSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSalaActionPerformed
         this.cadastroSala.getJsCapacidade().setEnabled(true);
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
-        this.cadastroSala.getLbTituloTelaSala().setText("Cadastro de Salas");
+        this.cadastroSala.getLbTituloTelaSala().setText("Cadastro de Salas");        
         this.cadastroSala.getBtnCadastrarSala().setText("CADASTRAR");
         this.cadastroSala.getTfNomeSala().setText("");
         this.cadastroSala.getTfNomeSala().setEditable(true);
@@ -801,13 +802,11 @@ public class Principal extends javax.swing.JFrame {
         Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja deslogar?",
                 "Logout", WIDTH, JOptionPane.WARNING_MESSAGE);
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            if (!gerenciaFuncionario.getFuncionarios().isEmpty()) {
-                try {
-                    gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario);
-                } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } // bug de um funcionario no arquivo e nenhum no funcionario.
+            try {
+                gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario.getFuncionarios());
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
             loginFuncionario.getTfUsuario().setText("");
             loginFuncionario.getJpfSenha().setText("");
             jDesktopPane1.add(loginFuncionario);

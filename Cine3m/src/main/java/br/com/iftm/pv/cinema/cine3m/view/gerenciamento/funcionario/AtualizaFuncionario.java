@@ -4,14 +4,18 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 public class AtualizaFuncionario extends javax.swing.JInternalFrame {
 
     private CadastroFuncionario cadastroFuncionario;
     private GerenciaFuncionario gerenciaFuncionario;
+    private Funcionario admin;
 
-    public AtualizaFuncionario(CadastroFuncionario cadastroFuncionario, GerenciaFuncionario gerenciaFuncionario) {
+    public AtualizaFuncionario(CadastroFuncionario cadastroFuncionario,
+            GerenciaFuncionario gerenciaFuncionario, Funcionario admin) {
         initComponents();
+        this.admin = admin;
         this.cadastroFuncionario = cadastroFuncionario;
         this.gerenciaFuncionario = gerenciaFuncionario;
     }
@@ -90,23 +94,28 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
     public JList<Funcionario> getLstFuncionarios() {
         return lstFuncionarios;
     }
-    
+
     private void btnAtualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarFuncionarioActionPerformed
         Funcionario funcionarioSelecionado = (Funcionario) this.lstFuncionarios.getSelectedValue();
-        this.cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
-        this.cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
-        this.cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
-        this.cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
-        this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("ATUALIZAR");
-        this.cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualização de Funcionário");
-        this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
-        this.cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
-        this.cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
-        this.cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
-        this.cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
         this.cadastroFuncionario.setFuncionarioSelecionado(funcionarioSelecionado);
-        getDesktopPane().add(cadastroFuncionario);
-        this.cadastroFuncionario.setVisible(true);
+        if (funcionarioSelecionado.equals(admin)) {
+            JOptionPane.showMessageDialog(this, "Não é possível alterar os dados de admin! ",
+                    "Admin", JOptionPane.ERROR_MESSAGE);
+        } else {
+            this.cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
+            this.cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
+            this.cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
+            this.cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
+            this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("ATUALIZAR");
+            this.cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualização de Funcionário");
+            this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
+            this.cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
+            this.cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
+            this.cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
+            this.cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
+            getDesktopPane().add(cadastroFuncionario);
+            this.cadastroFuncionario.setVisible(true);
+        }
     }//GEN-LAST:event_btnAtualizarFuncionarioActionPerformed
 
     private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded
@@ -123,7 +132,6 @@ public class AtualizaFuncionario extends javax.swing.JInternalFrame {
     private void lstFuncionariosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lstFuncionariosFocusGained
         lstFuncionariosAncestorAdded(null);
     }//GEN-LAST:event_lstFuncionariosFocusGained
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizarFuncionario;

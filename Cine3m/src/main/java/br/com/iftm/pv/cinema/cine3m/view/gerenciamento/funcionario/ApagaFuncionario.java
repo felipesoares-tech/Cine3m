@@ -12,9 +12,12 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
 
     private GerenciaFuncionario gerenciaFuncionario;
     private List<Funcionario> funcionarios;
+    private Funcionario admin;
+    private Funcionario funcionarioLogado;
 
-    public ApagaFuncionario(GerenciaFuncionario gerenciaFuncionario) {
+    public ApagaFuncionario(GerenciaFuncionario gerenciaFuncionario, Funcionario admin) {
         initComponents();
+        this.admin = admin;
         this.gerenciaFuncionario = gerenciaFuncionario;
     }
 
@@ -86,7 +89,7 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
     public JList<Pessoa> getLstFuncionarios() {
         return lstFuncionarios;
     }
-    
+
     private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded
         funcionarios = gerenciaFuncionario.relatorio();
         ListUtils.carregarList(lstFuncionarios, funcionarios);
@@ -101,17 +104,27 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
 
     private void btnConfirmarApagaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarApagaFuncionarioActionPerformed
         Funcionario funcionarioSelecionado = (Funcionario) lstFuncionarios.getSelectedValue();
-        
-        Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
-                "Apagar Funcionario", WIDTH, JOptionPane.WARNING_MESSAGE);
+        if (funcionarioSelecionado.equals(admin)) {
+            JOptionPane.showMessageDialog(this, "Não é possível remover admin! ",
+                    "Admin", JOptionPane.ERROR_MESSAGE);
+        } else if (funcionarioSelecionado.equals(funcionarioLogado)) {
+            JOptionPane.showMessageDialog(this, "Não é possível remover o usuário logado! ",
+                    "Usuário", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
+                    "Apagar Funcionário", WIDTH, JOptionPane.WARNING_MESSAGE);
 
-        if (resp.equals(JOptionPane.OK_OPTION)) {
-            gerenciaFuncionario.remover(funcionarioSelecionado);
-            lstFuncionariosAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, "Funcionario removido", "Remover", JOptionPane.INFORMATION_MESSAGE);
+            if (resp.equals(JOptionPane.OK_OPTION)) {
+                gerenciaFuncionario.remover(funcionarioSelecionado);
+                lstFuncionariosAncestorAdded(null);
+                JOptionPane.showMessageDialog(this, "Funcionário removido", "Remover", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnConfirmarApagaFuncionarioActionPerformed
 
+    public void setFuncionarioLogado(Funcionario funcionarioLogado) {
+        this.funcionarioLogado = funcionarioLogado;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarApagaFuncionario;

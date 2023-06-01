@@ -644,7 +644,7 @@ public class Principal extends javax.swing.JFrame {
         cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
 
         cadastroFuncionario.getTfNomeFuncionario().setText("");
-        cadastroFuncionario.getTfCpfFuncionario().setText("");
+        cadastroFuncionario.getTfCpfFuncionario().setValue(null);
         cadastroFuncionario.getTfLoginFuncionario().setText("");
         cadastroFuncionario.getTfSenhaFuncionario().setText("");
         cadastroFuncionario.getLbTituloTelaFuncionario().setText("Cadastro de Funcionários");

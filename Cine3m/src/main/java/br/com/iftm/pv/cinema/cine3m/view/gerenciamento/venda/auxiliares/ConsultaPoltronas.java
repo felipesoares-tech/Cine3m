@@ -57,7 +57,6 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
             int pos = sessaoSelecionada.getSala().getPoltronas().indexOf(new Poltrona(PoltronaID));
             Poltrona pol = sessaoSelecionada.getSala().getPoltronas().get(pos);
 
-            System.out.println(pol.getId());
 
             if (!pol.isLivre()) {
                 button.setEnabled(false);

@@ -609,7 +609,7 @@ public class Principal extends javax.swing.JFrame {
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
         this.cadastroCliente.getTfNomeCliente().setText("");
-        this.cadastroCliente.getTfCpfCliente().setText("");
+        this.cadastroCliente.getTfCpfCliente().setValue(null);
 //        jDesktopPane1.add(cadastroCliente);
 //        cadastroCliente.setVisible(true);
         ValidaTela.abrirTela(cadastroCliente, jDesktopPane1);

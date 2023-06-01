@@ -11,7 +11,6 @@ public class GerenciaCliente implements IGerencia<Cliente> {
     public GerenciaCliente(List<Cliente> clientes) {
         this.clientes = clientes;
     }
-    
     public Boolean cadastrar(Cliente cliente) {
         if (!clientes.contains(cliente)) {
             return clientes.add(cliente);

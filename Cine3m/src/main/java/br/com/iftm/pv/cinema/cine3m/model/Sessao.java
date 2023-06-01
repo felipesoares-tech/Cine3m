@@ -2,6 +2,7 @@ package br.com.iftm.pv.cinema.cine3m.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Sessao {
 
@@ -18,7 +19,8 @@ public class Sessao {
         this.hora = hora;
         this.sala = sala;
         this.valor = valor;
-        this.nome = filme.toString() + " - " + sala.toString();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.nome = filme.toString() + " - " + sala.toString() + " " + String.valueOf(data.format(formato)) + " " + String.valueOf(hora);
     }
 
     @Override

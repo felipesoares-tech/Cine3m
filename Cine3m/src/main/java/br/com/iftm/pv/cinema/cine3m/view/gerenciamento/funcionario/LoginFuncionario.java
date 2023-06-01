@@ -2,6 +2,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -9,13 +10,14 @@ import javax.swing.JTextField;
 
 public class LoginFuncionario extends javax.swing.JInternalFrame {
 
-    GerenciaArquivo gerenciaArquivo;
-    JMenuBar menuBar;
-    Funcionario funcionarioSelecionado;
+    private GerenciaArquivo gerenciaArquivo;
+    private JMenuBar menuBar;
+    private CadastroVenda cadastroVenda;
 
-    public LoginFuncionario(GerenciaArquivo gerenciaArquivo, JMenuBar menuBar) {
+    public LoginFuncionario(GerenciaArquivo gerenciaArquivo, CadastroVenda cadastroVenda, JMenuBar menuBar) {
         this.menuBar = menuBar;
         this.gerenciaArquivo = gerenciaArquivo;
+        this.cadastroVenda = cadastroVenda;                
         initComponents();
     }
 
@@ -86,20 +88,17 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         Boolean sucesso = gerenciaArquivo.checarCredenciais(tfUsuario.getText(), String.valueOf(jpfSenha.getPassword()));
-        if(sucesso){
+        if (sucesso) {
             JOptionPane.showMessageDialog(this, "Login bem sucedido!", null, JOptionPane.INFORMATION_MESSAGE);
             menuBar.setVisible(true);
             this.setVisible(false);
             getDesktopPane().remove(this);
-            funcionarioSelecionado = gerenciaArquivo.obterFuncionario(tfUsuario.getText());
-        }else
+            cadastroVenda.setFuncionario(gerenciaArquivo.obterFuncionario(tfUsuario.getText()));
+
+        } else
             JOptionPane.showMessageDialog(this, "Login ou senha incorretos!", null, JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btLoginActionPerformed
 
-    public Funcionario getFuncionarioSelecionado() {
-        return funcionarioSelecionado;
-    }
-    
     public JPasswordField getJpfSenha() {
         return jpfSenha;
     }

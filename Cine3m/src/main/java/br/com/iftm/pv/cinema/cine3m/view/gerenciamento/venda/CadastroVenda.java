@@ -4,6 +4,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConfirmaCompra;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConsultaPoltronas;
@@ -29,6 +30,7 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
     private CadastroSessao cadastroSessao;
     private final CadastroCliente cadastroCliente;
     private final VincularCliente vincularCliente;
+    private  Funcionario funcionario;
 
     public JTextField getTfClienteSelecionado() {
         return tfClienteSelecionado;
@@ -37,6 +39,16 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
     public void setTfClienteSelecionado(JTextField tfClienteSelecionado) {
         this.tfClienteSelecionado = tfClienteSelecionado;
     }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+    
+    
 
     public CadastroVenda(GerenciaVenda gerenciaIngresso, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
         initComponents();

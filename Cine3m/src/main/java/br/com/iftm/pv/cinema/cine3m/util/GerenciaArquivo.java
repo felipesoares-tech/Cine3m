@@ -24,6 +24,7 @@ public class GerenciaArquivo {
         this.pathArquivo = "dados_login";
         this.criptografarSenha = new CriptografarSenha();
         criarArquivo();
+        carregarDadosArquivo(pathArquivo);  
     }
 
     private void guardarSenhas() throws IOException {
@@ -72,7 +73,7 @@ public class GerenciaArquivo {
         for (Funcionario funcionario : funcionarios) {
             String login = funcionario.getLogin();
             String senha = funcionario.getSenha();
-            if (!funcionario.getSenha().startsWith("CRYPT:")) {
+            if (!funcionario.getSenha().startsWith("CRYPT:") && funcionario.getSenha().length() != 70) {
                 funcionario.setSenha(criptografarSenha.criptografarSenha(senha));
             } else {
                 funcionario.setSenha(senha);
@@ -104,11 +105,19 @@ public class GerenciaArquivo {
         return funcionarios;
     }
 
+    public void carregarDadosArquivo(String pathArquivo) {
+        try (FileInputStream fis = new FileInputStream(pathArquivo); ObjectInputStream ois = new ObjectInputStream(fis)) {
+            usuarioSenhas = (HashMap<String, Funcionario>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Funcionario obterFuncionario(String chave) {
         if (usuarioSenhas.containsKey(chave)) {
             return usuarioSenhas.get(chave);
         }
         return null;
     }
-    
+
 }

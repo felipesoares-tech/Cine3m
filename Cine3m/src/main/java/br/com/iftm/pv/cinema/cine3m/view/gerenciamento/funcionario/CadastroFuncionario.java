@@ -21,10 +21,6 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         this.gerenciaFuncionario = gerenciaFuncionario;
     }
 
-    public Funcionario getFuncionarioSelecionado() {
-        return funcionarioSelecionado;
-    }
-
     public void setFuncionarioSelecionado(Funcionario funcionarioSelecionado) {
         this.funcionarioSelecionado = funcionarioSelecionado;
     }
@@ -77,7 +73,6 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         this.lbTituloTelaFuncionario = lbTituloTelaFuncionario;
     }
 
- 
     public JFormattedTextField getTfCpfFuncionario() {
         return tfCpfFuncionario;
     }

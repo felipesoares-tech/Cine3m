@@ -1,4 +1,3 @@
-
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
@@ -109,7 +108,8 @@ public class ApagarCliente extends javax.swing.JInternalFrame {
             gerenciaCliente.remover((Cliente)clienteSelecionado);
             
             lstClientesAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, "Cliente removido", "Remover", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Cliente removido",
+                    "Remover", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btnConfirmarApagaClienteActionPerformed

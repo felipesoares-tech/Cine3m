@@ -1,4 +1,3 @@
-
 package br.com.iftm.pv.cinema.cine3m.model;
 
 import java.util.Objects;

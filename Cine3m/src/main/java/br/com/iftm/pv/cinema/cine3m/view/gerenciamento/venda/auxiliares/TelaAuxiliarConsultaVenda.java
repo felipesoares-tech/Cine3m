@@ -367,13 +367,14 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         Cliente clienteVenda = vendaSelecionada.getCliente();
         String nomeClienteVenda = clienteVenda != null ? clienteVenda.getNome() : "";
         String nomeSessaoVenda = vendaSelecionada.getSessao().getNome();
+        String nomeFuncionarioVenda = vendaSelecionada.getFuncionario().getNome();
         List<ItemVenda> itensVenda = vendaSelecionada.getItensIngresso();
         Double valorTotal = vendaSelecionada.getValorFinal();
         boolean desconto = vendaSelecionada.hasDesconto();
         lbdesconto.setText(desconto ? "Com desconto" : "Sem desconto");
 
         getTfClienteConsulta().setText(nomeClienteVenda);
-        //getTfFuncionarioConsulta().setText(nomeFuncionarioVenda);
+        getTfFuncionarioConsulta().setText(nomeFuncionarioVenda);
         getTfSessaoConsulta().setText(nomeSessaoVenda);
         getTfValorTotal().setText(String.valueOf(valorTotal));
 

@@ -130,8 +130,7 @@ public class Principal extends javax.swing.JFrame {
         this.consultaFuncionario = new ConsultaFuncionario(cadastroFuncionario, gerenciaFuncionario);
         this.atualizaFuncionario = new AtualizaFuncionario(cadastroFuncionario, gerenciaFuncionario);
         this.apagaFuncionario = new ApagaFuncionario(gerenciaFuncionario);
-        this.relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
-        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, jMenuBar1);
+        this.relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);        
 
         this.cadastroSala = new CadastroSala(gerenciaSala);
         this.consultaSala = new ConsultaSala(cadastroSala, gerenciaSala);
@@ -142,6 +141,7 @@ public class Principal extends javax.swing.JFrame {
         this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, cadastroCliente);
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
         this.consultaVenda = new ConsultaVenda(gerenciaVenda);
+        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, cadastroVenda,jMenuBar1);
 
         this.cadastroFilme = new CadastroFilme(gerenciaFilme);
         this.consultaFilme = new ConsultaFilme(cadastroFilme, gerenciaFilme);

@@ -1,4 +1,5 @@
 package br.com.iftm.pv.cinema.cine3m.model;
+
 import java.io.Serializable;
 import java.util.Objects;
 

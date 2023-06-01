@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.com.iftm.pv.cinema.cine3m.view;
 
 import java.awt.Image;
@@ -49,7 +45,6 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.ConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.RelatorioVenda;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxiliarConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.importacoes.TelaImportacao;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
@@ -61,27 +56,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author elisabete
- */
 public class Principal extends javax.swing.JFrame {
 
-//Telas a serem chamadas (CRUD SESSAO)
     private final CadastroSessao cadastroSessao;
     private final ConsultaSessao consultaSessao;
     private final AtualizaSessao atualizaSessao;
     private final ApagaSessao apagaSessao;
     private final RelatorioSessao relatorioSessao;
 
-//Telas a serem chamadas (CRUD CLIENTES)
     private final CadastroCliente cadastroCliente;
     private final ConsultaCliente consultaCliente;
     private final AtualizaCliente atualizaCliente;
     private final ApagarCliente apagaCliente;
     private final RelatorioCliente relatorioCliente;
 
-//Telas a serem chamadas (CRUD FUNCIONARIOS)
     private final CadastroFuncionario cadastroFuncionario;
     private final ConsultaFuncionario consultaFuncionario;
     private final AtualizaFuncionario atualizaFuncionario;
@@ -89,19 +77,16 @@ public class Principal extends javax.swing.JFrame {
     private final RelatorioFuncionario relatorioFuncionario;
     private final LoginFuncionario loginFuncionario;
 
-//Telas a serem chamadas (CRUD SALA)
     private final CadastroSala cadastroSala;
     private final ConsultaSala consultaSala;
     private final AtualizaSala atualizaSala;
     private final ApagaSala apagaSala;
     private final RelatorioSala relatorioSala;
 
-//Telas a serem chamadas (CRUD VENDAS)
     private final CadastroVenda cadastroVenda;
     private final RelatorioVenda relatorioVenda;
     private final ConsultaVenda consultaVenda;
 
-//Telas a serem chamadas (CRUD FILMES)
     private final CadastroFilme cadastroFilme;
     private final ConsultaFilme consultaFilme;
     private final AtualizaFilme atualizaFilme;
@@ -127,19 +112,18 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-        //Telas a serem chamadas (CRUD SESSÃO) Instanciação
         this.cadastroSessao = new CadastroSessao(gerenciaSessao, gerenciaSala, gerenciaFilme);
         this.consultaSessao = new ConsultaSessao(cadastroSessao, gerenciaSessao);
         this.atualizaSessao = new AtualizaSessao(cadastroSessao, gerenciaSessao);
         this.apagaSessao = new ApagaSessao(gerenciaSessao);
         this.relatorioSessao = new RelatorioSessao(gerenciaSessao);
-        //Telas a serem chamadas (CRUD CLIENTES) Instanciação
+        
         this.cadastroCliente = new CadastroCliente(gerenciaCliente);
         this.consultaCliente = new ConsultaCliente(cadastroCliente, gerenciaCliente);
         this.atualizaCliente = new AtualizaCliente(cadastroCliente, gerenciaCliente);
         this.apagaCliente = new ApagarCliente(gerenciaCliente);
         this.relatorioCliente = new RelatorioCliente(gerenciaCliente);
-        //Telas a serem chamadas (CRUD FUNCIONARIOS) Instanciação
+        
         this.cadastroFuncionario = new CadastroFuncionario(gerenciaFuncionario);
         this.consultaFuncionario = new ConsultaFuncionario(cadastroFuncionario, gerenciaFuncionario);
         this.atualizaFuncionario = new AtualizaFuncionario(cadastroFuncionario, gerenciaFuncionario);
@@ -147,44 +131,37 @@ public class Principal extends javax.swing.JFrame {
         this.relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
         this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, jMenuBar1);
 
-        //Telas a serem chamadas (CRUD SALA)
         this.cadastroSala = new CadastroSala(gerenciaSala);
         this.consultaSala = new ConsultaSala(cadastroSala, gerenciaSala);
         this.atualizaSala = new AtualizaSala(cadastroSala, gerenciaSala);
         this.apagaSala = new ApagaSala(gerenciaSala);
         this.relatorioSala = new RelatorioSala(gerenciaSala);
 
-        //Telas a serem chamadas (CRUD VENDAS)
         this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, cadastroCliente);
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
         this.consultaVenda = new ConsultaVenda(gerenciaVenda);
 
-        //Telas a serem chamadas (CRUD FILMES)
         this.cadastroFilme = new CadastroFilme(gerenciaFilme);
         this.consultaFilme = new ConsultaFilme(cadastroFilme, gerenciaFilme);
         this.atualizaFilme = new AtualizaFilme(cadastroFilme, gerenciaFilme);
         this.apagaFilme = new ApagaFilme(gerenciaFilme);
         this.relatorioFilme = new RelatorioFilme(gerenciaFilme);
-
-        //Configurações para as telas;
+        
         Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
         Color corPanelPadrao = ParametrosSistema.getInstance().getCorPanel();
         this.getContentPane().setBackground(corFundoPadrao);
 
-        //CORES PARA TELAS CLIENTE
         this.cadastroCliente.getContentPane().setBackground(corFundoPadrao);
         this.consultaCliente.getContentPane().setBackground(corFundoPadrao);
         this.atualizaCliente.getContentPane().setBackground(corFundoPadrao);
         this.apagaCliente.getContentPane().setBackground(corFundoPadrao);
         this.relatorioCliente.getContentPane().setBackground(corFundoPadrao);
 
-        // PANEL/LIST CLIENTES
         this.cadastroCliente.getjPanel8().setBackground(corPanelPadrao);
         this.consultaCliente.getLstClientes().setBackground(corPanelPadrao);
         this.atualizaCliente.getLstClientes().setBackground(corPanelPadrao);
         this.apagaCliente.getLstClientes().setBackground(corPanelPadrao);
 
-        //CORES PARA TELAS FUNCIONARIO
         this.cadastroFuncionario.getContentPane().setBackground(corFundoPadrao);
         this.consultaFuncionario.getContentPane().setBackground(corFundoPadrao);
         this.apagaFuncionario.getContentPane().setBackground(corFundoPadrao);
@@ -192,46 +169,39 @@ public class Principal extends javax.swing.JFrame {
         this.relatorioFuncionario.getContentPane().setBackground(corFundoPadrao);
         this.loginFuncionario.getContentPane().setBackground(corFundoPadrao);
 
-        // PANEL/LIST FUNCIONARIOS
         this.cadastroFuncionario.getjPanel1().setBackground(corPanelPadrao);
         this.consultaFuncionario.getLstFuncionarios().setBackground(corPanelPadrao);
         this.atualizaFuncionario.getLstFuncionarios().setBackground(corPanelPadrao);
         this.apagaFuncionario.getLstFuncionarios().setBackground(corPanelPadrao);
 
-        //CORES PARA TELAS SESSAO
         this.cadastroSessao.getContentPane().setBackground(corFundoPadrao);
         this.consultaSessao.getContentPane().setBackground(corFundoPadrao);
         this.atualizaSessao.getContentPane().setBackground(corFundoPadrao);
         this.apagaSessao.getContentPane().setBackground(corFundoPadrao);
         this.relatorioSessao.getContentPane().setBackground(corFundoPadrao);
 
-        // PANEL/LIST SESSOES
         this.cadastroSessao.getjPanel1().setBackground(corPanelPadrao);
         this.consultaSessao.getListSessao().setBackground(corPanelPadrao);
         this.atualizaSessao.getListSessao().setBackground(corPanelPadrao);
         this.apagaSessao.getListApagaSessao().setBackground(corPanelPadrao);
 
-        //CORES PARA TELAS SALA
         this.cadastroSala.getContentPane().setBackground(corFundoPadrao);
         this.consultaSala.getContentPane().setBackground(corFundoPadrao);
         this.atualizaSala.getContentPane().setBackground(corFundoPadrao);
         this.apagaSala.getContentPane().setBackground(corFundoPadrao);
         this.relatorioSala.getContentPane().setBackground(corFundoPadrao);
 
-        // PANEL/LIST SALAS
         this.cadastroSala.getjPanel1().setBackground(corPanelPadrao);
         this.consultaSala.getLstSalas().setBackground(corPanelPadrao);
         this.atualizaSala.getLstSalas().setBackground(corPanelPadrao);
         this.apagaSala.getListSala().setBackground(corPanelPadrao);
 
-        //CORES PARA TELAS FILME
         this.cadastroFilme.getContentPane().setBackground(corFundoPadrao);
         this.consultaFilme.getContentPane().setBackground(corFundoPadrao);
         this.atualizaFilme.getContentPane().setBackground(corFundoPadrao);
         this.apagaFilme.getContentPane().setBackground(corFundoPadrao);
         this.relatorioFilme.getContentPane().setBackground(corFundoPadrao);
 
-        // PANEL/LIST FILMES
         this.cadastroFilme.getjPanel1().setBackground(corPanelPadrao);
         this.consultaFilme.getLstFilmes().setBackground(corPanelPadrao);
         this.atualizaFilme.getLstFilmes().setBackground(corPanelPadrao);
@@ -239,10 +209,8 @@ public class Principal extends javax.swing.JFrame {
 
         this.telaImportacao = new TelaImportacao(gerenciaFilme);
 
-        //CORES PARA A TELA IMPORTACAO
         this.telaImportacao.getContentPane().setBackground(corFundoPadrao);
 
-        //EVENTO QUANDO PRINCIPAL FOR FECHADO
         addWindowListener(new WindowAdapter() {
             public void windowOpened(WindowEvent e) {
                 loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
@@ -253,9 +221,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        //EVENTO QUANDO PRINCIPAL FOR FECHADO
         addWindowListener(new WindowAdapter() {
-            @Override
             public void windowClosing(WindowEvent e) {
                 if (!gerenciaFuncionario.getFuncionarios().isEmpty()) {
                     try {
@@ -269,11 +235,6 @@ public class Principal extends javax.swing.JFrame {
 
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -636,7 +597,7 @@ public class Principal extends javax.swing.JFrame {
         this.cadastroCliente.getBtnCadastrarCliente().setText("CADASTRAR");
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
-         this.cadastroCliente.getTfNomeCliente().setText("");
+        this.cadastroCliente.getTfNomeCliente().setText("");
         this.cadastroCliente.getTfCpfCliente().setText("");
         jDesktopPane1.add(cadastroCliente);
         cadastroCliente.setVisible(true);
@@ -669,14 +630,13 @@ public class Principal extends javax.swing.JFrame {
         cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
         cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
         cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
-        
+
         cadastroFuncionario.getTfNomeFuncionario().setText("");
         cadastroFuncionario.getTfCpfFuncionario().setText("");
         cadastroFuncionario.getTfLoginFuncionario().setText("");
         cadastroFuncionario.getTfSenhaFuncionario().setText("");
         cadastroFuncionario.getLbTituloTelaFuncionario().setText("Cadastrar Funcionário");
-        
-        
+ 
         jDesktopPane1.add(cadastroFuncionario);
         this.cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_imCadastroFuncionarioActionPerformed
@@ -770,13 +730,12 @@ public class Principal extends javax.swing.JFrame {
         this.cadastroSessao.getLbTituloTelaSessao().setText("Cadastro de Sessão");
         this.cadastroSessao.getBtnCadastrarSessao().setText("Cadastrar");
 
-        //Habilita campos
         this.cadastroSessao.getTfDataSessao().setEditable(true);
         this.cadastroSessao.getTfHorarioSessao().setEditable(true);
         this.cadastroSessao.getTfValorSessao().setEditable(true);
         this.cadastroSessao.getCbFilmesSessao().setEnabled(true);
         this.cadastroSessao.getCbSalasSessao().setEnabled(true);
-        //Limpa campos
+        
         this.cadastroSessao.getTfDataSessao().setValue(null);
         this.cadastroSessao.getTfHorarioSessao().setValue(null);
         this.cadastroSessao.getTfValorSessao().setValue(null);
@@ -840,21 +799,13 @@ public class Principal extends javax.swing.JFrame {
             jDesktopPane1.add(loginFuncionario);
             loginFuncionario.setBounds((jDesktopPane1.getWidth() - 350) / 2,
                     (jDesktopPane1.getHeight() - 350) / 2, 350, 350);
-            
+
             loginFuncionario.setVisible(true);
             jMenuBar1.setVisible(false);
         }
     }//GEN-LAST:event_jMenu3MousePressed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -865,13 +816,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
 
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Principal().setVisible(true);
         });

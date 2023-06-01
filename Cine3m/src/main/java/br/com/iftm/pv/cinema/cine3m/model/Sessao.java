@@ -1,7 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Sessao {
@@ -58,8 +57,6 @@ public class Sessao {
     public void setHora(LocalTime hora) {
         this.hora = hora;
     }
-
-
 
     public Double getValor() {
         return valor;

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
@@ -10,10 +6,6 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxi
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import javax.swing.JList;
 
-/**
- *
- * @author Felipe Soares
- */
 public class ConsultaVenda extends javax.swing.JInternalFrame {
 
     private final TelaAuxiliarConsultaVenda telaAuxiliarConsultaVenda;

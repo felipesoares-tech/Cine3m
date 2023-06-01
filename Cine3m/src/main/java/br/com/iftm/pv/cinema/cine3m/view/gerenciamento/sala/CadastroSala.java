@@ -132,7 +132,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
         lbSalaCapacidade.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbSalaCapacidade.setForeground(new java.awt.Color(51, 51, 51));
-        lbSalaCapacidade.setText("Capacidade");
+        lbSalaCapacidade.setText("Capacidade (max =100):");
 
         lbSalaNome.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbSalaNome.setForeground(new java.awt.Color(51, 51, 51));
@@ -210,7 +210,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
         Integer capacidade = (int) jsCapacidade.getValue();
         String nome = tfNomeSala.getText();
         Sala sala = new Sala(nome, capacidade);
-        if (ValidaCampo.validar(nome, lbSalaNome, this)) {
+        if (ValidaCampo.validar(nome, lbSalaNome, this)&& ValidaCampo.validar(capacidade, lbSalaCapacidade, this)) {
             if (btnCadastrarSala.getText().equals("CADASTRAR")) {
                 Boolean sucesso = gerenciaSala.cadastrar(sala);
                 JOptionPane.showMessageDialog(this, sucesso ? "Sala cadastrada com sucesso !" : "Sala já cadastrada!",

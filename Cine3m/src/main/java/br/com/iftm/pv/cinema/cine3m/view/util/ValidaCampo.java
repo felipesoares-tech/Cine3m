@@ -20,4 +20,11 @@ public class ValidaCampo {
         }
         return true;
     }
+      public static boolean validar(Integer valor, JLabel lbCampo, JInternalFrame dlg) {
+        if (valor.equals(0)) {
+            JOptionPane.showMessageDialog(dlg, String.format("O campo '%s' é obrigatório.", lbCampo.getText()), "Erro", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
 }

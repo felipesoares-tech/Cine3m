@@ -51,6 +51,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.ConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.RelatorioVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxiliarConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.importacoes.TelaImportacao;
+import br.com.iftm.pv.cinema.cine3m.view.util.ValidaTela;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -647,8 +648,9 @@ public class Principal extends javax.swing.JFrame {
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
         this.cadastroCliente.getTfNomeCliente().setText("");
         this.cadastroCliente.getTfCpfCliente().setText("");
-        jDesktopPane1.add(cadastroCliente);
-        cadastroCliente.setVisible(true);
+//        jDesktopPane1.add(cadastroCliente);
+//        cadastroCliente.setVisible(true);
+            ValidaTela.abrirTela(cadastroCliente, jDesktopPane1);
     }//GEN-LAST:event_imCadastroClienteActionPerformed
 
     private void imConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaClienteActionPerformed

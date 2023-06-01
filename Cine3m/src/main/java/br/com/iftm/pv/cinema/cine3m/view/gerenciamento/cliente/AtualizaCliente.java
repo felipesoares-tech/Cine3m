@@ -8,6 +8,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ValidaTela;
 import javax.swing.JList;
 
 /**
@@ -103,6 +104,7 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lstClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstClientesAncestorAdded
+        ValidaTela.fecharTela(cadastroCliente, getDesktopPane());
         ListUtils.carregarList(lstClientes, gerenciaCliente.relatorio());
 
         if (!gerenciaCliente.relatorio().isEmpty()) {
@@ -123,8 +125,9 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
         this.cadastroCliente.setClienteSelecionado(clienteSelecionado);
-        getDesktopPane().add(cadastroCliente);
-        this.cadastroCliente.setVisible(true);
+//        getDesktopPane().add(cadastroCliente);
+//        this.cadastroCliente.setVisible(true);
+        ValidaTela.abrirTela(cadastroCliente, getDesktopPane());
     }//GEN-LAST:event_btnAtualizarClienteActionPerformed
 
     private void lstClientesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lstClientesFocusGained

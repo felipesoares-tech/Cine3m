@@ -8,6 +8,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
+import br.com.iftm.pv.cinema.cine3m.view.util.ValidaTela;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -15,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 /**
  *
@@ -33,6 +36,13 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
 //        lbImg.setIcon(icon);
         icon.setImage(icon.getImage().getScaledInstance(59, 66, 1));
         lbImg.setIcon(icon);
+
+// this.addInternalFrameListener(new InternalFrameAdapter() {
+//            @Override
+//            public void internalFrameOpened(InternalFrameEvent e) {
+//               ValidaTela.fecharTela(CadastroCliente.this, getDesktopPane());
+//            }
+//        });        
     }
 
     /**

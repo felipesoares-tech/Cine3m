@@ -8,6 +8,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ValidaTela;
 import javax.swing.JList;
 
 /**
@@ -100,18 +101,20 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     private void btnConfirmarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarConsultaActionPerformed
         Cliente clienteSelecionado = (Cliente) this.lstClientes.getSelectedValue();
 
-        this.cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
-        this.cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
-        this.cadastroCliente.getLbTituloTelaCliente().setText("Consulta de Cliente");
+       cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
+       cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
+       cadastroCliente.getLbTituloTelaCliente().setText("Consulta de Cliente");
 
-        this.cadastroCliente.getBtnCadastrarCliente().setVisible(false);
-        this.cadastroCliente.getTfNomeCliente().setEditable(false);
-        this.cadastroCliente.getTfCpfCliente().setEditable(false);
-        getDesktopPane().add(cadastroCliente);
-        this.cadastroCliente.setVisible(true);
+       cadastroCliente.getBtnCadastrarCliente().setVisible(false);
+       cadastroCliente.getTfNomeCliente().setEditable(false);
+       cadastroCliente.getTfCpfCliente().setEditable(false);
+//        getDesktopPane().add(cadastroCliente);
+//       cadastroCliente.setVisible(true);
+        ValidaTela.abrirTela(cadastroCliente, getDesktopPane());
     }//GEN-LAST:event_btnConfirmarConsultaActionPerformed
 
     private void lstClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstClientesAncestorAdded
+        ValidaTela.fecharTela(cadastroCliente, getDesktopPane());
         ListUtils.carregarList(lstClientes, gerenciaCliente.relatorio());
         if (!gerenciaCliente.relatorio().isEmpty()) {
             btnConfirmarConsulta.setEnabled(true);

@@ -13,11 +13,12 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
     private GerenciaArquivo gerenciaArquivo;
     private JMenuBar menuBar;
     private CadastroVenda cadastroVenda;
+    private Funcionario funcionarioSelecionado;
 
     public LoginFuncionario(GerenciaArquivo gerenciaArquivo, CadastroVenda cadastroVenda, JMenuBar menuBar) {
         this.menuBar = menuBar;
         this.gerenciaArquivo = gerenciaArquivo;
-        this.cadastroVenda = cadastroVenda;                
+        this.cadastroVenda = cadastroVenda;
         initComponents();
     }
 
@@ -93,11 +94,16 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
             menuBar.setVisible(true);
             this.setVisible(false);
             getDesktopPane().remove(this);
+            funcionarioSelecionado = gerenciaArquivo.obterFuncionario(tfUsuario.getText());
             cadastroVenda.setFuncionario(gerenciaArquivo.obterFuncionario(tfUsuario.getText()));
 
         } else
             JOptionPane.showMessageDialog(this, "Login ou senha incorretos!", null, JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btLoginActionPerformed
+
+    public Funcionario getFuncionarioSelecionado() {
+        return funcionarioSelecionado;
+    }
 
     public JPasswordField getJpfSenha() {
         return jpfSenha;

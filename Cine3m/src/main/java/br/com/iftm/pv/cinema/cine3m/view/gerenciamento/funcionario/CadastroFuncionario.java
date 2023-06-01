@@ -2,6 +2,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
+import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -107,6 +108,13 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
 
     public JPanel getjPanel1() {
         return jPanel1;
+    }
+
+    private void limpaCampos() {
+        tfNomeFuncionario.setText("");
+        tfCpfFuncionario.setValue(null);
+        tfLoginFuncionario.setText("");
+        tfSenhaFuncionario.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -239,21 +247,25 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
             if (btnCadastrarFuncionario.getText().equals("CADASTRAR")) {
-                Boolean sucesso = gerenciaFuncionario.cadastrar(funcionario);
-                JOptionPane.showMessageDialog(this, sucesso ? "Funcionario cadstrado com sucesso " : "Funcionario já Cadastrado!",
-                        "Cadastro Funcionario", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
-
+                if (ValidadorCPF.isCPF(cpf)) {
+                    Boolean sucesso = gerenciaFuncionario.cadastrar(funcionario);
+                    JOptionPane.showMessageDialog(this, sucesso
+                            ? "Funcionario cadastro com sucesso " : "Funcionario já Cadastrado!", "Cadastro Funcionario",
+                            sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
+                     limpaCampos();
+                } else {
+                    JOptionPane.showMessageDialog(this, "CPF inválido!",
+                            "Validação de CPF", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
                 gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
                 JOptionPane.showMessageDialog(this, "Funcionario atualizado com sucesso!",
                         "Atualizar", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
                 getDesktopPane().remove(this);
+                 limpaCampos();
             }
-            tfNomeFuncionario.setText("");
-            tfCpfFuncionario.setText("");
-            tfLoginFuncionario.setText("");
-            tfSenhaFuncionario.setText("");
+           
         }
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 

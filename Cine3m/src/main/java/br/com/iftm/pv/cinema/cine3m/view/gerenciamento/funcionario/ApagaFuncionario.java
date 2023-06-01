@@ -41,7 +41,7 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(lstFuncionarios);
 
-        btnConfirmarApagaFuncionario.setText("Apagar");
+        btnConfirmarApagaFuncionario.setText("APAGAR");
         btnConfirmarApagaFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarApagaFuncionarioActionPerformed(evt);
@@ -49,6 +49,7 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
         });
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaCliente.setText("Apagar Funcionário");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -89,6 +90,7 @@ public class ApagaFuncionario extends javax.swing.JInternalFrame {
     private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded
         funcionarios = gerenciaFuncionario.relatorio();
         ListUtils.carregarList(lstFuncionarios, funcionarios);
+
         if (!funcionarios.isEmpty()) {
             btnConfirmarApagaFuncionario.setEnabled(true);
             lstFuncionarios.setSelectedIndex(0);

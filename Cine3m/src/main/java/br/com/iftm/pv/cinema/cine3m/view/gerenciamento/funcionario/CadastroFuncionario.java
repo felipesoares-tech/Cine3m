@@ -136,7 +136,8 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         setClosable(true);
 
         lbTituloTelaFuncionario.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaFuncionario.setText("Cadastro Funcionario");
+        lbTituloTelaFuncionario.setForeground(new java.awt.Color(204, 204, 204));
+        lbTituloTelaFuncionario.setText("Cadastro de Funcionários");
 
         lbNomeFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         lbNomeFuncionario.setText("Nome:");
@@ -156,7 +157,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         lbSenhaFuncionario.setForeground(new java.awt.Color(255, 255, 255));
         lbSenhaFuncionario.setText("Senha:");
 
-        btnCadastrarFuncionario.setText("Cadastrar");
+        btnCadastrarFuncionario.setText("CADASTRAR");
         btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarFuncionarioActionPerformed(evt);
@@ -218,7 +219,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbTituloTelaFuncionario))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +246,7 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
                 && ValidaCampo.validar(senha, lbSenhaFuncionario, this)) {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
-            if (btnCadastrarFuncionario.getText().equals("Cadastrar")) {
+            if (btnCadastrarFuncionario.getText().equals("CADASTRAR")) {
                 Boolean sucesso = gerenciaFuncionario.cadastrar(funcionario);
                 JOptionPane.showMessageDialog(this, sucesso ? "Funcionario cadstrado com sucesso " : "Funcionario já Cadastrado!",
                         "Cadastro Funcionario", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);

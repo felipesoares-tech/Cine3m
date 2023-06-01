@@ -49,7 +49,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         });
 
         lbCliente2.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbCliente2.setForeground(new java.awt.Color(255, 255, 255));
+        lbCliente2.setForeground(new java.awt.Color(204, 204, 204));
         lbCliente2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbCliente2.setText("Consultar Cliente");
 
@@ -89,7 +89,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
 
         this.cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
         this.cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
-        this.cadastroCliente.getLbTituloTelaCliente().setText("Consulta Cliente");
+        this.cadastroCliente.getLbTituloTelaCliente().setText("Consulta de Cliente");
 
         this.cadastroCliente.getBtnCadastrarCliente().setVisible(false);
         this.cadastroCliente.getTfNomeCliente().setEditable(false);

@@ -32,7 +32,7 @@ public class AtualizaFilme extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnAtualizarFilme.setText("Confirmar");
+        btnAtualizarFilme.setText("CONFIRMAR");
         btnAtualizarFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtualizarFilmeActionPerformed(evt);
@@ -40,7 +40,7 @@ public class AtualizaFilme extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Atualizar Filme");
 
@@ -99,7 +99,7 @@ public class AtualizaFilme extends javax.swing.JInternalFrame {
         this.cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
         this.cadastroFilme.getTfaDescricao().setText(filmeSelecionado.getDescricao());
         this.cadastroFilme.getLbTituloTelaFilme().setText("Atualização de Filme");
-        this.cadastroFilme.getBtnConfirmar().setText("Atualizar");
+        this.cadastroFilme.getBtnConfirmar().setText("ATUALIZAR");
         this.cadastroFilme.getBtnConfirmar().setVisible(true);
         this.cadastroFilme.getTfNomeFilme().setEditable(true);
         this.cadastroFilme.getTfDiretor().setEditable(true);

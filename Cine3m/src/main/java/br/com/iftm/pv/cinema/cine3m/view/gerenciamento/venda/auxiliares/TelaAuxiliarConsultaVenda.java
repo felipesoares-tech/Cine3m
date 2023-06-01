@@ -22,7 +22,7 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         this.tfClienteConsulta.setEnabled(false);
         this.tfSessaoConsulta.setEnabled(false);
         this.tfValorTotal.setEnabled(false);
-        this.jCheckBox1.setEnabled(false);
+        lbdesconto.setEnabled(false);
     }
 
     public Venda getVendaSelecionada() {
@@ -33,12 +33,12 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         this.vendaSelecionada = vendaSelecionada;
     }
 
-    public JCheckBox getjCheckBox1() {
-        return jCheckBox1;
+    public JLabel getLbdesconto() {
+        return lbdesconto;
     }
 
-    public void setjCheckBox1(JCheckBox jCheckBox1) {
-        this.jCheckBox1 = jCheckBox1;
+    public void setLbdesconto(JLabel lbdesconto) {
+        this.lbdesconto = lbdesconto;
     }
 
     public JLabel getjLabel1() {
@@ -188,7 +188,7 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         tfValorTotal = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        lbdesconto = new javax.swing.JLabel();
         lbTituloTelaCliente = new javax.swing.JLabel();
 
         setClosable(true);
@@ -205,9 +205,11 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         tfSessaoConsulta.setEditable(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Sessão");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Cliente");
 
         tfClienteConsulta.setEditable(false);
@@ -215,6 +217,7 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         tfFuncionarioConsulta.setEditable(false);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Funcionario");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -264,11 +267,13 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
 
         jScrollPane1.setViewportView(listItensIngresso);
 
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Itens Ingresso:");
 
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Valor Total:");
 
-        jCheckBox1.setText("Desconto");
+        lbdesconto.setText(" ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -278,7 +283,10 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-            .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbdesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,9 +294,9 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
-                .addGap(0, 27, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lbdesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -319,6 +327,7 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         );
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaCliente.setText("Consulta Venda");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -361,12 +370,13 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
         String nomeSessaoVenda = vendaSelecionada.getSessao().getNome();
         List<ItemVenda> itensVenda = vendaSelecionada.getItensIngresso();
         Double valorTotal = vendaSelecionada.getValorFinal();
-        boolean desconto = vendaSelecionada.isDesconto();
+        boolean desconto = vendaSelecionada.hasDesconto();
+        lbdesconto.setText(desconto ? "Com desconto" : "Sem desconto");
 
         getTfClienteConsulta().setText(nomeClienteVenda);
         getTfSessaoConsulta().setText(nomeSessaoVenda);
         getTfValorTotal().setText(String.valueOf(valorTotal));
-        getjCheckBox1().setSelected(desconto);
+
         DefaultListModel<String> model = new DefaultListModel<>();
         Iterator<ItemVenda> it = itensVenda.iterator();
         while (it.hasNext()) {
@@ -378,7 +388,6 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -390,6 +399,7 @@ public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTituloTelaCliente;
+    private javax.swing.JLabel lbdesconto;
     private javax.swing.JList<String> listItensIngresso;
     private javax.swing.JTextField tfClienteConsulta;
     private javax.swing.JTextField tfFuncionarioConsulta;

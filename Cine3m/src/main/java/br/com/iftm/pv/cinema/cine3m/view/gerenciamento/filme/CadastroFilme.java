@@ -154,6 +154,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         tfaDescricao.setRows(5);
         jScrollPane1.setViewportView(tfaDescricao);
 
+        lbGenero.setForeground(new java.awt.Color(51, 51, 51));
         lbGenero.setText("Genero");
 
         cbGenero.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -166,13 +167,16 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
             }
         });
 
+        lbDescricao.setForeground(new java.awt.Color(51, 51, 51));
         lbDescricao.setText("Descrição");
 
+        lbNome.setForeground(new java.awt.Color(51, 51, 51));
         lbNome.setText("Nome");
 
+        lbDiretor.setForeground(new java.awt.Color(51, 51, 51));
         lbDiretor.setText("Diretor");
 
-        btnConfirmar.setText("Cadastrar");
+        btnConfirmar.setText("CADASTRAR");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
@@ -224,6 +228,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         );
 
         lbTituloTelaFilme.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaFilme.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaFilme.setText("Cadastro de filmes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -232,9 +237,9 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbTituloTelaFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbTituloTelaFilme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -268,7 +273,7 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
                 ValidaCampo.validar(diretor, lbDiretor, this) && 
                 ValidaCampo.validar(descricao, lbDescricao, this)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
-            if (btnConfirmar.getText().equals("Cadastrar")) {
+            if (btnConfirmar.getText().equals("CADASTRAR")) {
                 Boolean sucesso = gerenciaFilme.cadastrar(filme);
                 JOptionPane.showMessageDialog(rootPane, sucesso ? "Filme cadstrado com sucesso " : "Filme já Cadastrado!",
                         "Cadastro Filme", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);

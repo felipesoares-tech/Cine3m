@@ -27,6 +27,7 @@ public class RelatorioSala extends javax.swing.JInternalFrame {
         setClosable(true);
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaCliente.setText("Relatório de Salas");
 
         tbRelatorioSala.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N

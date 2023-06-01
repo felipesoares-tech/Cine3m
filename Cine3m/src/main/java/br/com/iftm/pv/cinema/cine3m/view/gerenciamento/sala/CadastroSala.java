@@ -79,12 +79,12 @@ public class CadastroSala extends javax.swing.JInternalFrame {
         this.lbSalaNome = lbSalaNome;
     }
 
-    public JLabel getLbTituloTelaCliente() {
-        return lbTituloTelaCliente;
+    public JLabel getLbTituloTelaSala() {
+        return lbTituloTelaSala;
     }
 
-    public void setLbTituloTelaCliente(JLabel lbTituloTelaCliente) {
-        this.lbTituloTelaCliente = lbTituloTelaCliente;
+    public void setLbTituloTelaSala(JLabel lbTituloTelaSala) {
+        this.lbTituloTelaSala = lbTituloTelaSala;
     }
 
     public JTextField getTfNomeSala() {
@@ -103,7 +103,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbTituloTelaCliente = new javax.swing.JLabel();
+        lbTituloTelaSala = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lbSalaCapacidade = new javax.swing.JLabel();
         jsCapacidade = new javax.swing.JSpinner();
@@ -113,16 +113,19 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaCliente.setText("Cadastro de salas");
+        lbTituloTelaSala.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaSala.setForeground(new java.awt.Color(204, 204, 204));
+        lbTituloTelaSala.setText("Cadastro de salas");
 
         lbSalaCapacidade.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbSalaCapacidade.setForeground(new java.awt.Color(51, 51, 51));
         lbSalaCapacidade.setText("Capacidade");
 
         lbSalaNome.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbSalaNome.setForeground(new java.awt.Color(51, 51, 51));
         lbSalaNome.setText("Nome");
 
-        btnCadastrarSala.setText("Cadastrar");
+        btnCadastrarSala.setText("CADASTRAR");
         btnCadastrarSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarSalaActionPerformed(evt);
@@ -172,15 +175,15 @@ public class CadastroSala extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbTituloTelaSala, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(67, Short.MAX_VALUE)
-                .addComponent(lbTituloTelaCliente)
+                .addComponent(lbTituloTelaSala)
                 .addGap(55, 55, 55)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78))
@@ -195,7 +198,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
         String nome = tfNomeSala.getText();
         Sala sala = new Sala(nome, capacidade);
         if (ValidaCampo.validar(nome, lbSalaNome, this)) {
-            if (btnCadastrarSala.getText().equals("Cadastrar")) {
+            if (btnCadastrarSala.getText().equals("CADASTRAR")) {
                 Boolean sucesso = gerenciaSala.cadastrar(sala);
                 JOptionPane.showMessageDialog(this, sucesso ? "Sala cadastrada com sucesso !" : "Sala já cadastrada!",
                         "Cadastro Sala", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
@@ -204,6 +207,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
                 gerenciaSala.atualizar(salaSelecionada, sala);
                 JOptionPane.showMessageDialog(this, "Sala atualizada com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
                 this.setVisible(false);
+                getDesktopPane().remove(this);
             }
             tfNomeSala.setText("");
         }
@@ -217,7 +221,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner jsCapacidade;
     private javax.swing.JLabel lbSalaCapacidade;
     private javax.swing.JLabel lbSalaNome;
-    private javax.swing.JLabel lbTituloTelaCliente;
+    private javax.swing.JLabel lbTituloTelaSala;
     private javax.swing.JTextField tfNomeSala;
     // End of variables declaration//GEN-END:variables
 }

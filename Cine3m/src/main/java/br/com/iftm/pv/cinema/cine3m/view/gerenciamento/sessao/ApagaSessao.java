@@ -29,6 +29,7 @@ public class ApagaSessao extends javax.swing.JInternalFrame {
         setClosable(true);
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaCliente.setText("Apagar Sessão");
 
         listApagaSessao.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -43,7 +44,7 @@ public class ApagaSessao extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(listApagaSessao);
 
-        btnConfirmarApagaSessao1.setText("Confirmar");
+        btnConfirmarApagaSessao1.setText("APAGAR");
         btnConfirmarApagaSessao1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarApagaSessao1ActionPerformed(evt);

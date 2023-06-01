@@ -28,10 +28,11 @@ public class AtualizaSala extends javax.swing.JInternalFrame {
         setClosable(true);
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTituloTelaCliente.setText("Atualizar Sala");
 
-        btnAtualizarSala.setText("Confirmar");
+        btnAtualizarSala.setText("CONFIRMAR");
         btnAtualizarSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtualizarSalaActionPerformed(evt);
@@ -89,7 +90,8 @@ public class AtualizaSala extends javax.swing.JInternalFrame {
         Sala salaSelecionada = (Sala) this.lstSalas.getSelectedValue();
         this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
         this.cadastroSala.getJsCapacidade().setValue(salaSelecionada.getCapacidade());
-        this.cadastroSala.getBtnCadastrarSala().setText("Atualizar");
+        this.cadastroSala.getBtnCadastrarSala().setText("ATUALIZAR");
+        this.cadastroSala.getLbTituloTelaSala().setText("Atualização de Sala");
         this.cadastroSala.getJsCapacidade().setEnabled(true);
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
         this.cadastroSala.getTfNomeSala().setEditable(true);

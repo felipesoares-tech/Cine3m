@@ -28,10 +28,11 @@ public class ConsultaSala extends javax.swing.JInternalFrame {
         setClosable(true);
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTituloTelaCliente.setText("Consultar Sala");
 
-        btnConsultarSala.setText("Consultar");
+        btnConsultarSala.setText("CONFIRMAR");
         btnConsultarSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarSalaActionPerformed(evt);
@@ -91,6 +92,7 @@ public class ConsultaSala extends javax.swing.JInternalFrame {
         this.cadastroSala.getJsCapacidade().setEnabled(false);
         this.cadastroSala.getTfNomeSala().setEditable(false);
         this.cadastroSala.getJsCapacidade().setEnabled(false);
+        this.cadastroSala.getLbTituloTelaSala().setText("Consulta de Sala");
         getDesktopPane().add(cadastroSala);
         this.cadastroSala.setVisible(true);
 

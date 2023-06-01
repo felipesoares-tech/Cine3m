@@ -27,7 +27,7 @@ public class ConsultaFuncionario extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        btnConsultarFuncionario.setText("Confirmar");
+        btnConsultarFuncionario.setText("CONFIRMAR");
         btnConsultarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarFuncionarioActionPerformed(evt);
@@ -35,6 +35,7 @@ public class ConsultaFuncionario extends javax.swing.JInternalFrame {
         });
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaCliente.setText("Consultar Funcionário");
 
         lstFuncionarios.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -95,7 +96,7 @@ public class ConsultaFuncionario extends javax.swing.JInternalFrame {
         cadastroFuncionario.getTfCpfFuncionario().setEditable(false);
         cadastroFuncionario.getTfLoginFuncionario().setEditable(false);
         cadastroFuncionario.getTfSenhaFuncionario().setEditable(false);
-        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Consultar Funcionário");
+        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Consulta de Funcionário");
         getDesktopPane().add(cadastroFuncionario);
         cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnConsultarFuncionarioActionPerformed

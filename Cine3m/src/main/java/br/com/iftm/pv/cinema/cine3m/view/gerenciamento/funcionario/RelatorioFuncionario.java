@@ -39,6 +39,7 @@ public class RelatorioFuncionario extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tbRelFuncionarios);
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaCliente.setText("Relatório Funcionários");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

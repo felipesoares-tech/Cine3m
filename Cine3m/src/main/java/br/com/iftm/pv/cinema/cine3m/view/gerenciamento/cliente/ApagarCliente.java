@@ -52,7 +52,7 @@ public class ApagarCliente extends javax.swing.JInternalFrame {
         });
 
         lbCliente2.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbCliente2.setForeground(new java.awt.Color(255, 255, 255));
+        lbCliente2.setForeground(new java.awt.Color(204, 204, 204));
         lbCliente2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbCliente2.setText("Remover Cliente");
 

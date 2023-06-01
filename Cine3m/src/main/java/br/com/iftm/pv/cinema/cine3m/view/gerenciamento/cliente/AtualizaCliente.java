@@ -30,9 +30,9 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
         setClosable(true);
 
         lbCliente2.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbCliente2.setForeground(new java.awt.Color(255, 255, 255));
+        lbCliente2.setForeground(new java.awt.Color(204, 204, 204));
         lbCliente2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbCliente2.setText("Atualizar Clientes");
+        lbCliente2.setText("Atualizar Cliente");
 
         btnAtualizarCliente.setText("CONFIRMAR");
         btnAtualizarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -49,6 +49,11 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        lstClientes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lstClientesFocusGained(evt);
             }
         });
         jScrollPane1.setViewportView(lstClientes);
@@ -108,6 +113,10 @@ public class AtualizaCliente extends javax.swing.JInternalFrame {
         getDesktopPane().add(cadastroCliente);
         this.cadastroCliente.setVisible(true);
     }//GEN-LAST:event_btnAtualizarClienteActionPerformed
+
+    private void lstClientesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lstClientesFocusGained
+        lstClientesAncestorAdded(null);
+    }//GEN-LAST:event_lstClientesFocusGained
 
     public JList<Pessoa> getLstClientes() {
         return lstClientes;

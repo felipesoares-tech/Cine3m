@@ -207,6 +207,15 @@ public class Principal extends javax.swing.JFrame {
         this.atualizaFilme.getLstFilmes().setBackground(corPanelPadrao);
         this.apagaFilme.getLstFilmes().setBackground(corPanelPadrao);
 
+        this.cadastroVenda.getContentPane().setBackground(corFundoPadrao);
+        this.consultaVenda.getContentPane().setBackground(corFundoPadrao);
+        this.relatorioVenda.getContentPane().setBackground(corFundoPadrao);
+        this.cadastroVenda.getPanelCadastroVenda().setBackground(corPanelPadrao);
+
+        this.cadastroVenda.getPanelBotoes().setBackground(corPanelPadrao);
+        this.cadastroVenda.getPanelDados().setBackground(corPanelPadrao);
+        this.consultaVenda.getLstVendas().setBackground(corPanelPadrao);
+
         this.telaImportacao = new TelaImportacao(gerenciaFilme);
 
         this.telaImportacao.getContentPane().setBackground(corFundoPadrao);
@@ -593,7 +602,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroClienteActionPerformed
         this.cadastroCliente.getBtnCadastrarCliente().setVisible(true);
-        this.cadastroCliente.getLbTituloTelaCliente().setText("Cadastro de Cliente");
+        this.cadastroCliente.getLbTituloTelaCliente().setText("Cadastro de Clientes");
         this.cadastroCliente.getBtnCadastrarCliente().setText("CADASTRAR");
         this.cadastroCliente.getTfNomeCliente().setEditable(true);
         this.cadastroCliente.getTfCpfCliente().setEditable(true);
@@ -625,7 +634,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imCadastroFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroFuncionarioActionPerformed
         cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
-        cadastroFuncionario.getBtnCadastrarFuncionario().setText("Cadastrar");
+        cadastroFuncionario.getBtnCadastrarFuncionario().setText("CADASTRAR");
         cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
         cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
         cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
@@ -635,8 +644,8 @@ public class Principal extends javax.swing.JFrame {
         cadastroFuncionario.getTfCpfFuncionario().setText("");
         cadastroFuncionario.getTfLoginFuncionario().setText("");
         cadastroFuncionario.getTfSenhaFuncionario().setText("");
-        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Cadastrar Funcionário");
- 
+        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Cadastro de Funcionários");
+
         jDesktopPane1.add(cadastroFuncionario);
         this.cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_imCadastroFuncionarioActionPerformed
@@ -662,7 +671,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_imRelatorioFuncionarioActionPerformed
 
     private void imCadastroFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroFilmeActionPerformed
-        this.cadastroFilme.getBtnConfirmar().setText("Cadastrar");
+        this.cadastroFilme.getBtnConfirmar().setText("CADASTRAR");
+        this.cadastroFilme.getLbTituloTelaFilme().setText("Cadastro de Filmes");
         this.cadastroFilme.getBtnConfirmar().setVisible(true);
         this.cadastroFilme.getTfNomeFilme().setEditable(true);
         this.cadastroFilme.getTfDiretor().setEditable(true);
@@ -698,7 +708,8 @@ public class Principal extends javax.swing.JFrame {
     private void imCadastroSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSalaActionPerformed
         this.cadastroSala.getJsCapacidade().setEnabled(true);
         this.cadastroSala.getBtnCadastrarSala().setVisible(true);
-        this.cadastroSala.getBtnCadastrarSala().setText("Cadastrar");
+          this.cadastroSala.getLbTituloTelaSala().setText("Cadastro de Salas");        
+        this.cadastroSala.getBtnCadastrarSala().setText("CADASTRAR");
         this.cadastroSala.getTfNomeSala().setText("");
         this.cadastroSala.getTfNomeSala().setEditable(true);
         jDesktopPane1.add(cadastroSala);
@@ -728,7 +739,7 @@ public class Principal extends javax.swing.JFrame {
     private void imCadastroSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroSessaoActionPerformed
         this.cadastroSessao.getBtnCadastrarSessao().setVisible(true);
         this.cadastroSessao.getLbTituloTelaSessao().setText("Cadastro de Sessão");
-        this.cadastroSessao.getBtnCadastrarSessao().setText("Cadastrar");
+        this.cadastroSessao.getBtnCadastrarSessao().setText("CADASTRAR");
 
         this.cadastroSessao.getTfDataSessao().setEditable(true);
         this.cadastroSessao.getTfHorarioSessao().setEditable(true);

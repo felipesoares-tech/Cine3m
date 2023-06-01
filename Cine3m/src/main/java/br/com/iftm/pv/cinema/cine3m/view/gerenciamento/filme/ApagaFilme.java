@@ -46,7 +46,7 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(lstFilmes);
 
-        btnConfirmarApagaFilme.setText("Apagar");
+        btnConfirmarApagaFilme.setText("APAGAR");
         btnConfirmarApagaFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarApagaFilmeActionPerformed(evt);
@@ -54,6 +54,7 @@ public class ApagaFilme extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("Apagar Filme");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

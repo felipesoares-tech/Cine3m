@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package br.com.iftm.pv.cinema.cine3m.view.util;
 
 import java.lang.reflect.Field;
@@ -5,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
+/**
+ *
+ * @author Felipe Soares
+ */
 public class TableModelGenerico<T> extends AbstractTableModel {
 
     private List<T> data = new ArrayList<>();
@@ -14,8 +22,8 @@ public class TableModelGenerico<T> extends AbstractTableModel {
 
     public TableModelGenerico(Class<?> classe) {
         this.classe = classe;
-        buscaCampos();
-        buscaNomeColunas();
+        buscaCampos(); //Irá retornar os campos que irão aparecer na table
+        buscaNomeColunas(); //Serve para renomear os campos que irão aparecer na tabela
 
     }
 

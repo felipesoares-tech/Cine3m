@@ -28,7 +28,7 @@
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <Component id="lbTituloTelaFuncionario" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace pref="82" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,10 +50,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="36" style="0"/>
         </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="cc" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Cadastro de Funcion&#xe1;rios"/>
+        <Property name="text" type="java.lang.String" value="Cadastro Funcionario"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -156,7 +153,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCadastrarFuncionario">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CADASTRAR"/>
+            <Property name="text" type="java.lang.String" value="Cadastrar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarFuncionarioActionPerformed"/>

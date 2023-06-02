@@ -15,13 +15,12 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
     public List<Funcionario> getFuncionarios() {
         return funcionarios;
     }
-
+    
     public Boolean cadastrar(Funcionario funcionario) {
-        if (verificarCpf(funcionario.getCpf()) || verificarNome(funcionario.getNome())
-                || verificarLogin(funcionario.getLogin())) {
-            return false;
+        if (!funcionarios.contains(funcionario)) {
+            return funcionarios.add(funcionario);
         }
-        return funcionarios.add(funcionario);
+        return false;
     }
 
     public Funcionario remover(Funcionario funcionario) {
@@ -38,32 +37,5 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
 
     public List<Funcionario> relatorio() {
         return this.funcionarios;
-    }
-
-    public Boolean verificarCpf(String cpf) {
-        for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getCpf().equals(cpf)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public Boolean verificarNome(String nome) {
-        for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getNome().equals(nome)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public Boolean verificarLogin(String login) {
-        for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getLogin().equals(login)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

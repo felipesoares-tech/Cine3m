@@ -1,11 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
+ */
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxiliarConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
-import javax.swing.JList;
 
+/**
+ *
+ * @author Felipe Soares
+ */
 public class ConsultaVenda extends javax.swing.JInternalFrame {
 
     private final TelaAuxiliarConsultaVenda telaAuxiliarConsultaVenda;
@@ -17,15 +24,6 @@ public class ConsultaVenda extends javax.swing.JInternalFrame {
         this.gerenciaVenda = gerenciaVenda;
     }
 
-    public JList<Venda> getLstVendas() {
-        return lstVendas;
-    }
-
-    public void setLstVendas(JList<Venda> lstVendas) {
-        this.lstVendas = lstVendas;
-    }
-
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,11 +41,10 @@ public class ConsultaVenda extends javax.swing.JInternalFrame {
         setClosable(true);
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
         lbTituloTelaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTituloTelaCliente.setText("Consultar Vendas");
 
-        btnConsultarVendas.setText("CONFIRMAR");
+        btnConsultarVendas.setText("Consultar");
         btnConsultarVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarVendasActionPerformed(evt);
@@ -70,26 +67,28 @@ public class ConsultaVenda extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConsultarVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(223, 223, 223))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(254, 254, 254)
+                        .addComponent(btnConsultarVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addContainerGap()
                 .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnConsultarVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();

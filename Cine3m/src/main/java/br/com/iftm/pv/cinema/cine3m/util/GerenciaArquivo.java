@@ -1,5 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.util;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,25 +8,31 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class GerenciaArquivo {
 
-    private Map<String, Funcionario> usuarioSenhas;
+    private Map<String, String> usuarioSenhas;
     private String pathArquivo;
     private CriptografarSenha criptografarSenha;
-    private Funcionario admin;
 
     public GerenciaArquivo() {
         this.usuarioSenhas = new HashMap<>();
-        this.pathArquivo = "dados_login.bin";
+        this.pathArquivo = "dados_login";
         this.criptografarSenha = new CriptografarSenha();
-        this.admin = new Funcionario("ADMIN", "000.000.000-00", "admin", criptografarSenha.criptografarSenha("admin"));
         criarArquivo();
-        carregarDadosArquivo(pathArquivo);  
+        guardarSenha("admin", criptografarSenha.criptografarSenha("admin"));
+    }
+
+    public void guardarSenha(String login, String senha) {
+        try {
+            usuarioSenhas.put(login, senha);
+            guardarSenhas();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void guardarSenhas() throws IOException {
@@ -39,13 +46,6 @@ public class GerenciaArquivo {
             File arquivo = new File(pathArquivo);
             if (!arquivo.exists()) {
                 arquivo.createNewFile();
-                try {
-                    Funcionario funcionario = admin;
-                    usuarioSenhas.put("admin", funcionario);
-                    guardarSenhas();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,12 +53,12 @@ public class GerenciaArquivo {
     }
 
     public boolean checarCredenciais(String usuarioNome, String senha) {
-        try (FileInputStream fis = new FileInputStream(pathArquivo); ObjectInputStream ois = new ObjectInputStream(fis)) {
-            HashMap<String, Funcionario> funcionarioDados = (HashMap<String, Funcionario>) ois.readObject();
+        try (FileInputStream fis = new FileInputStream(pathArquivo); 
+                ObjectInputStream ois = new ObjectInputStream(fis)) {
+            HashMap<String, String> usuarioSenhas = (HashMap<String, String>) ois.readObject();
 
-            if (funcionarioDados.containsKey(usuarioNome)) {
-                Funcionario funcionario = funcionarioDados.get(usuarioNome);
-                String senhaGuardada = funcionario.getSenha();
+            if (usuarioSenhas.containsKey(usuarioNome)) {
+                String senhaGuardada = usuarioSenhas.get(usuarioNome);
                 return criptografarSenha.criptografarSenha(senha).equals(senhaGuardada);
             }
         } catch (IOException | ClassNotFoundException e) {
@@ -68,18 +68,13 @@ public class GerenciaArquivo {
         return false;
     }
 
-    public void adicionaUsuarios(List<Funcionario> funcionarios) throws IOException {
-        List<Funcionario> usuarios = funcionarios;
+    public void adicionaUsuarios(GerenciaFuncionario gerenciaFuncionario) throws IOException {
+        List<Funcionario> funcionarios = gerenciaFuncionario.getFuncionarios();
         limparArquivo();
-        for (Funcionario funcionario : usuarios) {
+        for (Funcionario funcionario : funcionarios) {
             String login = funcionario.getLogin();
             String senha = funcionario.getSenha();
-            if (!funcionario.getSenha().startsWith("CRYPT:") && funcionario.getSenha().length() != 70) {
-                funcionario.setSenha(criptografarSenha.criptografarSenha(senha));
-            } else {
-                funcionario.setSenha(senha);
-            }
-            usuarioSenhas.put(login, funcionario);
+            usuarioSenhas.put(login, senha);
         }
         guardarSenhas();
     }
@@ -88,41 +83,10 @@ public class GerenciaArquivo {
         try {
             usuarioSenhas.clear();
             guardarSenhas();
+            System.out.println("Arquivo limpo com sucesso.");
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public List<Funcionario> obterFuncionarios() {
-        List<Funcionario> funcionarios = new ArrayList<>();
-
-        try (FileInputStream fis = new FileInputStream(pathArquivo); ObjectInputStream ois = new ObjectInputStream(fis)) {
-            HashMap<String, Funcionario> funcionarioDados = (HashMap<String, Funcionario>) ois.readObject();
-            funcionarios.addAll(funcionarioDados.values());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return funcionarios;
-    }
-
-    public void carregarDadosArquivo(String pathArquivo) {
-        try (FileInputStream fis = new FileInputStream(pathArquivo); ObjectInputStream ois = new ObjectInputStream(fis)) {
-            usuarioSenhas = (HashMap<String, Funcionario>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Funcionario obterFuncionario(String chave) {
-        if (usuarioSenhas.containsKey(chave)) {
-            return usuarioSenhas.get(chave);
-        }
-        return null;
-    }
-
-    public Funcionario getAdmin() {
-        return admin;
     }
 
 }

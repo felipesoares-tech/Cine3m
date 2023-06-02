@@ -6,7 +6,6 @@ public class Venda {
 
     private Sessao sessao;
     private Cliente cliente;
-    private Funcionario funcionario;
     private String identificador;
     private Double valorFinal;
     private List<ItemVenda> itensVenda;
@@ -44,32 +43,22 @@ public class Venda {
         this.itensVenda = itensVenda;
     }
 
-    public Venda(Funcionario funcionario, Sessao sessao, Double valorFinal, List<ItemVenda> itensVenda) {
+    public Venda(Sessao sessao, Double valorFinal, List<ItemVenda> itensVenda) {
         this.sessao = sessao;
         this.valorFinal = valorFinal;
         this.itensVenda = itensVenda;
-        this.funcionario = funcionario;
-        this.identificador = "VENDA" + " - " + funcionario.getNome() + " - " + sessao.toString();
+        this.identificador = "VENDA" + " - " + itensVenda.toString() + " - " + sessao.toString();
     }
 
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
-    public Venda(Funcionario funcionario, Sessao sessao, Cliente cliente, Double valorFinal, List<ItemVenda> itensVenda) {
+    public Venda(Sessao sessao, Cliente cliente, Double valorFinal, List<ItemVenda> itensVenda) {
         this.sessao = sessao;
         this.cliente = cliente;
         this.valorFinal = valorFinal;
         this.itensVenda = itensVenda;
-        this.funcionario = funcionario;
-        this.identificador = "VENDA" + " - " + funcionario.getNome() + " - " + sessao.toString();
+        this.identificador = "VENDA" + " - " + itensVenda.toString() + " - " + sessao.toString();
     }
 
-    public boolean hasDesconto() {
+    public boolean isDesconto() {
         return desconto;
     }
 

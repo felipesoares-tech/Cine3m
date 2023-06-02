@@ -1,5 +1,4 @@
 package br.com.iftm.pv.cinema.cine3m.interfaces;
-
 import java.util.List;
 
 

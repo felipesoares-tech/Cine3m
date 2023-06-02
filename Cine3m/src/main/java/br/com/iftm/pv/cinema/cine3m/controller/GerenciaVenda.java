@@ -3,7 +3,6 @@ package br.com.iftm.pv.cinema.cine3m.controller;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 public class GerenciaVenda {
 
@@ -15,13 +14,17 @@ public class GerenciaVenda {
         this.gerenciaCliente = gerenciaCliente;
     }
 
+    private Double aplicarPromocaoVenda(Double valor) {
+        return valor - (valor * 0.1);
+    }
+
     public Venda cadastrar(Venda venda) {
         Cliente clienteVenda = venda.getCliente();
         if (clienteVenda != null) {
             clienteVenda.setQtdFilmesAssistidos(clienteVenda.getQtdFilmesAssistidos() + 1);
             Cliente clienteAntigo = gerenciaCliente.consultar(clienteVenda);
             if (clienteVenda.getQtdFilmesAssistidos() == 3) {
-                venda.setValorFinal(venda.getValorFinal() - (venda.getValorFinal() * 0.1));
+                venda.setValorFinal(aplicarPromocaoVenda(venda.getValorFinal()));
                 venda.setDesconto(true);
                 clienteVenda.setQtdFilmesAssistidos(0);
             }

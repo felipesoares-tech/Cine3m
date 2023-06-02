@@ -164,9 +164,8 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
             } else {
                 gerenciaCliente.atualizar(clienteSelecionado, cliente);
                 JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
-//                this.setVisible(false);
-//                getDesktopPane().remove(this);
-                ValidaTela.abrirTela(this, getDesktopPane());
+                this.setVisible(false);
+                getDesktopPane().remove(this);
                 limpaCampos();
             }
            

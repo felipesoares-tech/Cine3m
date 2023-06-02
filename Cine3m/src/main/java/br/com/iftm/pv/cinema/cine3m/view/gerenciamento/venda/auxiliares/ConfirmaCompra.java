@@ -51,6 +51,8 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         initComponents();
         this.jsInteira.setModel(spinnerModelInteira);
         this.jsMeia.setModel(spinnerModelMeia);
+        this.qtdInteira = (int) jsInteira.getValue();
+        this.qtdMeia = (int) jsMeia.getValue();
 
     }
 
@@ -191,7 +193,6 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         }
         Integer total = qtdMeia + qtdInteira;
         if (total.equals(qtdMaxItensIngresso)) {
-            JOptionPane.showMessageDialog(this, "Cadastrado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
             Venda venda;
             List<ItemVenda> itensVenda = preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao);
             DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroVenda.getListItensIngresso().getModel();
@@ -204,6 +205,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
             }
             Venda vendaRealizada = gerenciaVenda.cadastrar(venda);
             if (vendaRealizada != null) {
+                JOptionPane.showMessageDialog(this, "Venda realizada!!", "Cadastro de Vendas", JOptionPane.INFORMATION_MESSAGE);
                 cadastroVenda.getContentPane().remove(consultaPoltronas);
                 cadastroVenda.setConsultaPoltronas(null);
                 if (vendaRealizada.hasDesconto()) {

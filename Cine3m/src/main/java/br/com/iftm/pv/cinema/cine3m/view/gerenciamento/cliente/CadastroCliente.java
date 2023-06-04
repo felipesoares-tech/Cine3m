@@ -3,8 +3,9 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
-import br.com.iftm.pv.cinema.cine3m.view.util.ValidaTela;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -12,13 +13,22 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
 
-public class CadastroCliente extends javax.swing.JInternalFrame {
+public class CadastroCliente extends ModalInternalFrame {
 
     private GerenciaCliente gerenciaCliente;
     private Cliente clienteSelecionado;
+    private OperacoesCliente operacoesCliente;
+
+    public CadastroCliente(GerenciaCliente gerenciaCliente, OperacoesCliente operacoesCliente) {
+        this.gerenciaCliente = gerenciaCliente;
+        this.operacoesCliente = operacoesCliente;
+        initComponents();
+        ImageIcon icon = new ImageIcon("src/main/java/imagens/new-client.png");
+
+        icon.setImage(icon.getImage().getScaledInstance(59, 66, 1));
+        lbImg.setIcon(icon);
+    }
 
     public CadastroCliente(GerenciaCliente gerenciaCliente) {
         this.gerenciaCliente = gerenciaCliente;
@@ -27,13 +37,6 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
 
         icon.setImage(icon.getImage().getScaledInstance(59, 66, 1));
         lbImg.setIcon(icon);
-
-// this.addInternalFrameListener(new InternalFrameAdapter() {
-//            @Override
-//            public void internalFrameOpened(InternalFrameEvent e) {
-//               ValidaTela.fecharTela(CadastroCliente.this, getDesktopPane());
-//            }
-//        });        
     }
 
     @SuppressWarnings("unchecked")
@@ -84,10 +87,10 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
             .addComponent(lbCpfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tfNomeCliente)
             .addComponent(tfCpfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(193, 193, 193)
-                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(192, 192, 192))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +109,7 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         );
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaCliente.setForeground(new java.awt.Color(204, 204, 204));
+        lbTituloTelaCliente.setForeground(new java.awt.Color(102, 102, 102));
         lbTituloTelaCliente.setText("Cadastro de clientes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,7 +139,7 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
                         .addComponent(lbImg, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(48, 48, 48)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,29 +149,39 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         String nome = tfNomeCliente.getText().toUpperCase();
         String cpf = tfCpfCliente.getText().replaceAll("[-.]", "");
 
-        if (ValidaCampo.validar(nome, lbNomeCliente, this) && 
-                ValidaCampo.validar(cpf, lbCpfCliente, this)) {
+        if (ValidaCampo.validar(nome, lbNomeCliente, this)
+                && ValidaCampo.validar(cpf, lbCpfCliente, this)) {
             Cliente cliente = new Cliente(nome, cpf);
 
             if (btnCadastrarCliente.getText().equals("CADASTRAR")) {
                 if (ValidadorCPF.isCPF(cpf)) {
                     Boolean sucesso = gerenciaCliente.cadastrar(cliente);
-                    JOptionPane.showMessageDialog(this, sucesso ? 
-                            "Cliente cadstrado com sucesso " : "Cliente já Cadastrado!","Cadastro Cliente",
+                    JOptionPane.showMessageDialog(this, sucesso
+                            ? "Cliente cadstrado com sucesso " : "Cliente já Cadastrado!", "Cadastro Cliente",
                             sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
                     limpaCampos();
+
                 } else {
-                    JOptionPane.showMessageDialog(this, "CPF inválido!", 
+                    JOptionPane.showMessageDialog(this, "CPF inválido!",
                             "Validação de CPF", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 gerenciaCliente.atualizar(clienteSelecionado, cliente);
-                JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
                 getDesktopPane().remove(this);
                 limpaCampos();
             }
-           
+            ListUtils.carregarList(operacoesCliente.getLstClientes(), gerenciaCliente.relatorio());
+            if (gerenciaCliente.relatorio().isEmpty()) {
+                operacoesCliente.getBtnConsultar().setEnabled(false);
+                operacoesCliente.getBtnExcluir().setEnabled(false);
+                operacoesCliente.getBtnEditar().setEnabled(false);
+            } else {
+                operacoesCliente.getBtnConsultar().setEnabled(true);
+                operacoesCliente.getBtnExcluir().setEnabled(true);
+                operacoesCliente.getBtnEditar().setEnabled(true);
+            }
         }
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
@@ -192,7 +205,7 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
     public void setBtnCadastrarCliente(JButton btnCadastrarCliente) {
         this.btnCadastrarCliente = btnCadastrarCliente;
     }
-    
+
     public JPanel getjPanel8() {
         return jPanel8;
     }

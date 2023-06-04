@@ -2,10 +2,11 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.TableModelGenerico;
 import javax.swing.JTable;
 
-public class RelatorioCliente extends javax.swing.JInternalFrame {
+public class RelatorioCliente extends ModalInternalFrame {
 
     private final GerenciaCliente gerenciaCliente;
     private final TableModelGenerico modelo;

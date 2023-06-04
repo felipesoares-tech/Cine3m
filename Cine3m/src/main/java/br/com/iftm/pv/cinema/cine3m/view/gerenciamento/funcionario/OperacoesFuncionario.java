@@ -2,9 +2,9 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
-import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -22,10 +22,10 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
     private Funcionario admin;
     private Funcionario funcionarioLogado;
 
-    public OperacoesFuncionario(GerenciaFuncionario gerenciaFuncionario,Funcionario admin) {
+    public OperacoesFuncionario(GerenciaFuncionario gerenciaFuncionario, Funcionario admin) {
         initComponents();
-        initComponentsPersonalizado();
         this.gerenciaFuncionario = gerenciaFuncionario;
+        initComponentsPersonalizado();
         this.admin = admin;
         cadastroFuncionario = new CadastroFuncionario(gerenciaFuncionario, this);
         relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
@@ -33,38 +33,22 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
 
     }
 
-    private void filterList() {
-        String palavraDigitada = tfPesquisar.getText().toLowerCase();
-        if (palavraDigitada.isEmpty() || palavraDigitada.isBlank()) {
-            ListUtils.carregarList(lstFuncionarios, gerenciaFuncionario.relatorio());
-        } else {
-            DefaultListModel<Pessoa> model = new DefaultListModel<>();
-            for (int i = 0; i < lstFuncionarios.getModel().getSize(); i++) {
-                Pessoa cliente = lstFuncionarios.getModel().getElementAt(i);
-                String nomeFuncionario = cliente.getNome().toLowerCase();
-                if (nomeFuncionario.contains(palavraDigitada)) {
-                    model.addElement(cliente);
-                }
-            }
-            lstFuncionarios.setModel(model);
-        }
-    }
-
     private void initComponentsPersonalizado() {
+        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaFuncionario);
         tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                filterList();
+                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                filterList();
+                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                filterList();
+                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
             }
         });
     }
@@ -104,7 +88,7 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
     public JButton getBtnNovo() {
         return btnNovo;
     }
-    
+
     public void setFuncionarioLogado(Funcionario funcionarioLogado) {
         this.funcionarioLogado = funcionarioLogado;
     }

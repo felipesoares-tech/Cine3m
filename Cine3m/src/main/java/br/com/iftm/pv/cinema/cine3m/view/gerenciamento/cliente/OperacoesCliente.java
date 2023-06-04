@@ -4,8 +4,8 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
 import java.util.List;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -21,46 +21,30 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
 
     public OperacoesCliente(GerenciaCliente gerenciaCliente) {
         initComponents();
-        initComponentsPersonalizado();
         this.gerenciaCliente = gerenciaCliente;
+        initComponentsPersonalizado();
         this.cadastroCliente = new CadastroCliente(gerenciaCliente, this);
         relatorioCliente = new RelatorioCliente(gerenciaCliente);
         btnConsultar.setEnabled(false);
 
     }
 
-    private void filterList() {
-        String palavraDigitada = tfPesquisar.getText().toLowerCase();
-        if (palavraDigitada.isEmpty() || palavraDigitada.isBlank()) {
-            ListUtils.carregarList(lstClientes, gerenciaCliente.relatorio());
-        } else {
-            DefaultListModel<Pessoa> model = new DefaultListModel<>();
-            for (int i = 0; i < lstClientes.getModel().getSize(); i++) {
-                Pessoa cliente = lstClientes.getModel().getElementAt(i);
-                String nomeCliente = cliente.getNome().toLowerCase();
-                if (nomeCliente.contains(palavraDigitada)) {
-                    model.addElement(cliente);
-                }
-            }
-            lstClientes.setModel(model);
-        }
-    }
-
     private void initComponentsPersonalizado() {
+        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaCliente);
         tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                filterList();
+                pesquisaLike.filterList(tfPesquisar, lstClientes);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                filterList();
+                pesquisaLike.filterList(tfPesquisar, lstClientes);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                filterList();
+                pesquisaLike.filterList(tfPesquisar, lstClientes);
             }
         });
     }

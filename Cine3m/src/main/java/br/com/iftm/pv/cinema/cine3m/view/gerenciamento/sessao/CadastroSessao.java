@@ -7,6 +7,8 @@ import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -19,18 +21,20 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class CadastroSessao extends javax.swing.JInternalFrame {
+public class CadastroSessao extends ModalInternalFrame {
 
     private final GerenciaSessao gerenciaSessao;
     private final GerenciaSala gerenciaSala;
     private final GerenciaFilme gerenciaFilme;
+    private final OperacoesSessao operacoesSessao;
     private Sessao sessaoSelecionada;
 
-    public CadastroSessao(GerenciaSessao gerenciaSessao, GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme) {
+    public CadastroSessao(GerenciaSessao gerenciaSessao, GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme, OperacoesSessao operacoesSessao) {
         initComponents();
         this.gerenciaFilme = gerenciaFilme;
         this.gerenciaSala = gerenciaSala;
         this.gerenciaSessao = gerenciaSessao;
+        this.operacoesSessao = operacoesSessao;
         this.btnCadastrarSessao.setEnabled(false);
     }
 
@@ -141,7 +145,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
     public JPanel getjPanel1() {
         return jPanel1;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -301,7 +305,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
 
         if (ValidaCampo.validar(dataSessao.replaceAll("[/]", "").trim(), lbData, this)
                 && ValidaCampo.validar(horaSessao.replaceAll("[:]", "").trim(), lbHora, this)
-                && ValidaCampo.validar(valorSessao, lbValor, this)&& ValidaCampo.validar(validarData, lbData, this)) {
+                && ValidaCampo.validar(valorSessao, lbValor, this) && ValidaCampo.validar(validarData, lbData, this)) {
 
             LocalDate data;
             LocalTime hora;
@@ -337,6 +341,18 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
                 this.setVisible(false);
                 getDesktopPane().remove(this);
             }
+            ListUtils.carregarList(operacoesSessao.getLstSessoes(), gerenciaSessao.relatorio());
+            if (gerenciaSessao.relatorio().isEmpty()) {
+                operacoesSessao.getBtnConsultar().setEnabled(false);
+                operacoesSessao.getBtnExcluir().setEnabled(false);
+                operacoesSessao.getBtnEditar().setEnabled(false);
+            } else {
+                operacoesSessao.getBtnConsultar().setEnabled(true);
+                operacoesSessao.getBtnExcluir().setEnabled(true);
+                operacoesSessao.getBtnEditar().setEnabled(true);
+                operacoesSessao.getLstSessoes().setSelectedIndex(0);
+            }
+
             tfValorSessao.setValue(null);
             tfDataSessao.setValue(null);
             tfHorarioSessao.setValue(null);

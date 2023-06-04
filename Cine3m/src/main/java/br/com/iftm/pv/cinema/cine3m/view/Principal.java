@@ -33,6 +33,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ApagaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.AtualizaSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.ConsultaSessao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.OperacoesSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.RelatorioSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.ConsultaVenda;
@@ -50,14 +51,8 @@ import javax.swing.JOptionPane;
 
 public class Principal extends javax.swing.JFrame {
 
-    private final CadastroSessao cadastroSessao;
-    private final ConsultaSessao consultaSessao;
-    private final AtualizaSessao atualizaSessao;
-    private final ApagaSessao apagaSessao;
-    private final RelatorioSessao relatorioSessao;
-    
+    private final OperacoesSessao operacoesSessao;
     private final OperacoesCliente operacoesCliente;
-
     private final OperacoesFuncionario operacoesFuncionario;
     private final LoginFuncionario loginFuncionario;
 
@@ -96,14 +91,8 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-        this.cadastroSessao = new CadastroSessao(gerenciaSessao, gerenciaSala, gerenciaFilme);
-        this.consultaSessao = new ConsultaSessao(cadastroSessao, gerenciaSessao);
-        this.atualizaSessao = new AtualizaSessao(cadastroSessao, gerenciaSessao);
-        this.apagaSessao = new ApagaSessao(gerenciaSessao);
-        this.relatorioSessao = new RelatorioSessao(gerenciaSessao);
-        
+        this.operacoesSessao = new OperacoesSessao(gerenciaSessao, gerenciaSala, gerenciaFilme);
         this.operacoesCliente = new OperacoesCliente(gerenciaCliente);
-        
         this.operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario,gerenciaArquivo.getAdmin());
 
         this.cadastroSala = new CadastroSala(gerenciaSala);
@@ -112,7 +101,7 @@ public class Principal extends javax.swing.JFrame {
         this.apagaSala = new ApagaSala(gerenciaSala);
         this.relatorioSala = new RelatorioSala(gerenciaSala);
 
-        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, operacoesCliente.getCadastroCliente());
+        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
         this.consultaVenda = new ConsultaVenda(gerenciaVenda);
         this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, cadastroVenda,jMenuBar1);
@@ -131,18 +120,6 @@ public class Principal extends javax.swing.JFrame {
 
         this.loginFuncionario.getContentPane().setBackground(corFundoPadrao);
 
-
-
-        this.cadastroSessao.getContentPane().setBackground(corFundoPadrao);
-        this.consultaSessao.getContentPane().setBackground(corFundoPadrao);
-        this.atualizaSessao.getContentPane().setBackground(corFundoPadrao);
-        this.apagaSessao.getContentPane().setBackground(corFundoPadrao);
-        this.relatorioSessao.getContentPane().setBackground(corFundoPadrao);
-
-        this.cadastroSessao.getjPanel1().setBackground(corPanelPadrao);
-        this.consultaSessao.getListSessao().setBackground(corPanelPadrao);
-        this.atualizaSessao.getListSessao().setBackground(corPanelPadrao);
-        this.apagaSessao.getListApagaSessao().setBackground(corPanelPadrao);
 
         this.cadastroSala.getContentPane().setBackground(corFundoPadrao);
         this.consultaSala.getContentPane().setBackground(corFundoPadrao);
@@ -268,6 +245,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(imSala);
 
         imSessao.setText("Sessões");
+        imSessao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSessaoActionPerformed(evt);
+            }
+        });
         jMenu1.add(imSessao);
 
         mVenda.setText("Vendas");
@@ -389,6 +371,11 @@ public class Principal extends javax.swing.JFrame {
         operacoesFuncionario.setFuncionarioLogado(loginFuncionario.getFuncionarioSelecionado());
         operacoesFuncionario.setVisible(true);
     }//GEN-LAST:event_imFuncionarioActionPerformed
+
+    private void imSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSessaoActionPerformed
+        jDesktopPane1.add(operacoesSessao);
+        operacoesSessao.setVisible(true);
+    }//GEN-LAST:event_imSessaoActionPerformed
 
     public static void main(String args[]) {
         try {

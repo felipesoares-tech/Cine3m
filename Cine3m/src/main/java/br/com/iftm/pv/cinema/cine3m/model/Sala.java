@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public class Sala {
 
-
     private String nome;
     private Integer capacidade;
     private List<Poltrona> poltronas;
@@ -15,17 +14,21 @@ public class Sala {
         this.nome = nome;
         this.capacidade = capacidade;
         this.poltronas = new ArrayList<Poltrona>(capacidade);
-        int i = 0;
 
-        for (char fileira = 'A'; i < capacidade / 10; fileira++) {
+        int numFilas = (capacidade + 9) / 10; // Número de filas necessárias
+
+        for (int fila = 0; fila < numFilas; fila++) {
+            char fileira = (char) ('A' + fila);
+
             for (int numero = 1; numero <= 10; numero++) {
+                if (poltronas.size() >= capacidade) {
+                    break; // Parar se atingir a capacidade total
+                }
 
                 String id = fileira + Integer.toString(numero);
                 Poltrona poltrona = new Poltrona(id);
                 poltronas.add(poltrona);
-
             }
-            i++;
         }
     }
 
@@ -79,11 +82,9 @@ public class Sala {
     public void setPoltronas(List<Poltrona> poltronas) {
         this.poltronas = poltronas;
     }
-    
 
     public Sala(String nome) {
         this.nome = nome;
     }
-    
 
 }

@@ -28,16 +28,13 @@ public class CadastroSala extends ModalInternalFrame {
         this.operacoesSala = operacoesSala;
         this.maxValor = 100;
 
-        this.jsCapacidade.setModel(new SpinnerNumberModel(0, 0, maxValor, 10));
+        this.jsCapacidade.setModel(new SpinnerNumberModel(0, 0, maxValor, 1));
         this.jsCapacidade.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 int valor = (int) jsCapacidade.getValue();
                 if (valor >= maxValor) {
                     jsCapacidade.setValue(maxValor);
-                } else if (valor % 10 != 0) {
-                    valor = Math.round(valor / 10) * 10;
-                    jsCapacidade.setValue(valor);
                 }
             }
         });

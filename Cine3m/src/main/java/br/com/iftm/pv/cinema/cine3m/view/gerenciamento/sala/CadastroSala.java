@@ -2,6 +2,8 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,15 +15,17 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class CadastroSala extends javax.swing.JInternalFrame {
+public class CadastroSala extends ModalInternalFrame {
 
     private GerenciaSala gerenciaSala;
     private Sala salaSelecionada;
     private int maxValor;
+    private OperacoesSala operacoesSala;
 
-    public CadastroSala(GerenciaSala gerenciaSala) {
+    public CadastroSala(GerenciaSala gerenciaSala, OperacoesSala operacoesSala) {
         initComponents();
         this.gerenciaSala = gerenciaSala;
+        this.operacoesSala = operacoesSala;
         this.maxValor = 100;
 
         this.jsCapacidade.setModel(new SpinnerNumberModel(0, 0, maxValor, 10));
@@ -197,7 +201,7 @@ public class CadastroSala extends javax.swing.JInternalFrame {
         Integer capacidade = (int) jsCapacidade.getValue();
         String nome = tfNomeSala.getText();
         Sala sala = new Sala(nome, capacidade);
-        if (ValidaCampo.validar(nome, lbSalaNome, this)&& ValidaCampo.validar(capacidade, lbSalaCapacidade, this)) {
+        if (ValidaCampo.validar(nome, lbSalaNome, this) && ValidaCampo.validar(capacidade, lbSalaCapacidade, this)) {
             if (btnCadastrarSala.getText().equals("CADASTRAR")) {
                 Boolean sucesso = gerenciaSala.cadastrar(sala);
                 JOptionPane.showMessageDialog(this, sucesso ? "Sala cadastrada com sucesso !" : "Sala já cadastrada!",
@@ -205,10 +209,22 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
             } else {
                 gerenciaSala.atualizar(salaSelecionada, sala);
-                JOptionPane.showMessageDialog(this, "Sala atualizada com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sala atualizada com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
                 getDesktopPane().remove(this);
             }
+            ListUtils.carregarList(operacoesSala.getLstSalas(), gerenciaSala.relatorio());
+            if (gerenciaSala.relatorio().isEmpty()) {
+                operacoesSala.getBtnConsultar().setEnabled(false);
+                operacoesSala.getBtnExcluir().setEnabled(false);
+                operacoesSala.getBtnEditar().setEnabled(false);
+            } else {
+                operacoesSala.getBtnConsultar().setEnabled(true);
+                operacoesSala.getBtnExcluir().setEnabled(true);
+                operacoesSala.getBtnEditar().setEnabled(true);
+                operacoesSala.getLstSalas().setSelectedIndex(0);
+            }
+            
             tfNomeSala.setText("");
         }
 

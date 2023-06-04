@@ -2,16 +2,18 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.TableModelGenerico;
+import java.util.Arrays;
 
-public class RelatorioFuncionario extends javax.swing.JInternalFrame {
+public class RelatorioFuncionario extends ModalInternalFrame {
 
     private GerenciaFuncionario gerenciaFuncionario;
     private TableModelGenerico modelo;
 
     public RelatorioFuncionario(GerenciaFuncionario gerenciaFuncionario) {
         this.gerenciaFuncionario = gerenciaFuncionario;
-        this.modelo = new TableModelGenerico(Funcionario.class);
+        this.modelo = new TableModelGenerico(Funcionario.class,Arrays.asList("nome","cpf"));
         initComponents();
         tbRelFuncionarios.setModel(modelo);
     }

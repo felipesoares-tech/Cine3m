@@ -1,7 +1,8 @@
-package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
+package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
-import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.util.List;
@@ -12,19 +13,22 @@ import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class OperacoesCliente extends javax.swing.JInternalFrame {
+public class OperacoesFuncionario extends javax.swing.JInternalFrame {
 
-    private final CadastroCliente cadastroCliente;
-    private final GerenciaCliente gerenciaCliente;
-    private final RelatorioCliente relatorioCliente;
-    private List<Cliente> clientes;
+    private final CadastroFuncionario cadastroFuncionario;
+    private final GerenciaFuncionario gerenciaFuncionario;
+    private final RelatorioFuncionario relatorioFuncionario;
+    private List<Funcionario> funcionarios;
+    private Funcionario admin;
+    private Funcionario funcionarioLogado;
 
-    public OperacoesCliente(GerenciaCliente gerenciaCliente) {
+    public OperacoesFuncionario(GerenciaFuncionario gerenciaFuncionario,Funcionario admin) {
         initComponents();
         initComponentsPersonalizado();
-        this.gerenciaCliente = gerenciaCliente;
-        this.cadastroCliente = new CadastroCliente(gerenciaCliente, this);
-        relatorioCliente = new RelatorioCliente(gerenciaCliente);
+        this.gerenciaFuncionario = gerenciaFuncionario;
+        this.admin = admin;
+        cadastroFuncionario = new CadastroFuncionario(gerenciaFuncionario, this);
+        relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
         btnConsultar.setEnabled(false);
 
     }
@@ -32,17 +36,17 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
     private void filterList() {
         String palavraDigitada = tfPesquisar.getText().toLowerCase();
         if (palavraDigitada.isEmpty() || palavraDigitada.isBlank()) {
-            ListUtils.carregarList(lstClientes, gerenciaCliente.relatorio());
+            ListUtils.carregarList(lstFuncionarios, gerenciaFuncionario.relatorio());
         } else {
             DefaultListModel<Pessoa> model = new DefaultListModel<>();
-            for (int i = 0; i < lstClientes.getModel().getSize(); i++) {
-                Pessoa cliente = lstClientes.getModel().getElementAt(i);
-                String nomeCliente = cliente.getNome().toLowerCase();
-                if (nomeCliente.contains(palavraDigitada)) {
+            for (int i = 0; i < lstFuncionarios.getModel().getSize(); i++) {
+                Pessoa cliente = lstFuncionarios.getModel().getElementAt(i);
+                String nomeFuncionario = cliente.getNome().toLowerCase();
+                if (nomeFuncionario.contains(palavraDigitada)) {
                     model.addElement(cliente);
                 }
             }
-            lstClientes.setModel(model);
+            lstFuncionarios.setModel(model);
         }
     }
 
@@ -65,16 +69,12 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
         });
     }
 
-    public JList<Pessoa> getLstClientes() {
-        return lstClientes;
+    public JList<Pessoa> getLstFuncionarios() {
+        return lstFuncionarios;
     }
 
-    public CadastroCliente getCadastroCliente() {
-        return cadastroCliente;
-    }
-
-    public void setLstClientes(JList<Pessoa> lstClientes) {
-        this.lstClientes = lstClientes;
+    public void setLstFuncionarios(JList<Pessoa> lstFuncionarios) {
+        this.lstFuncionarios = lstFuncionarios;
     }
 
     public JButton getBtnConsultar() {
@@ -104,6 +104,10 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
     public JButton getBtnNovo() {
         return btnNovo;
     }
+    
+    public void setFuncionarioLogado(Funcionario funcionarioLogado) {
+        this.funcionarioLogado = funcionarioLogado;
+    }
 
     public void setBtnNovo(JButton btnNovo) {
         this.btnNovo = btnNovo;
@@ -114,7 +118,7 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstClientes = new javax.swing.JList<>();
+        lstFuncionarios = new javax.swing.JList<>();
         tfPesquisar = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         btnExcluir = new javax.swing.JButton();
@@ -127,18 +131,18 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        lstClientes.setBackground(new java.awt.Color(102, 102, 102));
-        lstClientes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        lstClientes.addAncestorListener(new javax.swing.event.AncestorListener() {
+        lstFuncionarios.setBackground(new java.awt.Color(102, 102, 102));
+        lstFuncionarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstFuncionarios.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lstClientesAncestorAdded(evt);
+                lstFuncionariosAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane1.setViewportView(lstClientes);
+        jScrollPane1.setViewportView(lstFuncionarios);
 
         tfPesquisar.setToolTipText("");
 
@@ -205,7 +209,7 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jLabel2.setText("Clientes");
+        jLabel2.setText("Funcionários");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,7 +230,7 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(171, 171, 171)
+                .addGap(104, 104, 104)
                 .addComponent(btnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -251,82 +255,99 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        this.cadastroCliente.getBtnCadastrarCliente().setVisible(true);
-        this.cadastroCliente.getLbTituloTelaCliente().setText("Cadastro de Clientes");
-        this.cadastroCliente.getBtnCadastrarCliente().setText("CADASTRAR");
-        this.cadastroCliente.getTfNomeCliente().setEditable(true);
-        this.cadastroCliente.getTfCpfCliente().setEditable(true);
-        this.cadastroCliente.getTfNomeCliente().setText("");
-        this.cadastroCliente.getTfCpfCliente().setValue(null);
-        getDesktopPane().add(cadastroCliente);
-        cadastroCliente.setModal(true);
-        cadastroCliente.setVisible(true);
+        cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
+        cadastroFuncionario.getBtnCadastrarFuncionario().setText("CADASTRAR");
+        cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
+        cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
+        cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
+        cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
+
+        cadastroFuncionario.getTfNomeFuncionario().setText("");
+        cadastroFuncionario.getTfCpfFuncionario().setValue(null);
+        cadastroFuncionario.getTfLoginFuncionario().setText("");
+        cadastroFuncionario.getTfSenhaFuncionario().setText("");
+        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Cadastro de Funcionários");
+
+        getDesktopPane().add(cadastroFuncionario);
+        cadastroFuncionario.setModal(true);
+        cadastroFuncionario.setVisible(true);
 
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        Cliente clienteSelecionado = (Cliente) this.lstClientes.getSelectedValue();
+        Funcionario funcionarioSelecionado = (Funcionario) this.lstFuncionarios.getSelectedValue();
+        cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
+        cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
+        cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
+        cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
 
-        cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
-        cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
-        cadastroCliente.getLbTituloTelaCliente().setText("Consulta de Cliente");
-        cadastroCliente.getBtnCadastrarCliente().setVisible(false);
-        cadastroCliente.getTfNomeCliente().setEditable(false);
-        cadastroCliente.getTfCpfCliente().setEditable(false);
-        getDesktopPane().add(cadastroCliente);
-        cadastroCliente.setModal(true);
-        cadastroCliente.setVisible(true);
+        cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(false);
+        cadastroFuncionario.getTfNomeFuncionario().setEditable(false);
+        cadastroFuncionario.getTfCpfFuncionario().setEditable(false);
+        cadastroFuncionario.getTfLoginFuncionario().setEditable(false);
+        cadastroFuncionario.getTfSenhaFuncionario().setEditable(false);
+        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Consulta de Funcionário");
+
+        getDesktopPane().add(cadastroFuncionario);
+        cadastroFuncionario.setModal(true);
+        cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        Pessoa clienteSelecionado = lstClientes.getSelectedValue();
-        Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
-                "Apagar Cliente", WIDTH, JOptionPane.WARNING_MESSAGE);
+        Funcionario funcionarioSelecionado = (Funcionario) lstFuncionarios.getSelectedValue();
+        if (funcionarioSelecionado.equals(admin)) {
+            JOptionPane.showMessageDialog(this, "Não é possível remover admin! ",
+                    "Admin", JOptionPane.ERROR_MESSAGE);
+        } else if (funcionarioSelecionado.equals(funcionarioLogado)) {
+            JOptionPane.showMessageDialog(this, "Não é possível remover o usuário logado! ",
+                    "Usuário", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
+                    "Apagar Funcionário", WIDTH, JOptionPane.WARNING_MESSAGE);
 
-        if (resp.equals(JOptionPane.OK_OPTION)) {
-            gerenciaCliente.remover((Cliente) clienteSelecionado);
-
-            lstClientesAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, "Cliente removido",
-                    "Remover", JOptionPane.INFORMATION_MESSAGE);
+            if (resp.equals(JOptionPane.OK_OPTION)) {
+                gerenciaFuncionario.remover(funcionarioSelecionado);
+                lstFuncionariosAncestorAdded(null);
+                JOptionPane.showMessageDialog(this, "Funcionário removido", "Remover", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void lstClientesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstClientesAncestorAdded
-        clientes = gerenciaCliente.relatorio();
-        ListUtils.carregarList(lstClientes, clientes);
+    private void lstFuncionariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstFuncionariosAncestorAdded
+        funcionarios = gerenciaFuncionario.relatorio();
+        ListUtils.carregarList(lstFuncionarios, funcionarios);
 
-        if (!clientes.isEmpty()) {
+        if (!funcionarios.isEmpty()) {
             btnExcluir.setEnabled(true);
             btnConsultar.setEnabled(true);
             btnEditar.setEnabled(true);
-            lstClientes.setSelectedIndex(0);
+            lstFuncionarios.setSelectedIndex(0);
         } else {
             btnExcluir.setEnabled(false);
             btnConsultar.setEnabled(false);
             btnEditar.setEnabled(false);
         }
-    }//GEN-LAST:event_lstClientesAncestorAdded
+    }//GEN-LAST:event_lstFuncionariosAncestorAdded
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Cliente clienteSelecionado = (Cliente) this.lstClientes.getSelectedValue();
-        this.cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
-        this.cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
-        this.cadastroCliente.getLbTituloTelaCliente().setText("Atualização de Cliente");
-        this.cadastroCliente.getBtnCadastrarCliente().setText("Atualizar");
-        this.cadastroCliente.getBtnCadastrarCliente().setVisible(true);
-        this.cadastroCliente.getTfNomeCliente().setEditable(true);
-        this.cadastroCliente.getTfCpfCliente().setEditable(true);
-        this.cadastroCliente.setClienteSelecionado(clienteSelecionado);
-        getDesktopPane().add(cadastroCliente);
-        cadastroCliente.setModal(true);
-        cadastroCliente.setVisible(true);
+        Funcionario funcionarioSelecionado = (Funcionario) this.lstFuncionarios.getSelectedValue();
+        this.cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
+        this.cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
+        this.cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualização de Funcionario");
+        this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("Atualizar");
+        this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
+        this.cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
+        this.cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
+        this.cadastroFuncionario.setFuncionarioSelecionado(funcionarioSelecionado);
+        getDesktopPane().add(cadastroFuncionario);
+        cadastroFuncionario.setModal(true);
+        cadastroFuncionario.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
-        getDesktopPane().add(relatorioCliente);
-        relatorioCliente.setModal(true);
-        relatorioCliente.setVisible(true);
+        getDesktopPane().add(relatorioFuncionario);
+        relatorioFuncionario.setModal(true);
+        relatorioFuncionario.setVisible(true);
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
 
@@ -340,7 +361,7 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<Pessoa> lstClientes;
+    private javax.swing.JList<Pessoa> lstFuncionarios;
     private javax.swing.JTextField tfPesquisar;
     // End of variables declaration//GEN-END:variables
 }

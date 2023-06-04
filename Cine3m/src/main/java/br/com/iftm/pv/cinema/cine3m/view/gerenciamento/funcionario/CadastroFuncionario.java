@@ -3,6 +3,8 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -12,13 +14,15 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class CadastroFuncionario extends javax.swing.JInternalFrame {
+public class CadastroFuncionario extends ModalInternalFrame {
 
     private GerenciaFuncionario gerenciaFuncionario;
     private Funcionario funcionarioSelecionado;
+    private OperacoesFuncionario operacoesFuncionario;
 
-    public CadastroFuncionario(GerenciaFuncionario gerenciaFuncionario) {
+    public CadastroFuncionario(GerenciaFuncionario gerenciaFuncionario,OperacoesFuncionario operacoesFuncionario) {
         initComponents();
+        this.operacoesFuncionario = operacoesFuncionario;
         this.gerenciaFuncionario = gerenciaFuncionario;
     }
 
@@ -263,6 +267,17 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
                 this.setVisible(false);
                 getDesktopPane().remove(this);
                  limpaCampos();
+            }
+            ListUtils.carregarList(operacoesFuncionario.getLstFuncionarios(), gerenciaFuncionario.relatorio());
+            if (gerenciaFuncionario.relatorio().isEmpty()) {
+                operacoesFuncionario.getBtnConsultar().setEnabled(false);
+                operacoesFuncionario.getBtnExcluir().setEnabled(false);
+                operacoesFuncionario.getBtnEditar().setEnabled(false);
+            } else {
+                operacoesFuncionario.getBtnConsultar().setEnabled(true);
+                operacoesFuncionario.getBtnExcluir().setEnabled(true);
+                operacoesFuncionario.getBtnEditar().setEnabled(true);
+                operacoesFuncionario.getLstFuncionarios().setSelectedIndex(0);
             }
            
         }

@@ -16,20 +16,14 @@ import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.OperacoesCliente;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.RelatorioCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.ApagaFilme;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.AtualizaFilme;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.CadastroFilme;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.ConsultaFilme;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.RelatorioFilme;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.ApagaFuncionario;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.AtualizaFuncionario;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.CadastroFuncionario;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.ConsultaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.LoginFuncionario;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.RelatorioFuncionario;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.OperacoesFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.ApagaSala;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.AtualizaSala;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.CadastroSala;
@@ -63,14 +57,8 @@ public class Principal extends javax.swing.JFrame {
     private final RelatorioSessao relatorioSessao;
     
     private final OperacoesCliente operacoesCliente;
-    private final CadastroCliente cadastroCliente;
-    private final RelatorioCliente relatorioCliente;
 
-    private final CadastroFuncionario cadastroFuncionario;
-    private final ConsultaFuncionario consultaFuncionario;
-    private final AtualizaFuncionario atualizaFuncionario;
-    private final ApagaFuncionario apagaFuncionario;
-    private final RelatorioFuncionario relatorioFuncionario;
+    private final OperacoesFuncionario operacoesFuncionario;
     private final LoginFuncionario loginFuncionario;
 
     private final CadastroSala cadastroSala;
@@ -115,15 +103,8 @@ public class Principal extends javax.swing.JFrame {
         this.relatorioSessao = new RelatorioSessao(gerenciaSessao);
         
         this.operacoesCliente = new OperacoesCliente(gerenciaCliente);
-        this.cadastroCliente = new CadastroCliente(gerenciaCliente);
-        this.relatorioCliente = new RelatorioCliente(gerenciaCliente);
         
-
-        this.cadastroFuncionario = new CadastroFuncionario(gerenciaFuncionario);
-        this.consultaFuncionario = new ConsultaFuncionario(cadastroFuncionario, gerenciaFuncionario);
-        this.atualizaFuncionario = new AtualizaFuncionario(cadastroFuncionario, gerenciaFuncionario, gerenciaArquivo.getAdmin());
-        this.apagaFuncionario = new ApagaFuncionario(gerenciaFuncionario, gerenciaArquivo.getAdmin());
-        this.relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
+        this.operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario,gerenciaArquivo.getAdmin());
 
         this.cadastroSala = new CadastroSala(gerenciaSala);
         this.consultaSala = new ConsultaSala(cadastroSala, gerenciaSala);
@@ -131,7 +112,7 @@ public class Principal extends javax.swing.JFrame {
         this.apagaSala = new ApagaSala(gerenciaSala);
         this.relatorioSala = new RelatorioSala(gerenciaSala);
 
-        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, cadastroCliente);
+        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, operacoesCliente.getCadastroCliente());
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
         this.consultaVenda = new ConsultaVenda(gerenciaVenda);
         this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, cadastroVenda,jMenuBar1);
@@ -146,22 +127,11 @@ public class Principal extends javax.swing.JFrame {
         Color corPanelPadrao = ParametrosSistema.getInstance().getCorPanel();
         this.getContentPane().setBackground(corFundoPadrao);
 
-        this.cadastroCliente.getContentPane().setBackground(corFundoPadrao);
-        this.relatorioCliente.getContentPane().setBackground(corFundoPadrao);
 
-        this.cadastroCliente.getjPanel8().setBackground(corPanelPadrao);
 
-        this.cadastroFuncionario.getContentPane().setBackground(corFundoPadrao);
-        this.consultaFuncionario.getContentPane().setBackground(corFundoPadrao);
-        this.apagaFuncionario.getContentPane().setBackground(corFundoPadrao);
-        this.atualizaFuncionario.getContentPane().setBackground(corFundoPadrao);
-        this.relatorioFuncionario.getContentPane().setBackground(corFundoPadrao);
         this.loginFuncionario.getContentPane().setBackground(corFundoPadrao);
 
-        this.cadastroFuncionario.getjPanel1().setBackground(corPanelPadrao);
-        this.consultaFuncionario.getLstFuncionarios().setBackground(corPanelPadrao);
-        this.atualizaFuncionario.getLstFuncionarios().setBackground(corPanelPadrao);
-        this.apagaFuncionario.getLstFuncionarios().setBackground(corPanelPadrao);
+
 
         this.cadastroSessao.getContentPane().setBackground(corFundoPadrao);
         this.consultaSessao.getContentPane().setBackground(corFundoPadrao);
@@ -284,6 +254,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(imCliente);
 
         imFuncionario.setText("Funcionários");
+        imFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imFuncionarioActionPerformed(evt);
+            }
+        });
         jMenu1.add(imFuncionario);
 
         imFilme.setText("Filmes");
@@ -408,6 +383,12 @@ public class Principal extends javax.swing.JFrame {
         jDesktopPane1.add(operacoesCliente);
         operacoesCliente.setVisible(true);
     }//GEN-LAST:event_imClienteActionPerformed
+
+    private void imFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imFuncionarioActionPerformed
+        jDesktopPane1.add(operacoesFuncionario);
+        operacoesFuncionario.setFuncionarioLogado(loginFuncionario.getFuncionarioSelecionado());
+        operacoesFuncionario.setVisible(true);
+    }//GEN-LAST:event_imFuncionarioActionPerformed
 
     public static void main(String args[]) {
         try {

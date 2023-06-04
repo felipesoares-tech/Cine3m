@@ -181,6 +181,7 @@ public class CadastroCliente extends ModalInternalFrame {
                 operacoesCliente.getBtnConsultar().setEnabled(true);
                 operacoesCliente.getBtnExcluir().setEnabled(true);
                 operacoesCliente.getBtnEditar().setEnabled(true);
+                operacoesCliente.getLstClientes().setSelectedIndex(0);
             }
         }
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed

@@ -275,7 +275,7 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
         Filme filmeSelecionado = lstFilmes.getSelectedValue();
 
         Integer resp = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar ??",
-                "Apagar Filme", WIDTH, JOptionPane.WARNING_MESSAGE);
+                "Apagar Filme", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
             gerenciaFilme.remover(filmeSelecionado);

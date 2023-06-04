@@ -4,6 +4,8 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.enums.Genero;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import java.util.Arrays;
 import java.util.List;
@@ -16,14 +18,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class CadastroFilme extends javax.swing.JInternalFrame {
+public class CadastroFilme extends ModalInternalFrame {
 
-    private GerenciaFilme gerenciaFilme;
+    private final GerenciaFilme gerenciaFilme;
     private Filme filmeSelecionado;
+    private final OperacoesFilme operacoesFilme;
 
-    public CadastroFilme(GerenciaFilme gerenciaFilme) {
+    public CadastroFilme(GerenciaFilme gerenciaFilme, OperacoesFilme operacoesFilme) {
         initComponents();
         this.gerenciaFilme = gerenciaFilme;
+        this.operacoesFilme = operacoesFilme;
 
     }
 
@@ -269,9 +273,9 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
         String descricao = tfaDescricao.getText();
         Genero genero = (Genero) cbGenero.getSelectedItem();
 
-        if (ValidaCampo.validar(nome, lbNome, this) && 
-                ValidaCampo.validar(diretor, lbDiretor, this) && 
-                ValidaCampo.validar(descricao, lbDescricao, this)) {
+        if (ValidaCampo.validar(nome, lbNome, this)
+                && ValidaCampo.validar(diretor, lbDiretor, this)
+                && ValidaCampo.validar(descricao, lbDescricao, this)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
             if (btnConfirmar.getText().equals("CADASTRAR")) {
                 Boolean sucesso = gerenciaFilme.cadastrar(filme);
@@ -280,12 +284,25 @@ public class CadastroFilme extends javax.swing.JInternalFrame {
 
             } else {
                 gerenciaFilme.atualizar(filmeSelecionado, filme);
-                JOptionPane.showMessageDialog(this, "Filme atualizado com sucesso!", 
-                        "Atualizar", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Filme atualizado com sucesso!",
+                        "Atualizar", JOptionPane.INFORMATION_MESSAGE);
                 setVisible(false);
                 getDesktopPane().remove(this);
 
             }
+            ListUtils.carregarList(operacoesFilme.getLstFilmes(), gerenciaFilme.relatorio());
+            if (gerenciaFilme.relatorio().isEmpty()) {
+                operacoesFilme.getBtnConsultar().setEnabled(false);
+                operacoesFilme.getBtnExcluir().setEnabled(false);
+                operacoesFilme.getBtnEditar().setEnabled(false);
+            } else {
+                operacoesFilme.getBtnConsultar().setEnabled(true);
+                operacoesFilme.getBtnExcluir().setEnabled(true);
+                operacoesFilme.getBtnEditar().setEnabled(true);
+                operacoesFilme.getLstFilmes().setSelectedIndex(0);
+            }
+            
+            
             tfNomeFilme.setText("");
             tfDiretor.setText("");
             tfaDescricao.setText("");

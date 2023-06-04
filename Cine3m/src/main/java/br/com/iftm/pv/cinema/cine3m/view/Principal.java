@@ -17,11 +17,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.OperacoesCliente;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.ApagaFilme;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.AtualizaFilme;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.CadastroFilme;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.ConsultaFilme;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.RelatorioFilme;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.OperacoesFilme;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.LoginFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.OperacoesFuncionario;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.ApagaSala;
@@ -49,6 +45,8 @@ public class Principal extends javax.swing.JFrame {
     private final OperacoesSessao operacoesSessao;
     private final OperacoesCliente operacoesCliente;
     private final OperacoesFuncionario operacoesFuncionario;
+    private final OperacoesFilme operacoesFilme;
+    
     private final LoginFuncionario loginFuncionario;
 
     private final CadastroSala cadastroSala;
@@ -61,11 +59,6 @@ public class Principal extends javax.swing.JFrame {
     private final RelatorioVenda relatorioVenda;
     private final ConsultaVenda consultaVenda;
 
-    private final CadastroFilme cadastroFilme;
-    private final ConsultaFilme consultaFilme;
-    private final AtualizaFilme atualizaFilme;
-    private final ApagaFilme apagaFilme;
-    private final RelatorioFilme relatorioFilme;
 
     private final TelaImportacao telaImportacao;
 
@@ -89,7 +82,8 @@ public class Principal extends javax.swing.JFrame {
         this.operacoesSessao = new OperacoesSessao(gerenciaSessao, gerenciaSala, gerenciaFilme);
         this.operacoesCliente = new OperacoesCliente(gerenciaCliente);
         this.operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario,gerenciaArquivo.getAdmin());
-
+        this.operacoesFilme = new OperacoesFilme(gerenciaFilme);
+        
         this.cadastroSala = new CadastroSala(gerenciaSala);
         this.consultaSala = new ConsultaSala(cadastroSala, gerenciaSala);
         this.atualizaSala = new AtualizaSala(cadastroSala, gerenciaSala);
@@ -101,11 +95,6 @@ public class Principal extends javax.swing.JFrame {
         this.consultaVenda = new ConsultaVenda(gerenciaVenda);
         this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, cadastroVenda,jMenuBar1);
 
-        this.cadastroFilme = new CadastroFilme(gerenciaFilme);
-        this.consultaFilme = new ConsultaFilme(cadastroFilme, gerenciaFilme);
-        this.atualizaFilme = new AtualizaFilme(cadastroFilme, gerenciaFilme);
-        this.apagaFilme = new ApagaFilme(gerenciaFilme);
-        this.relatorioFilme = new RelatorioFilme(gerenciaFilme);
         
         Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
         Color corPanelPadrao = ParametrosSistema.getInstance().getCorPanel();
@@ -127,16 +116,7 @@ public class Principal extends javax.swing.JFrame {
         this.atualizaSala.getLstSalas().setBackground(corPanelPadrao);
         this.apagaSala.getListSala().setBackground(corPanelPadrao);
 
-        this.cadastroFilme.getContentPane().setBackground(corFundoPadrao);
-        this.consultaFilme.getContentPane().setBackground(corFundoPadrao);
-        this.atualizaFilme.getContentPane().setBackground(corFundoPadrao);
-        this.apagaFilme.getContentPane().setBackground(corFundoPadrao);
-        this.relatorioFilme.getContentPane().setBackground(corFundoPadrao);
 
-        this.cadastroFilme.getjPanel1().setBackground(corPanelPadrao);
-        this.consultaFilme.getLstFilmes().setBackground(corPanelPadrao);
-        this.atualizaFilme.getLstFilmes().setBackground(corPanelPadrao);
-        this.apagaFilme.getLstFilmes().setBackground(corPanelPadrao);
 
         this.cadastroVenda.getContentPane().setBackground(corFundoPadrao);
         this.consultaVenda.getContentPane().setBackground(corFundoPadrao);
@@ -234,6 +214,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(imFuncionario);
 
         imFilme.setText("Filmes");
+        imFilme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imFilmeActionPerformed(evt);
+            }
+        });
         jMenu1.add(imFilme);
 
         imSala.setText("Salas");
@@ -371,6 +356,11 @@ public class Principal extends javax.swing.JFrame {
         jDesktopPane1.add(operacoesSessao);
         operacoesSessao.setVisible(true);
     }//GEN-LAST:event_imSessaoActionPerformed
+
+    private void imFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imFilmeActionPerformed
+        jDesktopPane1.add(operacoesFilme);
+        operacoesFilme.setVisible(true);
+    }//GEN-LAST:event_imFilmeActionPerformed
 
     public static void main(String args[]) {
         try {

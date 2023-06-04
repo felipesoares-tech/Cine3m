@@ -265,7 +265,7 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         Sala salaSelecionada = lstSalas.getSelectedValue();
              Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
-                "Apagar Sala", WIDTH, JOptionPane.WARNING_MESSAGE);
+                "Apagar Sala", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
            gerenciaSala.remover(salaSelecionada);

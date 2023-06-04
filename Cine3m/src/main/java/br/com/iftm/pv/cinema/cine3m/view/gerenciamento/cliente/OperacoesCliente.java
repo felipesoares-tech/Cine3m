@@ -265,9 +265,9 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         Pessoa clienteSelecionado = lstClientes.getSelectedValue();
         Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
-                "Apagar Cliente", WIDTH, JOptionPane.WARNING_MESSAGE);
+                "Apagar Cliente", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
-        if (resp.equals(JOptionPane.OK_OPTION)) {
+        if (resp.equals(JOptionPane.YES_OPTION)) {
             gerenciaCliente.remover((Cliente) clienteSelecionado);
 
             lstClientesAncestorAdded(null);

@@ -287,7 +287,7 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
                     "Usuário", JOptionPane.ERROR_MESSAGE);
         } else {
             Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
-                    "Apagar Funcionário", WIDTH, JOptionPane.WARNING_MESSAGE);
+                    "Apagar Funcionário", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
             if (resp.equals(JOptionPane.OK_OPTION)) {
                 gerenciaFuncionario.remover(funcionarioSelecionado);

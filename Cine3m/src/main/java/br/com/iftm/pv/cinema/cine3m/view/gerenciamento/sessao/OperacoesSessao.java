@@ -280,7 +280,7 @@ public class OperacoesSessao extends javax.swing.JInternalFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         Sessao sessaoSelecionada = lstSessoes.getSelectedValue();
         Integer resp = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja apagar ??",
-                "Apagar Sessao", WIDTH, JOptionPane.WARNING_MESSAGE);
+                "Apagar Sessao", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
             gerenciaSessao.remover(sessaoSelecionada);

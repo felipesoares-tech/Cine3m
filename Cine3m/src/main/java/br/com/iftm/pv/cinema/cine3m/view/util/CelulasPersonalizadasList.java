@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 public class CelulasPersonalizadasList extends DefaultListCellRenderer {
 
     private final Font defaultFont = new Font("Arial", Font.PLAIN, 12); // Fonte padrão
-    private final Font specialFont = new Font("Arial", Font.BOLD, 12); // Fonte especial
+    private final Font specialFont = new Font("Arial", Font.PLAIN, 12); // Fonte especial
 
     @Override
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {

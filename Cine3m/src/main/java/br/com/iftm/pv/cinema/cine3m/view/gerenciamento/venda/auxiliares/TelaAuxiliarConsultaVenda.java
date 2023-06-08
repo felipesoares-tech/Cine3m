@@ -3,6 +3,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -12,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class TelaAuxiliarConsultaVenda extends javax.swing.JInternalFrame {
+public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
 
     private Venda vendaSelecionada;
 

@@ -9,10 +9,14 @@ import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
+import java.time.DateTimeException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -146,6 +150,16 @@ public class CadastroFilme extends ModalInternalFrame {
         this.tfaDescricao = tfaDescricao;
     }
 
+    public JFormattedTextField getTfDuracaoFilme() {
+        return tfDuracaoFilme;
+    }
+
+    public void setTfDuracaoFilme(JFormattedTextField tfDuracaoFilme) {
+        this.tfDuracaoFilme = tfDuracaoFilme;
+    }
+    
+    
+
     private void limpaCampos() {
         tfNomeFilme.setText("");
         tfDiretor.setText("");
@@ -167,6 +181,8 @@ public class CadastroFilme extends ModalInternalFrame {
         tfDiretor = new javax.swing.JTextField();
         lbDiretor = new javax.swing.JLabel();
         btnCadastrarFilme = new javax.swing.JButton();
+        lbDuracao = new javax.swing.JLabel();
+        tfDuracaoFilme = new javax.swing.JFormattedTextField();
         lbTituloTelaFilme = new javax.swing.JLabel();
 
         setClosable(true);
@@ -204,6 +220,14 @@ public class CadastroFilme extends ModalInternalFrame {
             }
         });
 
+        lbDuracao.setText("Duracao");
+
+        try {
+            tfDuracaoFilme.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -212,39 +236,50 @@ public class CadastroFilme extends ModalInternalFrame {
             .addComponent(lbNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lbDiretor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tfDiretor)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lbDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(cbGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(lbGenero)
                 .addGap(0, 422, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addComponent(btnCadastrarFilme)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(192, 192, 192)
+                                .addComponent(btnCadastrarFilme))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lbDuracao)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(tfDuracaoFilme)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addComponent(lbNome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tfNomeFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbDiretor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tfDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbGenero)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbDuracao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfDuracaoFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(lbDescricao)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCadastrarFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -268,9 +303,9 @@ public class CadastroFilme extends ModalInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(lbTituloTelaFilme)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -306,12 +341,24 @@ public class CadastroFilme extends ModalInternalFrame {
         String diretor = tfDiretor.getText();
         String descricao = tfaDescricao.getText();
         Genero genero = (Genero) cbGenero.getSelectedItem();
+        String duracaoSessao = tfDuracaoFilme.getText();
 
         if (ValidaCampo.validar(nome, lbNome, this)
                 && ValidaCampo.validar(diretor, lbDiretor, this)
-                && ValidaCampo.validar(descricao, lbDescricao, this)) {
+                && ValidaCampo.validar(descricao, lbDescricao, this)  
+                && ValidaCampo.validar(duracaoSessao.replaceAll("[:]", "").trim(), lbDuracao, this)) {
             
-            Filme filme = new Filme(genero, nome, descricao, diretor);
+            LocalTime duracao;
+            
+             try {
+                duracao = LocalTime.parse(duracaoSessao, DateTimeFormatter.ofPattern("HH:mm"));
+            } catch (DateTimeException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            Filme filme = new Filme(genero, nome, descricao, diretor,duracao);
             
             if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
                 exibeMensagemValidacao(gerenciaFilme.cadastrar(filme));
@@ -348,10 +395,12 @@ public class CadastroFilme extends ModalInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbDescricao;
     private javax.swing.JLabel lbDiretor;
+    private javax.swing.JLabel lbDuracao;
     private javax.swing.JLabel lbGenero;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbTituloTelaFilme;
     private javax.swing.JTextField tfDiretor;
+    private javax.swing.JFormattedTextField tfDuracaoFilme;
     private javax.swing.JTextField tfNomeFilme;
     private javax.swing.JTextArea tfaDescricao;
     // End of variables declaration//GEN-END:variables

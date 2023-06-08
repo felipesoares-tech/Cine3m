@@ -43,7 +43,7 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
 
         int capacidadeTotal = sessaoSelecionada.getSala().getCapacidade();
         Color btnDefaultColor = Color.getHSBColor(0.66371644f, 0.6097561f, 0.76862746f);
-        Color corPanel = ParametrosSistema.getInstance().getCorPanel();
+        Color corPanel = ParametrosSistema.getInstance().getCorDeFundo();
 
         char row = 'A';
         int col = 1;

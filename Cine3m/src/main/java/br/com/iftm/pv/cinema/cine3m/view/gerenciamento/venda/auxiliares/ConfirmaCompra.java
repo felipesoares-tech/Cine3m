@@ -11,6 +11,8 @@ import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.OperacoesVenda;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -34,13 +36,15 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
     private final ConsultaPoltronas consultaPoltronas;
     private final CadastroVenda cadastroVenda;
     private final GerenciaVenda gerenciaVenda;
+    private final OperacoesVenda operacoesVenda;
     private Integer qtdInteira;
     private Integer qtdMeia;
 
-    public ConfirmaCompra(JList listItensIngresso, Sessao sessaoSelecionada, VincularCliente vincularCliente, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroVenda cadastroVenda, GerenciaVenda gerenciaVenda) {
+    public ConfirmaCompra(JList listItensIngresso, Sessao sessaoSelecionada, VincularCliente vincularCliente, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroVenda cadastroVenda, GerenciaVenda gerenciaVenda, OperacoesVenda operacoesVenda) {
         this.listItensIngresso = listItensIngresso;
         this.cadastroVenda = cadastroVenda;
         this.consultaPoltronas = consultaPoltronas;
+        this.operacoesVenda = operacoesVenda;
         this.gerenciaVenda = gerenciaVenda;
         this.gerenciaSessao = gerenciaSessao;
         this.sessaoSelecionada = sessaoSelecionada;
@@ -221,6 +225,19 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
             model.removeAllElements();
             vincularCliente.setClienteSelecionado(null);
             cadastroVenda.getTfClienteSelecionado().setText("");
+            ListUtils.carregarList(operacoesVenda.getLstVendas(), gerenciaVenda.relatorio());
+            if (gerenciaVenda.relatorio().isEmpty()) {
+                operacoesVenda.getBtnConsultar().setEnabled(false);
+                operacoesVenda.getBtnCancelar().setEnabled(false);
+            } else {
+                operacoesVenda.getBtnConsultar().setEnabled(true);
+                operacoesVenda.getBtnCancelar().setEnabled(true);
+                operacoesVenda.getLstVendas().setSelectedIndex(0);
+            }
+            
+            
+            
+            
         } else {
             JOptionPane.showMessageDialog(this, "Selecione a quantidade certa de ingressos!", "Erro", JOptionPane.ERROR_MESSAGE);
         }

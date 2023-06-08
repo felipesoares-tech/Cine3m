@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.model;
 
 import br.com.iftm.pv.cinema.cine3m.enums.Genero;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class Filme {
@@ -9,12 +10,14 @@ public class Filme {
     private String nome;
     private String descricao;
     private String diretor;
+    private LocalTime duracao;
 
-    public Filme(Genero genero, String nome, String descricao, String diretor) {
+    public Filme(Genero genero, String nome, String descricao, String diretor, LocalTime duracao) {
         this.genero = genero;
         this.nome = nome;
         this.descricao = descricao;
         this.diretor = diretor;
+        this.duracao = duracao;
     }
 
     public Filme(String nome) {
@@ -59,8 +62,6 @@ public class Filme {
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
-    
-    
 
     public String getNome() {
         return nome;
@@ -86,4 +87,12 @@ public class Filme {
         this.diretor = diretor;
     }
 
+    public LocalTime getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(LocalTime duracao) {
+        this.duracao = duracao;
+    }
+    
 }

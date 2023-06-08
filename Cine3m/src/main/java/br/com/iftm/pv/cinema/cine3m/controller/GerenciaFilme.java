@@ -50,6 +50,7 @@ public class GerenciaFilme implements IGerencia<Filme> {
         EnumValidacoes retornoValidacao = validarFilme(filme);
         if (retornoValidacao.equals(EnumValidacoes.FILME_SUCESSO)) {
             filmes.add(filme);
+            System.out.println("filme adicionado testeeee");
         }
         return retornoValidacao;
     }

@@ -5,6 +5,7 @@ import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -49,7 +50,6 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
         });
     }
 
- 
     public CadastroFilme getCadastroFilme() {
         return cadastroFilme;
     }
@@ -61,7 +61,6 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
     public void setLstFilmes(JList<Filme> lstFilmes) {
         this.lstFilmes = lstFilmes;
     }
-
 
     public JButton getBtnConsultar() {
         return btnConsultar;
@@ -244,9 +243,11 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
         cadastroFilme.getTfNomeFilme().setEditable(true);
         cadastroFilme.getTfDiretor().setEditable(true);
         cadastroFilme.getTfaDescricao().setEditable(true);
+        cadastroFilme.getTfDuracaoFilme().setEditable(true);
         cadastroFilme.getTfNomeFilme().setText("");
         cadastroFilme.getTfDiretor().setText("");
         cadastroFilme.getTfaDescricao().setText("");
+        cadastroFilme.getTfDuracaoFilme().setValue(null);
         cadastroFilme.getCbGenero().setEnabled(true);
         getDesktopPane().add(cadastroFilme);
         cadastroFilme.setModal(true);
@@ -260,14 +261,16 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
         cadastroFilme.getTfNomeFilme().setText(filmeSelecionado.getNome());
         cadastroFilme.getTfDiretor().setText(filmeSelecionado.getDiretor());
         cadastroFilme.getTfaDescricao().setText(filmeSelecionado.getDescricao());
+        cadastroFilme.getTfDuracaoFilme().setText(filmeSelecionado.getDuracao().format(DateTimeFormatter.ofPattern("HH:mm")));
         cadastroFilme.getLbTituloTelaFilme().setText("Consulta de Filme");
         cadastroFilme.getBtnConfirmar().setVisible(false);
         cadastroFilme.getTfNomeFilme().setEditable(false);
         cadastroFilme.getTfDiretor().setEditable(false);
+        cadastroFilme.getTfDuracaoFilme().setEditable(false);
         cadastroFilme.getTfaDescricao().setEditable(false);
         cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
         cadastroFilme.getCbGenero().setEnabled(false);
-        
+
         getDesktopPane().add(cadastroFilme);
         cadastroFilme.setModal(true);
         cadastroFilme.setVisible(true);
@@ -310,6 +313,7 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
         cadastroFilme.getTfDiretor().setText(filmeSelecionado.getDiretor());
         cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
         cadastroFilme.getTfaDescricao().setText(filmeSelecionado.getDescricao());
+        cadastroFilme.getTfDuracaoFilme().setText(filmeSelecionado.getDuracao().format(DateTimeFormatter.ofPattern("HH:mm")));
         cadastroFilme.getLbTituloTelaFilme().setText("Atualização de Filme");
         cadastroFilme.getBtnConfirmar().setText("ATUALIZAR");
         cadastroFilme.getBtnConfirmar().setVisible(true);
@@ -317,6 +321,7 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
         cadastroFilme.getTfDiretor().setEditable(true);
         cadastroFilme.getCbGenero().setEnabled(true);
         cadastroFilme.getTfaDescricao().setEditable(true);
+        cadastroFilme.getTfDuracaoFilme().setEditable(true);
         cadastroFilme.setFilmeSelecionado(filmeSelecionado);
         getDesktopPane().add(cadastroFilme);
         cadastroFilme.setModal(true);

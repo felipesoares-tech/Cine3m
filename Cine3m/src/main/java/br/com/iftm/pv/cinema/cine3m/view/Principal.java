@@ -44,13 +44,12 @@ public class Principal extends javax.swing.JFrame {
     private final OperacoesFuncionario operacoesFuncionario;
     private final OperacoesFilme operacoesFilme;
     private final OperacoesSala operacoesSala;
-    
+
     private final LoginFuncionario loginFuncionario;
 
     private final CadastroVenda cadastroVenda;
     private final RelatorioVenda relatorioVenda;
     private final ConsultaVenda consultaVenda;
-
 
     private final TelaImportacao telaImportacao;
 
@@ -73,16 +72,15 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.operacoesSessao = new OperacoesSessao(gerenciaSessao, gerenciaSala, gerenciaFilme);
         this.operacoesCliente = new OperacoesCliente(gerenciaCliente);
-        this.operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario,gerenciaArquivo.getAdmin());
+        this.operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario, gerenciaArquivo.getAdmin());
         this.operacoesFilme = new OperacoesFilme(gerenciaFilme);
         this.operacoesSala = new OperacoesSala(gerenciaSala);
-        
+
         this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
         this.consultaVenda = new ConsultaVenda(gerenciaVenda);
-        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, cadastroVenda,jMenuBar1);
+        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, cadastroVenda, jMenuBar1);
 
-        
         Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
         Color corPanelPadrao = ParametrosSistema.getInstance().getCorPanel();
         this.getContentPane().setBackground(corFundoPadrao);
@@ -299,7 +297,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MousePressed
         Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja deslogar?",
-                "Logout", WIDTH, JOptionPane.WARNING_MESSAGE);
+                "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (resp.equals(JOptionPane.OK_OPTION)) {
             try {
                 gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario.getFuncionarios());
@@ -319,7 +317,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void imClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imClienteActionPerformed
 //        jDesktopPane1.add(operacoesCliente);
-     //   operacoesCliente.setVisible(true);
+        //   operacoesCliente.setVisible(true);
         ValidaTela.abrirTela(operacoesCliente, jDesktopPane1);
     }//GEN-LAST:event_imClienteActionPerformed
 

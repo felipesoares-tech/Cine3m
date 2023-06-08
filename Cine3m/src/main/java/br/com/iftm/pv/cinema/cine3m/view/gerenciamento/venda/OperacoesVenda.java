@@ -29,7 +29,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
         initComponentsPersonalizado();
         this.gerenciaVenda = gerenciaVenda;
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
-        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente,cadastroSessao,cadastroCliente,this);
+        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, cadastroCliente, this);
         this.telaAuxiliarConsultaVenda = new TelaAuxiliarConsultaVenda();
         btnConsultar.setEnabled(false);
 
@@ -40,23 +40,23 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     }
 
     private void initComponentsPersonalizado() {
-//        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaVenda);
-//        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
-//            @Override
-//            public void insertUpdate(DocumentEvent e) {
-//                pesquisaLike.filterList(tfPesquisar, lstVendas);
-//            }
-//
-//            @Override
-//            public void removeUpdate(DocumentEvent e) {
-//                pesquisaLike.filterList(tfPesquisar, lstVendas);
-//            }
-//
-//            @Override
-//            public void changedUpdate(DocumentEvent e) {
-//                pesquisaLike.filterList(tfPesquisar, lstVendas);
-//            }
-//        });
+        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaVenda);
+        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                pesquisaLike.filterList(tfPesquisar, lstVendas);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                pesquisaLike.filterList(tfPesquisar, lstVendas);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                pesquisaLike.filterList(tfPesquisar, lstVendas);
+            }
+        });
     }
 
     public JList<Venda> getLstVendas() {
@@ -224,7 +224,6 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-
         getDesktopPane().add(cadastroVenda);
         cadastroVenda.setModal(true);
         cadastroVenda.setVisible(true);
@@ -239,7 +238,17 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        
+        Venda vendaSelecionada = lstVendas.getSelectedValue();
+
+        Integer resp = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ??",
+                "Apagar Venda", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+        if (resp.equals(JOptionPane.OK_OPTION)) {
+            gerenciaVenda.cancelar(vendaSelecionada);
+            lstVendasAncestorAdded(null);
+            JOptionPane.showMessageDialog(this, "Venda cancelada",
+                    "Cancelar", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void lstVendasAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lstVendasAncestorAdded

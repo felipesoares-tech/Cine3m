@@ -80,7 +80,7 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         return gerenciaSala.ConsultaPoltronaDisponivel(sessao.getSala(), poltrona);
     }
 
-    public void AtualizaPoltronaSessao(Sessao sessao, Poltrona poltrona) {
+    public void atualizaPoltronaSessao(Sessao sessao, Poltrona poltrona) {
         gerenciaSala.AtualizaPoltrona(sessao.getSala(), poltrona);
     }
 

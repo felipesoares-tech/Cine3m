@@ -2,9 +2,10 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.TableModelGenerico;
 
-public class RelatorioSessao extends javax.swing.JInternalFrame {
+public class RelatorioSessao extends ModalInternalFrame {
 
     private GerenciaSessao gerenciaSessao;
     private TableModelGenerico modelo;

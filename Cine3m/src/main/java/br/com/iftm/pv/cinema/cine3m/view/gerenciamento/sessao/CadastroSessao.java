@@ -7,6 +7,8 @@ import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -19,18 +21,20 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class CadastroSessao extends javax.swing.JInternalFrame {
+public class CadastroSessao extends ModalInternalFrame {
 
     private final GerenciaSessao gerenciaSessao;
     private final GerenciaSala gerenciaSala;
     private final GerenciaFilme gerenciaFilme;
+    private final OperacoesSessao operacoesSessao;
     private Sessao sessaoSelecionada;
 
-    public CadastroSessao(GerenciaSessao gerenciaSessao, GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme) {
+    public CadastroSessao(GerenciaSessao gerenciaSessao, GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme, OperacoesSessao operacoesSessao) {
         initComponents();
         this.gerenciaFilme = gerenciaFilme;
         this.gerenciaSala = gerenciaSala;
         this.gerenciaSessao = gerenciaSessao;
+        this.operacoesSessao = operacoesSessao;
         this.btnCadastrarSessao.setEnabled(false);
     }
 
@@ -141,7 +145,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
     public JPanel getjPanel1() {
         return jPanel1;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -206,7 +210,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         lbHora.setText("Hora");
 
         try {
-            tfHorarioSessao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##:##")));
+            tfHorarioSessao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -230,7 +234,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
                             .addComponent(cbSalasSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbFilmesSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfValorSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 140, Short.MAX_VALUE)))
+                        .addGap(0, 39, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -263,28 +267,30 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(94, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbTituloTelaSessao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(180, 180, 180)
+                        .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addGap(84, 84, 84)
+                        .addComponent(lbTituloTelaSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(lbTituloTelaSessao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(24, 24, 24)
                 .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -301,7 +307,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
 
         if (ValidaCampo.validar(dataSessao.replaceAll("[/]", "").trim(), lbData, this)
                 && ValidaCampo.validar(horaSessao.replaceAll("[:]", "").trim(), lbHora, this)
-                && ValidaCampo.validar(valorSessao, lbValor, this)&& ValidaCampo.validar(validarData, lbData, this)) {
+                && ValidaCampo.validar(valorSessao, lbValor, this) && ValidaCampo.validar(validarData, lbData, this)) {
 
             LocalDate data;
             LocalTime hora;
@@ -315,7 +321,7 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
             }
 
             try {
-                hora = LocalTime.parse(horaSessao, DateTimeFormatter.ofPattern("HH:mm:ss"));
+                hora = LocalTime.parse(horaSessao, DateTimeFormatter.ofPattern("HH:mm"));
             } catch (DateTimeException e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(),
                         "Error", JOptionPane.ERROR_MESSAGE);
@@ -337,6 +343,18 @@ public class CadastroSessao extends javax.swing.JInternalFrame {
                 this.setVisible(false);
                 getDesktopPane().remove(this);
             }
+            ListUtils.carregarList(operacoesSessao.getLstSessoes(), gerenciaSessao.relatorio());
+            if (gerenciaSessao.relatorio().isEmpty()) {
+                operacoesSessao.getBtnConsultar().setEnabled(false);
+                operacoesSessao.getBtnExcluir().setEnabled(false);
+                operacoesSessao.getBtnEditar().setEnabled(false);
+            } else {
+                operacoesSessao.getBtnConsultar().setEnabled(true);
+                operacoesSessao.getBtnExcluir().setEnabled(true);
+                operacoesSessao.getBtnEditar().setEnabled(true);
+                operacoesSessao.getLstSessoes().setSelectedIndex(0);
+            }
+
             tfValorSessao.setValue(null);
             tfDataSessao.setValue(null);
             tfHorarioSessao.setValue(null);

@@ -81,6 +81,10 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
         return btnExcluir;
     }
 
+    public RelatorioSala getRelatorioSala() {
+        return relatorioSala;
+    }
+
     public void setBtnExcluir(JButton btnExcluir) {
         this.btnExcluir = btnExcluir;
     }

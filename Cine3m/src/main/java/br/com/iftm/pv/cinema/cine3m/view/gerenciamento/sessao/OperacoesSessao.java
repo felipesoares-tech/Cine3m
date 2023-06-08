@@ -69,6 +69,10 @@ public class OperacoesSessao extends javax.swing.JInternalFrame {
         return btnConsultar;
     }
 
+    public RelatorioSessao getRelatorioSessao() {
+        return relatorioSessao;
+    }
+
     public void setBtnConsultar(JButton btnConsultar) {
         this.btnConsultar = btnConsultar;
     }

@@ -12,6 +12,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.VincularCliente;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,15 +22,16 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class CadastroVenda extends javax.swing.JInternalFrame {
+public class CadastroVenda extends ModalInternalFrame {
 
     private ConsultaPoltronas consultaPoltronas;
     private ConfirmaCompra confirmaCompra;
-    private final GerenciaVenda gerenciaIngresso;
+    private final GerenciaVenda gerenciaVenda;
     private final GerenciaSessao gerenciaSessao;
     private CadastroSessao cadastroSessao;
     private final CadastroCliente cadastroCliente;
     private final VincularCliente vincularCliente;
+    private OperacoesVenda operacoesVenda;
     private  Funcionario funcionario;
 
     public JTextField getTfClienteSelecionado() {
@@ -50,13 +52,14 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
     
     
 
-    public CadastroVenda(GerenciaVenda gerenciaIngresso, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
+    public CadastroVenda(GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente,OperacoesVenda operacoesVenda) {
         initComponents();
         this.btnContinuarCompra.setEnabled(false);
-        this.gerenciaIngresso = gerenciaIngresso;
+        this.gerenciaVenda = gerenciaVenda;
         this.gerenciaSessao = gerenciaSessao;
         this.cadastroSessao = cadastroSessao;
         this.cadastroCliente = cadastroCliente;
+        this.operacoesVenda = operacoesVenda;
         this.vincularCliente = new VincularCliente(gerenciaCliente, this);
     }
 
@@ -338,17 +341,19 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
                 .addGap(13, 13, 13)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnContinuarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnContinuarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(27, 27, 27))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,7 +439,7 @@ public class CadastroVenda extends javax.swing.JInternalFrame {
 
     private void btnContinuarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarCompraActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        this.confirmaCompra = new ConfirmaCompra(listItensIngresso, sessaoSelecionada, vincularCliente, gerenciaSessao, consultaPoltronas, this, gerenciaIngresso);
+        this.confirmaCompra = new ConfirmaCompra(listItensIngresso, sessaoSelecionada, vincularCliente, gerenciaSessao, consultaPoltronas, this, gerenciaVenda,operacoesVenda);
         getDesktopPane().add(confirmaCompra);
         this.confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed

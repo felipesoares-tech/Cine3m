@@ -4,28 +4,16 @@ import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import br.com.iftm.pv.cinema.cine3m.config.ParametrosSistema;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
-import br.com.iftm.pv.cinema.cine3m.model.Cliente;
-import br.com.iftm.pv.cinema.cine3m.model.Filme;
-import br.com.iftm.pv.cinema.cine3m.model.Sala;
-import br.com.iftm.pv.cinema.cine3m.model.Sessao;
-import br.com.iftm.pv.cinema.cine3m.model.Venda;
+import br.com.iftm.pv.cinema.cine3m.controller.*;
+import br.com.iftm.pv.cinema.cine3m.model.*;
 import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.OperacoesCliente;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.OperacoesFilme;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.LoginFuncionario;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.OperacoesFuncionario;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.OperacoesSala;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.OperacoesSessao;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.ConsultaVenda;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.RelatorioVenda;
-import br.com.iftm.pv.cinema.cine3m.view.importacoes.TelaImportacao;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.*;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.*;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.*;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala.*;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.*;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.*;
+import br.com.iftm.pv.cinema.cine3m.view.importacoes.*;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaTela;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
@@ -44,14 +32,9 @@ public class Principal extends javax.swing.JFrame {
     private final OperacoesFuncionario operacoesFuncionario;
     private final OperacoesFilme operacoesFilme;
     private final OperacoesSala operacoesSala;
+    private final OperacoesVenda operacoesVenda;
     
     private final LoginFuncionario loginFuncionario;
-
-    private final CadastroVenda cadastroVenda;
-    private final RelatorioVenda relatorioVenda;
-    private final ConsultaVenda consultaVenda;
-
-
     private final TelaImportacao telaImportacao;
 
     List<Filme> filmes = new ArrayList<>();
@@ -76,28 +59,14 @@ public class Principal extends javax.swing.JFrame {
         this.operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario,gerenciaArquivo.getAdmin());
         this.operacoesFilme = new OperacoesFilme(gerenciaFilme);
         this.operacoesSala = new OperacoesSala(gerenciaSala);
+        this.operacoesVenda = new OperacoesVenda( gerenciaVenda,  gerenciaSessao,gerenciaCliente,operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
         
-        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
-        this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
-        this.consultaVenda = new ConsultaVenda(gerenciaVenda);
-        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, cadastroVenda,jMenuBar1);
-
+        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, operacoesVenda.getCadastroVenda(),jMenuBar1);
         
         Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
-        Color corPanelPadrao = ParametrosSistema.getInstance().getCorPanel();
         this.getContentPane().setBackground(corFundoPadrao);
 
         this.loginFuncionario.getContentPane().setBackground(corFundoPadrao);
-
-        this.cadastroVenda.getContentPane().setBackground(corFundoPadrao);
-        this.consultaVenda.getContentPane().setBackground(corFundoPadrao);
-        this.relatorioVenda.getContentPane().setBackground(corFundoPadrao);
-        this.cadastroVenda.getPanelCadastroVenda().setBackground(corPanelPadrao);
-
-        this.cadastroVenda.getPanelBotoes().setBackground(corPanelPadrao);
-        this.cadastroVenda.getPanelDados().setBackground(corPanelPadrao);
-        this.consultaVenda.getLstVendas().setBackground(corPanelPadrao);
-
         this.telaImportacao = new TelaImportacao(gerenciaFilme);
 
         this.telaImportacao.getContentPane().setBackground(corFundoPadrao);
@@ -123,7 +92,6 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
         });
-
     }
 
     @SuppressWarnings("unchecked")
@@ -145,10 +113,7 @@ public class Principal extends javax.swing.JFrame {
         imFilme = new javax.swing.JMenuItem();
         imSala = new javax.swing.JMenuItem();
         imSessao = new javax.swing.JMenuItem();
-        mVenda = new javax.swing.JMenu();
-        imCadastroVenda = new javax.swing.JMenuItem();
-        imConsultaVenda = new javax.swing.JMenuItem();
-        imRelatorioVenda = new javax.swing.JMenuItem();
+        imVenda = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         imImportacaoFilmes = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -208,33 +173,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(imSessao);
 
-        mVenda.setText("Vendas");
-
-        imCadastroVenda.setText("Cadastrar");
-        imCadastroVenda.addActionListener(new java.awt.event.ActionListener() {
+        imVenda.setText("Vendas");
+        imVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imCadastroVendaActionPerformed(evt);
+                imVendaActionPerformed(evt);
             }
         });
-        mVenda.add(imCadastroVenda);
-
-        imConsultaVenda.setText("Consultar");
-        imConsultaVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imConsultaVendaActionPerformed(evt);
-            }
-        });
-        mVenda.add(imConsultaVenda);
-
-        imRelatorioVenda.setText("Relatorio");
-        imRelatorioVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imRelatorioVendaActionPerformed(evt);
-            }
-        });
-        mVenda.add(imRelatorioVenda);
-
-        jMenu1.add(mVenda);
+        jMenu1.add(imVenda);
 
         jMenuBar1.add(jMenu1);
 
@@ -276,21 +221,6 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void imCadastroVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadastroVendaActionPerformed
-        jDesktopPane1.add(cadastroVenda);
-        cadastroVenda.setVisible(true);
-    }//GEN-LAST:event_imCadastroVendaActionPerformed
-
-    private void imConsultaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsultaVendaActionPerformed
-        jDesktopPane1.add(consultaVenda);
-        consultaVenda.setVisible(true);
-    }//GEN-LAST:event_imConsultaVendaActionPerformed
-
-    private void imRelatorioVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imRelatorioVendaActionPerformed
-        jDesktopPane1.add(relatorioVenda);
-        relatorioVenda.setVisible(true);
-    }//GEN-LAST:event_imRelatorioVendaActionPerformed
 
     private void imImportacaoFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imImportacaoFilmesActionPerformed
         jDesktopPane1.add(telaImportacao);
@@ -344,6 +274,11 @@ public class Principal extends javax.swing.JFrame {
         operacoesSala.setVisible(true);
     }//GEN-LAST:event_imSalaActionPerformed
 
+    private void imVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imVendaActionPerformed
+        jDesktopPane1.add(operacoesVenda);
+        operacoesVenda.setVisible(true);
+    }//GEN-LAST:event_imVendaActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -362,20 +297,17 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem imCadastroVenda;
     private javax.swing.JMenuItem imCliente;
-    private javax.swing.JMenuItem imConsultaVenda;
     private javax.swing.JMenuItem imFilme;
     private javax.swing.JMenuItem imFuncionario;
     private javax.swing.JMenuItem imImportacaoFilmes;
-    private javax.swing.JMenuItem imRelatorioVenda;
     private javax.swing.JMenuItem imSala;
     private javax.swing.JMenuItem imSessao;
+    private javax.swing.JMenuItem imVenda;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu mVenda;
     // End of variables declaration//GEN-END:variables
 }

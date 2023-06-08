@@ -2,9 +2,10 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.TableModelGenerico;
 
-public class RelatorioVenda extends javax.swing.JInternalFrame {
+public class RelatorioVenda extends ModalInternalFrame {
 
     private final GerenciaVenda gerenciaVenda;
     private final TableModelGenerico modelo;

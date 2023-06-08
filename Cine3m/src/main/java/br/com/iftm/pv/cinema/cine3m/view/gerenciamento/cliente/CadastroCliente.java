@@ -49,16 +49,16 @@ public class CadastroCliente extends ModalInternalFrame {
             case CLIENTE_SUCESSO:
                 JOptionPane.showMessageDialog(this, messagemSucesso, titulo,
                         JOptionPane.INFORMATION_MESSAGE);
+                limpaCampos();
                 break;
             case CLIENTE_CPF_INVALIDO:
                 JOptionPane.showMessageDialog(this, "CPF Inválido ", titulo,
                         JOptionPane.ERROR_MESSAGE);
                 break;
             case CLIENTE_CPF_JA_CADASTRADO:
-                if (operacaoCadastro) {
-                    JOptionPane.showMessageDialog(this, "CPF já cadastrado ", titulo,
-                            JOptionPane.ERROR_MESSAGE);
-                }
+                JOptionPane.showMessageDialog(this, "CPF já cadastrado ", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+
                 break;
             default:
                 throw new AssertionError();
@@ -186,11 +186,13 @@ public class CadastroCliente extends ModalInternalFrame {
                 System.out.println(retornoValidacao);
                 exibeMensagemValidacao(retornoValidacao, false);
                 if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
-                    this.setVisible(false);
-                    getDesktopPane().remove(this);
                     limpaCampos();
+                    setVisible(false);
+                    getDesktopPane().remove(this);
+
                 }
             }
+
             ListUtils.carregarList(operacoesCliente.getLstClientes(), gerenciaCliente.relatorio());
             if (gerenciaCliente.relatorio().isEmpty()) {
                 operacoesCliente.getBtnConsultar().setEnabled(false);

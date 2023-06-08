@@ -14,20 +14,34 @@ public class GerenciaSala implements IGerencia<Sala> {
         this.salas = salas;
     }
 
-    public EnumValidacoes cadastrar(Sala sala) {
-        if (salas.contains(sala)) {
-            return EnumValidacoes.SALA_JA_CADASTRADA;
+    private EnumValidacoes validarSala(Sala sala, boolean validarEquals) {
+        EnumValidacoes retornoValidacao;
+        if (validarEquals && salas.contains(sala)) {
+            retornoValidacao = EnumValidacoes.SALA_JA_CADASTRADA;
+        } else {
+            retornoValidacao = EnumValidacoes.SALA_SUCESSO;
         }
-        salas.add(sala);
-        return EnumValidacoes.SALA_SUCESSO;
+        return retornoValidacao;
+    }
+
+    public EnumValidacoes cadastrar(Sala sala) {
+        EnumValidacoes retornoValidacao = validarSala(sala, true);
+        if (retornoValidacao.equals(EnumValidacoes.SALA_SUCESSO)) {
+            salas.add(sala);
+        }
+        return retornoValidacao;
     }
 
     public Sala remover(Sala sala) {
         return salas.remove(salas.indexOf(sala));
     }
 
-    public void atualizar(Sala sala, Sala salaAtualizado) {
-        salas.set(salas.indexOf(sala), salaAtualizado);
+    public EnumValidacoes atualizar(Sala sala, Sala salaAtualizado) {
+        EnumValidacoes retornoValidacao = validarSala(salaAtualizado, false);
+        if (retornoValidacao.equals(EnumValidacoes.FILME_SUCESSO)) {
+            salas.set(salas.indexOf(sala), salaAtualizado);
+        }
+        return retornoValidacao;
     }
 
     public Sala consultar(Sala sala) {

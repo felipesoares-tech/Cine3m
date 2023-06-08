@@ -7,7 +7,6 @@ import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_CPF_
 import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_LOGIN_JA_CADASTRADO;
 import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_SUCESSO;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
-import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
@@ -118,12 +117,41 @@ public class CadastroFuncionario extends ModalInternalFrame {
     public JPanel getjPanel1() {
         return jPanel1;
     }
+    
+    
 
     private void limpaCampos() {
         tfNomeFuncionario.setText("");
         tfCpfFuncionario.setValue(null);
         tfLoginFuncionario.setText("");
         tfSenhaFuncionario.setText("");
+    }
+
+    private void exibeMensagemValidacao(EnumValidacoes tipoMensagem, boolean operacaoCadastro) {
+        String titulo = operacaoCadastro ? "Cadastro Funcionario" : "Atualização Funcionario";
+        String messagemSucesso = operacaoCadastro ? "Funcionario cadastrado com sucesso" : "Funcionario atualizado com sucesso";
+        switch (tipoMensagem) {
+            case FUNCIONARIO_SUCESSO:
+                JOptionPane.showMessageDialog(this, messagemSucesso, titulo,
+                        JOptionPane.INFORMATION_MESSAGE);
+                limpaCampos();
+                break;
+            case FUNCIONARIO_CPF_INVALIDO:
+                JOptionPane.showMessageDialog(this, "CPF Inválido ", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+                break;
+            case FUNCIONARIO_CPF_JA_CADASTRADO:
+                JOptionPane.showMessageDialog(this, "CPF já cadastrado ", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+
+                break;
+            case FUNCIONARIO_LOGIN_JA_CADASTRADO:
+                JOptionPane.showMessageDialog(this, "Login já cadastrado", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+                break;
+            default:
+                throw new AssertionError();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -256,37 +284,19 @@ public class CadastroFuncionario extends ModalInternalFrame {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
             if (btnCadastrarFuncionario.getText().equals("CADASTRAR")) {
-                EnumValidacoes retorno = gerenciaFuncionario.cadastrar(funcionario);
-                switch (retorno) {
-                    case FUNCIONARIO_SUCESSO:
-                        JOptionPane.showMessageDialog(this, "Funcionario cadastro com sucesso ", "Cadastro Funcionario",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        limpaCampos();
-                        break;
-                    case FUNCIONARIO_CPF_INVALIDO:
-                        JOptionPane.showMessageDialog(this, "CPF Inválido ", "Cadastro Funcionario",
-                                JOptionPane.ERROR_MESSAGE);
-                        break;
-                    case FUNCIONARIO_CPF_JA_CADASTRADO:
-                        JOptionPane.showMessageDialog(this, "CPF já cadastrado ", "Cadastro Funcionario",
-                                JOptionPane.ERROR_MESSAGE);
-                        break;
-                    case FUNCIONARIO_LOGIN_JA_CADASTRADO:
-                        JOptionPane.showMessageDialog(this, "Login já cadastrado", "Cadastro Funcionario",
-                                JOptionPane.ERROR_MESSAGE);
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
-
+                exibeMensagemValidacao(gerenciaFuncionario.cadastrar(funcionario), true);
             } else {
-                gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
-                JOptionPane.showMessageDialog(this, "Funcionario atualizado com sucesso!",
-                        "Atualizar", JOptionPane.INFORMATION_MESSAGE);
-                this.setVisible(false);
-                getDesktopPane().remove(this);
-                limpaCampos();
+                EnumValidacoes retornoValidacao = gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
+                System.out.println(retornoValidacao);
+                exibeMensagemValidacao(retornoValidacao, false);
+                if (retornoValidacao.equals(EnumValidacoes.FUNCIONARIO_SUCESSO)) {
+                    limpaCampos();
+                    setVisible(false);
+                    getDesktopPane().remove(this);
+                    
+                }
             }
+            
             ListUtils.carregarList(operacoesFuncionario.getLstFuncionarios(), gerenciaFuncionario.relatorio());
             if (gerenciaFuncionario.relatorio().isEmpty()) {
                 operacoesFuncionario.getBtnConsultar().setEnabled(false);

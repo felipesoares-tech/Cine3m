@@ -13,20 +13,34 @@ public class GerenciaFilme implements IGerencia<Filme> {
         this.filmes = filmes;
     }
 
-    public EnumValidacoes cadastrar(Filme filme) {
-        if (filmes.contains(filme)) {
-            return EnumValidacoes.FILME_JA_CADASTRADO;
+    private EnumValidacoes validarFilme(Filme filme, boolean validarEquals) {
+        EnumValidacoes retornoValidacao;
+        if (validarEquals && filmes.contains(filme)) {
+            retornoValidacao = EnumValidacoes.FILME_JA_CADASTRADO;
+        } else {
+            retornoValidacao = EnumValidacoes.FILME_SUCESSO;
         }
-        filmes.add(filme);
-        return EnumValidacoes.FILME_SUCESSO;
+        return retornoValidacao;
+    }
+
+    public EnumValidacoes cadastrar(Filme filme) {
+        EnumValidacoes retornoValidacao = validarFilme(filme, true);
+        if (retornoValidacao.equals(EnumValidacoes.FILME_SUCESSO)) {
+            filmes.add(filme);
+        }
+        return retornoValidacao;
     }
 
     public Filme remover(Filme filme) {
         return filmes.remove(filmes.indexOf(filme));
     }
 
-    public void atualizar(Filme filme, Filme filmeAtualizado) {
-        filmes.set(filmes.indexOf(filme), filmeAtualizado);
+    public EnumValidacoes atualizar(Filme filme, Filme filmeAtualizado) {
+        EnumValidacoes retornoValidacao = validarFilme(filmeAtualizado, false);
+        if (retornoValidacao.equals(EnumValidacoes.FILME_SUCESSO)) {
+            filmes.set(filmes.indexOf(filme), filmeAtualizado);
+        }
+        return retornoValidacao;              
     }
 
     public Filme consultar(Filme filme) {

@@ -4,19 +4,19 @@ import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
+import java.util.Iterator;
 import java.util.List;
 
-public class GerenciaCliente {
-
-    private List<Cliente> clientes;
+public class GerenciaCliente implements IGerencia<Cliente> {
+    private final List<Cliente> clientes;
 
     public GerenciaCliente(List<Cliente> clientes) {
         this.clientes = clientes;
     }
 
-    public EnumValidacoes validarCliente(Cliente cliente, boolean validarEquals) {
+    private EnumValidacoes validarCliente(Cliente cliente) {
         EnumValidacoes retornoValidacao;
-        if (validarEquals && clientes.contains(cliente)) {
+        if (clientes.contains(cliente)) {
             retornoValidacao = EnumValidacoes.CLIENTE_CPF_JA_CADASTRADO;
         } else if (!ValidadorCPF.isCPF(cliente.getCpf())) {
             retornoValidacao = EnumValidacoes.CLIENTE_CPF_INVALIDO;
@@ -25,9 +25,33 @@ public class GerenciaCliente {
         }
         return retornoValidacao;
     }
+    
+    private boolean existeClienteComCPF(Cliente clienteAtual, Cliente clienteAtualizado) {
+        Iterator<Cliente> it = clientes.iterator();
+        while (it.hasNext()) {
+            Cliente c = (Cliente) it.next();
+            if (!c.equals(clienteAtual) && c.getCpf().equals(clienteAtualizado.getCpf())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private EnumValidacoes validarCliente(Cliente cliente, Cliente clienteAtualizado) {
+        EnumValidacoes retornoValidacao;
+
+        if (existeClienteComCPF(cliente, clienteAtualizado)) {
+            retornoValidacao = EnumValidacoes.CLIENTE_CPF_JA_CADASTRADO;
+        } else if (!ValidadorCPF.isCPF(clienteAtualizado.getCpf())) {
+            retornoValidacao = EnumValidacoes.CLIENTE_CPF_INVALIDO;
+        } else {
+            retornoValidacao = EnumValidacoes.CLIENTE_SUCESSO;
+        }
+        return retornoValidacao;
+    }
 
     public EnumValidacoes cadastrar(Cliente cliente) {
-        EnumValidacoes retornoValidacao = validarCliente(cliente, true);
+        EnumValidacoes retornoValidacao = validarCliente(cliente);
         if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
             clientes.add(cliente);
         }
@@ -39,7 +63,7 @@ public class GerenciaCliente {
     }
 
     public EnumValidacoes atualizar(Cliente cliente, Cliente clienteAtualizado) {
-        EnumValidacoes retornoValidacao = validarCliente(clienteAtualizado, false);
+        EnumValidacoes retornoValidacao = validarCliente(cliente,clienteAtualizado);
         if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
             clientes.set(clientes.indexOf(cliente), clienteAtualizado);
         }

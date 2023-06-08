@@ -4,6 +4,7 @@ import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import java.util.Iterator;
 import java.util.List;
 
 public class GerenciaSessao implements IGerencia<Sessao> {
@@ -45,6 +46,23 @@ public class GerenciaSessao implements IGerencia<Sessao> {
     }
 
     private boolean existeSessaoComHORARIO(Sessao sessao) {
+        Iterator<Sessao> it = sessoes.iterator();
+        while (it.hasNext()) {
+            Sessao s = (Sessao) it.next();
+
+            if (sessao.getSala().equals(s.getSala())&& sessao.getData().equals(s.getData())) {           
+                    if (sessao.getHora().equals(s.getHora())) {
+                        return true;
+                    } else if ( sessao.getHora().isBefore(s.getHora())&& sessao.getHoraFinal().isAfter(s.getHora())) {
+                        return true;
+
+                    }else if(sessao.getHora().isAfter(s.getHora())&&sessao.getHora().isBefore(s.getHoraFinal())){
+                        return true;
+                    }
+      
+            }
+
+        }
         return false; //TODO: implementar, provavelmente igual a login em validacao de funcionario
     }
 

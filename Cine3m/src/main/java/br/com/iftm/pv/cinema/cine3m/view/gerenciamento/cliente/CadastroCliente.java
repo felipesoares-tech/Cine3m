@@ -187,8 +187,9 @@ public class CadastroCliente extends ModalInternalFrame {
 
         if (ValidaCampo.validar(nome, lbNomeCliente, this)
                 && ValidaCampo.validar(cpf, lbCpfCliente, this)) {
+            
             Cliente cliente = new Cliente(nome, cpf);
-
+            
             if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
                 exibeMensagemValidacao(gerenciaCliente.cadastrar(cliente));
             } else {

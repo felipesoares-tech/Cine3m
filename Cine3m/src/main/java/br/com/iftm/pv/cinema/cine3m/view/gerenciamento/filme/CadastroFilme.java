@@ -51,11 +51,11 @@ public class CadastroFilme extends ModalInternalFrame {
     }
 
     public JButton getBtnConfirmar() {
-        return btnConfirmar;
+        return btnCadastrarFilme;
     }
 
     public void setBtnConfirmar(JButton btnConfirmar) {
-        this.btnConfirmar = btnConfirmar;
+        this.btnCadastrarFilme = btnConfirmar;
     }
 
     public JComboBox<Genero> getCbGenero() {
@@ -146,6 +146,12 @@ public class CadastroFilme extends ModalInternalFrame {
         this.tfaDescricao = tfaDescricao;
     }
 
+    private void limpaCampos() {
+        tfNomeFilme.setText("");
+        tfDiretor.setText("");
+        tfaDescricao.setText("");
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -160,7 +166,7 @@ public class CadastroFilme extends ModalInternalFrame {
         tfNomeFilme = new javax.swing.JTextField();
         tfDiretor = new javax.swing.JTextField();
         lbDiretor = new javax.swing.JLabel();
-        btnConfirmar = new javax.swing.JButton();
+        btnCadastrarFilme = new javax.swing.JButton();
         lbTituloTelaFilme = new javax.swing.JLabel();
 
         setClosable(true);
@@ -191,10 +197,10 @@ public class CadastroFilme extends ModalInternalFrame {
         lbDiretor.setForeground(new java.awt.Color(51, 51, 51));
         lbDiretor.setText("Diretor");
 
-        btnConfirmar.setText("CADASTRAR");
-        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrarFilme.setText("CADASTRAR");
+        btnCadastrarFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarActionPerformed(evt);
+                btnCadastrarFilmeActionPerformed(evt);
             }
         });
 
@@ -216,7 +222,7 @@ public class CadastroFilme extends ModalInternalFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(192, 192, 192)
-                .addComponent(btnConfirmar)
+                .addComponent(btnCadastrarFilme)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -239,7 +245,7 @@ public class CadastroFilme extends ModalInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnCadastrarFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         lbTituloTelaFilme.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
@@ -277,8 +283,25 @@ public class CadastroFilme extends ModalInternalFrame {
             cbGenero.setSelectedItem(filmeSelecionado.getGenero());
         }
     }//GEN-LAST:event_cbGeneroAncestorAdded
+    private void exibeMensagemValidacao(EnumValidacoes tipoRetorno) {
+        String titulo = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Cadastro Filme" : "Atualização Filme";
+        String mensagemSucesso = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Filme cadastrado com sucesso" : "Filme atualizado com sucesso";
+        switch (tipoRetorno) {
+            case FILME_SUCESSO:
+                JOptionPane.showMessageDialog(this, mensagemSucesso, titulo,
+                        JOptionPane.INFORMATION_MESSAGE);
+                limpaCampos();
+                break;
+            case FILME_JA_CADASTRADO:
+                JOptionPane.showMessageDialog(this, "Filme já cadastrado ", titulo,
+                        JOptionPane.ERROR_MESSAGE);
 
-    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+    private void btnCadastrarFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFilmeActionPerformed
         String nome = tfNomeFilme.getText();
         String diretor = tfDiretor.getText();
         String descricao = tfaDescricao.getText();
@@ -287,27 +310,20 @@ public class CadastroFilme extends ModalInternalFrame {
         if (ValidaCampo.validar(nome, lbNome, this)
                 && ValidaCampo.validar(diretor, lbDiretor, this)
                 && ValidaCampo.validar(descricao, lbDescricao, this)) {
+            
             Filme filme = new Filme(genero, nome, descricao, diretor);
+            
             if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
-                EnumValidacoes retorno = gerenciaFilme.cadastrar(filme);
-                switch (retorno) {
-                    case FILME_SUCESSO:
-                        JOptionPane.showMessageDialog(this, "Filme cadastro com sucesso ", "Cadastro Filme",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        break;
-                    case FILME_JA_CADASTRADO:
-                        JOptionPane.showMessageDialog(this, "Filme já cadastrado ", "Cadastro Filme",
-                                JOptionPane.ERROR_MESSAGE);
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
+                exibeMensagemValidacao(gerenciaFilme.cadastrar(filme));
             } else {
-                gerenciaFilme.atualizar(filmeSelecionado, filme);
-                JOptionPane.showMessageDialog(this, "Filme atualizado com sucesso!",
-                        "Atualizar", JOptionPane.INFORMATION_MESSAGE);
-                setVisible(false);
-                getDesktopPane().remove(this);
+                EnumValidacoes retornoValidacao = gerenciaFilme.atualizar(filmeSelecionado, filme);
+                exibeMensagemValidacao(retornoValidacao);
+                if (retornoValidacao.equals(EnumValidacoes.FILME_SUCESSO)) {
+                    limpaCampos();
+                    setVisible(false);
+                    getDesktopPane().remove(this);
+
+                }
 
             }
             ListUtils.carregarList(operacoesFilme.getLstFilmes(), gerenciaFilme.relatorio());
@@ -321,17 +337,12 @@ public class CadastroFilme extends ModalInternalFrame {
                 operacoesFilme.getBtnEditar().setEnabled(true);
                 operacoesFilme.getLstFilmes().setSelectedIndex(0);
             }
-            
-            
-            tfNomeFilme.setText("");
-            tfDiretor.setText("");
-            tfaDescricao.setText("");
         }
-    }//GEN-LAST:event_btnConfirmarActionPerformed
+    }//GEN-LAST:event_btnCadastrarFilmeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnCadastrarFilme;
     private javax.swing.JComboBox<Genero> cbGenero;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

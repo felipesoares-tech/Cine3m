@@ -111,6 +111,29 @@ public class CadastroSala extends ModalInternalFrame {
         return jPanel1;
     }
 
+    private void limpaCampos() {
+        tfNomeSala.setText("");
+    }
+
+    private void exibeMensagemValidacao(EnumValidacoes tipoRetorno) {
+        String titulo = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Cadastro Sala" : "Atualização Sala";
+        String mensagemSucesso = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Sala cadastrada com sucesso" : "Sala atualizada com sucesso";
+        switch (tipoRetorno) {
+            case SALA_SUCESSO:
+                JOptionPane.showMessageDialog(this, mensagemSucesso, titulo,
+                        JOptionPane.INFORMATION_MESSAGE);
+                limpaCampos();
+                break;
+            case SALA_JA_CADASTRADA:
+                JOptionPane.showMessageDialog(this, "Sala já cadastrada", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -205,30 +228,25 @@ public class CadastroSala extends ModalInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSalaActionPerformed
-
         Integer capacidade = (int) jsCapacidade.getValue();
         String nome = tfNomeSala.getText();
-        Sala sala = new Sala(nome, capacidade);
+        
         if (ValidaCampo.validar(nome, lbSalaNome, this) && ValidaCampo.validar(capacidade, lbSalaCapacidade, this)) {
+            
+            Sala sala = new Sala(nome, capacidade);
+            
             if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
-                EnumValidacoes retorno = gerenciaSala.cadastrar(sala);
-                switch (retorno) {
-                    case SALA_SUCESSO:
-                        JOptionPane.showMessageDialog(this, "Sala cadastro com sucesso ", "Cadastro Sala",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        break;
-                    case SALA_JA_CADASTRADA:
-                        JOptionPane.showMessageDialog(this, "Sala já cadastrado ", "Cadastro Sala",
-                                JOptionPane.ERROR_MESSAGE);
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
+                exibeMensagemValidacao(gerenciaSala.cadastrar(sala));
             } else {
-                gerenciaSala.atualizar(salaSelecionada, sala);
-                JOptionPane.showMessageDialog(this, "Sala atualizada com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
-                this.setVisible(false);
-                getDesktopPane().remove(this);
+                EnumValidacoes retornoValidacao = gerenciaSala.atualizar(salaSelecionada, sala);
+                exibeMensagemValidacao(retornoValidacao);
+                if (retornoValidacao.equals(EnumValidacoes.SALA_SUCESSO)) {
+                    limpaCampos();
+                    setVisible(false);
+                    getDesktopPane().remove(this);
+
+                }
+                
             }
             ListUtils.carregarList(operacoesSala.getLstSalas(), gerenciaSala.relatorio());
             if (gerenciaSala.relatorio().isEmpty()) {
@@ -241,8 +259,6 @@ public class CadastroSala extends ModalInternalFrame {
                 operacoesSala.getBtnEditar().setEnabled(true);
                 operacoesSala.getLstSalas().setSelectedIndex(0);
             }
-            
-            tfNomeSala.setText("");
         }
 
     }//GEN-LAST:event_btnCadastrarSalaActionPerformed

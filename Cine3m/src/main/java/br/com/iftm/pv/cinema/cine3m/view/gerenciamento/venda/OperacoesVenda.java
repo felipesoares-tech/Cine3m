@@ -90,6 +90,10 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
         return btnNovo;
     }
 
+    public RelatorioVenda getRelatorioVenda() {
+        return relatorioVenda;
+    }
+
     public void setBtnNovo(JButton btnNovo) {
         this.btnNovo = btnNovo;
     }

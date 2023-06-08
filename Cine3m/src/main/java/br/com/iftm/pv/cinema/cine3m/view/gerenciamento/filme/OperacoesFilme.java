@@ -90,6 +90,10 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
         return btnNovo;
     }
 
+    public RelatorioFilme getRelatorioFilme() {
+        return relatorioFilme;
+    }
+
     public void setBtnNovo(JButton btnNovo) {
         this.btnNovo = btnNovo;
     }

@@ -78,6 +78,10 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
         this.btnEditar = btnEditar;
     }
 
+    public RelatorioCliente getRelatorioCliente() {
+        return relatorioCliente;
+    }
+
     public JButton getBtnExcluir() {
         return btnExcluir;
     }

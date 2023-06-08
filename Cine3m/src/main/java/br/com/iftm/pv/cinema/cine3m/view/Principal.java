@@ -33,7 +33,7 @@ public class Principal extends javax.swing.JFrame {
     private final OperacoesFilme operacoesFilme;
     private final OperacoesSala operacoesSala;
     private final OperacoesVenda operacoesVenda;
-    
+
     private final LoginFuncionario loginFuncionario;
     private final TelaImportacao telaImportacao;
 
@@ -50,7 +50,7 @@ public class Principal extends javax.swing.JFrame {
             gerenciaArquivo.obterFuncionarios());
     private final GerenciaSala gerenciaSala = new GerenciaSala(salas);
     private final GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes, gerenciaSala);
-    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(vendas, gerenciaCliente,gerenciaSessao);
+    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(vendas, gerenciaCliente, gerenciaSessao);
 
     public Principal() {
         initComponents();
@@ -59,17 +59,43 @@ public class Principal extends javax.swing.JFrame {
         this.operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario, gerenciaArquivo.getAdmin());
         this.operacoesFilme = new OperacoesFilme(gerenciaFilme);
         this.operacoesSala = new OperacoesSala(gerenciaSala);
-        this.operacoesVenda = new OperacoesVenda( gerenciaVenda,  gerenciaSessao,gerenciaCliente,operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
-        
-        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, operacoesVenda.getCadastroVenda(),jMenuBar1);
-        
+        this.operacoesVenda = new OperacoesVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
+
+        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, operacoesVenda.getCadastroVenda(), jMenuBar1);
+
         Color corFundoPadrao = ParametrosSistema.getInstance().getCorDeFundo();
-        this.getContentPane().setBackground(corFundoPadrao);
+        Color corPanelPadrao = ParametrosSistema.getInstance().getCorPanel();
 
-        this.loginFuncionario.getContentPane().setBackground(corFundoPadrao);
-        this.telaImportacao = new TelaImportacao(gerenciaFilme);
+        operacoesCliente.getCadastroCliente().getContentPane().setBackground(corFundoPadrao);
+        operacoesCliente.getRelatorioCliente().getContentPane().setBackground(corFundoPadrao);
+        operacoesCliente.getCadastroCliente().getjPanel8().setBackground(corPanelPadrao);
+        operacoesCliente.getCadastroCliente().setBackground(corPanelPadrao);
+        operacoesCliente.getLstClientes().setBackground(corPanelPadrao);
 
-        this.telaImportacao.getContentPane().setBackground(corFundoPadrao);
+        operacoesFuncionario.getCadastroFuncionario().setBackground(corFundoPadrao);
+        operacoesFuncionario.getRelatorioFuncionario().getContentPane().setBackground(corFundoPadrao);
+
+        operacoesSessao.getCadastroSessao().getContentPane().setBackground(corFundoPadrao);
+        operacoesSessao.getRelatorioSessao().getContentPane().setBackground(corFundoPadrao);
+
+        operacoesSala.getCadastroSala().getContentPane().setBackground(corFundoPadrao);
+        operacoesSala.getRelatorioSala().getContentPane().setBackground(corFundoPadrao);
+
+        operacoesFilme.getCadastroFilme().getContentPane().setBackground(corFundoPadrao);
+        operacoesFilme.getRelatorioFilme().getContentPane().setBackground(corFundoPadrao);
+
+        operacoesVenda.getCadastroVenda().getContentPane().setBackground(corFundoPadrao);
+        operacoesVenda.getRelatorioVenda().getContentPane().setBackground(corFundoPadrao);
+        operacoesVenda.getCadastroVenda().getPanelBotoes().setBackground(corPanelPadrao);
+        operacoesVenda.getCadastroVenda().getPanelDados().setBackground(corPanelPadrao);
+        operacoesVenda.getLstVendas().setBackground(corPanelPadrao);
+
+        getContentPane().setBackground(corFundoPadrao);
+
+        loginFuncionario.getContentPane().setBackground(corFundoPadrao);
+        telaImportacao = new TelaImportacao(gerenciaFilme);
+
+        telaImportacao.getContentPane().setBackground(corFundoPadrao);
 
         addWindowListener(new WindowAdapter() {
             public void windowOpened(WindowEvent e) {

@@ -73,6 +73,14 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
         return btnEditar;
     }
 
+    public CadastroFuncionario getCadastroFuncionario() {
+        return cadastroFuncionario;
+    }
+
+    public RelatorioFuncionario getRelatorioFuncionario() {
+        return relatorioFuncionario;
+    }
+
     public void setBtnEditar(JButton btnEditar) {
         this.btnEditar = btnEditar;
     }

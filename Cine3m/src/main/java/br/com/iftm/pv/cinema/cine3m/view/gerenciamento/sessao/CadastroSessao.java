@@ -157,6 +157,36 @@ public class CadastroSessao extends ModalInternalFrame {
         return jPanel1;
     }
 
+    private void limpaCampos() {
+        tfValorSessao.setValue(null);
+        tfDataSessao.setValue(null);
+        tfHorarioSessao.setValue(null);
+    }
+
+    private void exibeMensagemValidacao(EnumValidacoes tipoRetorno) {
+        String titulo = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Cadastro Sessão" : "Atualização Sessão";
+        String mensagemSucesso = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Sessão cadastrada com sucesso" : "Sessão atualizada com sucesso";
+        switch (tipoRetorno) {
+            case SESSAO_SUCESSO:
+                JOptionPane.showMessageDialog(this, mensagemSucesso, titulo,
+                        JOptionPane.INFORMATION_MESSAGE);
+                limpaCampos();
+                break;
+            case SESSAO_JA_CADASTRADA:
+                JOptionPane.showMessageDialog(this, "Sessão já cadastrada", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+
+                break;
+            case SESSAO_HORARIO_JA_UTILIZADO: //TODO: falta implementar
+                JOptionPane.showMessageDialog(this, "Horario Utilizado", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -344,25 +374,16 @@ public class CadastroSessao extends ModalInternalFrame {
             Sessao sessao = new Sessao(filmeSelecionado, data, hora, salaSelecionada, valor);
 
             if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
-                EnumValidacoes retorno = gerenciaSessao.cadastrar(sessao);
-                switch (retorno) {
-                    case SESSAO_SUCESSO:
-                        JOptionPane.showMessageDialog(this, "Sessão cadastrada com sucesso ", "Cadastro Sessão",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        break;
-                    case SESSAO_JA_CADASTRADA:
-                        JOptionPane.showMessageDialog(this, "Sessão já cadastrado ", "Cadastro Sessão",
-                                JOptionPane.ERROR_MESSAGE);
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
+                exibeMensagemValidacao(gerenciaSessao.cadastrar(sessao));
             } else {
-                gerenciaSessao.atualizar(sessaoSelecionada, sessao);
-                JOptionPane.showMessageDialog(this, "Sessão atualizada com sucesso ",
-                        "Atualizar", JOptionPane.INFORMATION_MESSAGE);
-                this.setVisible(false);
-                getDesktopPane().remove(this);
+                EnumValidacoes retornoValidacao = gerenciaSessao.atualizar(sessaoSelecionada, sessao);
+                exibeMensagemValidacao(retornoValidacao);
+                if (retornoValidacao.equals(EnumValidacoes.SESSAO_SUCESSO)) {
+                    limpaCampos();
+                    setVisible(false);
+                    getDesktopPane().remove(this);
+
+                }
             }
             ListUtils.carregarList(operacoesSessao.getLstSessoes(), gerenciaSessao.relatorio());
             if (gerenciaSessao.relatorio().isEmpty()) {
@@ -375,10 +396,6 @@ public class CadastroSessao extends ModalInternalFrame {
                 operacoesSessao.getBtnEditar().setEnabled(true);
                 operacoesSessao.getLstSessoes().setSelectedIndex(0);
             }
-
-            tfValorSessao.setValue(null);
-            tfDataSessao.setValue(null);
-            tfHorarioSessao.setValue(null);
         }
     }//GEN-LAST:event_btnCadastrarSessaoActionPerformed
 

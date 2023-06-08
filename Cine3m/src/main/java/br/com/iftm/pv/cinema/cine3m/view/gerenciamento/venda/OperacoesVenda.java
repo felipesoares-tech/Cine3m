@@ -27,11 +27,11 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
 
     public OperacoesVenda(GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
         initComponents();
-        initComponentsPersonalizado();
         this.gerenciaVenda = gerenciaVenda;
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
         this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, cadastroCliente, this);
         this.telaAuxiliarConsultaVenda = new TelaAuxiliarConsultaVenda();
+        initComponentsPersonalizado();
         btnConsultar.setEnabled(false);
 
     }

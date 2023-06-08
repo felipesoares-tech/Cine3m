@@ -5,6 +5,7 @@ import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.CLIENTE_CPF_INVALIDO;
 import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.CLIENTE_CPF_JA_CADASTRADO;
 import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.CLIENTE_SUCESSO;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
@@ -22,6 +23,7 @@ public class CadastroCliente extends ModalInternalFrame {
     private GerenciaCliente gerenciaCliente;
     private Cliente clienteSelecionado;
     private OperacoesCliente operacoesCliente;
+    private EstadoAtual estadoAtual;
 
     public CadastroCliente(GerenciaCliente gerenciaCliente, OperacoesCliente operacoesCliente) {
         this.gerenciaCliente = gerenciaCliente;
@@ -31,6 +33,14 @@ public class CadastroCliente extends ModalInternalFrame {
 
         icon.setImage(icon.getImage().getScaledInstance(59, 66, 1));
         lbImg.setIcon(icon);
+    }
+
+    public EstadoAtual getEstadoAtual() {
+        return estadoAtual;
+    }
+
+    public void setEstadoAtual(EstadoAtual estadoAtual) {
+        this.estadoAtual = estadoAtual;
     }
 
     public CadastroCliente(GerenciaCliente gerenciaCliente) {
@@ -179,7 +189,7 @@ public class CadastroCliente extends ModalInternalFrame {
                 && ValidaCampo.validar(cpf, lbCpfCliente, this)) {
             Cliente cliente = new Cliente(nome, cpf);
 
-            if (btnCadastrarCliente.getText().equals("CADASTRAR")) {
+            if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
                 exibeMensagemValidacao(gerenciaCliente.cadastrar(cliente), true);
             } else {
                 EnumValidacoes retornoValidacao = gerenciaCliente.atualizar(clienteSelecionado, cliente);

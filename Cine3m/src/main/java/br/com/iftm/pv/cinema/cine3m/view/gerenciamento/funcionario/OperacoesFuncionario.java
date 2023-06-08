@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
@@ -244,7 +245,7 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
         cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
         cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
         cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
-
+        cadastroFuncionario.setEstadoAtual(EstadoAtual.CADASTRANDO);
         cadastroFuncionario.getTfNomeFuncionario().setText("");
         cadastroFuncionario.getTfCpfFuncionario().setValue(null);
         cadastroFuncionario.getTfLoginFuncionario().setText("");
@@ -318,7 +319,7 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
         cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
         cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
         cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
-        
+        cadastroFuncionario.setEstadoAtual(EstadoAtual.ATUALIZANDO);
         cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualização de Funcionario");
         cadastroFuncionario.getBtnCadastrarFuncionario().setText("Atualizar");
         cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);

@@ -6,6 +6,7 @@ import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_CPF_
 import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_CPF_JA_CADASTRADO;
 import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_LOGIN_JA_CADASTRADO;
 import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_SUCESSO;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
@@ -23,6 +24,7 @@ public class CadastroFuncionario extends ModalInternalFrame {
     private GerenciaFuncionario gerenciaFuncionario;
     private Funcionario funcionarioSelecionado;
     private OperacoesFuncionario operacoesFuncionario;
+    private EstadoAtual estadoAtual;
 
     public CadastroFuncionario(GerenciaFuncionario gerenciaFuncionario, OperacoesFuncionario operacoesFuncionario) {
         initComponents();
@@ -36,6 +38,14 @@ public class CadastroFuncionario extends ModalInternalFrame {
 
     public JButton getBtnCadastrarFuncionario() {
         return btnCadastrarFuncionario;
+    }
+
+    public EstadoAtual getEstadoAtual() {
+        return estadoAtual;
+    }
+
+    public void setEstadoAtual(EstadoAtual estadoAtual) {
+        this.estadoAtual = estadoAtual;
     }
 
     public void setBtnCadastrarFuncionario(JButton btnCadastrarFuncionario) {
@@ -283,7 +293,7 @@ public class CadastroFuncionario extends ModalInternalFrame {
                 && ValidaCampo.validar(senha, lbSenhaFuncionario, this)) {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
-            if (btnCadastrarFuncionario.getText().equals("CADASTRAR")) {
+            if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
                 exibeMensagemValidacao(gerenciaFuncionario.cadastrar(funcionario), true);
             } else {
                 EnumValidacoes retornoValidacao = gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);

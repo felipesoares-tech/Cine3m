@@ -4,6 +4,7 @@ import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
@@ -29,6 +30,7 @@ public class CadastroSessao extends ModalInternalFrame {
     private final GerenciaFilme gerenciaFilme;
     private final OperacoesSessao operacoesSessao;
     private Sessao sessaoSelecionada;
+    private EstadoAtual estadoAtual;
 
     public CadastroSessao(GerenciaSessao gerenciaSessao, GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme, OperacoesSessao operacoesSessao) {
         initComponents();
@@ -65,6 +67,14 @@ public class CadastroSessao extends ModalInternalFrame {
 
     public JLabel getLbDataHora() {
         return lbData;
+    }
+
+    public EstadoAtual getEstadoAtual() {
+        return estadoAtual;
+    }
+
+    public void setEstadoAtual(EstadoAtual estadoAtual) {
+        this.estadoAtual = estadoAtual;
     }
 
     public void setLbDataHora(JLabel lbDataHora) {
@@ -333,7 +343,7 @@ public class CadastroSessao extends ModalInternalFrame {
 
             Sessao sessao = new Sessao(filmeSelecionado, data, hora, salaSelecionada, valor);
 
-            if (btnCadastrarSessao.getText().equals("CADASTRAR")) {
+            if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
                 EnumValidacoes retorno = gerenciaSessao.cadastrar(sessao);
                 switch (retorno) {
                     case SESSAO_SUCESSO:

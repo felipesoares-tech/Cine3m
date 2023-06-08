@@ -2,6 +2,10 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_CPF_INVALIDO;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_CPF_JA_CADASTRADO;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_LOGIN_JA_CADASTRADO;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_SUCESSO;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
@@ -252,33 +256,29 @@ public class CadastroFuncionario extends ModalInternalFrame {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
             if (btnCadastrarFuncionario.getText().equals("CADASTRAR")) {
-                if (ValidadorCPF.isCPF(cpf)) {
-                    EnumValidacoes retorno = gerenciaFuncionario.cadastrar(funcionario);
-                    switch (retorno) {
-                        case FUNCIONARIO_SUCESSO:
-                            JOptionPane.showMessageDialog(this, "Funcionario cadastro com sucesso ", "Cadastro Funcionario",
-                                    JOptionPane.INFORMATION_MESSAGE);
-                            limpaCampos();
-                            break;
-                        case FUNCIONARIO_CPF_INVALIDO:
-                            JOptionPane.showMessageDialog(this, "CPF Inválido ", "Cadastro Funcionario",
-                                    JOptionPane.ERROR_MESSAGE);
-                            break;
-                        case FUNCIONARIO_CPF_JA_CADASTRADO:
-                            JOptionPane.showMessageDialog(this, "CPF já cadastrado ", "Cadastro Funcionario",
-                                    JOptionPane.ERROR_MESSAGE);
-                            break;
-                        case FUNCIONARIO_LOGIN_JA_CADASTRADO:
-                            JOptionPane.showMessageDialog(this, "Login já cadastrado", "Cadastro Funcionario",
-                                    JOptionPane.ERROR_MESSAGE);
-                            break;
-                        default:
-                            throw new AssertionError();
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "CPF inválido!",
-                            "Validação de CPF", JOptionPane.ERROR_MESSAGE);
+                EnumValidacoes retorno = gerenciaFuncionario.cadastrar(funcionario);
+                switch (retorno) {
+                    case FUNCIONARIO_SUCESSO:
+                        JOptionPane.showMessageDialog(this, "Funcionario cadastro com sucesso ", "Cadastro Funcionario",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        limpaCampos();
+                        break;
+                    case FUNCIONARIO_CPF_INVALIDO:
+                        JOptionPane.showMessageDialog(this, "CPF Inválido ", "Cadastro Funcionario",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+                    case FUNCIONARIO_CPF_JA_CADASTRADO:
+                        JOptionPane.showMessageDialog(this, "CPF já cadastrado ", "Cadastro Funcionario",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+                    case FUNCIONARIO_LOGIN_JA_CADASTRADO:
+                        JOptionPane.showMessageDialog(this, "Login já cadastrado", "Cadastro Funcionario",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+                    default:
+                        throw new AssertionError();
                 }
+
             } else {
                 gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
                 JOptionPane.showMessageDialog(this, "Funcionario atualizado com sucesso!",

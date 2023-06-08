@@ -1,7 +1,9 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
 import java.util.List;
 
 public class GerenciaCliente implements IGerencia<Cliente> {
@@ -11,11 +13,14 @@ public class GerenciaCliente implements IGerencia<Cliente> {
     public GerenciaCliente(List<Cliente> clientes) {
         this.clientes = clientes;
     }
-    public Boolean cadastrar(Cliente cliente) {
-        if (!clientes.contains(cliente)) {
-            return clientes.add(cliente);
+    public EnumValidacoes cadastrar(Cliente cliente) {
+        if (clientes.contains(cliente)) {
+            return EnumValidacoes.CLIENTE_CPF_JA_CADASTRADO;
+        }else if(!ValidadorCPF.isCPF(cliente.getCpf())){
+            return EnumValidacoes.CLIENTE_CPF_INVALIDO;
         }
-        return false;
+        clientes.add(cliente);
+        return EnumValidacoes.CLIENTE_SUCESSO;
     }
 
     public Cliente remover(Cliente cliente) {

@@ -33,23 +33,23 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
     }
 
     private void initComponentsPersonalizado() {
-        //PesquisaLike pesquisaLike = new PesquisaLike(gerenciaFuncionario);
-//        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
-//            @Override
-//            public void insertUpdate(DocumentEvent e) {
-//                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
-//            }
-//
-//            @Override
-//            public void removeUpdate(DocumentEvent e) {
-//                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
-//            }
-//
-//            @Override
-//            public void changedUpdate(DocumentEvent e) {
-//                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
-//            }
-//        });
+        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaFuncionario);
+        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
+            }
+        });
     }
 
     public JList<Pessoa> getLstFuncionarios() {

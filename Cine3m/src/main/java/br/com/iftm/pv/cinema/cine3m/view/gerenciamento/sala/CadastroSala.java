@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
@@ -200,10 +201,19 @@ public class CadastroSala extends ModalInternalFrame {
         Sala sala = new Sala(nome, capacidade);
         if (ValidaCampo.validar(nome, lbSalaNome, this) && ValidaCampo.validar(capacidade, lbSalaCapacidade, this)) {
             if (btnCadastrarSala.getText().equals("CADASTRAR")) {
-                Boolean sucesso = gerenciaSala.cadastrar(sala);
-                JOptionPane.showMessageDialog(this, sucesso ? "Sala cadastrada com sucesso !" : "Sala já cadastrada!",
-                        "Cadastro Sala", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
-
+                EnumValidacoes retorno = gerenciaSala.cadastrar(sala);
+                switch (retorno) {
+                    case SALA_SUCESSO:
+                        JOptionPane.showMessageDialog(this, "Sala cadastro com sucesso ", "Cadastro Sala",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case SALA_JA_CADASTRADA:
+                        JOptionPane.showMessageDialog(this, "Sala já cadastrado ", "Cadastro Sala",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             } else {
                 gerenciaSala.atualizar(salaSelecionada, sala);
                 JOptionPane.showMessageDialog(this, "Sala atualizada com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);

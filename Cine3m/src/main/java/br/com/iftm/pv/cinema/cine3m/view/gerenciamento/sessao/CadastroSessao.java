@@ -3,6 +3,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
@@ -333,9 +334,19 @@ public class CadastroSessao extends ModalInternalFrame {
             Sessao sessao = new Sessao(filmeSelecionado, data, hora, salaSelecionada, valor);
 
             if (btnCadastrarSessao.getText().equals("CADASTRAR")) {
-                Boolean sucesso = gerenciaSessao.cadastrar(sessao);
-                JOptionPane.showMessageDialog(this, sucesso ? "Sessão cadstrada com sucesso " : "Sessão já Cadastrada!",
-                        "Cadastro Cliente", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
+                EnumValidacoes retorno = gerenciaSessao.cadastrar(sessao);
+                switch (retorno) {
+                    case SESSAO_SUCESSO:
+                        JOptionPane.showMessageDialog(this, "Sessão cadastrada com sucesso ", "Cadastro Sessão",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case SESSAO_JA_CADASTRADA:
+                        JOptionPane.showMessageDialog(this, "Sessão já cadastrado ", "Cadastro Sessão",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             } else {
                 gerenciaSessao.atualizar(sessaoSelecionada, sessao);
                 JOptionPane.showMessageDialog(this, "Sessão atualizada com sucesso ",

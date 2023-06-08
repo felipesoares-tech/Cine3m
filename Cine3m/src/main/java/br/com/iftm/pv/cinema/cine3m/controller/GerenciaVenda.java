@@ -1,5 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import java.util.List;
@@ -18,7 +19,7 @@ public class GerenciaVenda {
         return valor - (valor * 0.1);
     }
 
-    public Venda cadastrar(Venda venda) {
+    public EnumValidacoes cadastrar(Venda venda) {
         Cliente clienteVenda = venda.getCliente();
         if (clienteVenda != null) {
             clienteVenda.setQtdFilmesAssistidos(clienteVenda.getQtdFilmesAssistidos() + 1);
@@ -30,10 +31,8 @@ public class GerenciaVenda {
             }
             gerenciaCliente.atualizar(clienteAntigo, clienteVenda);
         }
-        if (vendas.add(venda)) {
-            return venda;
-        }
-        return null;
+        return venda.hasDesconto() ? EnumValidacoes.VENDA_PROMOCAO : EnumValidacoes.VENDA_SUCESSO;
+
     }
 
     public Venda consultar(Venda venda) {

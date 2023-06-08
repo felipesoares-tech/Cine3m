@@ -1,5 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
@@ -15,11 +16,12 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         this.gerenciaSala = gerenciaSala;
     }
 
-    public Boolean cadastrar(Sessao sessao) {
-        if (!sessoes.contains(sessao)) {
-            return sessoes.add(sessao);
+    public EnumValidacoes cadastrar(Sessao sessao) {
+        if (sessoes.contains(sessao)) {
+            return EnumValidacoes.SESSAO_JA_CADASTRADA;
         }
-        return false;
+        sessoes.add(sessao);
+        return EnumValidacoes.SESSAO_SUCESSO;
     }
 
     public Sessao remover(Sessao sessao) {

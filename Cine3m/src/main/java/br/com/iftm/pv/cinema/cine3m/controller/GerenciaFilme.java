@@ -1,5 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import java.util.List;
@@ -7,17 +8,17 @@ import java.util.List;
 public class GerenciaFilme implements IGerencia<Filme> {
 
     private List<Filme> filmes;
-    
+
     public GerenciaFilme(List<Filme> filmes) {
         this.filmes = filmes;
     }
 
-    public Boolean cadastrar(Filme filme) {
-        if (!filmes.contains(filme)) {
-            System.out.println(filme);
-            return filmes.add(filme);
+    public EnumValidacoes cadastrar(Filme filme) {
+        if (filmes.contains(filme)) {
+            return EnumValidacoes.FILME_JA_CADASTRADO;
         }
-        return false;
+        filmes.add(filme);
+        return EnumValidacoes.FILME_SUCESSO;
     }
 
     public Filme remover(Filme filme) {

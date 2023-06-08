@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
@@ -154,17 +155,25 @@ public class CadastroCliente extends ModalInternalFrame {
             Cliente cliente = new Cliente(nome, cpf);
 
             if (btnCadastrarCliente.getText().equals("CADASTRAR")) {
-                if (ValidadorCPF.isCPF(cpf)) {
-                    Boolean sucesso = gerenciaCliente.cadastrar(cliente);
-                    JOptionPane.showMessageDialog(this, sucesso
-                            ? "Cliente cadstrado com sucesso " : "Cliente já Cadastrado!", "Cadastro Cliente",
-                            sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
-                    limpaCampos();
-
-                } else {
-                    JOptionPane.showMessageDialog(this, "CPF inválido!",
-                            "Validação de CPF", JOptionPane.ERROR_MESSAGE);
+                EnumValidacoes retorno = gerenciaCliente.cadastrar(cliente);
+                switch (retorno) {
+                    case CLIENTE_SUCESSO:
+                        JOptionPane.showMessageDialog(this, "Funcionario cadastro com sucesso ", "Cadastro Funcionario",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        limpaCampos();
+                        break;
+                    case CLIENTE_CPF_INVALIDO:
+                        JOptionPane.showMessageDialog(this, "CPF Inválido ", "Cadastro Funcionario",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+                    case CLIENTE_CPF_JA_CADASTRADO:
+                        JOptionPane.showMessageDialog(this, "CPF já cadastrado ", "Cadastro Funcionario",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+                    default:
+                        throw new AssertionError();
                 }
+                
             } else {
                 gerenciaCliente.atualizar(clienteSelecionado, cliente);
                 JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);

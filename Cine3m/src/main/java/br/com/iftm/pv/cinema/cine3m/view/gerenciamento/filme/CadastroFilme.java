@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.enums.Genero;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
@@ -278,10 +279,19 @@ public class CadastroFilme extends ModalInternalFrame {
                 && ValidaCampo.validar(descricao, lbDescricao, this)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
             if (btnConfirmar.getText().equals("CADASTRAR")) {
-                Boolean sucesso = gerenciaFilme.cadastrar(filme);
-                JOptionPane.showMessageDialog(rootPane, sucesso ? "Filme cadstrado com sucesso " : "Filme já Cadastrado!",
-                        "Cadastro Filme", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
-
+                EnumValidacoes retorno = gerenciaFilme.cadastrar(filme);
+                switch (retorno) {
+                    case FILME_SUCESSO:
+                        JOptionPane.showMessageDialog(this, "Filme cadastro com sucesso ", "Cadastro Filme",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case FILME_JA_CADASTRADO:
+                        JOptionPane.showMessageDialog(this, "Filme já cadastrado ", "Cadastro Filme",
+                                JOptionPane.ERROR_MESSAGE);
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             } else {
                 gerenciaFilme.atualizar(filmeSelecionado, filme);
                 JOptionPane.showMessageDialog(this, "Filme atualizado com sucesso!",

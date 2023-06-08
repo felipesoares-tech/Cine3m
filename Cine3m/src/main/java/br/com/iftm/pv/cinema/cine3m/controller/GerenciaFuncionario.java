@@ -1,11 +1,12 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
+import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
 import java.util.List;
 
-public class GerenciaFuncionario {
+public class GerenciaFuncionario implements IGerencia<Funcionario>{
 
     private List<Funcionario> funcionarios;
     private EnumValidacoes en;

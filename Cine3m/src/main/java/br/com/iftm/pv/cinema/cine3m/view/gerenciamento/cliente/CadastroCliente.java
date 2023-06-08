@@ -28,6 +28,7 @@ public class CadastroCliente extends ModalInternalFrame {
     public CadastroCliente(GerenciaCliente gerenciaCliente, OperacoesCliente operacoesCliente) {
         this.gerenciaCliente = gerenciaCliente;
         this.operacoesCliente = operacoesCliente;
+        this.estadoAtual = EstadoAtual.CADASTRANDO;
         initComponents();
         ImageIcon icon = new ImageIcon("src/main/java/imagens/new-client.png");
 

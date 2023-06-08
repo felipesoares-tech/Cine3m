@@ -11,6 +11,7 @@ public class Sessao {
     private Filme filme;
     private LocalDate data;
     private LocalTime hora;
+    private LocalTime horaFinal;
     private Double valor;
     private Sala sala;
 
@@ -22,6 +23,9 @@ public class Sessao {
         this.valor = valor;
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.nome = filme.toString() + " - " + sala.toString() + " " + String.valueOf(data.format(formato)) + " " + String.valueOf(hora);
+        this.horaFinal = hora.plusHours(filme.getDuracao().getHour())
+                                .plusMinutes(filme.getDuracao().getMinute());
+        System.out.println(horaFinal);
     }
 
     @Override
@@ -75,6 +79,15 @@ public class Sessao {
 
     public void setSala(Sala sala) {
         this.sala = sala;
+        
+    }
+
+    public LocalTime getHoraFinal() {
+        return horaFinal;
+    }
+
+    public void setHoraFinal(LocalTime horaFinal) {
+        this.horaFinal = horaFinal;
     }
 
     @Override

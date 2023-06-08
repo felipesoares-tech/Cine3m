@@ -6,7 +6,6 @@ import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
 import java.util.List;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -34,23 +33,23 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
     }
 
     private void initComponentsPersonalizado() {
-        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaFuncionario);
-        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
-            }
-        });
+        //PesquisaLike pesquisaLike = new PesquisaLike(gerenciaFuncionario);
+//        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
+//            @Override
+//            public void insertUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
+//            }
+//
+//            @Override
+//            public void removeUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
+//            }
+//
+//            @Override
+//            public void changedUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstFuncionarios);
+//            }
+//        });
     }
 
     public JList<Pessoa> getLstFuncionarios() {

@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
@@ -20,7 +21,7 @@ public class CadastroFuncionario extends ModalInternalFrame {
     private Funcionario funcionarioSelecionado;
     private OperacoesFuncionario operacoesFuncionario;
 
-    public CadastroFuncionario(GerenciaFuncionario gerenciaFuncionario,OperacoesFuncionario operacoesFuncionario) {
+    public CadastroFuncionario(GerenciaFuncionario gerenciaFuncionario, OperacoesFuncionario operacoesFuncionario) {
         initComponents();
         this.operacoesFuncionario = operacoesFuncionario;
         this.gerenciaFuncionario = gerenciaFuncionario;
@@ -120,6 +121,7 @@ public class CadastroFuncionario extends ModalInternalFrame {
         tfLoginFuncionario.setText("");
         tfSenhaFuncionario.setText("");
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -251,11 +253,28 @@ public class CadastroFuncionario extends ModalInternalFrame {
 
             if (btnCadastrarFuncionario.getText().equals("CADASTRAR")) {
                 if (ValidadorCPF.isCPF(cpf)) {
-                    Boolean sucesso = gerenciaFuncionario.cadastrar(funcionario);
-                    JOptionPane.showMessageDialog(this, sucesso
-                            ? "Funcionario cadastro com sucesso " : "Funcionario já Cadastrado!", "Cadastro Funcionario",
-                            sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
-                     limpaCampos();
+                    EnumValidacoes retorno = gerenciaFuncionario.cadastrar(funcionario);
+                    switch (retorno) {
+                        case FUNCIONARIO_SUCESSO:
+                            JOptionPane.showMessageDialog(this, "Funcionario cadastro com sucesso ", "Cadastro Funcionario",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            limpaCampos();
+                            break;
+                        case FUNCIONARIO_CPF_INVALIDO:
+                            JOptionPane.showMessageDialog(this, "CPF Inválido ", "Cadastro Funcionario",
+                                    JOptionPane.ERROR_MESSAGE);
+                            break;
+                        case FUNCIONARIO_CPF_JA_CADASTRADO:
+                            JOptionPane.showMessageDialog(this, "CPF já cadastrado ", "Cadastro Funcionario",
+                                    JOptionPane.ERROR_MESSAGE);
+                            break;
+                        case FUNCIONARIO_LOGIN_JA_CADASTRADO:
+                            JOptionPane.showMessageDialog(this, "Login já cadastrado", "Cadastro Funcionario",
+                                    JOptionPane.ERROR_MESSAGE);
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "CPF inválido!",
                             "Validação de CPF", JOptionPane.ERROR_MESSAGE);
@@ -266,7 +285,7 @@ public class CadastroFuncionario extends ModalInternalFrame {
                         "Atualizar", JOptionPane.INFORMATION_MESSAGE);
                 this.setVisible(false);
                 getDesktopPane().remove(this);
-                 limpaCampos();
+                limpaCampos();
             }
             ListUtils.carregarList(operacoesFuncionario.getLstFuncionarios(), gerenciaFuncionario.relatorio());
             if (gerenciaFuncionario.relatorio().isEmpty()) {
@@ -279,7 +298,7 @@ public class CadastroFuncionario extends ModalInternalFrame {
                 operacoesFuncionario.getBtnEditar().setEnabled(true);
                 operacoesFuncionario.getLstFuncionarios().setSelectedIndex(0);
             }
-           
+
         }
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 

@@ -1,12 +1,14 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
-import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
+import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
 import java.util.List;
 
-public class GerenciaFuncionario implements IGerencia<Funcionario> {
+public class GerenciaFuncionario {
 
     private List<Funcionario> funcionarios;
+    private EnumValidacoes en;
 
     public GerenciaFuncionario(List<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
@@ -16,12 +18,17 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
         return funcionarios;
     }
 
-    public Boolean cadastrar(Funcionario funcionario) {
-        if (verificarCpf(funcionario.getCpf()) || verificarNome(funcionario.getNome())
-                || verificarLogin(funcionario.getLogin())) {
-            return false;
+    public EnumValidacoes cadastrar(Funcionario funcionario) {
+        if (funcionarios.contains(funcionario)) {
+            return EnumValidacoes.FUNCIONARIO_CPF_JA_CADASTRADO;
+        } else if (verificarLogin(funcionario.getLogin())) {
+            return EnumValidacoes.FUNCIONARIO_LOGIN_JA_CADASTRADO;
+        }else if(!ValidadorCPF.isCPF(funcionario.getCpf())){
+            return EnumValidacoes.FUNCIONARIO_CPF_INVALIDO;
         }
-        return funcionarios.add(funcionario);
+        funcionarios.add(funcionario);
+        return EnumValidacoes.FUNCIONARIO_SUCESSO;
+
     }
 
     public Funcionario remover(Funcionario funcionario) {
@@ -40,18 +47,10 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
         return this.funcionarios;
     }
 
-    public Boolean verificarCpf(String cpf) {
-        for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getCpf().equals(cpf)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public Boolean verificarNome(String nome) {
         for (Funcionario funcionario : funcionarios) {
             if (funcionario.getNome().equals(nome)) {
+
                 return true;
             }
         }
@@ -66,4 +65,5 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
         }
         return false;
     }
+
 }

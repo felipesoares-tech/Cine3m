@@ -369,7 +369,7 @@ public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
         String nomeClienteVenda = clienteVenda != null ? clienteVenda.getNome() : "";
         String nomeSessaoVenda = vendaSelecionada.getSessao().getNome();
         String nomeFuncionarioVenda = vendaSelecionada.getFuncionario().getNome();
-        List<ItemVenda> itensVenda = vendaSelecionada.getItensIngresso();
+        List<ItemVenda> itensVenda = vendaSelecionada.getItensVenda();
         Double valorTotal = vendaSelecionada.getValorFinal();
         boolean desconto = vendaSelecionada.hasDesconto();
         lbdesconto.setText(desconto ? "Com desconto" : "Sem desconto");

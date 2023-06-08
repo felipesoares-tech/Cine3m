@@ -1,5 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.model;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Venda {
@@ -7,9 +9,10 @@ public class Venda {
     private Sessao sessao;
     private Cliente cliente;
     private Funcionario funcionario;
-    private String identificador;
+    private final String identificador;
     private Double valorFinal;
     private List<ItemVenda> itensVenda;
+    private boolean cancelada;
     private boolean desconto;
 
     public Sessao getSessao() {
@@ -36,12 +39,36 @@ public class Venda {
         this.valorFinal = valorFinal;
     }
 
-    public List<ItemVenda> getItensIngresso() {
+    public List<ItemVenda> getItensVenda() {
         return itensVenda;
     }
 
     public void setItensIngresso(List<ItemVenda> itensVenda) {
         this.itensVenda = itensVenda;
+    }
+
+    /**
+     *
+     * @return retorna uma lista de poltronas que foram selecionadas na venda
+     */
+    public List<Poltrona> consultaPoltronasVenda() {
+        Iterator<ItemVenda> it = getItensVenda().iterator();
+
+        List<Poltrona> listPoltronas = new ArrayList<>();
+
+        while (it.hasNext()) {
+            ItemVenda item = (ItemVenda) it.next();
+            listPoltronas.add(item.getPoltrona());
+        }
+        return listPoltronas;
+    }
+
+    public boolean isCancelada() {
+        return cancelada;
+    }
+
+    public void setCancelada(boolean cancelada) {
+        this.cancelada = cancelada;
     }
 
     public Venda(Funcionario funcionario, Sessao sessao, Double valorFinal, List<ItemVenda> itensVenda) {

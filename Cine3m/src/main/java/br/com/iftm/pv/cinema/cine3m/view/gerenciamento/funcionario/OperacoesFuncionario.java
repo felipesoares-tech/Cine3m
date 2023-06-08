@@ -314,23 +314,28 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lstFuncionariosAncestorAdded
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Funcionario funcionarioSelecionado = (Funcionario) this.lstFuncionarios.getSelectedValue();
-        cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
-        cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
-        cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
-        cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
-        cadastroFuncionario.setEstadoAtual(EstadoAtual.ATUALIZANDO);
-        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualização de Funcionario");
-        cadastroFuncionario.getBtnCadastrarFuncionario().setText("Atualizar");
-        cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
-        cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
-        cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
-        cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
-        cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
-        cadastroFuncionario.setFuncionarioSelecionado(funcionarioSelecionado);
-        getDesktopPane().add(cadastroFuncionario);
-        cadastroFuncionario.setModal(true);
-        cadastroFuncionario.setVisible(true);
+        if (lstFuncionarios.getSelectedValue().equals(admin)) {
+            JOptionPane.showMessageDialog(this, "Não é possível editar admin! ",
+                    "Admin", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Funcionario funcionarioSelecionado = (Funcionario) this.lstFuncionarios.getSelectedValue();
+            cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
+            cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
+            cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
+            cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
+            cadastroFuncionario.setEstadoAtual(EstadoAtual.ATUALIZANDO);
+            cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualização de Funcionario");
+            cadastroFuncionario.getBtnCadastrarFuncionario().setText("Atualizar");
+            cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
+            cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
+            cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
+            cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
+            cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
+            cadastroFuncionario.setFuncionarioSelecionado(funcionarioSelecionado);
+            getDesktopPane().add(cadastroFuncionario);
+            cadastroFuncionario.setModal(true);
+            cadastroFuncionario.setVisible(true);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed

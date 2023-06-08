@@ -137,12 +137,12 @@ public class CadastroFuncionario extends ModalInternalFrame {
         tfSenhaFuncionario.setText("");
     }
 
-    private void exibeMensagemValidacao(EnumValidacoes tipoMensagem, boolean operacaoCadastro) {
-        String titulo = operacaoCadastro ? "Cadastro Funcionario" : "Atualização Funcionario";
-        String messagemSucesso = operacaoCadastro ? "Funcionario cadastrado com sucesso" : "Funcionario atualizado com sucesso";
-        switch (tipoMensagem) {
+    private void exibeMensagemValidacao(EnumValidacoes tipoRetorno) {
+        String titulo = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Cadastro Funcionario" : "Atualização Funcionario";
+        String mensagemSucesso = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Funcionario cadastrado com sucesso" : "Funcionario atualizado com sucesso";
+        switch (tipoRetorno) {
             case FUNCIONARIO_SUCESSO:
-                JOptionPane.showMessageDialog(this, messagemSucesso, titulo,
+                JOptionPane.showMessageDialog(this, mensagemSucesso, titulo,
                         JOptionPane.INFORMATION_MESSAGE);
                 limpaCampos();
                 break;
@@ -294,11 +294,10 @@ public class CadastroFuncionario extends ModalInternalFrame {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
             if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
-                exibeMensagemValidacao(gerenciaFuncionario.cadastrar(funcionario), true);
+                exibeMensagemValidacao(gerenciaFuncionario.cadastrar(funcionario));
             } else {
                 EnumValidacoes retornoValidacao = gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
-                System.out.println(retornoValidacao);
-                exibeMensagemValidacao(retornoValidacao, false);
+                exibeMensagemValidacao(retornoValidacao);
                 if (retornoValidacao.equals(EnumValidacoes.FUNCIONARIO_SUCESSO)) {
                     limpaCampos();
                     setVisible(false);

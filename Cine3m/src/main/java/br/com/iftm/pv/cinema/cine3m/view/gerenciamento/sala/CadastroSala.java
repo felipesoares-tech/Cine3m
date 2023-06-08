@@ -1,7 +1,11 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,27 +17,27 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class CadastroSala extends javax.swing.JInternalFrame {
+public class CadastroSala extends ModalInternalFrame {
 
-    private GerenciaSala gerenciaSala;
+    private final GerenciaSala gerenciaSala;
     private Sala salaSelecionada;
     private int maxValor;
+    private final OperacoesSala operacoesSala;
+    private EstadoAtual estadoAtual;
 
-    public CadastroSala(GerenciaSala gerenciaSala) {
+    public CadastroSala(GerenciaSala gerenciaSala, OperacoesSala operacoesSala) {
         initComponents();
         this.gerenciaSala = gerenciaSala;
+        this.operacoesSala = operacoesSala;
         this.maxValor = 100;
 
-        this.jsCapacidade.setModel(new SpinnerNumberModel(0, 0, maxValor, 10));
+        this.jsCapacidade.setModel(new SpinnerNumberModel(0, 0, maxValor, 1));
         this.jsCapacidade.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 int valor = (int) jsCapacidade.getValue();
                 if (valor >= maxValor) {
                     jsCapacidade.setValue(maxValor);
-                } else if (valor % 10 != 0) {
-                    valor = Math.round(valor / 10) * 10;
-                    jsCapacidade.setValue(valor);
                 }
             }
         });
@@ -41,6 +45,14 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
     public JSpinner getJsCapacidade() {
         return jsCapacidade;
+    }
+
+    public EstadoAtual getEstadoAtual() {
+        return estadoAtual;
+    }
+
+    public void setEstadoAtual(EstadoAtual estadoAtual) {
+        this.estadoAtual = estadoAtual;
     }
 
     public void setJsCapacidade(JSpinner jsCapacidade) {
@@ -97,6 +109,29 @@ public class CadastroSala extends javax.swing.JInternalFrame {
 
     public JPanel getjPanel1() {
         return jPanel1;
+    }
+
+    private void limpaCampos() {
+        tfNomeSala.setText("");
+    }
+
+    private void exibeMensagemValidacao(EnumValidacoes tipoRetorno) {
+        String titulo = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Cadastro Sala" : "Atualização Sala";
+        String mensagemSucesso = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Sala cadastrada com sucesso" : "Sala atualizada com sucesso";
+        switch (tipoRetorno) {
+            case SALA_SUCESSO:
+                JOptionPane.showMessageDialog(this, mensagemSucesso, titulo,
+                        JOptionPane.INFORMATION_MESSAGE);
+                limpaCampos();
+                break;
+            case SALA_JA_CADASTRADA:
+                JOptionPane.showMessageDialog(this, "Sala já cadastrada", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+
+                break;
+            default:
+                throw new AssertionError();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -193,23 +228,37 @@ public class CadastroSala extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSalaActionPerformed
-
         Integer capacidade = (int) jsCapacidade.getValue();
         String nome = tfNomeSala.getText();
-        Sala sala = new Sala(nome, capacidade);
-        if (ValidaCampo.validar(nome, lbSalaNome, this)&& ValidaCampo.validar(capacidade, lbSalaCapacidade, this)) {
-            if (btnCadastrarSala.getText().equals("CADASTRAR")) {
-                Boolean sucesso = gerenciaSala.cadastrar(sala);
-                JOptionPane.showMessageDialog(this, sucesso ? "Sala cadastrada com sucesso !" : "Sala já cadastrada!",
-                        "Cadastro Sala", sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
-
+        
+        if (ValidaCampo.validar(nome, lbSalaNome, this) && ValidaCampo.validar(capacidade, lbSalaCapacidade, this)) {
+            
+            Sala sala = new Sala(nome, capacidade);
+            
+            if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
+                exibeMensagemValidacao(gerenciaSala.cadastrar(sala));
             } else {
-                gerenciaSala.atualizar(salaSelecionada, sala);
-                JOptionPane.showMessageDialog(this, "Sala atualizada com sucesso!", "Atualizar", JOptionPane.PLAIN_MESSAGE);
-                this.setVisible(false);
-                getDesktopPane().remove(this);
+                EnumValidacoes retornoValidacao = gerenciaSala.atualizar(salaSelecionada, sala);
+                exibeMensagemValidacao(retornoValidacao);
+                if (retornoValidacao.equals(EnumValidacoes.SALA_SUCESSO)) {
+                    limpaCampos();
+                    setVisible(false);
+                    getDesktopPane().remove(this);
+
+                }
+                
             }
-            tfNomeSala.setText("");
+            ListUtils.carregarList(operacoesSala.getLstSalas(), gerenciaSala.relatorio());
+            if (gerenciaSala.relatorio().isEmpty()) {
+                operacoesSala.getBtnConsultar().setEnabled(false);
+                operacoesSala.getBtnExcluir().setEnabled(false);
+                operacoesSala.getBtnEditar().setEnabled(false);
+            } else {
+                operacoesSala.getBtnConsultar().setEnabled(true);
+                operacoesSala.getBtnExcluir().setEnabled(true);
+                operacoesSala.getBtnEditar().setEnabled(true);
+                operacoesSala.getLstSalas().setSelectedIndex(0);
+            }
         }
 
     }//GEN-LAST:event_btnCadastrarSalaActionPerformed

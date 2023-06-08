@@ -2,6 +2,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
@@ -51,6 +52,8 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         initComponents();
         this.jsInteira.setModel(spinnerModelInteira);
         this.jsMeia.setModel(spinnerModelMeia);
+        this.qtdInteira = (int) jsInteira.getValue();
+        this.qtdMeia = (int) jsMeia.getValue();
 
     }
 
@@ -191,7 +194,6 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
         }
         Integer total = qtdMeia + qtdInteira;
         if (total.equals(qtdMaxItensIngresso)) {
-            JOptionPane.showMessageDialog(this, "Cadastrado com sucesso", "venda", JOptionPane.PLAIN_MESSAGE);
             Venda venda;
             List<ItemVenda> itensVenda = preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao);
             DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroVenda.getListItensIngresso().getModel();
@@ -202,15 +204,20 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
             } else {
                 venda = new Venda(funcionarioSelecionado, sessaoSelecionada, valorTotal, itensVenda);
             }
-            Venda vendaRealizada = gerenciaVenda.cadastrar(venda);
-            if (vendaRealizada != null) {
-                cadastroVenda.getContentPane().remove(consultaPoltronas);
-                cadastroVenda.setConsultaPoltronas(null);
-                if (vendaRealizada.hasDesconto()) {
+
+            EnumValidacoes retorno = gerenciaVenda.cadastrar(venda);
+            switch (retorno) {
+                case VENDA_SUCESSO:
+                    JOptionPane.showMessageDialog(this, "Venda realizada com sucesso ", "Cadastro Venda",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                case VENDA_PROMOCAO:
                     JOptionPane.showMessageDialog(this, "Cliente com promoção", "promoção", JOptionPane.INFORMATION_MESSAGE);
-                }
-                 this.setVisible(false);
+                    break;
+                default:
+                    throw new AssertionError();
             }
+            this.setVisible(false);
             model.removeAllElements();
             vincularCliente.setClienteSelecionado(null);
             cadastroVenda.getTfClienteSelecionado().setText("");

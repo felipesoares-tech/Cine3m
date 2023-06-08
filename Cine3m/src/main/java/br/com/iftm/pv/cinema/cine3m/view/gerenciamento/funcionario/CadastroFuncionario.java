@@ -1,8 +1,15 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_CPF_INVALIDO;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_CPF_JA_CADASTRADO;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_LOGIN_JA_CADASTRADO;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FUNCIONARIO_SUCESSO;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
-import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
+import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -12,13 +19,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class CadastroFuncionario extends javax.swing.JInternalFrame {
+public class CadastroFuncionario extends ModalInternalFrame {
 
     private GerenciaFuncionario gerenciaFuncionario;
     private Funcionario funcionarioSelecionado;
+    private OperacoesFuncionario operacoesFuncionario;
+    private EstadoAtual estadoAtual;
 
-    public CadastroFuncionario(GerenciaFuncionario gerenciaFuncionario) {
+    public CadastroFuncionario(GerenciaFuncionario gerenciaFuncionario, OperacoesFuncionario operacoesFuncionario) {
         initComponents();
+        this.operacoesFuncionario = operacoesFuncionario;
         this.gerenciaFuncionario = gerenciaFuncionario;
     }
 
@@ -28,6 +38,14 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
 
     public JButton getBtnCadastrarFuncionario() {
         return btnCadastrarFuncionario;
+    }
+
+    public EstadoAtual getEstadoAtual() {
+        return estadoAtual;
+    }
+
+    public void setEstadoAtual(EstadoAtual estadoAtual) {
+        this.estadoAtual = estadoAtual;
     }
 
     public void setBtnCadastrarFuncionario(JButton btnCadastrarFuncionario) {
@@ -109,6 +127,8 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
     public JPanel getjPanel1() {
         return jPanel1;
     }
+    
+    
 
     private void limpaCampos() {
         tfNomeFuncionario.setText("");
@@ -116,6 +136,34 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
         tfLoginFuncionario.setText("");
         tfSenhaFuncionario.setText("");
     }
+
+    private void exibeMensagemValidacao(EnumValidacoes tipoRetorno) {
+        String titulo = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Cadastro Funcionario" : "Atualização Funcionario";
+        String mensagemSucesso = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Funcionario cadastrado com sucesso" : "Funcionario atualizado com sucesso";
+        switch (tipoRetorno) {
+            case FUNCIONARIO_SUCESSO:
+                JOptionPane.showMessageDialog(this, mensagemSucesso, titulo,
+                        JOptionPane.INFORMATION_MESSAGE);
+                limpaCampos();
+                break;
+            case FUNCIONARIO_CPF_INVALIDO:
+                JOptionPane.showMessageDialog(this, "CPF Inválido ", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+                break;
+            case FUNCIONARIO_CPF_JA_CADASTRADO:
+                JOptionPane.showMessageDialog(this, "CPF já cadastrado ", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+
+                break;
+            case FUNCIONARIO_LOGIN_JA_CADASTRADO:
+                JOptionPane.showMessageDialog(this, "Login já cadastrado", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -245,26 +293,31 @@ public class CadastroFuncionario extends javax.swing.JInternalFrame {
                 && ValidaCampo.validar(senha, lbSenhaFuncionario, this)) {
             Funcionario funcionario = new Funcionario(nome, cpf, login, senha);
 
-            if (btnCadastrarFuncionario.getText().equals("CADASTRAR")) {
-                if (ValidadorCPF.isCPF(cpf)) {
-                    Boolean sucesso = gerenciaFuncionario.cadastrar(funcionario);
-                    JOptionPane.showMessageDialog(this, sucesso
-                            ? "Funcionario cadastro com sucesso " : "Funcionario já Cadastrado!", "Cadastro Funcionario",
-                            sucesso ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
-                     limpaCampos();
-                } else {
-                    JOptionPane.showMessageDialog(this, "CPF inválido!",
-                            "Validação de CPF", JOptionPane.ERROR_MESSAGE);
-                }
+            if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
+                exibeMensagemValidacao(gerenciaFuncionario.cadastrar(funcionario));
             } else {
-                gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
-                JOptionPane.showMessageDialog(this, "Funcionario atualizado com sucesso!",
-                        "Atualizar", JOptionPane.INFORMATION_MESSAGE);
-                this.setVisible(false);
-                getDesktopPane().remove(this);
-                 limpaCampos();
+                EnumValidacoes retornoValidacao = gerenciaFuncionario.atualizar(funcionarioSelecionado, funcionario);
+                exibeMensagemValidacao(retornoValidacao);
+                if (retornoValidacao.equals(EnumValidacoes.FUNCIONARIO_SUCESSO)) {
+                    limpaCampos();
+                    setVisible(false);
+                    getDesktopPane().remove(this);
+                    
+                }
             }
-           
+            
+            ListUtils.carregarList(operacoesFuncionario.getLstFuncionarios(), gerenciaFuncionario.relatorio());
+            if (gerenciaFuncionario.relatorio().isEmpty()) {
+                operacoesFuncionario.getBtnConsultar().setEnabled(false);
+                operacoesFuncionario.getBtnExcluir().setEnabled(false);
+                operacoesFuncionario.getBtnEditar().setEnabled(false);
+            } else {
+                operacoesFuncionario.getBtnConsultar().setEnabled(true);
+                operacoesFuncionario.getBtnExcluir().setEnabled(true);
+                operacoesFuncionario.getBtnEditar().setEnabled(true);
+                operacoesFuncionario.getLstFuncionarios().setSelectedIndex(0);
+            }
+
         }
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 

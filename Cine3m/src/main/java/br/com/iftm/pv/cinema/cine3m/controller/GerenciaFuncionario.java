@@ -1,12 +1,15 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
+import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
+import java.util.Iterator;
 import java.util.List;
 
 public class GerenciaFuncionario implements IGerencia<Funcionario> {
 
-    private List<Funcionario> funcionarios;
+    private final List<Funcionario> funcionarios;
 
     public GerenciaFuncionario(List<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
@@ -16,20 +19,87 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
         return funcionarios;
     }
 
-    public Boolean cadastrar(Funcionario funcionario) {
-        if (verificarCpf(funcionario.getCpf()) || verificarNome(funcionario.getNome())
-                || verificarLogin(funcionario.getLogin())) {
-            return false;
+    private EnumValidacoes validarFuncionario(Funcionario funcionario) {
+        EnumValidacoes retornoValidacao;
+        if (funcionarios.contains(funcionario)) {
+            retornoValidacao = EnumValidacoes.FUNCIONARIO_CPF_JA_CADASTRADO;
+        } else if (!ValidadorCPF.isCPF(funcionario.getCpf())) {
+            retornoValidacao = EnumValidacoes.FUNCIONARIO_CPF_INVALIDO;
+        } else if (existeFuncionarioComLOGIN(funcionario)) {
+            retornoValidacao = EnumValidacoes.FUNCIONARIO_LOGIN_JA_CADASTRADO;
+        } else {
+            retornoValidacao = EnumValidacoes.FUNCIONARIO_SUCESSO;
         }
-        return funcionarios.add(funcionario);
+        return retornoValidacao;
+    }
+    
+    private EnumValidacoes validarFuncionario(Funcionario funcionario, Funcionario funcionarioAtualizado) {
+        EnumValidacoes retornoValidacao;
+
+        if (existeFuncionarioComCPF(funcionario, funcionarioAtualizado)) {
+            retornoValidacao = EnumValidacoes.FUNCIONARIO_CPF_JA_CADASTRADO;
+        } else if (!ValidadorCPF.isCPF(funcionarioAtualizado.getCpf())) {
+            retornoValidacao = EnumValidacoes.FUNCIONARIO_CPF_INVALIDO;
+        } else if (existeFuncionarioComLOGIN(funcionario,funcionarioAtualizado)) {
+            retornoValidacao = EnumValidacoes.FUNCIONARIO_LOGIN_JA_CADASTRADO;
+        } else {
+            retornoValidacao = EnumValidacoes.FUNCIONARIO_SUCESSO;
+        }
+        return retornoValidacao;
+    }
+
+    private boolean existeFuncionarioComCPF(Funcionario funcionarioAtual, Funcionario funcionarioAtualizado) {
+        Iterator<Funcionario> it = funcionarios.iterator();
+        while (it.hasNext()) {
+            Funcionario f = (Funcionario) it.next();
+            if (!f.equals(funcionarioAtual) && f.getCpf().equals(funcionarioAtualizado.getCpf())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean existeFuncionarioComLOGIN(Funcionario funcionarioAtual, Funcionario funcionarioAtualizado) {
+        Iterator<Funcionario> it = funcionarios.iterator();
+        while (it.hasNext()) {
+            Funcionario f = (Funcionario) it.next();
+            if (!f.getLogin().equals(funcionarioAtual.getLogin()) && f.getLogin().equals(funcionarioAtualizado.getLogin())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean existeFuncionarioComLOGIN(Funcionario funcionarioAtual) {
+        Iterator<Funcionario> it = funcionarios.iterator();
+        while (it.hasNext()) {
+            Funcionario f = (Funcionario) it.next();
+            if (f.getLogin().equals(funcionarioAtual.getLogin())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public EnumValidacoes cadastrar(Funcionario funcionario) {
+        EnumValidacoes retornoValidacao = validarFuncionario(funcionario);
+        if (retornoValidacao.equals(EnumValidacoes.FUNCIONARIO_SUCESSO)) {
+            funcionarios.add(funcionario);
+        }
+        return retornoValidacao;
+
     }
 
     public Funcionario remover(Funcionario funcionario) {
         return funcionarios.remove(funcionarios.indexOf(funcionario));
     }
 
-    public void atualizar(Funcionario funcionario, Funcionario funcionarioAtualizado) {
-        funcionarios.set(funcionarios.indexOf(funcionario), funcionarioAtualizado);
+    public EnumValidacoes atualizar(Funcionario funcionario, Funcionario funcionarioAtualizado) {
+        EnumValidacoes retornoValidacao = validarFuncionario(funcionario, funcionarioAtualizado);
+        if (retornoValidacao.equals(EnumValidacoes.FUNCIONARIO_SUCESSO)) {
+            funcionarios.set(funcionarios.indexOf(funcionario), funcionarioAtualizado);
+        }
+        return retornoValidacao;
     }
 
     public Funcionario consultar(Funcionario funcionario) {
@@ -40,30 +110,4 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
         return this.funcionarios;
     }
 
-    public Boolean verificarCpf(String cpf) {
-        for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getCpf().equals(cpf)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public Boolean verificarNome(String nome) {
-        for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getNome().equals(nome)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public Boolean verificarLogin(String login) {
-        for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getLogin().equals(login)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

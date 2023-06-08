@@ -16,7 +16,12 @@ public class TableModelGenerico<T> extends AbstractTableModel {
         this.classe = classe;
         buscaCampos();
         buscaNomeColunas();
+    }
 
+    public TableModelGenerico(Class<?> classe, List<String> colunas) {
+        this.classe = classe;
+        buscaCampos();
+        buscaNomeColunas(colunas);
     }
 
     private void buscaCampos() {
@@ -38,6 +43,14 @@ public class TableModelGenerico<T> extends AbstractTableModel {
     private void buscaNomeColunas() {
         for (Field field : fields) {
             columnNames.add(field.getName());
+        }
+    }
+
+    private void buscaNomeColunas(List<String> colunas) {
+        for (Field field : fields) {
+            if (colunas.contains(field.getName())) {
+                columnNames.add(field.getName());
+            }
         }
     }
 

@@ -3,6 +3,7 @@ package br.com.iftm.pv.cinema.cine3m.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Sessao {
 
@@ -76,4 +77,33 @@ public class Sessao {
         this.sala = sala;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.data);
+        hash = 23 * hash + Objects.hashCode(this.hora);
+        hash = 23 * hash + Objects.hashCode(this.sala);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Sessao other = (Sessao) obj;
+        if (!Objects.equals(this.data, other.data)) {
+            return false;
+        }
+        if (!Objects.equals(this.hora, other.hora)) {
+            return false;
+        }
+        return Objects.equals(this.sala, other.sala);
+    }
 }

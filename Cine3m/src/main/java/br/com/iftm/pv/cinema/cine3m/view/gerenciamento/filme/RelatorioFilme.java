@@ -2,9 +2,10 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.TableModelGenerico;
 
-public class RelatorioFilme extends javax.swing.JInternalFrame {
+public class RelatorioFilme extends ModalInternalFrame {
     
     private GerenciaFilme gerenciaFilme;
     private TableModelGenerico modelo;

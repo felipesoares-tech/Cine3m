@@ -2,6 +2,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.enums.Genero;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
@@ -24,6 +25,7 @@ public class CadastroFilme extends ModalInternalFrame {
     private final GerenciaFilme gerenciaFilme;
     private Filme filmeSelecionado;
     private final OperacoesFilme operacoesFilme;
+    private EstadoAtual estadoAtual;
 
     public CadastroFilme(GerenciaFilme gerenciaFilme, OperacoesFilme operacoesFilme) {
         initComponents();
@@ -34,6 +36,14 @@ public class CadastroFilme extends ModalInternalFrame {
 
     public Filme getFilmeSelecionado() {
         return filmeSelecionado;
+    }
+
+    public EstadoAtual getEstadoAtual() {
+        return estadoAtual;
+    }
+
+    public void setEstadoAtual(EstadoAtual estadoAtual) {
+        this.estadoAtual = estadoAtual;
     }
 
     public void setFilmeSelecionado(Filme filmeSelecionado) {
@@ -278,7 +288,7 @@ public class CadastroFilme extends ModalInternalFrame {
                 && ValidaCampo.validar(diretor, lbDiretor, this)
                 && ValidaCampo.validar(descricao, lbDescricao, this)) {
             Filme filme = new Filme(genero, nome, descricao, diretor);
-            if (btnConfirmar.getText().equals("CADASTRAR")) {
+            if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
                 EnumValidacoes retorno = gerenciaFilme.cadastrar(filme);
                 switch (retorno) {
                     case FILME_SUCESSO:

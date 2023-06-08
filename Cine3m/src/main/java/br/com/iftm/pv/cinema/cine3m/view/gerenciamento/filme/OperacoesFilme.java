@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
@@ -237,6 +238,7 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         cadastroFilme.getBtnConfirmar().setText("CADASTRAR");
+        cadastroFilme.setEstadoAtual(EstadoAtual.CADASTRANDO);
         cadastroFilme.getLbTituloTelaFilme().setText("Cadastro de Filmes");
         cadastroFilme.getBtnConfirmar().setVisible(true);
         cadastroFilme.getTfNomeFilme().setEditable(true);
@@ -254,17 +256,17 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         Filme filmeSelecionado = (Filme) lstFilmes.getSelectedValue();
-        this.cadastroFilme.setFilmeSelecionado(filmeSelecionado);
-        this.cadastroFilme.getTfNomeFilme().setText(filmeSelecionado.getNome());
-        this.cadastroFilme.getTfDiretor().setText(filmeSelecionado.getDiretor());
-        this.cadastroFilme.getTfaDescricao().setText(filmeSelecionado.getDescricao());
-        this.cadastroFilme.getLbTituloTelaFilme().setText("Consulta de Filme");
-        this.cadastroFilme.getBtnConfirmar().setVisible(false);
-        this.cadastroFilme.getTfNomeFilme().setEditable(false);
-        this.cadastroFilme.getTfDiretor().setEditable(false);
-        this.cadastroFilme.getTfaDescricao().setEditable(false);
-        this.cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
-        this.cadastroFilme.getCbGenero().setEnabled(false);
+        cadastroFilme.setFilmeSelecionado(filmeSelecionado);
+        cadastroFilme.getTfNomeFilme().setText(filmeSelecionado.getNome());
+        cadastroFilme.getTfDiretor().setText(filmeSelecionado.getDiretor());
+        cadastroFilme.getTfaDescricao().setText(filmeSelecionado.getDescricao());
+        cadastroFilme.getLbTituloTelaFilme().setText("Consulta de Filme");
+        cadastroFilme.getBtnConfirmar().setVisible(false);
+        cadastroFilme.getTfNomeFilme().setEditable(false);
+        cadastroFilme.getTfDiretor().setEditable(false);
+        cadastroFilme.getTfaDescricao().setEditable(false);
+        cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
+        cadastroFilme.getCbGenero().setEnabled(false);
         
         getDesktopPane().add(cadastroFilme);
         cadastroFilme.setModal(true);
@@ -303,18 +305,19 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Filme filmeSelecionado = (Filme) this.lstFilmes.getSelectedValue();
-        this.cadastroFilme.getTfNomeFilme().setText(filmeSelecionado.getNome());
-        this.cadastroFilme.getTfDiretor().setText(filmeSelecionado.getDiretor());
-        this.cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
-        this.cadastroFilme.getTfaDescricao().setText(filmeSelecionado.getDescricao());
-        this.cadastroFilme.getLbTituloTelaFilme().setText("Atualização de Filme");
-        this.cadastroFilme.getBtnConfirmar().setText("ATUALIZAR");
-        this.cadastroFilme.getBtnConfirmar().setVisible(true);
-        this.cadastroFilme.getTfNomeFilme().setEditable(true);
-        this.cadastroFilme.getTfDiretor().setEditable(true);
-        this.cadastroFilme.getCbGenero().setEnabled(true);
-        this.cadastroFilme.getTfaDescricao().setEditable(true);
-        this.cadastroFilme.setFilmeSelecionado(filmeSelecionado);
+        cadastroFilme.getTfNomeFilme().setText(filmeSelecionado.getNome());
+        cadastroFilme.setEstadoAtual(EstadoAtual.ATUALIZANDO);
+        cadastroFilme.getTfDiretor().setText(filmeSelecionado.getDiretor());
+        cadastroFilme.getCbGenero().setSelectedItem(filmeSelecionado.getGenero());
+        cadastroFilme.getTfaDescricao().setText(filmeSelecionado.getDescricao());
+        cadastroFilme.getLbTituloTelaFilme().setText("Atualização de Filme");
+        cadastroFilme.getBtnConfirmar().setText("ATUALIZAR");
+        cadastroFilme.getBtnConfirmar().setVisible(true);
+        cadastroFilme.getTfNomeFilme().setEditable(true);
+        cadastroFilme.getTfDiretor().setEditable(true);
+        cadastroFilme.getCbGenero().setEnabled(true);
+        cadastroFilme.getTfaDescricao().setEditable(true);
+        cadastroFilme.setFilmeSelecionado(filmeSelecionado);
         getDesktopPane().add(cadastroFilme);
         cadastroFilme.setModal(true);
         cadastroFilme.setVisible(true);

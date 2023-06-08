@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
@@ -235,13 +236,14 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        this.cadastroCliente.getBtnCadastrarCliente().setVisible(true);
-        this.cadastroCliente.getLbTituloTelaCliente().setText("Cadastro de Clientes");
-        this.cadastroCliente.getBtnCadastrarCliente().setText("CADASTRAR");
-        this.cadastroCliente.getTfNomeCliente().setEditable(true);
-        this.cadastroCliente.getTfCpfCliente().setEditable(true);
-        this.cadastroCliente.getTfNomeCliente().setText("");
-        this.cadastroCliente.getTfCpfCliente().setValue(null);
+        cadastroCliente.getBtnCadastrarCliente().setVisible(true);
+        cadastroCliente.setEstadoAtual(EstadoAtual.CADASTRANDO);
+        cadastroCliente.getLbTituloTelaCliente().setText("Cadastro de Clientes");
+        cadastroCliente.getBtnCadastrarCliente().setText("CADASTRAR");
+        cadastroCliente.getTfNomeCliente().setEditable(true);
+        cadastroCliente.getTfCpfCliente().setEditable(true);
+        cadastroCliente.getTfNomeCliente().setText("");
+        cadastroCliente.getTfCpfCliente().setValue(null);
         getDesktopPane().add(cadastroCliente);
         cadastroCliente.setModal(true);
         cadastroCliente.setVisible(true);
@@ -294,14 +296,15 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Cliente clienteSelecionado = (Cliente) this.lstClientes.getSelectedValue();
-        this.cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
-        this.cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
-        this.cadastroCliente.getLbTituloTelaCliente().setText("Atualização de Cliente");
-        this.cadastroCliente.getBtnCadastrarCliente().setText("Atualizar");
-        this.cadastroCliente.getBtnCadastrarCliente().setVisible(true);
-        this.cadastroCliente.getTfNomeCliente().setEditable(true);
-        this.cadastroCliente.getTfCpfCliente().setEditable(true);
-        this.cadastroCliente.setClienteSelecionado(clienteSelecionado);
+        cadastroCliente.getTfNomeCliente().setText(clienteSelecionado.getNome());
+        cadastroCliente.getTfCpfCliente().setText(clienteSelecionado.getCpf());
+        cadastroCliente.setEstadoAtual(EstadoAtual.ATUALIZANDO);
+        cadastroCliente.getLbTituloTelaCliente().setText("Atualização de Cliente");
+        cadastroCliente.getBtnCadastrarCliente().setText("Atualizar");
+        cadastroCliente.getBtnCadastrarCliente().setVisible(true);
+        cadastroCliente.getTfNomeCliente().setEditable(true);
+        cadastroCliente.getTfCpfCliente().setEditable(true);
+        cadastroCliente.setClienteSelecionado(clienteSelecionado);
         getDesktopPane().add(cadastroCliente);
         cadastroCliente.setModal(true);
         cadastroCliente.setVisible(true);

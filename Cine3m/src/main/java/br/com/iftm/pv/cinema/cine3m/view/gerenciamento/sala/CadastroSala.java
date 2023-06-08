@@ -2,6 +2,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
@@ -18,10 +19,11 @@ import javax.swing.event.ChangeListener;
 
 public class CadastroSala extends ModalInternalFrame {
 
-    private GerenciaSala gerenciaSala;
+    private final GerenciaSala gerenciaSala;
     private Sala salaSelecionada;
     private int maxValor;
-    private OperacoesSala operacoesSala;
+    private final OperacoesSala operacoesSala;
+    private EstadoAtual estadoAtual;
 
     public CadastroSala(GerenciaSala gerenciaSala, OperacoesSala operacoesSala) {
         initComponents();
@@ -43,6 +45,14 @@ public class CadastroSala extends ModalInternalFrame {
 
     public JSpinner getJsCapacidade() {
         return jsCapacidade;
+    }
+
+    public EstadoAtual getEstadoAtual() {
+        return estadoAtual;
+    }
+
+    public void setEstadoAtual(EstadoAtual estadoAtual) {
+        this.estadoAtual = estadoAtual;
     }
 
     public void setJsCapacidade(JSpinner jsCapacidade) {
@@ -200,7 +210,7 @@ public class CadastroSala extends ModalInternalFrame {
         String nome = tfNomeSala.getText();
         Sala sala = new Sala(nome, capacidade);
         if (ValidaCampo.validar(nome, lbSalaNome, this) && ValidaCampo.validar(capacidade, lbSalaCapacidade, this)) {
-            if (btnCadastrarSala.getText().equals("CADASTRAR")) {
+            if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
                 EnumValidacoes retorno = gerenciaSala.cadastrar(sala);
                 switch (retorno) {
                     case SALA_SUCESSO:

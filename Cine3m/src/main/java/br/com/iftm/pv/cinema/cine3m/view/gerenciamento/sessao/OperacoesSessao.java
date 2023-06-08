@@ -3,6 +3,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
@@ -238,19 +239,19 @@ public class OperacoesSessao extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        this.cadastroSessao.getBtnCadastrarSessao().setVisible(true);
-        this.cadastroSessao.getLbTituloTelaSessao().setText("Cadastro de Sessão");
-        this.cadastroSessao.getBtnCadastrarSessao().setText("CADASTRAR");
+        cadastroSessao.getBtnCadastrarSessao().setVisible(true);
+        cadastroSessao.getLbTituloTelaSessao().setText("Cadastro de Sessão");
+        cadastroSessao.getBtnCadastrarSessao().setText("CADASTRAR");
+        cadastroSessao.setEstadoAtual(EstadoAtual.CADASTRANDO);
+        cadastroSessao.getTfDataSessao().setEditable(true);
+        cadastroSessao.getTfHorarioSessao().setEditable(true);
+        cadastroSessao.getTfValorSessao().setEditable(true);
+        cadastroSessao.getCbFilmesSessao().setEnabled(true);
+        cadastroSessao.getCbSalasSessao().setEnabled(true);
 
-        this.cadastroSessao.getTfDataSessao().setEditable(true);
-        this.cadastroSessao.getTfHorarioSessao().setEditable(true);
-        this.cadastroSessao.getTfValorSessao().setEditable(true);
-        this.cadastroSessao.getCbFilmesSessao().setEnabled(true);
-        this.cadastroSessao.getCbSalasSessao().setEnabled(true);
-
-        this.cadastroSessao.getTfDataSessao().setValue(null);
-        this.cadastroSessao.getTfHorarioSessao().setValue(null);
-        this.cadastroSessao.getTfValorSessao().setValue(null);
+        cadastroSessao.getTfDataSessao().setValue(null);
+        cadastroSessao.getTfHorarioSessao().setValue(null);
+        cadastroSessao.getTfValorSessao().setValue(null);
         getDesktopPane().add(cadastroSessao);
         cadastroSessao.setModal(true);
         cadastroSessao.setVisible(true);
@@ -259,19 +260,19 @@ public class OperacoesSessao extends javax.swing.JInternalFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         Sessao sessaoSelecionada = lstSessoes.getSelectedValue();
-        this.cadastroSessao.setSessaoSelecionada(sessaoSelecionada);
-        this.cadastroSessao.getBtnCadastrarSessao().setVisible(false);
-        this.cadastroSessao.getCbFilmesSessao().setSelectedItem(sessaoSelecionada.getFilme());
-        this.cadastroSessao.getCbSalasSessao().setSelectedItem(sessaoSelecionada.getSala());
-        this.cadastroSessao.getTfDataSessao().setText(sessaoSelecionada.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        this.cadastroSessao.getTfHorarioSessao().setText(sessaoSelecionada.getHora().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-        this.cadastroSessao.getTfValorSessao().setText(String.valueOf(sessaoSelecionada.getValor()));
-        this.cadastroSessao.getCbFilmesSessao().setEnabled(false);
-        this.cadastroSessao.getCbSalasSessao().setEnabled(false);
-        this.cadastroSessao.getTfValorSessao().setEditable(false);
-        this.cadastroSessao.getTfDataSessao().setEditable(false);
-        this.cadastroSessao.getTfHorarioSessao().setEditable(false);
-        this.cadastroSessao.getLbTituloTelaSessao().setText("Consulta de Sessão");
+        cadastroSessao.setSessaoSelecionada(sessaoSelecionada);
+        cadastroSessao.getBtnCadastrarSessao().setVisible(false);
+        cadastroSessao.getCbFilmesSessao().setSelectedItem(sessaoSelecionada.getFilme());
+        cadastroSessao.getCbSalasSessao().setSelectedItem(sessaoSelecionada.getSala());
+        cadastroSessao.getTfDataSessao().setText(sessaoSelecionada.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        cadastroSessao.getTfHorarioSessao().setText(sessaoSelecionada.getHora().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        cadastroSessao.getTfValorSessao().setText(String.valueOf(sessaoSelecionada.getValor()));
+        cadastroSessao.getCbFilmesSessao().setEnabled(false);
+        cadastroSessao.getCbSalasSessao().setEnabled(false);
+        cadastroSessao.getTfValorSessao().setEditable(false);
+        cadastroSessao.getTfDataSessao().setEditable(false);
+        cadastroSessao.getTfHorarioSessao().setEditable(false);
+        cadastroSessao.getLbTituloTelaSessao().setText("Consulta de Sessão");
         getDesktopPane().add(cadastroSessao);
         cadastroSessao.setModal(true);
         cadastroSessao.setVisible(true);
@@ -307,20 +308,21 @@ public class OperacoesSessao extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Sessao sessaoSelecionada = lstSessoes.getSelectedValue();
-        this.cadastroSessao.setSessaoSelecionada(sessaoSelecionada);
-        this.cadastroSessao.getCbFilmesSessao().setSelectedItem(sessaoSelecionada.getFilme());
-        this.cadastroSessao.getCbSalasSessao().setSelectedItem(sessaoSelecionada.getSala());
-        this.cadastroSessao.getTfDataSessao().setText(sessaoSelecionada.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        this.cadastroSessao.getTfHorarioSessao().setText(sessaoSelecionada.getHora().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-        this.cadastroSessao.getTfValorSessao().setText(String.valueOf(sessaoSelecionada.getValor()));
-        this.cadastroSessao.getLbTituloTelaSessao().setText("Atualização de Sessão");
-        this.cadastroSessao.getBtnCadastrarSessao().setText("ATUALIZAR");
-        this.cadastroSessao.getBtnCadastrarSessao().setVisible(true);
-        this.cadastroSessao.getCbFilmesSessao().setEnabled(true);
-        this.cadastroSessao.getCbSalasSessao().setEnabled(true);
-        this.cadastroSessao.getTfValorSessao().setEditable(true);
-        this.cadastroSessao.getTfDataSessao().setEditable(true);
-        this.cadastroSessao.getTfHorarioSessao().setEditable(true);
+        cadastroSessao.setSessaoSelecionada(sessaoSelecionada);
+        cadastroSessao.getCbFilmesSessao().setSelectedItem(sessaoSelecionada.getFilme());
+        cadastroSessao.getCbSalasSessao().setSelectedItem(sessaoSelecionada.getSala());
+        cadastroSessao.getTfDataSessao().setText(sessaoSelecionada.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        cadastroSessao.getTfHorarioSessao().setText(sessaoSelecionada.getHora().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        cadastroSessao.getTfValorSessao().setText(String.valueOf(sessaoSelecionada.getValor()));
+        cadastroSessao.getLbTituloTelaSessao().setText("Atualização de Sessão");
+        cadastroSessao.getBtnCadastrarSessao().setText("ATUALIZAR");
+        cadastroSessao.setEstadoAtual(EstadoAtual.ATUALIZANDO);
+        cadastroSessao.getBtnCadastrarSessao().setVisible(true);
+        cadastroSessao.getCbFilmesSessao().setEnabled(true);
+        cadastroSessao.getCbSalasSessao().setEnabled(true);
+        cadastroSessao.getTfValorSessao().setEditable(true);
+        cadastroSessao.getTfDataSessao().setEditable(true);
+        cadastroSessao.getTfHorarioSessao().setEditable(true);
         getDesktopPane().add(cadastroSessao);
         cadastroSessao.setModal(true);
         cadastroSessao.setVisible(true);

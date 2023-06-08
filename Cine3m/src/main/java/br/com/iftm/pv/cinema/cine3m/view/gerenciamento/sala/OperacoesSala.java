@@ -1,8 +1,8 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
-import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
 import java.util.List;
@@ -235,12 +235,13 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        this.cadastroSala.getJsCapacidade().setEnabled(true);
-        this.cadastroSala.getBtnCadastrarSala().setVisible(true);
-        this.cadastroSala.getLbTituloTelaSala().setText("Cadastro de Salas");        
-        this.cadastroSala.getBtnCadastrarSala().setText("CADASTRAR");
-        this.cadastroSala.getTfNomeSala().setText("");
-        this.cadastroSala.getTfNomeSala().setEditable(true);
+        cadastroSala.getJsCapacidade().setEnabled(true);
+        cadastroSala.getBtnCadastrarSala().setVisible(true);
+        cadastroSala.getLbTituloTelaSala().setText("Cadastro de Salas");        
+        cadastroSala.getBtnCadastrarSala().setText("CADASTRAR");
+        cadastroSala.setEstadoAtual(EstadoAtual.CADASTRANDO);
+        cadastroSala.getTfNomeSala().setText("");
+        cadastroSala.getTfNomeSala().setEditable(true);
         getDesktopPane().add(cadastroSala);
         cadastroSala.setModal(true);
         cadastroSala.setVisible(true);
@@ -249,13 +250,13 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         Sala salaSelecionada = (Sala) this.lstSalas.getSelectedValue();
-        this.cadastroSala.getBtnCadastrarSala().setVisible(false);
-        this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
-        this.cadastroSala.getJsCapacidade().setValue(salaSelecionada.getCapacidade());
-        this.cadastroSala.getJsCapacidade().setEnabled(false);
-        this.cadastroSala.getTfNomeSala().setEditable(false);
-        this.cadastroSala.getJsCapacidade().setEnabled(false);
-        this.cadastroSala.getLbTituloTelaSala().setText("Consulta de Sala");
+        cadastroSala.getBtnCadastrarSala().setVisible(false);
+        cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
+        cadastroSala.getJsCapacidade().setValue(salaSelecionada.getCapacidade());
+        cadastroSala.getJsCapacidade().setEnabled(false);
+        cadastroSala.getTfNomeSala().setEditable(false);
+        cadastroSala.getJsCapacidade().setEnabled(false);
+        cadastroSala.getLbTituloTelaSala().setText("Consulta de Sala");
         
         getDesktopPane().add(cadastroSala);
         cadastroSala.setModal(true);
@@ -294,14 +295,15 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Sala salaSelecionada = (Sala) this.lstSalas.getSelectedValue();
-        this.cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
-        this.cadastroSala.getJsCapacidade().setValue(salaSelecionada.getCapacidade());
-        this.cadastroSala.getBtnCadastrarSala().setText("ATUALIZAR");
-        this.cadastroSala.getLbTituloTelaSala().setText("Atualização de Sala");
-        this.cadastroSala.getJsCapacidade().setEnabled(true);
-        this.cadastroSala.getBtnCadastrarSala().setVisible(true);
-        this.cadastroSala.getTfNomeSala().setEditable(true);
-        this.cadastroSala.setSalaSelecionada(salaSelecionada);
+        cadastroSala.getTfNomeSala().setText(salaSelecionada.getNome());
+        cadastroSala.getJsCapacidade().setValue(salaSelecionada.getCapacidade());
+        cadastroSala.getBtnCadastrarSala().setText("ATUALIZAR");
+        cadastroSala.setEstadoAtual(EstadoAtual.ATUALIZANDO);
+        cadastroSala.getLbTituloTelaSala().setText("Atualização de Sala");
+        cadastroSala.getJsCapacidade().setEnabled(true);
+        cadastroSala.getBtnCadastrarSala().setVisible(true);
+        cadastroSala.getTfNomeSala().setEditable(true);
+        cadastroSala.setSalaSelecionada(salaSelecionada);
         
         getDesktopPane().add(cadastroSala);
         cadastroSala.setModal(true);

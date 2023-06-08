@@ -31,6 +31,7 @@ public class GerenciaVenda {
             }
             gerenciaCliente.atualizar(clienteAntigo, clienteVenda);
         }
+        vendas.add(venda);
         return venda.hasDesconto() ? EnumValidacoes.VENDA_PROMOCAO : EnumValidacoes.VENDA_SUCESSO;
 
     }

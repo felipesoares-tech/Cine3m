@@ -16,32 +16,46 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         this.gerenciaSala = gerenciaSala;
     }
 
-    public EnumValidacoes cadastrar(Sessao sessao) {
-        if (sessoes.contains(sessao)) {
-            return EnumValidacoes.SESSAO_JA_CADASTRADA;
+    private EnumValidacoes validarSessao(Sessao sessao, boolean validarEquals) {
+        EnumValidacoes retornoValidacao;
+        if (validarEquals && sessoes.contains(sessao)) {
+            retornoValidacao = EnumValidacoes.SESSAO_JA_CADASTRADA;
+        } else {
+            retornoValidacao = EnumValidacoes.SESSAO_SUCESSO;
         }
-        sessoes.add(sessao);
-        return EnumValidacoes.SESSAO_SUCESSO;
+        return retornoValidacao;
+    }
+
+    public EnumValidacoes cadastrar(Sessao sessao) {
+        EnumValidacoes retornoValidacao = validarSessao(sessao, true);
+        if (retornoValidacao.equals(EnumValidacoes.SESSAO_SUCESSO)) {
+            sessoes.add(sessao);
+        }
+        return retornoValidacao;
     }
 
     public Sessao remover(Sessao sessao) {
         return sessoes.remove(sessoes.indexOf(sessao));
     }
 
-    public void atualizar(Sessao sessao, Sessao sessaoAtualizado) {
-        sessoes.set(sessoes.indexOf(sessao), sessaoAtualizado);
+    public EnumValidacoes atualizar(Sessao sessao, Sessao sessaoAtualizada) {
+        EnumValidacoes retornoValidacao = validarSessao(sessaoAtualizada, false);
+        if (retornoValidacao.equals(EnumValidacoes.SESSAO_SUCESSO)) {
+            sessoes.set(sessoes.indexOf(sessao), sessaoAtualizada);
+        }
+        return retornoValidacao;
     }
 
     public Sessao consultar(Sessao sessao) {
         return sessoes.get(sessoes.indexOf(sessao));
     }
-    
-    public Boolean poltronaDisponivel(Sessao sessao, Poltrona poltrona){
-        return this.gerenciaSala.ConsultaPoltronaDisponivel(sessao.getSala(), poltrona);
+
+    public Boolean poltronaDisponivel(Sessao sessao, Poltrona poltrona) {
+        return gerenciaSala.ConsultaPoltronaDisponivel(sessao.getSala(), poltrona);
     }
-    
-    public void AtualizaPoltronaSessao(Sessao sessao, Poltrona poltrona){
-        gerenciaSala.AtualizaPoltrona(sessao.getSala(), poltrona);
+
+    public void AtualizaPoltronaSessao(Sessao sessao, Poltrona poltrona) {
+         gerenciaSala.AtualizaPoltrona(sessao.getSala(), poltrona);
     }
 
     public List<Sessao> relatorio() {

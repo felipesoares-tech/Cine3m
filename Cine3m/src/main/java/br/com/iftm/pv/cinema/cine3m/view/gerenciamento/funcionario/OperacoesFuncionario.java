@@ -314,14 +314,19 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         Funcionario funcionarioSelecionado = (Funcionario) this.lstFuncionarios.getSelectedValue();
-        this.cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
-        this.cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
-        this.cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualização de Funcionario");
-        this.cadastroFuncionario.getBtnCadastrarFuncionario().setText("Atualizar");
-        this.cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
-        this.cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
-        this.cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
-        this.cadastroFuncionario.setFuncionarioSelecionado(funcionarioSelecionado);
+        cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
+        cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
+        cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
+        cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
+        
+        cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualização de Funcionario");
+        cadastroFuncionario.getBtnCadastrarFuncionario().setText("Atualizar");
+        cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
+        cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
+        cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
+        cadastroFuncionario.getTfLoginFuncionario().setEditable(true);
+        cadastroFuncionario.getTfSenhaFuncionario().setEditable(true);
+        cadastroFuncionario.setFuncionarioSelecionado(funcionarioSelecionado);
         getDesktopPane().add(cadastroFuncionario);
         cadastroFuncionario.setModal(true);
         cadastroFuncionario.setVisible(true);

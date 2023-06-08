@@ -2,8 +2,10 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.CLIENTE_CPF_INVALIDO;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.CLIENTE_CPF_JA_CADASTRADO;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.CLIENTE_SUCESSO;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
-import br.com.iftm.pv.cinema.cine3m.util.ValidadorCPF;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import br.com.iftm.pv.cinema.cine3m.view.util.ValidaCampo;
@@ -38,6 +40,29 @@ public class CadastroCliente extends ModalInternalFrame {
 
         icon.setImage(icon.getImage().getScaledInstance(59, 66, 1));
         lbImg.setIcon(icon);
+    }
+
+    private void exibeMensagemValidacao(EnumValidacoes tipoMensagem, boolean operacaoCadastro) {
+        String titulo = operacaoCadastro ? "Cadastro Cliente" : "Atualização Cliente";
+        String messagemSucesso = operacaoCadastro ? "Cliente cadastrado com sucesso" : "Cliente atualizado com sucesso";
+        switch (tipoMensagem) {
+            case CLIENTE_SUCESSO:
+                JOptionPane.showMessageDialog(this, messagemSucesso, titulo,
+                        JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case CLIENTE_CPF_INVALIDO:
+                JOptionPane.showMessageDialog(this, "CPF Inválido ", titulo,
+                        JOptionPane.ERROR_MESSAGE);
+                break;
+            case CLIENTE_CPF_JA_CADASTRADO:
+                if (operacaoCadastro) {
+                    JOptionPane.showMessageDialog(this, "CPF já cadastrado ", titulo,
+                            JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+            default:
+                throw new AssertionError();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -155,31 +180,16 @@ public class CadastroCliente extends ModalInternalFrame {
             Cliente cliente = new Cliente(nome, cpf);
 
             if (btnCadastrarCliente.getText().equals("CADASTRAR")) {
-                EnumValidacoes retorno = gerenciaCliente.cadastrar(cliente);
-                switch (retorno) {
-                    case CLIENTE_SUCESSO:
-                        JOptionPane.showMessageDialog(this, "Funcionario cadastro com sucesso ", "Cadastro Funcionario",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        limpaCampos();
-                        break;
-                    case CLIENTE_CPF_INVALIDO:
-                        JOptionPane.showMessageDialog(this, "CPF Inválido ", "Cadastro Funcionario",
-                                JOptionPane.ERROR_MESSAGE);
-                        break;
-                    case CLIENTE_CPF_JA_CADASTRADO:
-                        JOptionPane.showMessageDialog(this, "CPF já cadastrado ", "Cadastro Funcionario",
-                                JOptionPane.ERROR_MESSAGE);
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
-                
+                exibeMensagemValidacao(gerenciaCliente.cadastrar(cliente), true);
             } else {
-                gerenciaCliente.atualizar(clienteSelecionado, cliente);
-                JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
-                this.setVisible(false);
-                getDesktopPane().remove(this);
-                limpaCampos();
+                EnumValidacoes retornoValidacao = gerenciaCliente.atualizar(clienteSelecionado, cliente);
+                System.out.println(retornoValidacao);
+                exibeMensagemValidacao(retornoValidacao, false);
+                if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
+                    this.setVisible(false);
+                    getDesktopPane().remove(this);
+                    limpaCampos();
+                }
             }
             ListUtils.carregarList(operacoesCliente.getLstClientes(), gerenciaCliente.relatorio());
             if (gerenciaCliente.relatorio().isEmpty()) {

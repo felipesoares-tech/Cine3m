@@ -30,23 +30,23 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
     }
 
     private void initComponentsPersonalizado() {
-        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaCliente);
-        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstClientes);
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstClientes);
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstClientes);
-            }
-        });
+//        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaCliente);
+//        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
+//            @Override
+//            public void insertUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstClientes);
+//            }
+//
+//            @Override
+//            public void removeUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstClientes);
+//            }
+//
+//            @Override
+//            public void changedUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstClientes);
+//            }
+//        });
     }
 
     public JList<Pessoa> getLstClientes() {

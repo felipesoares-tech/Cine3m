@@ -7,6 +7,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxiliarConsultaVenda;
+import br.com.iftm.pv.cinema.cine3m.view.util.CelulasPersonalizadasList;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
 import java.util.List;
@@ -57,6 +58,8 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
                 pesquisaLike.filterList(tfPesquisar, lstVendas);
             }
         });
+        
+        lstVendas.setCellRenderer(new CelulasPersonalizadasList());
     }
 
     public JList<Venda> getLstVendas() {
@@ -245,6 +248,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
             gerenciaVenda.cancelar(vendaSelecionada);
+            lstVendas.getSelectedValue().getIdentificador();
             lstVendasAncestorAdded(null);
             JOptionPane.showMessageDialog(this, "Venda cancelada",
                     "Cancelar", JOptionPane.INFORMATION_MESSAGE);

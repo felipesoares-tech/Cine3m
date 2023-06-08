@@ -52,12 +52,12 @@ public class CadastroCliente extends ModalInternalFrame {
         lbImg.setIcon(icon);
     }
 
-    private void exibeMensagemValidacao(EnumValidacoes tipoMensagem, boolean operacaoCadastro) {
-        String titulo = operacaoCadastro ? "Cadastro Cliente" : "Atualização Cliente";
-        String messagemSucesso = operacaoCadastro ? "Cliente cadastrado com sucesso" : "Cliente atualizado com sucesso";
-        switch (tipoMensagem) {
+    private void exibeMensagemValidacao(EnumValidacoes tipoRetorno) {
+        String titulo = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Cadastro Cliente" : "Atualização Cliente";
+        String mensagemSucesso = estadoAtual.equals(EstadoAtual.CADASTRANDO) ? "Cliente cadastrado com sucesso" : "Cliente atualizado com sucesso";
+        switch (tipoRetorno) {
             case CLIENTE_SUCESSO:
-                JOptionPane.showMessageDialog(this, messagemSucesso, titulo,
+                JOptionPane.showMessageDialog(this, mensagemSucesso, titulo,
                         JOptionPane.INFORMATION_MESSAGE);
                 limpaCampos();
                 break;
@@ -190,11 +190,10 @@ public class CadastroCliente extends ModalInternalFrame {
             Cliente cliente = new Cliente(nome, cpf);
 
             if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
-                exibeMensagemValidacao(gerenciaCliente.cadastrar(cliente), true);
+                exibeMensagemValidacao(gerenciaCliente.cadastrar(cliente));
             } else {
                 EnumValidacoes retornoValidacao = gerenciaCliente.atualizar(clienteSelecionado, cliente);
-                System.out.println(retornoValidacao);
-                exibeMensagemValidacao(retornoValidacao, false);
+                exibeMensagemValidacao(retornoValidacao);
                 if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
                     limpaCampos();
                     setVisible(false);

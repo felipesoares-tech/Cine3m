@@ -221,9 +221,10 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
                 default:
                     throw new AssertionError();
             }
-            this.setVisible(false);
+            setVisible(false);
             model.removeAllElements();
             vincularCliente.setClienteSelecionado(null);
+            cadastroVenda.recarregaComboSessoes();
             cadastroVenda.getTfClienteSelecionado().setText("");
             ListUtils.carregarList(operacoesVenda.getLstVendas(), gerenciaVenda.relatorio());
             if (gerenciaVenda.relatorio().isEmpty()) {

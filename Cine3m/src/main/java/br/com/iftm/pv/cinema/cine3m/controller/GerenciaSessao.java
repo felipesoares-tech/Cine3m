@@ -42,6 +42,24 @@ public class GerenciaSessao implements IGerencia<Sessao> {
     }
 
     private boolean existeSessaoComHORARIO(Sessao sessao, Sessao sessaoAtualizada) {
+        Iterator<Sessao> it = sessoes.iterator();
+        while (it.hasNext()) {
+            Sessao s = (Sessao) it.next();
+            if (!sessao.equals(s)) {
+                if (sessaoAtualizada.getSala().equals(s.getSala()) && sessaoAtualizada.getData().equals(s.getData())) {
+                    if (sessaoAtualizada.getHora().equals(s.getHora())) {
+                        return true;
+                    } else if (sessaoAtualizada.getHora().isBefore(s.getHora()) && sessaoAtualizada.getHoraFinal().isAfter(s.getHora())) {
+                        return true;
+
+                    } else if (sessaoAtualizada.getHora().isAfter(s.getHora()) && sessaoAtualizada.getHora().isBefore(s.getHoraFinal())) {
+                        return true;
+                    }
+                }
+            }
+
+        }
+
         return false; //TODO: implementar, provavelmente igual a login em validacao de funcionario
     }
 
@@ -50,16 +68,16 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         while (it.hasNext()) {
             Sessao s = (Sessao) it.next();
 
-            if (sessao.getSala().equals(s.getSala())&& sessao.getData().equals(s.getData())) {           
-                    if (sessao.getHora().equals(s.getHora())) {
-                        return true;
-                    } else if ( sessao.getHora().isBefore(s.getHora())&& sessao.getHoraFinal().isAfter(s.getHora())) {
-                        return true;
+            if (sessao.getSala().equals(s.getSala()) && sessao.getData().equals(s.getData())) {
+                if (sessao.getHora().equals(s.getHora())) {
+                    return true;
+                } else if (sessao.getHora().isBefore(s.getHora()) && sessao.getHoraFinal().isAfter(s.getHora())) {
+                    return true;
 
-                    }else if(sessao.getHora().isAfter(s.getHora())&&sessao.getHora().isBefore(s.getHoraFinal())){
-                        return true;
-                    }
-      
+                } else if (sessao.getHora().isAfter(s.getHora()) && sessao.getHora().isBefore(s.getHoraFinal())) {
+                    return true;
+                }
+
             }
 
         }

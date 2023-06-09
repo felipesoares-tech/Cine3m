@@ -32,7 +32,7 @@ public class CadastroVenda extends ModalInternalFrame {
     private final CadastroCliente cadastroCliente;
     private final VincularCliente vincularCliente;
     private OperacoesVenda operacoesVenda;
-    private  Funcionario funcionario;
+    private Funcionario funcionario;
 
     public JTextField getTfClienteSelecionado() {
         return tfClienteSelecionado;
@@ -49,10 +49,8 @@ public class CadastroVenda extends ModalInternalFrame {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-    
-    
 
-    public CadastroVenda(GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente,OperacoesVenda operacoesVenda) {
+    public CadastroVenda(GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente, OperacoesVenda operacoesVenda) {
         initComponents();
         this.btnContinuarCompra.setEnabled(false);
         this.gerenciaVenda = gerenciaVenda;
@@ -166,7 +164,10 @@ public class CadastroVenda extends ModalInternalFrame {
     public void setPanelDados(JPanel panelDados) {
         this.jPanel1 = panelDados;
     }
-    
+
+    public void recarregaComboSessoes() {
+        cbSessaoVendaAncestorAdded(null);
+    }
 
     public JScrollPane getjScrollPane1() {
         return jScrollPane1;
@@ -439,7 +440,7 @@ public class CadastroVenda extends ModalInternalFrame {
 
     private void btnContinuarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarCompraActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        this.confirmaCompra = new ConfirmaCompra(listItensIngresso, sessaoSelecionada, vincularCliente, gerenciaSessao, consultaPoltronas, this, gerenciaVenda,operacoesVenda);
+        this.confirmaCompra = new ConfirmaCompra(listItensIngresso, sessaoSelecionada, vincularCliente, gerenciaSessao, consultaPoltronas, this, gerenciaVenda, operacoesVenda);
         getDesktopPane().add(confirmaCompra);
         this.confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed

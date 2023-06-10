@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -94,42 +96,37 @@ public class ClienteDAO {
 //        }
 //    }
 //
-//    public ArrayList<Cliente> lista() {
-//        ArrayList<Cliente> clientes = null;
-//
-//        PreparedStatement ps;
-//        ResultSet rs;
-//
-//        String sql = "SELECT codigo, descricao FROM cliente";
-//
-//        try {
-//            ps = conn.prepareStatement(sql);
-//            rs = ps.executeQuery();
-//            clientes = new ArrayList<>();
-//
-//            while (rs.next()) {
-//                Cliente cliente = new Cliente();
-//
-//                cliente.setCodigo(rs.getInt("codigo"));
-//                cliente.setDescricao(rs.getString("descricao"));
-//
-//                clientes.add(cliente);
-//            }
-//
-//            rs.close();
-//            ps.close();
-//        } catch (SQLException e) {
-//            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
-//        }
-//
-//        return clientes;
-//    }
-//
-//    public void fecharConexao() {
-//        try {
-//            conn.close();
-//        } catch (SQLException e) {
-//            System.err.println("Erro no fechamento da conexão com o SGDB: " + e.getMessage());
-//        }
-//    }
+    public List<Cliente> lista() {
+        List<Cliente> clientes = new ArrayList<>();
+
+        PreparedStatement ps;
+        ResultSet rs;
+
+        String sql = "SELECT * FROM pessoa p JOIN cliente c ON p.id = c.fk_cliente";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            clientes = new ArrayList<>();
+
+            while (rs.next()) {
+                clientes.add(new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getInt("filmes_assistidos")));
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+
+        return clientes;
+    }
+
+    public void fecharConexao() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            System.err.println("Erro no fechamento da conexão com o SGDB: " + e.getMessage());
+        }
+    }
 }

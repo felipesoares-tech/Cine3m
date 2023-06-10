@@ -13,9 +13,9 @@ public class GerenciaCliente implements IGerencia<Cliente> {
     private final ClienteDAO clienteDAO;
     
 
-    public GerenciaCliente(List<Cliente> clientes) {
-        this.clientes = clientes;
+    public GerenciaCliente() {        
         this.clienteDAO = new ClienteDAO();
+        this.clientes = clienteDAO.lista();
     }
 
     private EnumValidacoes validarCliente(Cliente cliente) {

@@ -10,17 +10,15 @@ import java.util.List;
 
 public class GerenciaCliente implements IGerencia<Cliente> {
 
-    private final List<Cliente> clientes;
     private final ClienteDAO clienteDAO;
 
     public GerenciaCliente() {
         this.clienteDAO = new ClienteDAO();
-        this.clientes = clienteDAO.lista();
     }
 
     private EnumValidacoes validarCliente(Cliente cliente) {
         EnumValidacoes retornoValidacao;
-        if (clientes.contains(cliente)) {
+        if (clienteDAO.consultar(cliente) != null) {
             retornoValidacao = EnumValidacoes.CLIENTE_CPF_JA_CADASTRADO;
         } else if (!ValidadorCPF.isCPF(cliente.getCpf())) {
             retornoValidacao = EnumValidacoes.CLIENTE_CPF_INVALIDO;
@@ -31,7 +29,7 @@ public class GerenciaCliente implements IGerencia<Cliente> {
     }
 
     private boolean existeClienteComCPF(Cliente clienteAtual, Cliente clienteAtualizado) {
-        Iterator<Cliente> it = clientes.iterator();
+        Iterator<Cliente> it = clienteDAO.listar().iterator();
         while (it.hasNext()) {
             Cliente c = (Cliente) it.next();
             if (!c.equals(clienteAtual) && c.getCpf().equals(clienteAtualizado.getCpf())) {
@@ -58,9 +56,7 @@ public class GerenciaCliente implements IGerencia<Cliente> {
     public EnumValidacoes cadastrar(Cliente cliente) {
         EnumValidacoes retornoValidacao = validarCliente(cliente);
         if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
-
             clienteDAO.incluir(cliente);
-            clientes.add(cliente);
         }
         return retornoValidacao;
     }
@@ -68,7 +64,7 @@ public class GerenciaCliente implements IGerencia<Cliente> {
     @Override
     public Cliente remover(Cliente cliente) {
         clienteDAO.apagar(cliente);
-        return clientes.remove(clientes.indexOf(cliente));
+        return null;
     }
 
     @Override
@@ -76,19 +72,18 @@ public class GerenciaCliente implements IGerencia<Cliente> {
         EnumValidacoes retornoValidacao = validarCliente(cliente, clienteAtualizado);
         if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
             clienteDAO.alterar(cliente, clienteAtualizado);
-            clientes.set(clientes.indexOf(cliente), clienteAtualizado);
         }
         return retornoValidacao;
     }
 
     @Override
     public Cliente consultar(Cliente cliente) {
-        return clientes.get(clientes.indexOf(cliente));
+        return clienteDAO.consultar(cliente);
     }
 
     @Override
     public List<Cliente> relatorio() {
-        return this.clientes;
+        return clienteDAO.listar();
     }
 
 }

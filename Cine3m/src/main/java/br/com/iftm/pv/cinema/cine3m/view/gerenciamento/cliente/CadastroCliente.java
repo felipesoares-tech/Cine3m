@@ -87,7 +87,7 @@ public class CadastroCliente extends ModalInternalFrame {
         tfNomeCliente = new javax.swing.JTextField();
         btnCadastrarCliente = new javax.swing.JButton();
         lbImg = new javax.swing.JLabel();
-        lbTituloTelaCliente = new javax.swing.JLabel();
+        lbTitulo = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -145,9 +145,9 @@ public class CadastroCliente extends ModalInternalFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaCliente.setForeground(new java.awt.Color(102, 102, 102));
-        lbTituloTelaCliente.setText("Cadastro de clientes");
+        lbTitulo.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTitulo.setForeground(new java.awt.Color(102, 102, 102));
+        lbTitulo.setText("Cadastro de clientes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,7 +155,7 @@ public class CadastroCliente extends ModalInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(lbTituloTelaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(lbImg, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -170,7 +170,7 @@ public class CadastroCliente extends ModalInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(lbTituloTelaCliente))
+                        .addComponent(lbTitulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(lbImg, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -263,12 +263,12 @@ public class CadastroCliente extends ModalInternalFrame {
         this.lbNomeCliente = lbNomeCliente;
     }
 
-    public JLabel getLbTituloTelaCliente() {
-        return lbTituloTelaCliente;
+    public JLabel getLbTitulo() {
+        return lbTitulo;
     }
 
-    public void setLbTituloTelaCliente(JLabel lbTituloTelaCliente) {
-        this.lbTituloTelaCliente = lbTituloTelaCliente;
+    public void setLbTitulo(JLabel lbTitulo) {
+        this.lbTitulo = lbTitulo;
     }
 
     public JFormattedTextField getTfCpfCliente() {
@@ -294,7 +294,7 @@ public class CadastroCliente extends ModalInternalFrame {
     private javax.swing.JLabel lbCpfCliente;
     private javax.swing.JLabel lbImg;
     private javax.swing.JLabel lbNomeCliente;
-    private javax.swing.JLabel lbTituloTelaCliente;
+    private javax.swing.JLabel lbTitulo;
     private javax.swing.JFormattedTextField tfCpfCliente;
     private javax.swing.JTextField tfNomeCliente;
     // End of variables declaration//GEN-END:variables

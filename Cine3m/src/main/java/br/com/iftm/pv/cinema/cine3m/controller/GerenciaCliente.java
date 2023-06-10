@@ -1,5 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
+import br.com.iftm.pv.cinema.cine3m.dao.ClienteDAO;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
@@ -9,9 +10,12 @@ import java.util.List;
 
 public class GerenciaCliente implements IGerencia<Cliente> {
     private final List<Cliente> clientes;
+    private final ClienteDAO clienteDAO;
+    
 
     public GerenciaCliente(List<Cliente> clientes) {
         this.clientes = clientes;
+        this.clienteDAO = new ClienteDAO();
     }
 
     private EnumValidacoes validarCliente(Cliente cliente) {
@@ -50,18 +54,23 @@ public class GerenciaCliente implements IGerencia<Cliente> {
         return retornoValidacao;
     }
 
+    @Override
     public EnumValidacoes cadastrar(Cliente cliente) {
         EnumValidacoes retornoValidacao = validarCliente(cliente);
         if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
+            
+            clienteDAO.incluir(cliente);
             clientes.add(cliente);
         }
         return retornoValidacao;
     }
 
+    @Override
     public Cliente remover(Cliente cliente) {
         return clientes.remove(clientes.indexOf(cliente));
     }
 
+    @Override
     public EnumValidacoes atualizar(Cliente cliente, Cliente clienteAtualizado) {
         EnumValidacoes retornoValidacao = validarCliente(cliente,clienteAtualizado);
         if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
@@ -70,10 +79,12 @@ public class GerenciaCliente implements IGerencia<Cliente> {
         return retornoValidacao;
     }
 
+    @Override
     public Cliente consultar(Cliente cliente) {
         return clientes.get(clientes.indexOf(cliente));
     }
 
+    @Override
     public List<Cliente> relatorio() {
         return this.clientes;
     }

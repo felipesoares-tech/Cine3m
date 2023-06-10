@@ -22,7 +22,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-public class ConfirmaCompra extends javax.swing.JInternalFrame {
+public class ConfirmaVenda extends javax.swing.JInternalFrame {
 
     private final Integer qtdMaxItensIngresso;
     private final SpinnerNumberModel spinnerModelInteira;
@@ -40,7 +40,7 @@ public class ConfirmaCompra extends javax.swing.JInternalFrame {
     private Integer qtdInteira;
     private Integer qtdMeia;
 
-    public ConfirmaCompra(JList listItensIngresso, Sessao sessaoSelecionada, VincularCliente vincularCliente, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroVenda cadastroVenda, GerenciaVenda gerenciaVenda, OperacoesVenda operacoesVenda) {
+    public ConfirmaVenda(JList listItensIngresso, Sessao sessaoSelecionada, VincularCliente vincularCliente, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroVenda cadastroVenda, GerenciaVenda gerenciaVenda, OperacoesVenda operacoesVenda) {
         this.listItensIngresso = listItensIngresso;
         this.cadastroVenda = cadastroVenda;
         this.consultaPoltronas = consultaPoltronas;

@@ -51,16 +51,20 @@ public class GerenciaVenda implements IGerencia<Venda> {
         return this.vendas;
     }
 
-    public void cancelar(Venda venda) {
-        venda.setCancelada(true);
-        List<Poltrona> poltronas = venda.consultaPoltronasVenda();
+    public EnumValidacoes cancelar(Venda venda) {
+        if (!venda.isCancelada()) {
+            venda.setCancelada(true);
+            List<Poltrona> poltronas = venda.consultaPoltronasVenda();
 
-        Iterator<Poltrona> it = poltronas.iterator();
-        while (it.hasNext()) {
-            Poltrona p = (Poltrona) it.next();
-            p.setLivre(true);
-            gerenciaSessao.atualizaPoltronaSessao(venda.getSessao(), p);
+            Iterator<Poltrona> it = poltronas.iterator();
+            while (it.hasNext()) {
+                Poltrona p = (Poltrona) it.next();
+                p.setLivre(true);
+                gerenciaSessao.atualizaPoltronaSessao(venda.getSessao(), p);
+            }
+            return EnumValidacoes.VENDA_CANCELADA;
         }
+        return EnumValidacoes.VENDA_JA_CANCELADA;
     }
 
     @Override

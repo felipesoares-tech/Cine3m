@@ -73,29 +73,29 @@ public class ClienteDAO {
             return false;
         }
     }
-//
-//    public boolean apagar(Cliente cliente) {
-//        String sql;
-//        PreparedStatement ps;
-//
-//        sql = "DELETE FROM cliente WHERE codigo = ?";
-//
-//        try {
-//            ps = conn.prepareStatement(sql);
-//
-//            ps.setInt(1, cliente.getCodigo());
-//
-//            ps.execute();
-//            ps.close();
-//
-//            return true;
-//        } catch (SQLException e) {
-//            System.err.println("Erro na operação de apagar do SGDB: " + e.getMessage());
-//
-//            return false;
-//        }
-//    }
-//
+
+    public boolean apagar(Cliente cliente) {
+        String sql;
+        PreparedStatement ps;
+
+        sql = "DELETE FROM pessoa WHERE id = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, cliente.getId());
+
+            ps.execute();
+            ps.close();
+
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Erro na operação de apagar do SGDB: " + e.getMessage());
+
+            return false;
+        }
+    }
+
     public List<Cliente> lista() {
         List<Cliente> clientes = new ArrayList<>();
 

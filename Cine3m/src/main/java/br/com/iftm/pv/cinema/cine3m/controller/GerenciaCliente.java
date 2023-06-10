@@ -9,11 +9,11 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GerenciaCliente implements IGerencia<Cliente> {
+
     private final List<Cliente> clientes;
     private final ClienteDAO clienteDAO;
-    
 
-    public GerenciaCliente() {        
+    public GerenciaCliente() {
         this.clienteDAO = new ClienteDAO();
         this.clientes = clienteDAO.lista();
     }
@@ -29,7 +29,7 @@ public class GerenciaCliente implements IGerencia<Cliente> {
         }
         return retornoValidacao;
     }
-    
+
     private boolean existeClienteComCPF(Cliente clienteAtual, Cliente clienteAtualizado) {
         Iterator<Cliente> it = clientes.iterator();
         while (it.hasNext()) {
@@ -58,7 +58,7 @@ public class GerenciaCliente implements IGerencia<Cliente> {
     public EnumValidacoes cadastrar(Cliente cliente) {
         EnumValidacoes retornoValidacao = validarCliente(cliente);
         if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
-            
+
             clienteDAO.incluir(cliente);
             clientes.add(cliente);
         }
@@ -67,14 +67,15 @@ public class GerenciaCliente implements IGerencia<Cliente> {
 
     @Override
     public Cliente remover(Cliente cliente) {
+        clienteDAO.apagar(cliente);
         return clientes.remove(clientes.indexOf(cliente));
     }
 
     @Override
     public EnumValidacoes atualizar(Cliente cliente, Cliente clienteAtualizado) {
-        EnumValidacoes retornoValidacao = validarCliente(cliente,clienteAtualizado);
+        EnumValidacoes retornoValidacao = validarCliente(cliente, clienteAtualizado);
         if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
-            clienteDAO.alterar(cliente,clienteAtualizado);
+            clienteDAO.alterar(cliente, clienteAtualizado);
             clientes.set(clientes.indexOf(cliente), clienteAtualizado);
         }
         return retornoValidacao;

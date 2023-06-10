@@ -52,27 +52,27 @@ public class ClienteDAO {
         }
     }
 
-//    public boolean alterar(Cliente cliente) {
-//        String sql;
-//        PreparedStatement ps;
-//
-//        sql = "UPDATE cliente SET descricao = ? WHERE codigo = ?";
-//
-//        try {
-//            ps = conn.prepareStatement(sql);
-//            ps.setString(1, cliente.getDescricao());
-//            ps.setInt(2, cliente.getCodigo());
-//
-//            ps.execute();
-//            ps.close();
-//
-//            return true;
-//        } catch (SQLException e) {
-//            System.err.println("Erro na operação de alteração do SGDB: " + e.getMessage());
-//
-//            return false;
-//        }
-//    }
+    public boolean alterar(Cliente cliente,Cliente clienteAtualizado) {
+        String sql;
+        PreparedStatement ps;
+        sql = "UPDATE pessoa SET nome = ?,cpf = ? WHERE id = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, clienteAtualizado.getNome());
+            ps.setString(2, clienteAtualizado.getCpf());
+            ps.setInt(3, cliente.getId());
+
+            ps.execute();
+            ps.close();
+
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Erro na operação de alteração do SGDB: " + e.getMessage());
+
+            return false;
+        }
+    }
 //
 //    public boolean apagar(Cliente cliente) {
 //        String sql;

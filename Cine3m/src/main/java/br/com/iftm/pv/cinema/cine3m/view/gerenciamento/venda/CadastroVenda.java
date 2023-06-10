@@ -6,7 +6,7 @@ import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConfirmaCompra;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConfirmaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConsultaPoltronas;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
@@ -25,7 +25,7 @@ import javax.swing.JTextField;
 public class CadastroVenda extends ModalInternalFrame {
 
     private ConsultaPoltronas consultaPoltronas;
-    private ConfirmaCompra confirmaCompra;
+    private ConfirmaVenda confirmaCompra;
     private final GerenciaVenda gerenciaVenda;
     private final GerenciaSessao gerenciaSessao;
     private CadastroSessao cadastroSessao;
@@ -69,11 +69,11 @@ public class CadastroVenda extends ModalInternalFrame {
         this.consultaPoltronas = consultaPoltronas;
     }
 
-    public ConfirmaCompra getConfirmaCompra() {
+    public ConfirmaVenda getConfirmaCompra() {
         return confirmaCompra;
     }
 
-    public void setConfirmaCompra(ConfirmaCompra confirmaCompra) {
+    public void setConfirmaCompra(ConfirmaVenda confirmaCompra) {
         this.confirmaCompra = confirmaCompra;
     }
 
@@ -440,7 +440,7 @@ public class CadastroVenda extends ModalInternalFrame {
 
     private void btnContinuarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarCompraActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        this.confirmaCompra = new ConfirmaCompra(listItensIngresso, sessaoSelecionada, vincularCliente, gerenciaSessao, consultaPoltronas, this, gerenciaVenda, operacoesVenda);
+        this.confirmaCompra = new ConfirmaVenda(listItensIngresso, sessaoSelecionada, vincularCliente, gerenciaSessao, consultaPoltronas, this, gerenciaVenda, operacoesVenda);
         getDesktopPane().add(confirmaCompra);
         this.confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed

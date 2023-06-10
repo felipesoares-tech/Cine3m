@@ -3,6 +3,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
@@ -58,7 +59,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
                 pesquisaLike.filterList(tfPesquisar, lstVendas);
             }
         });
-        
+
         lstVendas.setCellRenderer(new CelulasPersonalizadasList());
     }
 
@@ -248,14 +249,17 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
         Venda vendaSelecionada = lstVendas.getSelectedValue();
 
         Integer resp = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ??",
-                "Apagar Venda", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                "Cancelar Venda", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            gerenciaVenda.cancelar(vendaSelecionada);
-            lstVendas.getSelectedValue().getIdentificador();
-            lstVendasAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, "Venda cancelada",
-                    "Cancelar", JOptionPane.INFORMATION_MESSAGE);
+            if (gerenciaVenda.cancelar(vendaSelecionada).equals(EnumValidacoes.VENDA_CANCELADA)) {
+                JOptionPane.showMessageDialog(this, "Venda cancelada",
+                        "Cancelar", JOptionPane.INFORMATION_MESSAGE);
+                lstVendasAncestorAdded(null);
+            } else {
+                JOptionPane.showMessageDialog(this, "Venda já cancelada!!",
+                        "Cancelar", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 

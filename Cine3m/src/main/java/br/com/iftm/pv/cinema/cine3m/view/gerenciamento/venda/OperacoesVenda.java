@@ -13,8 +13,10 @@ import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -95,6 +97,18 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
         return relatorioVenda;
     }
 
+    public JLabel getLbPesquisar() {
+        return lbPesquisar;
+    }
+
+    public JLabel getLbTitulo() {
+        return lbTitulo;
+    }
+
+    public JPanel getPanelBotoesVenda() {
+        return panelBotoesVenda;
+    }
+
     public void setBtnNovo(JButton btnNovo) {
         this.btnNovo = btnNovo;
     }
@@ -106,13 +120,13 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstVendas = new javax.swing.JList<>();
         tfPesquisar = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
+        panelBotoesVenda = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
         btnNovo = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lbPesquisar = new javax.swing.JLabel();
         btnRelatorio = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lbTitulo = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -152,11 +166,11 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelBotoesVendaLayout = new javax.swing.GroupLayout(panelBotoesVenda);
+        panelBotoesVenda.setLayout(panelBotoesVendaLayout);
+        panelBotoesVendaLayout.setHorizontalGroup(
+            panelBotoesVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotoesVendaLayout.createSequentialGroup()
                 .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,18 +178,18 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        panelBotoesVendaLayout.setVerticalGroup(
+            panelBotoesVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotoesVendaLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelBotoesVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("Pesquisar:");
+        lbPesquisar.setText("Pesquisar:");
 
         btnRelatorio.setText("GERAR RELATORIO");
         btnRelatorio.addActionListener(new java.awt.event.ActionListener() {
@@ -184,8 +198,8 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jLabel2.setText("Vendas");
+        lbTitulo.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lbTitulo.setText("Vendas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,7 +207,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(lbTitulo)
                 .addGap(135, 135, 135)
                 .addComponent(btnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -205,10 +219,10 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
                                 .addComponent(tfPesquisar))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(200, 200, 200)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelBotoesVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -216,16 +230,16 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lbTitulo)
                     .addComponent(btnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lbPesquisar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelBotoesVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -289,11 +303,11 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnRelatorio;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbPesquisar;
+    private javax.swing.JLabel lbTitulo;
     private javax.swing.JList<Venda> lstVendas;
+    private javax.swing.JPanel panelBotoesVenda;
     private javax.swing.JTextField tfPesquisar;
     // End of variables declaration//GEN-END:variables
 }

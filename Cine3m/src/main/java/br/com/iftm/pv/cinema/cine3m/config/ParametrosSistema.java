@@ -5,12 +5,16 @@ import java.awt.Color;
 public class ParametrosSistema {
 
     private static ParametrosSistema instancia;
-    private Color corDeFundo;
-    private Color corPanel;
+    private final Color corDeFundo;
+    private final Color transparent;
+    private final Color corLabel; 
+    private final Color corPanel;
 
     private ParametrosSistema() {
-        this.corDeFundo = Color.DARK_GRAY; // Cor de fundo padrão
-        this.corPanel = Color.GRAY;
+        corDeFundo = Color.DARK_GRAY; // Cor de fundo padrão
+        transparent = new Color(0,0,0,0);
+        corLabel = Color.LIGHT_GRAY;
+        corPanel = Color.GRAY;
     }
 
     public static synchronized ParametrosSistema getInstance() {
@@ -24,12 +28,18 @@ public class ParametrosSistema {
         return corDeFundo;
     }
 
-    public void setCorDeFundo(Color corDeFundo) {
-        this.corDeFundo = corDeFundo;
-    }
-
     public Color getCorPanel() {
         return corPanel;
+    }
+
+
+    public Color getTransparent() {
+        return transparent;
+    }
+
+ 
+    public Color getCorLabel() {
+        return corLabel;
     }
 
 }

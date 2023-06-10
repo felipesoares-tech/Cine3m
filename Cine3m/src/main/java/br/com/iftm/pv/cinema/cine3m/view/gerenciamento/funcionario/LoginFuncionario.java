@@ -3,6 +3,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -115,6 +116,14 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
 
     public JTextField getTfUsuario() {
         return tfUsuario;
+    }
+
+    public JLabel getLbSenha() {
+        return lbSenha;
+    }
+
+    public JLabel getLbUsuario() {
+        return lbUsuario;
     }
 
     public void setTfUsuario(JTextField tfUsuario) {

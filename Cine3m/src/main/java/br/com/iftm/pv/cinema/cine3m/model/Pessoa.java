@@ -6,6 +6,7 @@ import java.util.Objects;
 public abstract class Pessoa implements Serializable{
     private String nome;
     private String cpf;
+    private Integer id;
 
     public String getNome() {
         return nome;
@@ -21,6 +22,10 @@ public abstract class Pessoa implements Serializable{
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public Integer getId() {
+        return id;
     }
     
     @Override

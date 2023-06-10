@@ -9,6 +9,13 @@ public class Cliente extends Pessoa {
         this.setCpf(cpf);
         this.qtdFilmesAssistidos = 0;
     }
+    
+    public Cliente(Integer id,String nome, String cpf, Integer qtdFilmesAssistidos) {
+        this.setId(id);
+        this.setNome(nome);
+        this.setCpf(cpf);
+        this.setQtdFilmesAssistidos(qtdFilmesAssistidos);
+    }
 
     public Integer getQtdFilmesAssistidos() {
         return qtdFilmesAssistidos;

@@ -41,10 +41,9 @@ public class Principal extends javax.swing.JFrame {
     List<Sessao> sessoes = new ArrayList<>();
     List<Venda> vendas = new ArrayList<>();
     List<Sala> salas = new ArrayList<>();
-    List<Cliente> clientes = new ArrayList<>();
 
     private final GerenciaArquivo gerenciaArquivo = new GerenciaArquivo();
-    private final GerenciaCliente gerenciaCliente = new GerenciaCliente(clientes);
+    private final GerenciaCliente gerenciaCliente = new GerenciaCliente();
     private final GerenciaFilme gerenciaFilme = new GerenciaFilme(filmes);
     private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(
             gerenciaArquivo.obterFuncionarios());

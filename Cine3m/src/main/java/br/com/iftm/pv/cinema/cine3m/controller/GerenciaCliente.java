@@ -74,6 +74,7 @@ public class GerenciaCliente implements IGerencia<Cliente> {
     public EnumValidacoes atualizar(Cliente cliente, Cliente clienteAtualizado) {
         EnumValidacoes retornoValidacao = validarCliente(cliente,clienteAtualizado);
         if (retornoValidacao.equals(EnumValidacoes.CLIENTE_SUCESSO)) {
+            clienteDAO.alterar(cliente,clienteAtualizado);
             clientes.set(clientes.indexOf(cliente), clienteAtualizado);
         }
         return retornoValidacao;

@@ -13,16 +13,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
+public class ConsultaVenda extends ModalInternalFrame {
 
     private Venda vendaSelecionada;
 
-    public TelaAuxiliarConsultaVenda() {
+    public ConsultaVenda() {
         initComponents();
-        this.tfClienteConsulta.setEnabled(false);
-        this.tfSessaoConsulta.setEnabled(false);
-        this.tfValorTotal.setEnabled(false);
-        lbdesconto.setEnabled(false);
+        tfClienteConsulta.setEnabled(false);
+        tfSessaoConsulta.setEnabled(false);
+        tfValorTotal.setEnabled(false);
+        tfVendaDesconto.setEnabled(false);
+        tfSituacaoVenda.setEnabled(false);
     }
 
     public Venda getVendaSelecionada() {
@@ -31,14 +32,6 @@ public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
 
     public void setVendaSelecionada(Venda vendaSelecionada) {
         this.vendaSelecionada = vendaSelecionada;
-    }
-
-    public JLabel getLbdesconto() {
-        return lbdesconto;
-    }
-
-    public void setLbdesconto(JLabel lbdesconto) {
-        this.lbdesconto = lbdesconto;
     }
 
     public JLabel getjLabel1() {
@@ -188,7 +181,9 @@ public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         tfValorTotal = new javax.swing.JTextField();
-        lbdesconto = new javax.swing.JLabel();
+        tfVendaDesconto = new javax.swing.JTextField();
+        tfSituacaoVenda = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         lbTituloTelaCliente = new javax.swing.JLabel();
 
         setClosable(true);
@@ -273,8 +268,6 @@ public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Valor Total:");
 
-        lbdesconto.setText(" ");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -282,11 +275,9 @@ public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbdesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfVendaDesconto, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(tfValorTotal)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,10 +285,13 @@ public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lbdesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfVendaDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
+
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setText("Situação Venda:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -309,9 +303,16 @@ public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
                     .addComponent(jLabel3)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(94, 94, 94)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfSituacaoVenda)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,11 +320,15 @@ public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
                 .addGap(0, 8, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfSituacaoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         lbTituloTelaCliente.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
@@ -337,17 +342,17 @@ public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lbTituloTelaCliente)
-                        .addGap(269, 269, 269))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(269, 269, 269))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,7 +377,11 @@ public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
         List<ItemVenda> itensVenda = vendaSelecionada.getItensVenda();
         Double valorTotal = vendaSelecionada.getValorFinal();
         boolean desconto = vendaSelecionada.hasDesconto();
-        lbdesconto.setText(desconto ? "Com desconto" : "Sem desconto");
+        boolean cancelada = vendaSelecionada.isCancelada();
+        
+        tfVendaDesconto.setText(desconto ? "COM DESCONTO" : "SEM DESCONTO");
+        tfSituacaoVenda.setText(cancelada ? "CANCELADA" : "AUTORIZADA");
+        
 
         getTfClienteConsulta().setText(nomeClienteVenda);
         getTfFuncionarioConsulta().setText(nomeFuncionarioVenda);
@@ -395,17 +404,19 @@ public class TelaAuxiliarConsultaVenda extends ModalInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTituloTelaCliente;
-    private javax.swing.JLabel lbdesconto;
     private javax.swing.JList<String> listItensIngresso;
     private javax.swing.JTextField tfClienteConsulta;
     private javax.swing.JTextField tfFuncionarioConsulta;
     private javax.swing.JTextField tfSessaoConsulta;
+    private javax.swing.JTextField tfSituacaoVenda;
     private javax.swing.JTextField tfValorTotal;
+    private javax.swing.JTextField tfVendaDesconto;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,7 +7,7 @@ import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
-import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.TelaAuxiliarConsultaVenda;
+import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.CelulasPersonalizadasList;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
@@ -23,7 +23,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     private final GerenciaVenda gerenciaVenda;
     private final CadastroVenda cadastroVenda;
     private final RelatorioVenda relatorioVenda;
-    private final TelaAuxiliarConsultaVenda telaAuxiliarConsultaVenda;
+    private final ConsultaVenda telaAuxiliarConsultaVenda;
     private List<Venda> vendas;
 
     public OperacoesVenda(GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
@@ -31,7 +31,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
         this.gerenciaVenda = gerenciaVenda;
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
         this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, cadastroCliente, this);
-        this.telaAuxiliarConsultaVenda = new TelaAuxiliarConsultaVenda();
+        this.telaAuxiliarConsultaVenda = new ConsultaVenda();
         initComponentsPersonalizado();
         btnConsultar.setEnabled(false);
 

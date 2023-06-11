@@ -194,7 +194,7 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
             ItemVenda item = (ItemVenda) listItensIngresso.getModel().getElementAt(i);
             Poltrona p = (Poltrona) item.getPoltrona();
             p.setLivre(false);
-            gerenciaSessao.atualizaPoltronaSessao(this.sessaoSelecionada, p);
+            gerenciaSessao.atualizaPoltronaSessao(sessaoSelecionada, p);
         }
         Integer total = qtdMeia + qtdInteira;
         if (total.equals(qtdMaxItensIngresso)) {

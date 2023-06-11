@@ -117,7 +117,7 @@ public class GerenciaSessao implements IGerencia<Sessao> {
     }
 
     public void atualizaPoltronaSessao(Sessao sessao, Poltrona poltrona) {
-        gerenciaSala.AtualizaPoltrona(sessao.getSala(), poltrona);
+        gerenciaSala.atualizaPoltrona(sessao.getSala(), poltrona);
     }
 
     @Override

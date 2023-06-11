@@ -1,35 +1,21 @@
 package br.com.iftm.pv.cinema.cine3m.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Sala {
-
+    private Integer id;
     private String nome;
     private Integer capacidade;
-    private List<Poltrona> poltronas;
 
     public Sala(String nome, Integer capacidade) {
         this.nome = nome;
-        this.capacidade = capacidade;
-        this.poltronas = new ArrayList<Poltrona>(capacidade);
-
-        int numFilas = (capacidade + 9) / 10; // Número de filas necessárias
-
-        for (int fila = 0; fila < numFilas; fila++) {
-            char fileira = (char) ('A' + fila);
-
-            for (int numero = 1; numero <= 10; numero++) {
-                if (poltronas.size() >= capacidade) {
-                    break; // Parar se atingir a capacidade total
-                }
-
-                String id = fileira + Integer.toString(numero);
-                Poltrona poltrona = new Poltrona(id);
-                poltronas.add(poltrona);
-            }
-        }
+        this.capacidade = capacidade;   
+    }
+    
+    public Sala(Integer id,String nome, Integer capacidade) {
+        this.id = id;
+        this.nome = nome;
+        this.capacidade = capacidade;   
     }
 
     @Override
@@ -75,12 +61,12 @@ public class Sala {
         this.capacidade = capacidade;
     }
 
-    public List<Poltrona> getPoltronas() {
-        return poltronas;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPoltronas(List<Poltrona> poltronas) {
-        this.poltronas = poltronas;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Sala(String nome) {

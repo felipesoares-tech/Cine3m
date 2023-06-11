@@ -26,22 +26,14 @@ CREATE TABLE IF NOT EXISTS cliente (
     ON UPDATE NO ACTION
 );
 
-CREATE TABLE IF NOT EXISTS genero (
-  id SERIAL PRIMARY KEY,
-  tipo_genero varchar(45) NOT NULL
-);
-
-INSERT INTO genero VALUES (1,'COMEDIA'),(2,'TERROR'),(3,'ACAO'),(4,'FANTASIA'),(5,'DRAMA'),(6,'ROMANCE'),(7,'FICCAO'),(8,'ANIMACAO');
-
 CREATE TABLE IF NOT EXISTS filme (
   id SERIAL PRIMARY KEY,
-  fk_genero int NOT NULL,
+  tipo_genero VARCHAR(45) NOT NULL,
   nome varchar(45) NOT NULL,
   del boolean NOT NULL DEFAULT false,
   descricao varchar(45) NOT NULL,
   diretor varchar(45) NOT NULL,
-  duracao time NOT NULL,
-  CONSTRAINT fk_filme_genero1 FOREIGN KEY (fk_genero) REFERENCES genero (id)
+  duracao time NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS sala (
@@ -66,20 +58,12 @@ CREATE TABLE IF NOT EXISTS poltrona_has_sala (
   CONSTRAINT fk_poltrona_has_sala_sala1 FOREIGN KEY (sala_id) REFERENCES sala (id)
 ); 
 
-CREATE TABLE IF NOT EXISTS tipo_venda (
-  id SERIAL PRIMARY KEY,
-  tipo varchar(45) NOT NULL
-);
-
-INSERT INTO tipo_venda VALUES (1,'MEIA'),(2,'INTEIRA');
-
 CREATE TABLE IF NOT EXISTS item_venda (
   id SERIAL PRIMARY KEY,
-  fk_tipo_venda int NOT NULL,
+  tipo_venda VARCHAR(45) NOT NULL,
   poltrona_has_sala_poltrona_id int NOT NULL,
   poltrona_has_sala_sala_id int NOT NULL,
-  CONSTRAINT fk_item_venda_poltrona_has_sala1 FOREIGN KEY (poltrona_has_sala_poltrona_id, poltrona_has_sala_sala_id) REFERENCES poltrona_has_sala (poltrona_id, sala_id),
-  CONSTRAINT fk_item_venda_tipo_ingresso1 FOREIGN KEY (fk_tipo_venda) REFERENCES tipo_venda (id)
+  CONSTRAINT fk_item_venda_poltrona_has_sala1 FOREIGN KEY (poltrona_has_sala_poltrona_id, poltrona_has_sala_sala_id) REFERENCES poltrona_has_sala (poltrona_id, sala_id)
 );
 
 CREATE TABLE IF NOT EXISTS sessao (

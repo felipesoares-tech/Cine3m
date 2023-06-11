@@ -7,6 +7,7 @@ public abstract class Pessoa implements Serializable{
     private String nome;
     private String cpf;
     private Integer id;
+    private boolean del;
 
     public String getNome() {
         return nome;
@@ -30,6 +31,14 @@ public abstract class Pessoa implements Serializable{
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public boolean isDel() {
+        return del;
+    }
+
+    public void setDel(boolean del) {
+        this.del = del;
     }
     
     @Override

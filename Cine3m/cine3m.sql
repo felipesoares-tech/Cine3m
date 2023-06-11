@@ -48,9 +48,42 @@ CREATE TABLE IF NOT EXISTS poltrona (
   fk_sala int NOT NULL,
   identificador varchar(45) NOT NULL,
   livre boolean NOT NULL,
-  CONSTRAINT identificador_UNIQUE UNIQUE (identificador),
   CONSTRAINT fk_poltrona_sala1 FOREIGN KEY (fk_sala) REFERENCES sala (id)
-); 
+);
+
+CREATE OR REPLACE FUNCTION criar_poltronas()
+    RETURNS TRIGGER AS
+$$
+DECLARE
+    num_filas INTEGER;
+    fila CHAR;
+    numero INTEGER;
+    identificador VARCHAR(10);
+BEGIN
+    num_filas := (NEW.capacidade + 9) / 10;
+
+    FOR fila IN 0..(num_filas-1) LOOP
+        EXIT WHEN (SELECT COUNT(*) FROM poltrona WHERE fk_sala = NEW.id) >= NEW.capacidade;
+
+        FOR numero IN 1..10 LOOP
+            EXIT WHEN (SELECT COUNT(*) FROM poltrona WHERE fk_sala = NEW.id) >= NEW.capacidade;
+
+            identificador := chr(ASCII('A') + fila) || numero::VARCHAR;
+
+            INSERT INTO poltrona (fk_sala, identificador, livre)
+            VALUES (NEW.id, identificador,true);
+        END LOOP;
+    END LOOP;
+
+    RETURN NULL;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER inserir_poltronas
+AFTER INSERT ON sala
+FOR EACH ROW
+EXECUTE FUNCTION criar_poltronas();
 
 CREATE TABLE IF NOT EXISTS item_venda (
   id SERIAL PRIMARY KEY,

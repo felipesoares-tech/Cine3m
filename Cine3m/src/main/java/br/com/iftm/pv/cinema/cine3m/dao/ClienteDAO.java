@@ -78,7 +78,7 @@ public class ClienteDAO {
         String sql;
         PreparedStatement ps;
 
-        sql = "DELETE FROM pessoa WHERE id = ?";
+        sql = "UPDATE pessoa set del = true WHERE id = ?";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class ClienteDAO {
         PreparedStatement ps;
         ResultSet rs;
 
-        String sql = "SELECT * FROM pessoa p JOIN cliente c ON p.id = c.fk_cliente";
+        String sql = "SELECT * FROM pessoa p JOIN cliente c ON p.id = c.fk_cliente WHERE del = false";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -110,7 +110,7 @@ public class ClienteDAO {
             clientes = new ArrayList<>();
 
             while (rs.next()) {
-                clientes.add(new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getInt("filmes_assistidos")));
+                clientes.add(new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getInt("filmes_assistidos"),rs.getBoolean("del")));
             }
 
             rs.close();
@@ -127,7 +127,7 @@ public class ClienteDAO {
         ResultSet rs;
         Cliente clienteRet = null;
 
-        String sql = "SELECT * FROM pessoa WHERE cpf = ?";
+        String sql = "SELECT * FROM pessoa WHERE cpf = ? and del = false";
 
         try {
             ps = conn.prepareStatement(sql);

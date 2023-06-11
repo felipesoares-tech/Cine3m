@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import br.com.iftm.pv.cinema.cine3m.config.ParametrosSistema;
 import br.com.iftm.pv.cinema.cine3m.controller.*;
+import br.com.iftm.pv.cinema.cine3m.dao.Conexao;
 import br.com.iftm.pv.cinema.cine3m.model.*;
 import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.*;
@@ -18,7 +19,12 @@ import br.com.iftm.pv.cinema.cine3m.view.util.ValidaTela;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -72,29 +78,29 @@ public class Principal extends javax.swing.JFrame {
         operacoesCliente.getCadastroCliente().getLbNomeCliente().setForeground(corLabel);
         operacoesCliente.getCadastroCliente().getLbCpfCliente().setForeground(corLabel);
         operacoesCliente.getCadastroCliente().getjPanel8().setBackground(corPanel);
-        operacoesCliente.getCadastroCliente().getContentPane().setBackground(corFundo);        
+        operacoesCliente.getCadastroCliente().getContentPane().setBackground(corFundo);
         operacoesCliente.getRelatorioCliente().getContentPane().setBackground(corFundo);
-                
+
         operacoesCliente.getLstClientes().setBackground(corFundo);
         operacoesCliente.getContentPane().setBackground(corFundo);
         operacoesCliente.getLstClientes().setBackground(corPanel);
         operacoesCliente.getPanelBotoes().setBackground(transparent);
         operacoesCliente.getLbTitulo().setForeground(corLabel);
         operacoesCliente.getLbPesquisar().setForeground(corLabel);
-                
+
         operacoesFuncionario.getCadastroFuncionario().setBackground(corFundo);
         operacoesFuncionario.getRelatorioFuncionario().getContentPane().setBackground(corFundo);
-        
+
         operacoesFuncionario.getLstFuncionarios().setBackground(corFundo);
         operacoesFuncionario.getContentPane().setBackground(corFundo);
         operacoesFuncionario.getLstFuncionarios().setBackground(corPanel);
         operacoesFuncionario.getPanelBotoes().setBackground(transparent);
         operacoesFuncionario.getLbTitulo().setForeground(corLabel);
         operacoesFuncionario.getLbPesquisar().setForeground(corLabel);
-        
+
         operacoesSessao.getCadastroSessao().getContentPane().setBackground(corFundo);
         operacoesSessao.getRelatorioSessao().getContentPane().setBackground(corFundo);
-        
+
         operacoesSessao.getLstSessoes().setBackground(corFundo);
         operacoesSessao.getContentPane().setBackground(corFundo);
         operacoesSessao.getLstSessoes().setBackground(corPanel);
@@ -104,7 +110,7 @@ public class Principal extends javax.swing.JFrame {
 
         operacoesSala.getCadastroSala().getContentPane().setBackground(corFundo);
         operacoesSala.getRelatorioSala().getContentPane().setBackground(corFundo);
-        
+
         operacoesSala.getLstSalas().setBackground(corFundo);
         operacoesSala.getContentPane().setBackground(corFundo);
         operacoesSala.getLstSalas().setBackground(corPanel);
@@ -114,18 +120,17 @@ public class Principal extends javax.swing.JFrame {
 
         operacoesFilme.getCadastroFilme().getContentPane().setBackground(corFundo);
         operacoesFilme.getRelatorioFilme().getContentPane().setBackground(corFundo);
-        
+
         operacoesFilme.getLstFilmes().setBackground(corFundo);
         operacoesFilme.getContentPane().setBackground(corFundo);
         operacoesFilme.getLstFilmes().setBackground(corPanel);
         operacoesFilme.getPanelBotoes().setBackground(transparent);
         operacoesFilme.getLbTitulo().setForeground(corLabel);
         operacoesFilme.getLbPesquisar().setForeground(corLabel);
-        
 
         operacoesVenda.getCadastroVenda().getContentPane().setBackground(corFundo);
         operacoesVenda.getRelatorioVenda().getContentPane().setBackground(corFundo);
-        
+
         operacoesVenda.getCadastroVenda().getPanelBotoes().setBackground(corPanel);
         operacoesVenda.getCadastroVenda().getPanelDados().setBackground(corPanel);
         operacoesVenda.getContentPane().setBackground(corFundo);
@@ -133,7 +138,7 @@ public class Principal extends javax.swing.JFrame {
         operacoesVenda.getLbPesquisar().setForeground(corLabel);
         operacoesVenda.getLbTitulo().setForeground(corLabel);
         operacoesVenda.getLstVendas().setBackground(corPanel);
-        
+
         loginFuncionario.getLbUsuario().setForeground(corLabel);
         loginFuncionario.getLbSenha().setForeground(corLabel);
 
@@ -353,6 +358,23 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_imVendaActionPerformed
 
     public static void main(String args[]) {
+//        try (Connection conn = Conexao.getConexao()) {                                 
+//            try (BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir")+"/cine3m.sql"))) {
+//                StringBuilder script = new StringBuilder();
+//                String line;
+//                while ((line = reader.readLine()) != null) {
+//                    script.append(line);
+//                    script.append("\n");
+//                }
+//                Statement statement = conn.createStatement();
+//                statement.executeUpdate(script.toString());
+//            } catch (IOException ex) {
+//                System.out.println("Erro ao ler o arquivo SQL: " + ex.getMessage());
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, "Erro ao conectar ao banco de dados", ex);
+//        }
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

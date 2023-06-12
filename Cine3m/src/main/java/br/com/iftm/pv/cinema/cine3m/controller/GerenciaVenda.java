@@ -1,21 +1,26 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
+import br.com.iftm.pv.cinema.cine3m.dao.ItemVendaDAO;
+import br.com.iftm.pv.cinema.cine3m.dao.VendaDAO;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
+import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import java.util.Iterator;
 import java.util.List;
 
-public class GerenciaVenda implements IGerencia<Venda> {
+public class GerenciaVenda{
 
-    private final List<Venda> vendas;
     private final GerenciaCliente gerenciaCliente;
     private final GerenciaSessao gerenciaSessao;
+    private final VendaDAO vendaDAO;
+    private final ItemVendaDAO itemVendaDAO;
 
-    public GerenciaVenda(List<Venda> vendas, GerenciaCliente gerenciaCliente, GerenciaSessao gerenciaSessao) {
-        this.vendas = vendas;
+    public GerenciaVenda(GerenciaCliente gerenciaCliente, GerenciaSessao gerenciaSessao) {
+        this.vendaDAO = new VendaDAO();
+        this.itemVendaDAO = new ItemVendaDAO();
         this.gerenciaCliente = gerenciaCliente;
         this.gerenciaSessao = gerenciaSessao;
     }
@@ -24,7 +29,7 @@ public class GerenciaVenda implements IGerencia<Venda> {
         return valor - (valor * 0.1);
     }
 
-    public EnumValidacoes cadastrar(Venda venda) {
+    public EnumValidacoes cadastrar(Venda venda, List<ItemVenda> itensVenda) {
         Cliente clienteVenda = venda.getCliente();
         if (clienteVenda != null) {
             clienteVenda.setQtdFilmesAssistidos(clienteVenda.getQtdFilmesAssistidos() + 1);
@@ -36,44 +41,51 @@ public class GerenciaVenda implements IGerencia<Venda> {
             }
             gerenciaCliente.atualizar(clienteAntigo, clienteVenda);
         }
-        vendas.add(venda);
+        vendaDAO.incluir(venda, itensVenda);
         return venda.hasDesconto() ? EnumValidacoes.VENDA_PROMOCAO : EnumValidacoes.VENDA_SUCESSO;
 
     }
 
-    @Override
+
     public Venda consultar(Venda venda) {
-        return vendas.get(vendas.indexOf(venda));
+        //return vendas.get(vendas.indexOf(venda));
+        return null;
     }
 
-    @Override
+
     public List<Venda> relatorio() {
-        return this.vendas;
+        return vendaDAO.listar();
+    }
+
+    public List<ItemVenda> listarItensVenda(Venda venda) {
+        return itemVendaDAO.listar(venda);
     }
 
     public EnumValidacoes cancelar(Venda venda) {
-        if (!venda.isCancelada()) {
-            venda.setCancelada(true);
-            List<Poltrona> poltronas = venda.consultaPoltronasVenda();
-
-            Iterator<Poltrona> it = poltronas.iterator();
-            while (it.hasNext()) {
-                Poltrona p = (Poltrona) it.next();
-                p.setLivre(true);
-                gerenciaSessao.atualizaPoltronaSessao(venda.getSessao(), p);
-            }
-            return EnumValidacoes.VENDA_CANCELADA;
-        }
+//        if (!venda.isCancelada()) {
+//            venda.setCancelada(true);
+//            List<Poltrona> poltronas = venda.consultaPoltronasVenda();
+//
+//            Iterator<Poltrona> it = poltronas.iterator();
+//            while (it.hasNext()) {
+//                Poltrona p = (Poltrona) it.next();
+//                p.setLivre(true);
+//                gerenciaSessao.atualizaPoltronaSessao(venda.getSessao(), p);
+//            }
+//            return EnumValidacoes.VENDA_CANCELADA;
+//        }
+//        return EnumValidacoes.VENDA_JA_CANCELADA;
         return EnumValidacoes.VENDA_JA_CANCELADA;
     }
 
-    @Override
+
     public Venda remover(Venda venda) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
+
     public Enum atualizar(Venda obj, Venda objAt) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
 }

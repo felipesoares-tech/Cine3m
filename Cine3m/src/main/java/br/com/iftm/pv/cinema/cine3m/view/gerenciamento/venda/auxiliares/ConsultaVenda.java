@@ -372,9 +372,9 @@ public class ConsultaVenda extends ModalInternalFrame {
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
         Cliente clienteVenda = vendaSelecionada.getCliente();
         String nomeClienteVenda = clienteVenda != null ? clienteVenda.getNome() : "";
-        String nomeSessaoVenda = vendaSelecionada.getSessao().getNome();
+        String nomeSessaoVenda = vendaSelecionada.getSessao().getIdentificador();
         String nomeFuncionarioVenda = vendaSelecionada.getFuncionario().getNome();
-        List<ItemVenda> itensVenda = vendaSelecionada.getItensVenda();
+        List<ItemVenda> itensVenda =  null;//vendaSelecionada.getItensVenda();
         Double valorTotal = vendaSelecionada.getValorFinal();
         boolean desconto = vendaSelecionada.hasDesconto();
         boolean cancelada = vendaSelecionada.isCancelada();
@@ -392,7 +392,7 @@ public class ConsultaVenda extends ModalInternalFrame {
         Iterator<ItemVenda> it = itensVenda.iterator();
         while (it.hasNext()) {
             ItemVenda itemVenda = (ItemVenda) it.next();
-            model.addElement(itemVenda.getPoltrona() + " - " + itemVenda.getTipoIngresso() + " - " + "R$ " + String.valueOf(itemVenda.getValor()));
+            model.addElement(itemVenda.getPoltrona() + " - " + itemVenda.getTipoVenda()+ " - " + "R$ " + String.valueOf(itemVenda.getValor()));
         }
         getListItensIngresso().setModel(model);
     }//GEN-LAST:event_formAncestorAdded

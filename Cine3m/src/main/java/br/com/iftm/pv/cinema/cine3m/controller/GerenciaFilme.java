@@ -16,7 +16,7 @@ public class GerenciaFilme implements IGerencia<Filme> {
 
     private EnumValidacoes validarFilme(Filme filme) {
         EnumValidacoes retornoValidacao;
-        if (filmeDAO.consultar(filme) != null) {
+        if (filmeDAO.consultarFilmeNome(filme) != null) {
             retornoValidacao = EnumValidacoes.FILME_JA_CADASTRADO;
         } else {
             retornoValidacao = EnumValidacoes.FILME_SUCESSO;
@@ -56,7 +56,7 @@ public class GerenciaFilme implements IGerencia<Filme> {
 
     @Override
     public Filme remover(Filme filme) {
-        filmeDAO.apagar(filme);
+        filmeDAO.apagar(filme.getId());
         return null;
     }
 
@@ -64,14 +64,14 @@ public class GerenciaFilme implements IGerencia<Filme> {
     public EnumValidacoes atualizar(Filme filme, Filme filmeAtualizado) {
         EnumValidacoes retornoValidacao = validarFilme(filme,filmeAtualizado);
         if (retornoValidacao.equals(EnumValidacoes.FILME_SUCESSO)) {
-            filmeDAO.alterar(filme, filmeAtualizado);            
+            filmeDAO.alterar(filme.getId(), filmeAtualizado);            
         }
         return retornoValidacao;
     }
 
     @Override
     public Filme consultar(Filme filme) {        
-        return filmeDAO.consultar(filme);
+        return filmeDAO.consultarFilmeID(filme.getId());
     }
 
     @Override

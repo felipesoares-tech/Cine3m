@@ -20,7 +20,7 @@ public class GerenciaSala implements IGerencia<Sala> {
 
     private EnumValidacoes validarSala(Sala sala) {
         EnumValidacoes retornoValidacao;
-        if (salaDAO.consultar(sala) != null) {
+        if (salaDAO.consultarSalaNome(sala) != null) {
             retornoValidacao = EnumValidacoes.SALA_JA_CADASTRADA;
         } else {
             retornoValidacao = EnumValidacoes.SALA_SUCESSO;
@@ -75,7 +75,7 @@ public class GerenciaSala implements IGerencia<Sala> {
 
     @Override
     public Sala consultar(Sala sala) {
-        return salaDAO.consultar(sala);
+        return salaDAO.consultarSalaID(sala.getId());
     }
 
     @Override
@@ -87,6 +87,11 @@ public class GerenciaSala implements IGerencia<Sala> {
         List<Poltrona> poltronas = poltronaDAO.listarPoltronasSala(sala);
         int pos = poltronas.indexOf(poltrona);
         return poltronas.get(pos).isLivre();
+    }
+    
+    public List<Poltrona> consultaPoltronaSala(Sala sala) {        
+        return null;
+                //poltronaDAO.consultarPoltronaSala(poltrona, sala)
     }
 
     public void atualizaPoltrona(Sala sala, Poltrona poltrona) {

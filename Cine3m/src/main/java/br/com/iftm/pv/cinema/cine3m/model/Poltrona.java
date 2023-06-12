@@ -12,15 +12,19 @@ public class Poltrona {
     public Poltrona() {
         this.livre = true;
     }
+    
+    public Poltrona(String identificador) {
+        this.identificador = identificador;
+    }
 
-    public Poltrona(String identificador, Sala sala, boolean livre) {
+    public Poltrona(Integer id,String identificador, Sala sala, boolean livre) {
         this.identificador = identificador;
         this.sala = sala;
         this.livre = livre;
+        this.id = id;
     }
     
     
-
     public String getIdentificador() {
         return identificador;
     }

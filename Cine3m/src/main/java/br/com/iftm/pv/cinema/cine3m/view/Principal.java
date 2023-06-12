@@ -37,17 +37,14 @@ public class Principal extends javax.swing.JFrame {
     private final LoginFuncionario loginFuncionario;
     private final TelaImportacao telaImportacao;
 
-    List<Sessao> sessoes = new ArrayList<>();
-    List<Venda> vendas = new ArrayList<>();
-
     private final GerenciaArquivo gerenciaArquivo = new GerenciaArquivo();
     private final GerenciaCliente gerenciaCliente = new GerenciaCliente();
     private final GerenciaFilme gerenciaFilme = new GerenciaFilme();
     private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(
             gerenciaArquivo.obterFuncionarios());
     private final GerenciaSala gerenciaSala = new GerenciaSala();
-    private final GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes, gerenciaSala);
-    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(vendas, gerenciaCliente, gerenciaSessao);
+    private final GerenciaSessao gerenciaSessao = new GerenciaSessao(gerenciaSala);
+    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(gerenciaCliente, gerenciaSessao);
 
     public Principal() {
         initComponents();

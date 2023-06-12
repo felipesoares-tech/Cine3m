@@ -115,8 +115,32 @@ public class SalaDAO {
 
         return salas;
     }
+    
+    public Sala consultarSalaID(Integer salaID) {
+        PreparedStatement ps;
+        ResultSet rs;
+        Sala salaRet = null;
 
-    public Sala consultar(Sala sala) {
+        String sql = "SELECT * FROM sala WHERE id = ? and del = false";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, salaID);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                salaRet = new Sala(rs.getInt("id"), rs.getString("nome"), rs.getInt("capacidade"));
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return salaRet;
+    }
+
+    public Sala consultarSalaNome(Sala sala) {
         PreparedStatement ps;
         ResultSet rs;
         Sala salaRet = null;

@@ -47,7 +47,7 @@ public class FilmeDAO {
         }
     }
 
-    public boolean alterar(Filme filme, Filme filmeAtualizado) {
+    public boolean alterar(Integer filmeID, Filme filmeAtualizado) {
         String sql;
         PreparedStatement ps;
         sql = "UPDATE filme SET nome = ?,tipo_genero = ?,descricao = ?, diretor = ?, duracao = ?  WHERE id = ?";
@@ -59,7 +59,7 @@ public class FilmeDAO {
             ps.setString(3, filmeAtualizado.getDescricao());
             ps.setString(4, filmeAtualizado.getDiretor());
             ps.setTime(5, Time.valueOf(filmeAtualizado.getDuracao()));
-            ps.setInt(6, filme.getId());
+            ps.setInt(6, filmeID);
 
             ps.execute();
             ps.close();
@@ -72,7 +72,7 @@ public class FilmeDAO {
         }
     }
 
-    public boolean apagar(Filme filme) {
+    public boolean apagar(Integer filmeID) {
         String sql;
         PreparedStatement ps;
 
@@ -81,7 +81,7 @@ public class FilmeDAO {
         try {
             ps = conn.prepareStatement(sql);
 
-            ps.setInt(1, filme.getId());
+            ps.setInt(1, filmeID);
 
             ps.execute();
             ps.close();
@@ -119,8 +119,31 @@ public class FilmeDAO {
 
         return filmes;
     }
+    public Filme consultarFilmeID(Integer filmeID) {
+        PreparedStatement ps;
+        ResultSet rs;
+        Filme filmeRet = null;
 
-    public Filme consultar(Filme filme) {
+        String sql = "SELECT * FROM filme WHERE id = ? and del = false";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, filmeID);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                filmeRet = new Filme(Genero.valueOf(rs.getString("tipo_genero")), rs.getString("nome"), rs.getString("descricao"), rs.getString("diretor"), rs.getTime("duracao").toLocalTime(), rs.getInt("id"), rs.getBoolean("del"));
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return filmeRet;
+    }
+
+    public Filme consultarFilmeNome(Filme filme) {
         PreparedStatement ps;
         ResultSet rs;
         Filme filmeRet = null;

@@ -74,10 +74,13 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
                 DefaultListModel<ItemVenda> model = new DefaultListModel<>();
 
                 Iterator<JButton> it = listBotoes.iterator();
+                            
                 while (it.hasNext()) {
                     JButton btn = it.next();
                     if (btn.getBackground().equals(Color.getHSBColor(0.4036159f, 0.95801526f, 0.6392157f))) {
-                      // model.addElement(new ItemVenda(new Poltrona(btn.getText()))); TODO: implementar item venda
+                        Poltrona p = poltronaDAO.consultaPoltronaIdentificadorSala(new Poltrona(btn.getText()), sessaoSelecionada.getSala());
+                        model.addElement(new ItemVenda(p)); 
+                        
                     }
                 }
                 cadastroVenda.getListItensIngresso().setModel(model);

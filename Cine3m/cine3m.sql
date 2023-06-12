@@ -85,14 +85,6 @@ AFTER INSERT ON sala
 FOR EACH ROW
 EXECUTE FUNCTION criar_poltronas();
 
-CREATE TABLE IF NOT EXISTS item_venda (
-  id SERIAL PRIMARY KEY,
-  fk_poltrona int NOT NULL,
-  tipo_venda VARCHAR(45) NOT NULL,
-  CONSTRAINT fk_item_venda_poltrona1 FOREIGN KEY (fk_poltrona) REFERENCES poltrona (id)
-
-);
-
 CREATE TABLE IF NOT EXISTS sessao (
   id SERIAL PRIMARY KEY,
   fk_filme int NOT NULL,
@@ -100,6 +92,7 @@ CREATE TABLE IF NOT EXISTS sessao (
   identificador varchar(45) NOT NULL,
   data date NOT NULL,
   hora time NOT NULL,
+  valor double precision NOT NULL,
   hora_final time NOT NULL,
   del boolean NOT NULL DEFAULT false,
   CONSTRAINT fk_sessao_filme1 FOREIGN KEY (fk_filme) REFERENCES filme (id),
@@ -108,15 +101,25 @@ CREATE TABLE IF NOT EXISTS sessao (
 
 CREATE TABLE IF NOT EXISTS venda (
   id SERIAL PRIMARY KEY,
-  sessao_id int NOT NULL,
+  fk_sessao int NOT NULL,
   fk_cliente int NOT NULL,
   fk_funcionario int NOT NULL,
-  fk_item_venda int NOT NULL,
   cancelada boolean NOT NULL DEFAULT false,
   desconto boolean NOT NULL DEFAULT false,
+  valor_total double precision, 
   del boolean NOT NULL DEFAULT false,
-  CONSTRAINT fk_venda_sessao1 FOREIGN KEY (sessao_id) REFERENCES sessao (id),
+  CONSTRAINT fk_venda_sessao1 FOREIGN KEY (fk_sessao) REFERENCES sessao (id),
   CONSTRAINT fk_venda_cliente1 FOREIGN KEY (fk_cliente) REFERENCES cliente (fk_cliente),
-  CONSTRAINT fk_venda_funcionario1 FOREIGN KEY (fk_funcionario) REFERENCES funcionario (fk_funcionario),
-  CONSTRAINT fk_venda_item_venda1 FOREIGN KEY (fk_item_venda) REFERENCES item_venda (id)
+  CONSTRAINT fk_venda_funcionario1 FOREIGN KEY (fk_funcionario) REFERENCES funcionario (fk_funcionario)
 ); 
+
+CREATE TABLE IF NOT EXISTS item_venda (
+  id SERIAL PRIMARY KEY,
+  fk_poltrona int NOT NULL,
+  fk_venda int NOT NULL,
+  tipo_venda VARCHAR(45) NOT NULL,
+  valor double precision NOT NULL,
+  CONSTRAINT fk_item_venda_poltrona1 FOREIGN KEY (fk_poltrona) REFERENCES poltrona (id),
+  CONSTRAINT fk_item_venda_venda1 FOREIGN KEY (fk_venda) REFERENCES venda (id)
+
+);

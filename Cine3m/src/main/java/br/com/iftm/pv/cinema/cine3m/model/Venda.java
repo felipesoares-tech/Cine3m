@@ -5,15 +5,15 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Venda {
-
+    private Integer id;
     private Sessao sessao;
     private Cliente cliente;
     private Funcionario funcionario;
     private final String identificador;
     private Double valorFinal;
-    private List<ItemVenda> itensVenda;
     private boolean cancelada;
     private boolean desconto;
+    private boolean del;
 
     public Sessao getSessao() {
         return sessao;
@@ -31,6 +31,14 @@ public class Venda {
         this.cliente = cliente;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Double getValorFinal() {
         return valorFinal;
     }
@@ -39,29 +47,31 @@ public class Venda {
         this.valorFinal = valorFinal;
     }
 
-    public List<ItemVenda> getItensVenda() {
-        return itensVenda;
+    public boolean isDel() {
+        return del;
     }
 
-    public void setItensIngresso(List<ItemVenda> itensVenda) {
-        this.itensVenda = itensVenda;
+    public void setDel(boolean del) {
+        this.del = del;
     }
+
+
 
     /**
      *
      * @return retorna uma lista de poltronas que foram selecionadas na venda
      */
-    public List<Poltrona> consultaPoltronasVenda() {
-        Iterator<ItemVenda> it = getItensVenda().iterator();
-
-        List<Poltrona> listPoltronas = new ArrayList<>();
-
-        while (it.hasNext()) {
-            ItemVenda item = (ItemVenda) it.next();
-            listPoltronas.add(item.getPoltrona());
-        }
-        return listPoltronas;
-    }
+//    public List<Poltrona> consultaPoltronasVenda() {
+//        Iterator<ItemVenda> it = getItensVenda().iterator();
+//
+//        List<Poltrona> listPoltronas = new ArrayList<>();
+//
+//        while (it.hasNext()) {
+//            ItemVenda item = (ItemVenda) it.next();
+//            listPoltronas.add(item.getPoltrona());
+//        }
+//        return listPoltronas;
+//    }
 
     public boolean isCancelada() {
         return cancelada;
@@ -71,10 +81,9 @@ public class Venda {
         this.cancelada = cancelada;
     }
 
-    public Venda(Funcionario funcionario, Sessao sessao, Double valorFinal, List<ItemVenda> itensVenda) {
+    public Venda(Funcionario funcionario, Sessao sessao, Double valorFinal) {
         this.sessao = sessao;
         this.valorFinal = valorFinal;
-        this.itensVenda = itensVenda;
         this.funcionario = funcionario;
         this.identificador = "VENDA" + " - " + funcionario.getNome() + " - " + sessao.toString();
     }
@@ -87,13 +96,23 @@ public class Venda {
         this.funcionario = funcionario;
     }
 
-    public Venda(Funcionario funcionario, Sessao sessao, Cliente cliente, Double valorFinal, List<ItemVenda> itensVenda) {
+    public Venda(Funcionario funcionario, Sessao sessao, Cliente cliente, Double valorFinal) {
         this.sessao = sessao;
         this.cliente = cliente;
         this.valorFinal = valorFinal;
-        this.itensVenda = itensVenda;
         this.funcionario = funcionario;
         this.identificador = "VENDA" + " - " + funcionario.getNome() + " - " + sessao.toString();
+    }
+    
+    public Venda(Integer id,Funcionario funcionario, Sessao sessao, Cliente cliente, Double valorFinal, String identificador, boolean cancelada, boolean desconto, boolean del) {
+        this.sessao = sessao;
+        this.cliente = cliente;
+        this.valorFinal = valorFinal;
+        this.funcionario = funcionario;
+        this.identificador = identificador;
+        this.cancelada = cancelada;
+        this.desconto = desconto;
+        this.del = del;
     }
 
     public boolean hasDesconto() {

@@ -44,25 +44,25 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     }
 
     private void initComponentsPersonalizado() {
-        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaVenda);
-        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstVendas);
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstVendas);
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstVendas);
-            }
-        });
-
-        lstVendas.setCellRenderer(new CelulasPersonalizadasList());
+//        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaVenda);
+//        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
+//            @Override
+//            public void insertUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstVendas);
+//            }
+//
+//            @Override
+//            public void removeUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstVendas);
+//            }
+//
+//            @Override
+//            public void changedUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstVendas);
+//            }
+//        });
+//
+//        lstVendas.setCellRenderer(new CelulasPersonalizadasList());
     }
 
     public JList<Venda> getLstVendas() {

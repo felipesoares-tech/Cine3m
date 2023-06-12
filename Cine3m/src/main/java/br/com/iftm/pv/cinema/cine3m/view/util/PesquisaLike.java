@@ -31,7 +31,7 @@ public class PesquisaLike<T> {
                 } else if (item instanceof Funcionario) {
                     nomeItem = ((Funcionario) item).getNome();
                 } else if (item instanceof Sessao) {
-                    nomeItem = ((Sessao) item).getNome();
+                    nomeItem = ((Sessao) item).getIdentificador();
                 } else if (item instanceof Filme) {
                     nomeItem = ((Filme) item).getNome();
                 } else if (item instanceof Sala) {

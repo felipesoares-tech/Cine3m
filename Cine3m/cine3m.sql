@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS pessoa (
   id SERIAL PRIMARY KEY,
   nome varchar(45) NOT NULL,
-  del boolean NOT NULL DEFAULT false,
-  cpf varchar(11) NOT NULL
+  cpf varchar(11) NOT NULL,
+  del boolean NOT NULL DEFAULT false
 );  
 
 CREATE TABLE IF NOT EXISTS funcionario (
@@ -26,86 +26,100 @@ CREATE TABLE IF NOT EXISTS cliente (
     ON UPDATE NO ACTION
 );
 
-CREATE TABLE IF NOT EXISTS genero (
-  id SERIAL PRIMARY KEY,
-  tipo_genero varchar(45) NOT NULL
-);
-
-INSERT INTO genero VALUES (1,'COMEDIA'),(2,'TERROR'),(3,'ACAO'),(4,'FANTASIA'),(5,'DRAMA'),(6,'ROMANCE'),(7,'FICCAO'),(8,'ANIMACAO');
-
 CREATE TABLE IF NOT EXISTS filme (
   id SERIAL PRIMARY KEY,
-  fk_genero int NOT NULL,
+  tipo_genero VARCHAR(45) NOT NULL,
   nome varchar(45) NOT NULL,
-  del boolean NOT NULL DEFAULT false,
   descricao varchar(45) NOT NULL,
   diretor varchar(45) NOT NULL,
   duracao time NOT NULL,
-  CONSTRAINT fk_filme_genero1 FOREIGN KEY (fk_genero) REFERENCES genero (id)
+  del boolean NOT NULL DEFAULT false
 );
 
 CREATE TABLE IF NOT EXISTS sala (
   id SERIAL PRIMARY KEY,
-  del boolean NOT NULL DEFAULT false,
   nome varchar(45) NOT NULL,
-  capacidade int NOT NULL
+  capacidade int NOT NULL,
+  del boolean NOT NULL DEFAULT false
 );  
 
 CREATE TABLE IF NOT EXISTS poltrona (
   id SERIAL PRIMARY KEY,
+  fk_sala int NOT NULL,
   identificador varchar(45) NOT NULL,
   livre boolean NOT NULL,
-  CONSTRAINT identificador_UNIQUE UNIQUE (identificador)
-); 
-
-CREATE TABLE IF NOT EXISTS poltrona_has_sala (
-  poltrona_id int NOT NULL,
-  sala_id int NOT NULL,
-  PRIMARY KEY (poltrona_id, sala_id),
-  CONSTRAINT fk_poltrona_has_sala_poltrona1 FOREIGN KEY (poltrona_id) REFERENCES poltrona (id),
-  CONSTRAINT fk_poltrona_has_sala_sala1 FOREIGN KEY (sala_id) REFERENCES sala (id)
-); 
-
-CREATE TABLE IF NOT EXISTS tipo_venda (
-  id SERIAL PRIMARY KEY,
-  tipo varchar(45) NOT NULL
+  CONSTRAINT fk_poltrona_sala1 FOREIGN KEY (fk_sala) REFERENCES sala (id)
 );
 
-INSERT INTO tipo_venda VALUES (1,'MEIA'),(2,'INTEIRA');
+CREATE OR REPLACE FUNCTION criar_poltronas()
+    RETURNS TRIGGER AS
+$$
+DECLARE
+    num_filas INTEGER;
+    fila CHAR;
+    numero INTEGER;
+    identificador VARCHAR(10);
+BEGIN
+    num_filas := (NEW.capacidade + 9) / 10;
 
-CREATE TABLE IF NOT EXISTS item_venda (
-  id SERIAL PRIMARY KEY,
-  fk_tipo_venda int NOT NULL,
-  poltrona_has_sala_poltrona_id int NOT NULL,
-  poltrona_has_sala_sala_id int NOT NULL,
-  CONSTRAINT fk_item_venda_poltrona_has_sala1 FOREIGN KEY (poltrona_has_sala_poltrona_id, poltrona_has_sala_sala_id) REFERENCES poltrona_has_sala (poltrona_id, sala_id),
-  CONSTRAINT fk_item_venda_tipo_ingresso1 FOREIGN KEY (fk_tipo_venda) REFERENCES tipo_venda (id)
-);
+    FOR fila IN 0..(num_filas-1) LOOP
+        EXIT WHEN (SELECT COUNT(*) FROM poltrona WHERE fk_sala = NEW.id) >= NEW.capacidade;
+
+        FOR numero IN 1..10 LOOP
+            EXIT WHEN (SELECT COUNT(*) FROM poltrona WHERE fk_sala = NEW.id) >= NEW.capacidade;
+
+            identificador := chr(ASCII('A') + fila) || numero::VARCHAR;
+
+            INSERT INTO poltrona (fk_sala, identificador, livre)
+            VALUES (NEW.id, identificador,true);
+        END LOOP;
+    END LOOP;
+
+    RETURN NULL;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER inserir_poltronas
+AFTER INSERT ON sala
+FOR EACH ROW
+EXECUTE FUNCTION criar_poltronas();
 
 CREATE TABLE IF NOT EXISTS sessao (
   id SERIAL PRIMARY KEY,
   fk_filme int NOT NULL,
   fk_sala int NOT NULL,
-  del boolean NOT NULL DEFAULT false,
   identificador varchar(45) NOT NULL,
   data date NOT NULL,
   hora time NOT NULL,
+  valor double precision NOT NULL,
   hora_final time NOT NULL,
+  del boolean NOT NULL DEFAULT false,
   CONSTRAINT fk_sessao_filme1 FOREIGN KEY (fk_filme) REFERENCES filme (id),
   CONSTRAINT fk_sessao_sala1 FOREIGN KEY (fk_sala) REFERENCES sala (id)
 );  
 
 CREATE TABLE IF NOT EXISTS venda (
   id SERIAL PRIMARY KEY,
-  sessao_id int NOT NULL,
+  fk_sessao int NOT NULL,
   fk_cliente int NOT NULL,
   fk_funcionario int NOT NULL,
-  del boolean NOT NULL DEFAULT false,
-  fk_item_venda int NOT NULL,
   cancelada boolean NOT NULL DEFAULT false,
   desconto boolean NOT NULL DEFAULT false,
-  CONSTRAINT fk_venda_sessao1 FOREIGN KEY (sessao_id) REFERENCES sessao (id),
+  valor_total double precision, 
+  del boolean NOT NULL DEFAULT false,
+  CONSTRAINT fk_venda_sessao1 FOREIGN KEY (fk_sessao) REFERENCES sessao (id),
   CONSTRAINT fk_venda_cliente1 FOREIGN KEY (fk_cliente) REFERENCES cliente (fk_cliente),
-  CONSTRAINT fk_venda_funcionario1 FOREIGN KEY (fk_funcionario) REFERENCES funcionario (fk_funcionario),
-  CONSTRAINT fk_venda_item_venda1 FOREIGN KEY (fk_item_venda) REFERENCES item_venda (id)
+  CONSTRAINT fk_venda_funcionario1 FOREIGN KEY (fk_funcionario) REFERENCES funcionario (fk_funcionario)
 ); 
+
+CREATE TABLE IF NOT EXISTS item_venda (
+  id SERIAL PRIMARY KEY,
+  fk_poltrona int NOT NULL,
+  fk_venda int NOT NULL,
+  tipo_venda VARCHAR(45) NOT NULL,
+  valor double precision NOT NULL,
+  CONSTRAINT fk_item_venda_poltrona1 FOREIGN KEY (fk_poltrona) REFERENCES poltrona (id),
+  CONSTRAINT fk_item_venda_venda1 FOREIGN KEY (fk_venda) REFERENCES venda (id)
+
+);

@@ -1,5 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
+import br.com.iftm.pv.cinema.cine3m.dao.PoltronaDAO;
+import br.com.iftm.pv.cinema.cine3m.dao.SalaDAO;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
@@ -8,15 +10,17 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GerenciaSala implements IGerencia<Sala> {
-    private final List<Sala> salas;
+    private final PoltronaDAO poltronaDAO;
+    private final SalaDAO salaDAO;
 
-    public GerenciaSala(List<Sala> salas) {
-        this.salas = salas;
+    public GerenciaSala() {
+        this.poltronaDAO = new PoltronaDAO();
+        this.salaDAO = new SalaDAO();
     }
 
     private EnumValidacoes validarSala(Sala sala) {
         EnumValidacoes retornoValidacao;
-        if (salas.contains(sala)) {
+        if (salaDAO.consultarSalaNome(sala) != null) {
             retornoValidacao = EnumValidacoes.SALA_JA_CADASTRADA;
         } else {
             retornoValidacao = EnumValidacoes.SALA_SUCESSO;
@@ -33,9 +37,9 @@ public class GerenciaSala implements IGerencia<Sala> {
         }
         return retornoValidacao;
     }
-    
+
     private boolean existeSalaComNOME(Sala salaAtual, Sala salaAtualizada) {
-        Iterator<Sala> it = salas.iterator();
+        Iterator<Sala> it = salaDAO.listar().iterator();
         while (it.hasNext()) {
             Sala f = (Sala) it.next();
             if (!f.equals(salaAtual) && f.getNome().equals(salaAtualizada.getNome())) {
@@ -49,43 +53,51 @@ public class GerenciaSala implements IGerencia<Sala> {
     public EnumValidacoes cadastrar(Sala sala) {
         EnumValidacoes retornoValidacao = validarSala(sala);
         if (retornoValidacao.equals(EnumValidacoes.SALA_SUCESSO)) {
-            salas.add(sala);
+            salaDAO.incluir(sala);
         }
         return retornoValidacao;
     }
 
     @Override
     public Sala remover(Sala sala) {
-        return salas.remove(salas.indexOf(sala));
+       // return salas.remove(salas.indexOf(sala));
+       return null;
     }
 
     @Override
     public EnumValidacoes atualizar(Sala sala, Sala salaAtualizado) {
-        EnumValidacoes retornoValidacao = validarSala(sala,salaAtualizado);
+        EnumValidacoes retornoValidacao = validarSala(sala, salaAtualizado);
         if (retornoValidacao.equals(EnumValidacoes.SALA_SUCESSO)) {
-            salas.set(salas.indexOf(sala), salaAtualizado);
+            //salas.set(salas.indexOf(sala), salaAtualizado);
         }
         return retornoValidacao;
     }
 
     @Override
     public Sala consultar(Sala sala) {
-        return salas.get(salas.indexOf(sala));
+        return salaDAO.consultarSalaID(sala.getId());
     }
 
     @Override
     public List<Sala> relatorio() {
-        return this.salas;
+        return salaDAO.listar();
     }
 
     public Boolean ConsultaPoltronaDisponivel(Sala sala, Poltrona poltrona) {
-        int pos = sala.getPoltronas().indexOf(poltrona);
-        return consultar(sala).getPoltronas().get(pos).isLivre();
+        List<Poltrona> poltronas = poltronaDAO.listarPoltronasSala(sala);
+        int pos = poltronas.indexOf(poltrona);
+        return poltronas.get(pos).isLivre();
+    }
+    
+    public List<Poltrona> consultaPoltronaSala(Sala sala) {        
+        return null;
+                //poltronaDAO.consultarPoltronaSala(poltrona, sala)
     }
 
-    public void AtualizaPoltrona(Sala sala, Poltrona poltrona) {
-        int pos = sala.getPoltronas().indexOf(poltrona);
-        sala.getPoltronas().set(pos, poltrona);
+    public void atualizaPoltrona(Sala sala, Poltrona poltrona) {
+        List<Poltrona> poltronas = poltronaDAO.listarPoltronasSala(sala);
+        Poltrona p = poltronas.get(poltronas.indexOf(poltrona));
+        poltronaDAO.alterar(p, poltrona);
     }
 
 }

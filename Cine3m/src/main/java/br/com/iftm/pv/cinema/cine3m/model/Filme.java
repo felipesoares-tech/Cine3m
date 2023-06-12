@@ -11,6 +11,8 @@ public class Filme {
     private String descricao;
     private String diretor;
     private LocalTime duracao;
+    private Integer id;
+    private boolean del;
 
     public Filme(Genero genero, String nome, String descricao, String diretor, LocalTime duracao) {
         this.genero = genero;
@@ -20,12 +22,17 @@ public class Filme {
         this.duracao = duracao;
     }
 
-    public Filme(String nome) {
+    public Filme(Genero genero, String nome, String descricao, String diretor, LocalTime duracao, Integer id, boolean del) {
+        this.genero = genero;
         this.nome = nome;
+        this.descricao = descricao;
+        this.diretor = diretor;
+        this.duracao = duracao;
+        this.id = id;
+        this.del = del;
     }
-
-    public Filme() {
-
+    
+    public Filme(){
     }
 
     @Override
@@ -38,6 +45,14 @@ public class Filme {
         int hash = 7;
         hash = 59 * hash + Objects.hashCode(this.nome);
         return hash;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
@@ -67,6 +82,14 @@ public class Filme {
         return nome;
     }
 
+    public boolean isDel() {
+        return del;
+    }
+
+    public void setDel(boolean del) {
+        this.del = del;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -94,5 +117,5 @@ public class Filme {
     public void setDuracao(LocalTime duracao) {
         this.duracao = duracao;
     }
-    
+
 }

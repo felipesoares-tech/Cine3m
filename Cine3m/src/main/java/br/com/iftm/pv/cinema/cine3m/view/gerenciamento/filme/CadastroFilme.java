@@ -35,7 +35,7 @@ public class CadastroFilme extends ModalInternalFrame {
         initComponents();
         this.gerenciaFilme = gerenciaFilme;
         this.operacoesFilme = operacoesFilme;
-
+        
     }
 
     public Filme getFilmeSelecionado() {

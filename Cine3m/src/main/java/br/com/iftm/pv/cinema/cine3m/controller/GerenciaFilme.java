@@ -1,5 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
+import br.com.iftm.pv.cinema.cine3m.dao.FilmeDAO;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
@@ -7,16 +8,15 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GerenciaFilme implements IGerencia<Filme> {
+    private final FilmeDAO filmeDAO;
 
-    private final List<Filme> filmes;
-
-    public GerenciaFilme(List<Filme> filmes) {
-        this.filmes = filmes;
+    public GerenciaFilme() {
+        filmeDAO = new FilmeDAO();
     }
 
     private EnumValidacoes validarFilme(Filme filme) {
         EnumValidacoes retornoValidacao;
-        if (filmes.contains(filme)) {
+        if (filmeDAO.consultarFilmeNome(filme) != null) {
             retornoValidacao = EnumValidacoes.FILME_JA_CADASTRADO;
         } else {
             retornoValidacao = EnumValidacoes.FILME_SUCESSO;
@@ -35,7 +35,7 @@ public class GerenciaFilme implements IGerencia<Filme> {
     }
 
     private boolean existeFilmeComNOME(Filme filmeAtual, Filme filmeAtualizado) {
-        Iterator<Filme> it = filmes.iterator();
+        Iterator<Filme> it = filmeDAO.listar().iterator();
         while (it.hasNext()) {
             Filme f = (Filme) it.next();
             if (!f.equals(filmeAtual) && f.getNome().equals(filmeAtualizado.getNome())) {
@@ -49,34 +49,34 @@ public class GerenciaFilme implements IGerencia<Filme> {
     public EnumValidacoes cadastrar(Filme filme) {
         EnumValidacoes retornoValidacao = validarFilme(filme);
         if (retornoValidacao.equals(EnumValidacoes.FILME_SUCESSO)) {
-            filmes.add(filme);
-            System.out.println("filme adicionado testeeee");
+            filmeDAO.incluir(filme);
         }
         return retornoValidacao;
     }
 
     @Override
     public Filme remover(Filme filme) {
-        return filmes.remove(filmes.indexOf(filme));
+        filmeDAO.apagar(filme.getId());
+        return null;
     }
 
     @Override
     public EnumValidacoes atualizar(Filme filme, Filme filmeAtualizado) {
         EnumValidacoes retornoValidacao = validarFilme(filme,filmeAtualizado);
         if (retornoValidacao.equals(EnumValidacoes.FILME_SUCESSO)) {
-            filmes.set(filmes.indexOf(filme), filmeAtualizado);
+            filmeDAO.alterar(filme.getId(), filmeAtualizado);            
         }
         return retornoValidacao;
     }
 
     @Override
-    public Filme consultar(Filme filme) {
-        return filmes.get(filmes.indexOf(filme));
+    public Filme consultar(Filme filme) {        
+        return filmeDAO.consultarFilmeID(filme.getId());
     }
 
     @Override
     public List<Filme> relatorio() {
-        return this.filmes;
+        return filmeDAO.listar();
     }
 
 }

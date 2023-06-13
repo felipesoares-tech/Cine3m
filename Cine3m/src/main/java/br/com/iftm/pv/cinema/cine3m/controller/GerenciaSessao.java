@@ -109,22 +109,24 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         }
         return retornoValidacao;
     }
-
-    @Override
+    
+     @Override
     public Sessao consultar(Sessao sessao) {
-        return sessaoDAO.consultarSessaoID(sessao.getId());                
+        return sessaoDAO.consultarSessaoDataHoraSala(sessao);
+    }
+
+    public Sessao consultar(Integer sessaoID) {
+        return sessaoDAO.consultarSessaoID(sessaoID);                
     }
 
     public Boolean poltronaDisponivel(Sessao sessao, Poltrona poltrona) {
-        return gerenciaSala.ConsultaPoltronaDisponivel(sessao.getSala(), poltrona);
-    }
-
-    public void atualizaPoltronaSessao(Sessao sessao, Poltrona poltrona) {
-        gerenciaSala.atualizaPoltrona(sessao.getSala(), poltrona);
+        return gerenciaSala.consultaPoltronaDisponivel(poltrona);
     }
 
     @Override
     public List<Sessao> relatorio() {
         return sessaoDAO.listar();
     }
+
+   
 }

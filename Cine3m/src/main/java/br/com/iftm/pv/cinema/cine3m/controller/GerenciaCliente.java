@@ -18,7 +18,7 @@ public class GerenciaCliente implements IGerencia<Cliente> {
 
     private EnumValidacoes validarCliente(Cliente cliente) {
         EnumValidacoes retornoValidacao;
-        if (clienteDAO.consultar(cliente) != null) {
+        if (clienteDAO.consultarClienteCpf(cliente) != null) {
             retornoValidacao = EnumValidacoes.CLIENTE_CPF_JA_CADASTRADO;
         } else if (!ValidadorCPF.isCPF(cliente.getCpf())) {
             retornoValidacao = EnumValidacoes.CLIENTE_CPF_INVALIDO;
@@ -78,7 +78,11 @@ public class GerenciaCliente implements IGerencia<Cliente> {
 
     @Override
     public Cliente consultar(Cliente cliente) {
-        return clienteDAO.consultar(cliente);
+        return clienteDAO.consultarClienteCpf(cliente);
+    }
+    
+    public Cliente consultar(Integer clienteID) {
+        return clienteDAO.consultarClienteID(clienteID); 
     }
 
     @Override

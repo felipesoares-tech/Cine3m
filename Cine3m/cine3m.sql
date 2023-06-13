@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS sala (
 CREATE TABLE IF NOT EXISTS poltrona (
   id SERIAL PRIMARY KEY,
   fk_sala int NOT NULL,
-  identificador varchar(45) NOT NULL,
+  identificador varchar(100) NOT NULL,
   livre boolean NOT NULL,
   CONSTRAINT fk_poltrona_sala1 FOREIGN KEY (fk_sala) REFERENCES sala (id)
 );
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS sessao (
   id SERIAL PRIMARY KEY,
   fk_filme int NOT NULL,
   fk_sala int NOT NULL,
-  identificador varchar(45) NOT NULL,
+  identificador varchar(100) NOT NULL,
   data date NOT NULL,
   hora time NOT NULL,
   valor double precision NOT NULL,
@@ -104,6 +104,7 @@ CREATE TABLE IF NOT EXISTS venda (
   fk_sessao int NOT NULL,
   fk_cliente int NOT NULL,
   fk_funcionario int NOT NULL,
+  identificador varchar(100) NOT NULL,
   cancelada boolean NOT NULL DEFAULT false,
   desconto boolean NOT NULL DEFAULT false,
   valor_total double precision, 

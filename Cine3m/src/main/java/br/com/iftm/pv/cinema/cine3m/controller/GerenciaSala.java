@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GerenciaSala implements IGerencia<Sala> {
+
     private final PoltronaDAO poltronaDAO;
     private final SalaDAO salaDAO;
 
@@ -60,8 +61,8 @@ public class GerenciaSala implements IGerencia<Sala> {
 
     @Override
     public Sala remover(Sala sala) {
-       // return salas.remove(salas.indexOf(sala));
-       return null;
+        // return salas.remove(salas.indexOf(sala));
+        return null;
     }
 
     @Override
@@ -83,21 +84,17 @@ public class GerenciaSala implements IGerencia<Sala> {
         return salaDAO.listar();
     }
 
-    public Boolean ConsultaPoltronaDisponivel(Sala sala, Poltrona poltrona) {
-        List<Poltrona> poltronas = poltronaDAO.listarPoltronasSala(sala);
-        int pos = poltronas.indexOf(poltrona);
-        return poltronas.get(pos).isLivre();
-    }
-    
-    public List<Poltrona> consultaPoltronaSala(Sala sala) {        
-        return null;
-                //poltronaDAO.consultarPoltronaSala(poltrona, sala)
+    public Boolean consultaPoltronaDisponivel(Poltrona poltrona) {        
+        return  poltronaDAO.consultaPoltronaPorID(poltrona.getId()).isLivre();
     }
 
-    public void atualizaPoltrona(Sala sala, Poltrona poltrona) {
-        List<Poltrona> poltronas = poltronaDAO.listarPoltronasSala(sala);
-        Poltrona p = poltronas.get(poltronas.indexOf(poltrona));
-        poltronaDAO.alterar(p, poltrona);
+    public Poltrona consultaPoltrona(Poltrona poltrona) {
+        return poltronaDAO.consultaPoltronaPorID(poltrona.getId());
+    }
+
+    public void atualizaEstadoPoltrona(Poltrona poltrona, boolean estado) {        
+        poltrona.setLivre(estado);
+        poltronaDAO.alterar(poltrona);
     }
 
 }

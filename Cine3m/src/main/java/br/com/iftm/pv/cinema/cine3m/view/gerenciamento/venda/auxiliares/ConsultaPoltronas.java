@@ -1,7 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
 import br.com.iftm.pv.cinema.cine3m.config.ParametrosSistema;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.dao.PoltronaDAO;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
@@ -29,10 +29,10 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
     private final JButton btnConfirmar;
     private final PoltronaDAO poltronaDAO;
 
-    public ConsultaPoltronas(CadastroVenda cadastroVenda, GerenciaSessao gerenciaSessao, Sessao sessaoSelecionada) {
+    public ConsultaPoltronas(CadastroVenda cadastroVenda, GerenciaSala gerenciaSala, Sessao sessaoSelecionada) {
         this.listBotoes = new ArrayList<>();
         this.btnConfirmar = null;
-        this.poltronaDAO = new PoltronaDAO();
+        this.poltronaDAO = new PoltronaDAO(gerenciaSala);
 
         initComponents();
         initComponentsPersonalizado(sessaoSelecionada, btnConfirmar, cadastroVenda, this);
@@ -78,7 +78,7 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
                 while (it.hasNext()) {
                     JButton btn = it.next();
                     if (btn.getBackground().equals(Color.getHSBColor(0.4036159f, 0.95801526f, 0.6392157f))) {
-                        Poltrona p = poltronaDAO.consultaPoltronaIdentificadorSala(new Poltrona(btn.getText()), sessaoSelecionada.getSala());
+                        Poltrona p = poltronaDAO.consultaPoltronaIdentificador(new Poltrona(btn.getText()), sessaoSelecionada.getSala());
                         model.addElement(new ItemVenda(p)); 
                         
                     }

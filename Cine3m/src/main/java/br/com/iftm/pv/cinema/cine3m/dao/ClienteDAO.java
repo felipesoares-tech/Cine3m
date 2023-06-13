@@ -121,8 +121,34 @@ public class ClienteDAO {
 
         return clientes;
     }
+    
+    
+    public Cliente consultarClienteID(Integer clienteID) {
+        PreparedStatement ps;
+        ResultSet rs;
+        Cliente clienteRet = null;
 
-    public Cliente consultar(Cliente cliente) {
+        String sql = "SELECT * FROM pessoa WHERE id = ? and del = false";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, clienteID);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+               clienteRet = new Cliente(rs.getString("nome"), rs.getString("cpf"));
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return clienteRet;
+    }
+    
+
+    public Cliente consultarClienteCpf(Cliente cliente) {
         PreparedStatement ps;
         ResultSet rs;
         Cliente clienteRet = null;

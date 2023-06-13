@@ -1,5 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.dao;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import java.sql.Connection;
@@ -15,9 +16,21 @@ public class PoltronaDAO {
 
     private Connection conn = null;
     private SalaDAO salaDAO;
+    private GerenciaSala gerenciaSala;
 
     public PoltronaDAO() {
-        this.salaDAO = new SalaDAO();
+        salaDAO = new SalaDAO();
+        
+        try {
+            conn = Conexao.getConexao();
+        } catch (SQLException ex) {
+            Logger.getLogger(PoltronaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public PoltronaDAO(GerenciaSala gerenciaSala) {
+        salaDAO = new SalaDAO();
+        this.gerenciaSala = gerenciaSala;
         
         try {
             conn = Conexao.getConexao();
@@ -79,15 +92,11 @@ public class PoltronaDAO {
     }
     
 
-    public Poltrona consultaPoltronaIdentificadorSala(Poltrona poltrona, Sala sala) {
+    public Poltrona consultaPoltronaIdentificador(Poltrona poltrona, Sala sala) {
         PreparedStatement ps;
         ResultSet rs;
         Poltrona poltronaRet = null;
 
-        //Poltrona polT = poltrona;
-        //Sala salaT = sala;
-
-        System.out.println("xx");
 
         String sql = "SELECT * FROM poltrona WHERE identificador = ? and fk_sala = ?";
 
@@ -107,27 +116,6 @@ public class PoltronaDAO {
             System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
         }
         return poltronaRet;
-    }
-
-    public boolean alterar(Poltrona poltrona, Poltrona poltronaAtualizada) {
-        String sql;
-        PreparedStatement ps;
-        sql = "UPDATE poltrona SET livre = ?  WHERE id = ?";
-
-        try {
-            ps = conn.prepareStatement(sql);
-            ps.setBoolean(1, poltronaAtualizada.isLivre());
-            ps.setInt(2, poltrona.getId());
-
-            ps.execute();
-            ps.close();
-
-            return true;
-        } catch (SQLException e) {
-            System.err.println("Erro na operação de alteração do SGDB: " + e.getMessage());
-
-            return false;
-        }
     }
     
     public boolean alterar(Poltrona poltrona) {

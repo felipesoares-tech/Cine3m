@@ -1,29 +1,18 @@
-CREATE TABLE IF NOT EXISTS pessoa (
+CREATE TABLE IF NOT EXISTS funcionario (
   id SERIAL PRIMARY KEY,
   nome varchar(45) NOT NULL,
   cpf varchar(11) NOT NULL,
-  del boolean NOT NULL DEFAULT false
-);  
-
-CREATE TABLE IF NOT EXISTS funcionario (
-  fk_funcionario SERIAL PRIMARY KEY,
   login VARCHAR(45) NOT NULL,
   senha VARCHAR(45) NOT NULL,
-  CONSTRAINT fk_table1_pessoa
-    FOREIGN KEY (fk_funcionario)
-    REFERENCES pessoa (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+  del boolean NOT NULL DEFAULT false
 );
 
 CREATE TABLE IF NOT EXISTS cliente (
-  fk_cliente SERIAL PRIMARY KEY,
-  filmes_assistidos INT NULL,
-  CONSTRAINT fk_cliente_pessoa1
-    FOREIGN KEY (fk_cliente)
-    REFERENCES pessoa (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+  id SERIAL PRIMARY KEY,
+  nome varchar(45) NOT NULL,
+  cpf varchar(11) NOT NULL,
+  filmes_assistidos INT NOT NULL DEFAULT 0,
+  del boolean NOT NULL DEFAULT false
 );
 
 CREATE TABLE IF NOT EXISTS filme (
@@ -56,11 +45,9 @@ CREATE OR REPLACE FUNCTION criar_poltronas()
 $$
 DECLARE
     num_filas INTEGER;
-    fila CHAR;
-    numero INTEGER;
     identificador VARCHAR(10);
 BEGIN
-    num_filas := (NEW.capacidade + 9) / 10;
+    num_filas := CEIL(NEW.capacidade / 10.0);
 
     FOR fila IN 0..(num_filas-1) LOOP
         EXIT WHEN (SELECT COUNT(*) FROM poltrona WHERE fk_sala = NEW.id) >= NEW.capacidade;
@@ -68,10 +55,10 @@ BEGIN
         FOR numero IN 1..10 LOOP
             EXIT WHEN (SELECT COUNT(*) FROM poltrona WHERE fk_sala = NEW.id) >= NEW.capacidade;
 
-            identificador := chr(ASCII('A') + fila) || numero::VARCHAR;
+            identificador := chr(ASCII('A') + fila) || numero;
 
             INSERT INTO poltrona (fk_sala, identificador, livre)
-            VALUES (NEW.id, identificador,true);
+            VALUES (NEW.id, identificador, true);
         END LOOP;
     END LOOP;
 
@@ -110,8 +97,8 @@ CREATE TABLE IF NOT EXISTS venda (
   valor_total double precision, 
   del boolean NOT NULL DEFAULT false,
   CONSTRAINT fk_venda_sessao1 FOREIGN KEY (fk_sessao) REFERENCES sessao (id),
-  CONSTRAINT fk_venda_cliente1 FOREIGN KEY (fk_cliente) REFERENCES cliente (fk_cliente),
-  CONSTRAINT fk_venda_funcionario1 FOREIGN KEY (fk_funcionario) REFERENCES funcionario (fk_funcionario)
+  CONSTRAINT fk_venda_cliente1 FOREIGN KEY (fk_cliente) REFERENCES cliente (id),
+  CONSTRAINT fk_venda_funcionario1 FOREIGN KEY (fk_funcionario) REFERENCES funcionario (id)
 ); 
 
 CREATE TABLE IF NOT EXISTS item_venda (
@@ -122,5 +109,4 @@ CREATE TABLE IF NOT EXISTS item_venda (
   valor double precision NOT NULL,
   CONSTRAINT fk_item_venda_poltrona1 FOREIGN KEY (fk_poltrona) REFERENCES poltrona (id),
   CONSTRAINT fk_item_venda_venda1 FOREIGN KEY (fk_venda) REFERENCES venda (id)
-
 );

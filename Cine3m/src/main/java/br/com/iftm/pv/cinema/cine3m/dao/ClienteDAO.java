@@ -110,7 +110,7 @@ public class ClienteDAO {
             clientes = new ArrayList<>();
 
             while (rs.next()) {
-                clientes.add(new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getInt("filmes_assistidos"),rs.getBoolean("del")));
+                clientes.add(new Cliente(rs.getInt("id"),rs.getString("nome"), rs.getString("cpf"),rs.getBoolean("del"),rs.getInt("filmes_assistidos")));
             }
 
             rs.close();
@@ -127,8 +127,8 @@ public class ClienteDAO {
         PreparedStatement ps;
         ResultSet rs;
         Cliente clienteRet = null;
-
-        String sql = "SELECT * FROM pessoa WHERE id = ? and del = false";
+        
+        String sql = "SELECT * FROM pessoa p JOIN CLIENTE c on p.id = c.fk_cliente WHERE p.id = ? and del = false";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -136,7 +136,7 @@ public class ClienteDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-               clienteRet = new Cliente(rs.getString("nome"), rs.getString("cpf"));
+               clienteRet = new Cliente(rs.getInt("id"),rs.getString("nome"), rs.getString("cpf"),rs.getBoolean("del"),rs.getInt("filmes_assistidos"));
             }
             rs.close();
             ps.close();

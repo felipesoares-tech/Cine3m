@@ -10,7 +10,7 @@ public class Cliente extends Pessoa {
         this.qtdFilmesAssistidos = 0;
     }
     
-    public Cliente(Integer id,String nome, String cpf, Integer qtdFilmesAssistidos, boolean del) {
+    public Cliente(Integer id,String nome, String cpf, boolean del,Integer qtdFilmesAssistidos) {
         this.setId(id);
         this.setNome(nome);
         this.setCpf(cpf);

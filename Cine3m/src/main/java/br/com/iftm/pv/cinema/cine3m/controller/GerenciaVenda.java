@@ -19,7 +19,7 @@ public class GerenciaVenda{
     private final ItemVendaDAO itemVendaDAO;
 
     public GerenciaVenda(GerenciaCliente gerenciaCliente, GerenciaSessao gerenciaSessao) {
-        this.vendaDAO = new VendaDAO();
+        this.vendaDAO = new VendaDAO(gerenciaCliente,gerenciaSessao);
         this.itemVendaDAO = new ItemVendaDAO();
         this.gerenciaCliente = gerenciaCliente;
         this.gerenciaSessao = gerenciaSessao;

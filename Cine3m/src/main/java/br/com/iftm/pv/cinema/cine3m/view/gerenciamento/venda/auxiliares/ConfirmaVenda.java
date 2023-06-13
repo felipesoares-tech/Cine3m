@@ -1,5 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.dao.ItemVendaDAO;
@@ -32,25 +33,21 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
     private Double valorTotal;
     private final Double valorSessao;
     private final JList<ItemVenda> listItensIngresso;
-    private final GerenciaSessao gerenciaSessao;
     private final Sessao sessaoSelecionada;
     private final VincularCliente vincularCliente;
-    private final ConsultaPoltronas consultaPoltronas;
     private final CadastroVenda cadastroVenda;
     private final GerenciaVenda gerenciaVenda;
+    private final GerenciaSala gerenciaSala;
     private final OperacoesVenda operacoesVenda;
     private Integer qtdInteira;
     private Integer qtdMeia;
-    private PoltronaDAO poltronaDAO;
-    private ItemVendaDAO itemVendaDAO;
 
-    public ConfirmaVenda(JList listItensIngresso, Sessao sessaoSelecionada, VincularCliente vincularCliente, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroVenda cadastroVenda, GerenciaVenda gerenciaVenda, OperacoesVenda operacoesVenda) {
+    public ConfirmaVenda(JList listItensIngresso, Sessao sessaoSelecionada, VincularCliente vincularCliente, ConsultaPoltronas consultaPoltronas, OperacoesVenda operacoesVenda) {
         this.listItensIngresso = listItensIngresso;
-        this.cadastroVenda = cadastroVenda;
-        this.consultaPoltronas = consultaPoltronas;
         this.operacoesVenda = operacoesVenda;
-        this.gerenciaVenda = gerenciaVenda;
-        this.gerenciaSessao = gerenciaSessao;
+        this.cadastroVenda = operacoesVenda.getCadastroVenda();
+        this.gerenciaVenda =  operacoesVenda.getGerenciaVenda();
+        this.gerenciaSala = operacoesVenda.getGerenciaSala();
         this.sessaoSelecionada = sessaoSelecionada;
         this.vincularCliente = vincularCliente;
         this.spinnerModelInteira = new SpinnerNumberModel(0, 0, listItensIngresso.getModel().getSize(), 1);
@@ -62,7 +59,6 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
         this.jsMeia.setModel(spinnerModelMeia);
         this.qtdInteira = (int) jsInteira.getValue();
         this.qtdMeia = (int) jsMeia.getValue();
-        poltronaDAO = new PoltronaDAO();
 
     }
 
@@ -177,7 +173,7 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
         DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) listItens.getModel();
 
         for (int i = 0; i < qtdMeia; i++) {
-            ItemVenda item = model.getElementAt(i);
+            ItemVenda item = model.getElementAt(i);       
             item.setValor(valorSessao / 2.0);            
             item.setTipoVenda(TipoVenda.MEIA);
             itensVenda.add(item);
@@ -197,10 +193,8 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
         for (int i = 0; i < qtdMaxItensIngresso; i++) {
             ItemVenda item = (ItemVenda) listItensIngresso.getModel().getElementAt(i);
-            Poltrona p = (Poltrona) item.getPoltrona();
-            p.setLivre(false);                                             
-        }
-        
+            gerenciaSala.atualizaEstadoPoltrona(item.getPoltrona(),false);            
+        }        
         Integer total = qtdMeia + qtdInteira;
         if (total.equals(qtdMaxItensIngresso)) {
             Venda venda;
@@ -239,11 +233,7 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
                 operacoesVenda.getBtnConsultar().setEnabled(true);
                 operacoesVenda.getBtnCancelar().setEnabled(true);
                 operacoesVenda.getLstVendas().setSelectedIndex(0);
-            }
-            
-            
-            
-            
+            }                       
         } else {
             JOptionPane.showMessageDialog(this, "Selecione a quantidade certa de ingressos!", "Erro", JOptionPane.ERROR_MESSAGE);
         }

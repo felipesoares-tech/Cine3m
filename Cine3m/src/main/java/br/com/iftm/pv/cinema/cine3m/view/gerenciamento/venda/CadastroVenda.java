@@ -1,6 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda;
 
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
@@ -26,12 +26,12 @@ public class CadastroVenda extends ModalInternalFrame {
 
     private ConsultaPoltronas consultaPoltronas;
     private ConfirmaVenda confirmaCompra;
-    private final GerenciaVenda gerenciaVenda;
     private final GerenciaSessao gerenciaSessao;
+    private final GerenciaSala gerenciaSala;
     private CadastroSessao cadastroSessao;
     private final CadastroCliente cadastroCliente;
     private final VincularCliente vincularCliente;
-    private OperacoesVenda operacoesVenda;
+    private final OperacoesVenda operacoesVenda;
     private Funcionario funcionario;
 
     public JTextField getTfClienteSelecionado() {
@@ -50,15 +50,15 @@ public class CadastroVenda extends ModalInternalFrame {
         this.funcionario = funcionario;
     }
 
-    public CadastroVenda(GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente, OperacoesVenda operacoesVenda) {
+    public CadastroVenda(GerenciaVenda gerenciaVenda, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente, OperacoesVenda operacoesVenda) {
         initComponents();
         this.btnContinuarCompra.setEnabled(false);
-        this.gerenciaVenda = gerenciaVenda;
-        this.gerenciaSessao = gerenciaSessao;
+        this.operacoesVenda = operacoesVenda;
+        this.gerenciaSessao = operacoesVenda.getGerenciaSessao();
+        this.gerenciaSala = operacoesVenda.getGerenciaSala();
         this.cadastroSessao = cadastroSessao;
         this.cadastroCliente = cadastroCliente;
-        this.operacoesVenda = operacoesVenda;
-        this.vincularCliente = new VincularCliente(gerenciaCliente, this);
+        this.vincularCliente = new VincularCliente(operacoesVenda.getGerenciaCliente(), this);
     }
 
     public ConsultaPoltronas getConsultaPoltronas() {
@@ -432,15 +432,15 @@ public class CadastroVenda extends ModalInternalFrame {
     private void btnSelecionarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarPoltronaActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
         if (this.consultaPoltronas == null) {
-            this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSessao, sessaoSelecionada);
+            this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSala, sessaoSelecionada);
         }
         getDesktopPane().add(consultaPoltronas);
         consultaPoltronas.setVisible(true);
     }//GEN-LAST:event_btnSelecionarPoltronaActionPerformed
 
     private void btnContinuarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarCompraActionPerformed
-        Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        this.confirmaCompra = new ConfirmaVenda(listItensIngresso, sessaoSelecionada, vincularCliente, gerenciaSessao, consultaPoltronas, this, gerenciaVenda, operacoesVenda);
+        Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();        
+        this.confirmaCompra = new ConfirmaVenda(listItensIngresso, sessaoSelecionada, vincularCliente, consultaPoltronas, operacoesVenda);
         getDesktopPane().add(confirmaCompra);
         this.confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed

@@ -1,5 +1,8 @@
 package br.com.iftm.pv.cinema.cine3m.dao;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import java.sql.Connection;
@@ -17,12 +20,14 @@ public class VendaDAO {
 
     private Connection conn = null;
     private ItemVendaDAO itemVendaDAO;
-//    private GerenciaSessao gerenciaSessao;
-//    private GerenciaCliente gerenciaCliente;
+    private GerenciaSessao gerenciaSessao;
+    private GerenciaCliente gerenciaCliente;
 //    private GerenciaFuncionario gerenciaFuncionario;
 
-    public VendaDAO() {
+    public VendaDAO(GerenciaCliente gerenciaCliente, GerenciaSessao gerenciaSessao) {
         itemVendaDAO = new ItemVendaDAO();
+        this.gerenciaCliente = gerenciaCliente;
+        this.gerenciaSessao = gerenciaSessao;
 
         try {
             conn = Conexao.getConexao();
@@ -35,17 +40,18 @@ public class VendaDAO {
         String sql;
         PreparedStatement ps;
 
-        sql = "INSERT INTO venda (fk_sessao,fk_cliente,fk_funcionario,desconto,valor_total) VALUES (?, ?, ?, ?, ?)";
+        sql = "INSERT INTO venda (fk_sessao,fk_cliente,fk_funcionario,desconto,identificador,valor_total) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, venda.getSessao().getId());
             Integer fk_cliente = venda.getCliente() != null ? venda.getCliente().getId() : 1;
-            
+
             ps.setInt(2, fk_cliente);
             ps.setInt(3, 2);
             ps.setBoolean(4, venda.hasDesconto());
-            ps.setDouble(5, venda.getValorFinal());
+            ps.setString(5, venda.getIdentificador());
+            ps.setDouble(6, venda.getValorFinal());
             ps.execute();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -82,7 +88,7 @@ public class VendaDAO {
             vendas = new ArrayList<>();
 
             while (rs.next()) {
-               // vendas.add(new Venda(Integer.SIZE, funcionario, sessao, cliente, Double.NaN, sql, true, true, true));
+                vendas.add(new Venda(rs.getInt("id"), new Funcionario("teste", "", "sxx", "123"), gerenciaSessao.consultar(rs.getInt("fk_sessao")), gerenciaCliente.consultar(rs.getInt("fk_cliente")), rs.getDouble("valor_total"), rs.getString("identificador"), rs.getBoolean("cancelada"), rs.getBoolean("desconto"), rs.getBoolean("del")));
             }
 
             rs.close();
@@ -90,9 +96,7 @@ public class VendaDAO {
         } catch (SQLException e) {
             System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
         }
-
-       // return salas;
-       return null;
+        return vendas;
     }
 
 }

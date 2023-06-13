@@ -77,10 +77,6 @@ public class GerenciaCliente implements IGerencia<Cliente> {
     }
 
     @Override
-    public Cliente consultar(Cliente cliente) {
-        return clienteDAO.consultarClienteCpf(cliente);
-    }
-    
     public Cliente consultar(Integer clienteID) {
         return clienteDAO.consultarClienteID(clienteID); 
     }

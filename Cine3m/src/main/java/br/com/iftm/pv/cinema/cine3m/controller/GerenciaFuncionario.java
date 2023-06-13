@@ -109,8 +109,9 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
         return retornoValidacao;
     }
 
-    public Funcionario consultar(Funcionario funcionario) {
-        return funcionarios.get(funcionarios.indexOf(funcionario));
+    public Funcionario consultar(Integer funcionarioID) {
+        //return funcionarios.get(funcionarios.indexOf(funcionario));
+        return null;
     }
 
     public List<Funcionario> relatorio() {

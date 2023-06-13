@@ -22,7 +22,7 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         EnumValidacoes retornoValidacao;
         if (sessaoDAO.consultarSessaoDataHoraSala(sessao) != null) { //O Contains, verifica somente oq está no Equals!
             retornoValidacao = EnumValidacoes.SESSAO_JA_CADASTRADA;
-        } else if (existeSessaoComHORARIO(sessao)) {
+        } else if (existeSessaoComHorario(sessao)) {
             retornoValidacao = EnumValidacoes.SESSAO_HORARIO_JA_UTILIZADO;
         } else {
             retornoValidacao = EnumValidacoes.SESSAO_SUCESSO;
@@ -34,7 +34,7 @@ public class GerenciaSessao implements IGerencia<Sessao> {
 
     private EnumValidacoes validarSessao(Sessao sessao, Sessao sessaoAtualizada) {
         EnumValidacoes retornoValidacao;
-        if (existeSessaoComHORARIO(sessao, sessaoAtualizada)) {
+        if (existeSessaoComHorario(sessao, sessaoAtualizada)) {
             retornoValidacao = EnumValidacoes.SESSAO_HORARIO_JA_UTILIZADO;
         } else {
             retornoValidacao = EnumValidacoes.SESSAO_SUCESSO;
@@ -42,7 +42,7 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         return retornoValidacao;
     }
 
-    private boolean existeSessaoComHORARIO(Sessao sessao, Sessao sessaoAtualizada) {
+    private boolean existeSessaoComHorario(Sessao sessao, Sessao sessaoAtualizada) {
         Iterator<Sessao> it = sessaoDAO.listar().iterator();
         while (it.hasNext()) {
             Sessao s = (Sessao) it.next();
@@ -64,7 +64,7 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         return false; //TODO: implementar, provavelmente igual a login em validacao de funcionario
     }
 
-    private boolean existeSessaoComHORARIO(Sessao sessao) {
+    private boolean existeSessaoComHorario(Sessao sessao) {
         Iterator<Sessao> it = sessaoDAO.listar().iterator();
         while (it.hasNext()) {
             Sessao s = (Sessao) it.next();
@@ -110,11 +110,7 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         return retornoValidacao;
     }
     
-     @Override
-    public Sessao consultar(Sessao sessao) {
-        return sessaoDAO.consultarSessaoDataHoraSala(sessao);
-    }
-
+    @Override
     public Sessao consultar(Integer sessaoID) {
         return sessaoDAO.consultarSessaoID(sessaoID);                
     }

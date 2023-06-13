@@ -26,7 +26,7 @@ public class GerenciaFilme implements IGerencia<Filme> {
 
     private EnumValidacoes validarFilme(Filme filme, Filme filmeAtualizado) {
         EnumValidacoes retornoValidacao;
-        if (existeFilmeComNOME(filme, filmeAtualizado)) {
+        if (existeFilmeComNome(filme, filmeAtualizado)) {
             retornoValidacao = EnumValidacoes.FILME_JA_CADASTRADO;
         } else {
             retornoValidacao = EnumValidacoes.FILME_SUCESSO;
@@ -34,7 +34,7 @@ public class GerenciaFilme implements IGerencia<Filme> {
         return retornoValidacao;
     }
 
-    private boolean existeFilmeComNOME(Filme filmeAtual, Filme filmeAtualizado) {
+    private boolean existeFilmeComNome(Filme filmeAtual, Filme filmeAtualizado) {
         Iterator<Filme> it = filmeDAO.listar().iterator();
         while (it.hasNext()) {
             Filme f = (Filme) it.next();
@@ -70,8 +70,8 @@ public class GerenciaFilme implements IGerencia<Filme> {
     }
 
     @Override
-    public Filme consultar(Filme filme) {        
-        return filmeDAO.consultarFilmeID(filme.getId());
+    public Filme consultar(Integer filmeID) {        
+        return filmeDAO.consultarFilmeID(filmeID);
     }
 
     @Override

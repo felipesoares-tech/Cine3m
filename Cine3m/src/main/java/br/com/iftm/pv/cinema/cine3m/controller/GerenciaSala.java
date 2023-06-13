@@ -31,7 +31,7 @@ public class GerenciaSala implements IGerencia<Sala> {
 
     private EnumValidacoes validarSala(Sala sala, Sala salaAtualizado) {
         EnumValidacoes retornoValidacao;
-        if (existeSalaComNOME(sala, salaAtualizado)) {
+        if (existeSalaComNome(sala, salaAtualizado)) {
             retornoValidacao = EnumValidacoes.SALA_JA_CADASTRADA;
         } else {
             retornoValidacao = EnumValidacoes.SALA_SUCESSO;
@@ -39,7 +39,7 @@ public class GerenciaSala implements IGerencia<Sala> {
         return retornoValidacao;
     }
 
-    private boolean existeSalaComNOME(Sala salaAtual, Sala salaAtualizada) {
+    private boolean existeSalaComNome(Sala salaAtual, Sala salaAtualizada) {
         Iterator<Sala> it = salaDAO.listar().iterator();
         while (it.hasNext()) {
             Sala f = (Sala) it.next();
@@ -75,8 +75,8 @@ public class GerenciaSala implements IGerencia<Sala> {
     }
 
     @Override
-    public Sala consultar(Sala sala) {
-        return salaDAO.consultarSalaID(sala.getId());
+    public Sala consultar(Integer salaID) {
+        return salaDAO.consultarSalaID(salaID);
     }
 
     @Override

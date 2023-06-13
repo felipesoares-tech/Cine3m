@@ -33,7 +33,7 @@ public class GerenciaVenda{
         Cliente clienteVenda = venda.getCliente();
         if (clienteVenda != null) {
             clienteVenda.setQtdFilmesAssistidos(clienteVenda.getQtdFilmesAssistidos() + 1);
-            Cliente clienteAntigo = gerenciaCliente.consultar(clienteVenda);
+            Cliente clienteAntigo = gerenciaCliente.consultar(clienteVenda.getId());
             if (clienteVenda.getQtdFilmesAssistidos() == 3) {
                 venda.setValorFinal(aplicarPromocaoVenda(venda.getValorFinal()));
                 venda.setDesconto(true);

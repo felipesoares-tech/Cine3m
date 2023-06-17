@@ -48,7 +48,7 @@ public class VendaDAO {
             Integer fk_cliente = venda.getCliente() != null ? venda.getCliente().getId() : 1;
 
             ps.setInt(2, fk_cliente);
-            ps.setInt(3, 2);
+            ps.setInt(3, 1);
             ps.setBoolean(4, venda.hasDesconto());
             ps.setString(5, venda.getIdentificador());
             ps.setDouble(6, venda.getValorFinal());

@@ -38,10 +38,6 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         return retornoValidacao;
     }
     
-    public boolean filmeVinculado(Integer filmeID){
-       return sessaoDAO.consultarFilmeSessao(filmeID);
-    }
-
     private boolean existeSessaoComHorario(Sessao sessao, Sessao sessaoAtualizada) {
         Iterator<Sessao> it = sessaoDAO.listar().iterator();
         while (it.hasNext()) {
@@ -96,8 +92,8 @@ public class GerenciaSessao implements IGerencia<Sessao> {
 
     @Override
     public EnumValidacoes remover(Sessao sessao) {
+        sessaoDAO.apagar(sessao.getId());
         return null;
-        //return sessoes.remove(sessoes.indexOf(sessao));
     }
 
     @Override

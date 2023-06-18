@@ -2,7 +2,6 @@ package br.com.iftm.pv.cinema.cine3m.dao;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
-import br.com.iftm.pv.cinema.cine3m.enums.Genero;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
@@ -12,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -85,27 +83,26 @@ public class SessaoDAO {
         return sessaoRet;
     }
 
-    public boolean consultarFilmeSessao(Integer filmeID) {
+    public boolean apagar(Integer sessaoID) {
+        String sql;
         PreparedStatement ps;
-        ResultSet rs;
 
-        String sql = "SELECT * FROM sessao WHERE fk_filme = ?";
+        sql = "UPDATE sessao set del = true WHERE id = ?";
 
         try {
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, filmeID);
-            rs = ps.executeQuery();
 
-            if (rs.next()) {
-                return true;
-            }
-            rs.close();
+            ps.setInt(1, sessaoID);
+
+            ps.execute();
             ps.close();
 
+            return true;
         } catch (SQLException e) {
-            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+            System.err.println("Erro na operação de apagar do SGDB: " + e.getMessage());
+
+            return false;
         }
-        return false;
     }
 
     public List<Sessao> listar() {

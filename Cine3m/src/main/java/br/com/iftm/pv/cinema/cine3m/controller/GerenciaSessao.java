@@ -13,8 +13,8 @@ public class GerenciaSessao implements IGerencia<Sessao> {
     private final SessaoDAO sessaoDAO;
     private final GerenciaSala gerenciaSala;
 
-    public GerenciaSessao(GerenciaSala gerenciaSala) {
-        this.sessaoDAO = new SessaoDAO();
+    public GerenciaSessao(GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme) {
+        this.sessaoDAO = new SessaoDAO(gerenciaFilme, gerenciaSala);
         this.gerenciaSala = gerenciaSala;    
     }
 

@@ -72,7 +72,7 @@ public class GerenciaSala implements IGerencia<Sala> {
     public EnumValidacoes atualizar(Sala sala, Sala salaAtualizado) {
         EnumValidacoes retornoValidacao = validarSala(sala, salaAtualizado);
         if (retornoValidacao.equals(EnumValidacoes.SALA_SUCESSO)) {
-            //salas.set(salas.indexOf(sala), salaAtualizado);
+            salaDAO.alterar(sala.getId(), salaAtualizado);
         }
         return retornoValidacao;
     }

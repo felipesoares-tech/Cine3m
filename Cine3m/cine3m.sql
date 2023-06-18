@@ -46,6 +46,8 @@ DECLARE
     num_filas INTEGER;
     identificador VARCHAR(10);
 BEGIN
+    DELETE FROM poltrona WHERE fk_sala = OLD.id;
+
     num_filas := CEIL(NEW.capacidade / 10.0);
 
     FOR fila IN 0..(num_filas-1) LOOP
@@ -67,7 +69,7 @@ $$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER inserir_poltronas
-AFTER INSERT ON sala
+AFTER INSERT OR UPDATE ON sala
 FOR EACH ROW
 EXECUTE FUNCTION criar_poltronas();
 

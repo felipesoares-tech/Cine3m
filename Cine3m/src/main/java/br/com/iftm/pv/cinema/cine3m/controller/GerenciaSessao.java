@@ -1,27 +1,24 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
+import br.com.iftm.pv.cinema.cine3m.dao.SessaoDAO;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
-import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import java.util.Iterator;
 import java.util.List;
 
 public class GerenciaSessao implements IGerencia<Sessao> {
+    private final SessaoDAO sessaoDAO;
 
-    private final List<Sessao> sessoes;
-    private final GerenciaSala gerenciaSala;
-
-    public GerenciaSessao(List<Sessao> sessoes, GerenciaSala gerenciaSala) {
-        this.sessoes = sessoes;
-        this.gerenciaSala = gerenciaSala;
+    public GerenciaSessao(GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme) {
+        this.sessaoDAO = new SessaoDAO(gerenciaFilme, gerenciaSala);    
     }
-
+    
     private EnumValidacoes validarSessao(Sessao sessao) {
         EnumValidacoes retornoValidacao;
-        if (sessoes.contains(sessao)) { //O Contains, verifica somente oq está no Equals!
+        if (sessaoDAO.consultarSessaoDataHoraSala(sessao) != null) { //O Contains, verifica somente oq está no Equals!
             retornoValidacao = EnumValidacoes.SESSAO_JA_CADASTRADA;
-        } else if (existeSessaoComHORARIO(sessao)) {
+        } else if (existeSessaoComHorario(sessao)) {
             retornoValidacao = EnumValidacoes.SESSAO_HORARIO_JA_UTILIZADO;
         } else {
             retornoValidacao = EnumValidacoes.SESSAO_SUCESSO;
@@ -33,16 +30,16 @@ public class GerenciaSessao implements IGerencia<Sessao> {
 
     private EnumValidacoes validarSessao(Sessao sessao, Sessao sessaoAtualizada) {
         EnumValidacoes retornoValidacao;
-        if (existeSessaoComHORARIO(sessao, sessaoAtualizada)) {
+        if (existeSessaoComHorario(sessao, sessaoAtualizada)) {
             retornoValidacao = EnumValidacoes.SESSAO_HORARIO_JA_UTILIZADO;
         } else {
             retornoValidacao = EnumValidacoes.SESSAO_SUCESSO;
         }
         return retornoValidacao;
     }
-
-    private boolean existeSessaoComHORARIO(Sessao sessao, Sessao sessaoAtualizada) {
-        Iterator<Sessao> it = sessoes.iterator();
+    
+    private boolean existeSessaoComHorario(Sessao sessao, Sessao sessaoAtualizada) {
+        Iterator<Sessao> it = sessaoDAO.listar().iterator();
         while (it.hasNext()) {
             Sessao s = (Sessao) it.next();
             if (!sessao.equals(s)) {
@@ -63,8 +60,8 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         return false; //TODO: implementar, provavelmente igual a login em validacao de funcionario
     }
 
-    private boolean existeSessaoComHORARIO(Sessao sessao) {
-        Iterator<Sessao> it = sessoes.iterator();
+    private boolean existeSessaoComHorario(Sessao sessao) {
+        Iterator<Sessao> it = sessaoDAO.listar().iterator();
         while (it.hasNext()) {
             Sessao s = (Sessao) it.next();
 
@@ -88,40 +85,36 @@ public class GerenciaSessao implements IGerencia<Sessao> {
     public EnumValidacoes cadastrar(Sessao sessao) {
         EnumValidacoes retornoValidacao = validarSessao(sessao);
         if (retornoValidacao.equals(EnumValidacoes.SESSAO_SUCESSO)) {
-            sessoes.add(sessao);
+            sessaoDAO.incluir(sessao);
         }
         return retornoValidacao;
     }
 
     @Override
-    public Sessao remover(Sessao sessao) {
-        return sessoes.remove(sessoes.indexOf(sessao));
+    public EnumValidacoes remover(Sessao sessao) {
+        sessaoDAO.apagar(sessao.getId());
+        return null;
     }
 
     @Override
     public EnumValidacoes atualizar(Sessao sessao, Sessao sessaoAtualizada) {
         EnumValidacoes retornoValidacao = validarSessao(sessao, sessaoAtualizada);
         if (retornoValidacao.equals(EnumValidacoes.SESSAO_SUCESSO)) {
-            sessoes.set(sessoes.indexOf(sessao), sessaoAtualizada);
+            //sessoes.set(sessoes.indexOf(sessao), sessaoAtualizada);
+            return null;
         }
         return retornoValidacao;
     }
-
+    
     @Override
-    public Sessao consultar(Sessao sessao) {
-        return sessoes.get(sessoes.indexOf(sessao));
-    }
-
-    public Boolean poltronaDisponivel(Sessao sessao, Poltrona poltrona) {
-        return gerenciaSala.ConsultaPoltronaDisponivel(sessao.getSala(), poltrona);
-    }
-
-    public void atualizaPoltronaSessao(Sessao sessao, Poltrona poltrona) {
-        gerenciaSala.AtualizaPoltrona(sessao.getSala(), poltrona);
+    public Sessao consultar(Integer sessaoID) {
+        return sessaoDAO.consultarSessaoID(sessaoID);                
     }
 
     @Override
     public List<Sessao> relatorio() {
-        return this.sessoes;
+        return sessaoDAO.listar();
     }
+
+   
 }

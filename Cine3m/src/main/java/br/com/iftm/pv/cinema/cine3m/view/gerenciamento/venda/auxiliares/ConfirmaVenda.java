@@ -1,14 +1,12 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
-import br.com.iftm.pv.cinema.cine3m.enums.TipoIngresso;
+import br.com.iftm.pv.cinema.cine3m.enums.TipoVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
-import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.OperacoesVenda;
@@ -19,8 +17,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
 
 public class ConfirmaVenda extends javax.swing.JInternalFrame {
 
@@ -30,23 +26,21 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
     private Double valorTotal;
     private final Double valorSessao;
     private final JList<ItemVenda> listItensIngresso;
-    private final GerenciaSessao gerenciaSessao;
     private final Sessao sessaoSelecionada;
     private final VincularCliente vincularCliente;
-    private final ConsultaPoltronas consultaPoltronas;
     private final CadastroVenda cadastroVenda;
     private final GerenciaVenda gerenciaVenda;
+    //private final GerenciaSala gerenciaSala;
     private final OperacoesVenda operacoesVenda;
     private Integer qtdInteira;
     private Integer qtdMeia;
 
-    public ConfirmaVenda(JList listItensIngresso, Sessao sessaoSelecionada, VincularCliente vincularCliente, GerenciaSessao gerenciaSessao, ConsultaPoltronas consultaPoltronas, CadastroVenda cadastroVenda, GerenciaVenda gerenciaVenda, OperacoesVenda operacoesVenda) {
+    public ConfirmaVenda(JList listItensIngresso, Sessao sessaoSelecionada, VincularCliente vincularCliente, ConsultaPoltronas consultaPoltronas, OperacoesVenda operacoesVenda) {
         this.listItensIngresso = listItensIngresso;
-        this.cadastroVenda = cadastroVenda;
-        this.consultaPoltronas = consultaPoltronas;
         this.operacoesVenda = operacoesVenda;
-        this.gerenciaVenda = gerenciaVenda;
-        this.gerenciaSessao = gerenciaSessao;
+        this.cadastroVenda = operacoesVenda.getCadastroVenda();
+        this.gerenciaVenda =  operacoesVenda.getGerenciaVenda();
+        //this.gerenciaSala = operacoesVenda.getGerenciaSala();
         this.sessaoSelecionada = sessaoSelecionada;
         this.vincularCliente = vincularCliente;
         this.spinnerModelInteira = new SpinnerNumberModel(0, 0, listItensIngresso.getModel().getSize(), 1);
@@ -172,16 +166,16 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
         DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) listItens.getModel();
 
         for (int i = 0; i < qtdMeia; i++) {
-            ItemVenda item = model.getElementAt(i);
-            item.setValor(valorSessao / 2.0);
-            item.setTipoIngresso(TipoIngresso.MEIA);
+            ItemVenda item = model.getElementAt(i);       
+            item.setValor(valorSessao / 2.0);            
+            item.setTipoVenda(TipoVenda.MEIA);
             itensVenda.add(item);
         }
 
         for (int i = qtdMeia; i < qtdMeia + qtdInteiras; i++) {
             ItemVenda item = model.getElementAt(i);
             item.setValor(valorSessao);
-            item.setTipoIngresso(TipoIngresso.INTEIRA);
+            item.setTipoVenda(TipoVenda.INTEIRA);
             itensVenda.add(item);
         }
 
@@ -190,26 +184,21 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
     }
 
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
-        for (int i = 0; i < qtdMaxItensIngresso; i++) {
-            ItemVenda item = (ItemVenda) listItensIngresso.getModel().getElementAt(i);
-            Poltrona p = (Poltrona) item.getPoltrona();
-            p.setLivre(false);
-            gerenciaSessao.atualizaPoltronaSessao(this.sessaoSelecionada, p);
-        }
+        Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
+        Funcionario funcionarioSelecionado = cadastroVenda.getFuncionario();
+                
         Integer total = qtdMeia + qtdInteira;
         if (total.equals(qtdMaxItensIngresso)) {
             Venda venda;
             List<ItemVenda> itensVenda = preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao);
             DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroVenda.getListItensIngresso().getModel();
-            Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
-            Funcionario funcionarioSelecionado = cadastroVenda.getFuncionario();
             if (clienteSelecionado != null) {
-                venda = new Venda(funcionarioSelecionado, sessaoSelecionada, clienteSelecionado, valorTotal, itensVenda);
+                venda = new Venda(funcionarioSelecionado, sessaoSelecionada, clienteSelecionado, valorTotal);
             } else {
-                venda = new Venda(funcionarioSelecionado, sessaoSelecionada, valorTotal, itensVenda);
+                venda = new Venda(funcionarioSelecionado, sessaoSelecionada, valorTotal);
             }
 
-            EnumValidacoes retorno = gerenciaVenda.cadastrar(venda);
+            EnumValidacoes retorno = gerenciaVenda.cadastrar(venda,itensVenda);
             switch (retorno) {
                 case VENDA_SUCESSO:
                     JOptionPane.showMessageDialog(this, "Venda realizada com sucesso ", "Cadastro Venda",
@@ -234,11 +223,7 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
                 operacoesVenda.getBtnConsultar().setEnabled(true);
                 operacoesVenda.getBtnCancelar().setEnabled(true);
                 operacoesVenda.getLstVendas().setSelectedIndex(0);
-            }
-            
-            
-            
-            
+            }                       
         } else {
             JOptionPane.showMessageDialog(this, "Selecione a quantidade certa de ingressos!", "Erro", JOptionPane.ERROR_MESSAGE);
         }

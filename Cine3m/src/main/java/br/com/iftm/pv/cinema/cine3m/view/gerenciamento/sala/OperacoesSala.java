@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
@@ -287,10 +288,14 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
                 "Apagar Sala", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-           gerenciaSala.remover(salaSelecionada);
-            lstSalasAncestorAdded(null);
+           if (gerenciaSala.remover(salaSelecionada).equals(EnumValidacoes.SALA_NAO_VINCULADA_SESSAO)) {
+                lstSalasAncestorAdded(null);
             JOptionPane.showMessageDialog(this,"Sala removida!",
                     "Remover", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Não foi possível deletar, sala já vinculada a uma sessão!",
+                        "Remover", JOptionPane.ERROR_MESSAGE);
+            }
 
         }
     }//GEN-LAST:event_btnExcluirActionPerformed

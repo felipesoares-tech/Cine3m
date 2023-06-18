@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,24 +25,16 @@ public class ClienteDAO {
     public boolean incluir(Cliente cliente) {
         String sql;
         PreparedStatement ps;
-
-        sql = "INSERT INTO pessoa (nome, cpf) VALUES (?, ?)";
+        sql = "INSERT INTO cliente (nome,cpf) VALUES (?, ?)";
 
         try {
-            ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps = conn.prepareStatement(sql);
             ps.setString(1, cliente.getNome());
             ps.setString(2, cliente.getCpf());
+
             ps.execute();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                String sqlCliente = "INSERT INTO cliente (fk_cliente, filmes_assistidos) VALUES (?, ?)";
-                try (PreparedStatement ps2 = conn.prepareStatement(sqlCliente)) {
-                    ps2.setInt(1, rs.getInt(1));
-                    ps2.setInt(2, cliente.getQtdFilmesAssistidos());
-                    ps2.execute();
-                }
-            }
             ps.close();
+
             return true;
         } catch (SQLException e) {
             System.err.println("Erro na operação de inclusão do SGDB: " + e.getMessage());
@@ -55,7 +46,7 @@ public class ClienteDAO {
     public boolean alterar(Cliente cliente, Cliente clienteAtualizado) {
         String sql;
         PreparedStatement ps;
-        sql = "UPDATE pessoa SET nome = ?,cpf = ? WHERE id = ?";
+        sql = "UPDATE cliente SET nome = ?,cpf = ? WHERE id = ?";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -78,7 +69,7 @@ public class ClienteDAO {
         String sql;
         PreparedStatement ps;
 
-        sql = "UPDATE pessoa set del = true WHERE id = ?";
+        sql = "UPDATE cliente set del = true WHERE id = ?";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -102,7 +93,7 @@ public class ClienteDAO {
         PreparedStatement ps;
         ResultSet rs;
 
-        String sql = "SELECT * FROM pessoa p JOIN cliente c ON p.id = c.fk_cliente WHERE del = false";
+        String sql = "SELECT * FROM cliente WHERE del = false";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -110,7 +101,7 @@ public class ClienteDAO {
             clientes = new ArrayList<>();
 
             while (rs.next()) {
-                clientes.add(new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getInt("filmes_assistidos"),rs.getBoolean("del")));
+                clientes.add(new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getBoolean("del"), rs.getInt("filmes_assistidos")));
             }
 
             rs.close();
@@ -122,12 +113,36 @@ public class ClienteDAO {
         return clientes;
     }
 
-    public Cliente consultar(Cliente cliente) {
+    public Cliente consultarClienteID(Integer clienteID) {
         PreparedStatement ps;
         ResultSet rs;
         Cliente clienteRet = null;
 
-        String sql = "SELECT * FROM pessoa WHERE cpf = ? and del = false";
+        String sql = "SELECT * FROM cliente WHERE id = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, clienteID);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                clienteRet = new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getBoolean("del"), rs.getInt("filmes_assistidos"));
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return clienteRet;
+    }
+
+    public Cliente consultarClienteCpf(Cliente cliente) {
+        PreparedStatement ps;
+        ResultSet rs;
+        Cliente clienteRet = null;
+
+        String sql = "SELECT * FROM cliente WHERE cpf = ? and del = false";
 
         try {
             ps = conn.prepareStatement(sql);

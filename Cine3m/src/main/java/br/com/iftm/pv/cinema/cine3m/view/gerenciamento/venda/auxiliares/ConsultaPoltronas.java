@@ -1,10 +1,13 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
 import br.com.iftm.pv.cinema.cine3m.config.ParametrosSistema;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
+import br.com.iftm.pv.cinema.cine3m.dao.PoltronaDAO;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListennerBtn;
 import java.awt.BorderLayout;
@@ -26,10 +29,14 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
 
     private List<JButton> listBotoes;
     private final JButton btnConfirmar;
+    private final PoltronaDAO poltronaDAO;
+    private final GerenciaVenda gerenciaVenda;
 
-    public ConsultaPoltronas(CadastroVenda cadastroVenda, GerenciaSessao gerenciaSessao, Sessao sessaoSelecionada) {
+    public ConsultaPoltronas(CadastroVenda cadastroVenda, GerenciaSala gerenciaSala, Sessao sessaoSelecionada) {
         this.listBotoes = new ArrayList<>();
         this.btnConfirmar = null;
+        this.poltronaDAO = new PoltronaDAO(gerenciaSala);
+        this.gerenciaVenda = cadastroVenda.getGerenciaVenda();
 
         initComponents();
         initComponentsPersonalizado(sessaoSelecionada, btnConfirmar, cadastroVenda, this);
@@ -41,38 +48,39 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
         ListennerBtn btnListener = new ListennerBtn();
         JPanel panel = new JPanel(new GridLayout(0, 10));
 
-        int capacidadeTotal = sessaoSelecionada.getSala().getCapacidade();
         Color btnDefaultColor = Color.getHSBColor(0.66371644f, 0.6097561f, 0.76862746f);
         Color corPanel = ParametrosSistema.getInstance().getCorDeFundo();
 
-        char row = 'A';
-        int col = 1;
+        List<Poltrona> poltronas = poltronaDAO.listarPoltronasSala(sessaoSelecionada.getSala());
 
-        for (int i = 1; i <= capacidadeTotal; i++) {
-            String PoltronaID = Character.toString(row) + col;
-            JButton button = new JButton(PoltronaID);
+        Iterator<Poltrona> it = poltronas.iterator();
 
+        while (it.hasNext()) {
+            Poltrona p = (Poltrona) it.next();
+            JButton button = new JButton(p.getIdentificador());
             button.setBackground(btnDefaultColor);
             button.setForeground(Color.WHITE);
-
-            int pos = sessaoSelecionada.getSala().getPoltronas().indexOf(new Poltrona(PoltronaID));
-            Poltrona pol = sessaoSelecionada.getSala().getPoltronas().get(pos);
-
-            if (!pol.isLivre()) {
-                button.setEnabled(false);
-            }
-
             button.addActionListener(btnListener);
             listBotoes.add(button);
             panel.add(button);
+        }
 
-            if (col == 10) {
-                row++;
-                col = 1;
-            } else {
-                col++;
+        List<Venda> vendaSessao = gerenciaVenda.consultarVendaSessao(sessaoSelecionada.getId());
+        Iterator<Venda> itVendasSessao = vendaSessao.iterator();
+
+        while (itVendasSessao.hasNext()) {
+            Venda v = (Venda) itVendasSessao.next();
+            List<ItemVenda> itensVenda = gerenciaVenda.listarItensVenda(v);
+            for (ItemVenda item : itensVenda) {
+                String identificador = item.getPoltrona().getIdentificador();
+                for (JButton jb : listBotoes) {
+                    if (jb.getText().equals(identificador)) {
+                        jb.setEnabled(false);
+                    }
+                }
             }
         }
+
         btnListener.setDefaultColor(btnDefaultColor);
         btnConfirmar = new JButton("Confirmar");
 
@@ -82,10 +90,13 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
                 DefaultListModel<ItemVenda> model = new DefaultListModel<>();
 
                 Iterator<JButton> it = listBotoes.iterator();
+
                 while (it.hasNext()) {
                     JButton btn = it.next();
                     if (btn.getBackground().equals(Color.getHSBColor(0.4036159f, 0.95801526f, 0.6392157f))) {
-                        model.addElement(new ItemVenda(new Poltrona(btn.getText())));
+                        Poltrona p = poltronaDAO.consultaPoltronaIdentificador(new Poltrona(btn.getText()), sessaoSelecionada.getSala());
+                        model.addElement(new ItemVenda(p));
+
                     }
                 }
                 cadastroVenda.getListItensIngresso().setModel(model);
@@ -117,7 +128,7 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(mainPanel, BorderLayout.CENTER);
         pack();
-        
+
         mainPanel.setBackground(corPanel);
         panel.setBackground(corPanel);
 

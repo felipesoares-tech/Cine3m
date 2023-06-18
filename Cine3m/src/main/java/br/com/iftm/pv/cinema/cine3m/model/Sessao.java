@@ -7,7 +7,8 @@ import java.util.Objects;
 
 public class Sessao {
 
-    private String nome;
+    private Integer id;
+    private String identificador;
     private Filme filme;
     private LocalDate data;
     private LocalTime hora;
@@ -15,30 +16,51 @@ public class Sessao {
     private Double valor;
     private Sala sala;
 
-    public Sessao(Filme filme, LocalDate data, LocalTime hora,Sala sala, Double valor) {
+    public Sessao(Filme filme, LocalDate data, LocalTime hora, Sala sala, Double valor) {
         this.filme = filme;
         this.data = data;
         this.hora = hora;
         this.sala = sala;
         this.valor = valor;
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        this.nome = filme.toString() + " - " + sala.toString() + " " + String.valueOf(data.format(formato)) + " " + String.valueOf(hora);
+        this.identificador = filme.toString() + " - " + sala.toString() + " " + String.valueOf(data.format(formato)) + " " + String.valueOf(hora);
         this.horaFinal = hora.plusHours(filme.getDuracao().getHour())
-                                .plusMinutes(filme.getDuracao().getMinute());
-        System.out.println(horaFinal);
+                .plusMinutes(filme.getDuracao().getMinute());
+
     }
 
+    public Sessao(Integer id, Filme filme, LocalDate data, LocalTime hora, Sala sala, Double valor, String identificador, LocalTime horaFinal) {
+        this.filme = filme;
+        this.data = data;
+        this.hora = hora;
+        this.sala = sala;
+        this.valor = valor;
+        this.identificador = identificador;
+        this.horaFinal = horaFinal;
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    
+    
     @Override
     public String toString() {
-        return getNome();
+        return getIdentificador();
     }
 
-    public String getNome() {
-        return nome;
+    public String getIdentificador() {
+        return identificador;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 
     public Filme getFilme() {
@@ -79,7 +101,7 @@ public class Sessao {
 
     public void setSala(Sala sala) {
         this.sala = sala;
-        
+
     }
 
     public LocalTime getHoraFinal() {

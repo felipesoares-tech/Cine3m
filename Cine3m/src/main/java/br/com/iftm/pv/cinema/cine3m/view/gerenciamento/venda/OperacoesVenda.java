@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
@@ -10,33 +11,48 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.CelulasPersonalizadasList;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
-import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 public class OperacoesVenda extends javax.swing.JInternalFrame {
 
     private final GerenciaVenda gerenciaVenda;
+    private final GerenciaSessao gerenciaSessao;
+    private final GerenciaCliente gerenciaCliente;
     private final CadastroVenda cadastroVenda;
     private final RelatorioVenda relatorioVenda;
+    private final GerenciaSala gerenciaSala;
     private final ConsultaVenda telaAuxiliarConsultaVenda;
     private List<Venda> vendas;
 
-    public OperacoesVenda(GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
+    public OperacoesVenda(GerenciaVenda gerenciaVenda,GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala,CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
         initComponents();
         this.gerenciaVenda = gerenciaVenda;
+        this.gerenciaSala = gerenciaSala;
+        this.gerenciaSessao = gerenciaSessao;
+        this.gerenciaCliente = gerenciaCliente;
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
-        this.cadastroVenda = new CadastroVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, cadastroSessao, cadastroCliente, this);
-        this.telaAuxiliarConsultaVenda = new ConsultaVenda();
+        this.cadastroVenda = new CadastroVenda(gerenciaVenda, cadastroSessao, cadastroCliente, this);
+        this.telaAuxiliarConsultaVenda = new ConsultaVenda(gerenciaVenda);
         initComponentsPersonalizado();
         btnConsultar.setEnabled(false);
 
+    }
+
+    public GerenciaSala getGerenciaSala() {
+        return gerenciaSala;
+    }
+    
+    public GerenciaVenda getGerenciaVenda() {
+        return gerenciaVenda;
+    }
+
+    public GerenciaCliente getGerenciaCliente() {
+        return gerenciaCliente;
     }
 
     public CadastroVenda getCadastroVenda() {
@@ -44,24 +60,24 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     }
 
     private void initComponentsPersonalizado() {
-        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaVenda);
-        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstVendas);
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstVendas);
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                pesquisaLike.filterList(tfPesquisar, lstVendas);
-            }
-        });
-
+//        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaVenda);
+//        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
+//            @Override
+//            public void insertUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstVendas);
+//            }
+//
+//            @Override
+//            public void removeUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstVendas);
+//            }
+//
+//            @Override
+//            public void changedUpdate(DocumentEvent e) {
+//                pesquisaLike.filterList(tfPesquisar, lstVendas);
+//            }
+//        });
+//
         lstVendas.setCellRenderer(new CelulasPersonalizadasList());
     }
 
@@ -103,6 +119,10 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
 
     public JLabel getLbTitulo() {
         return lbTitulo;
+    }
+
+    public GerenciaSessao getGerenciaSessao() {
+        return gerenciaSessao;
     }
 
     public JPanel getPanelBotoesVenda() {

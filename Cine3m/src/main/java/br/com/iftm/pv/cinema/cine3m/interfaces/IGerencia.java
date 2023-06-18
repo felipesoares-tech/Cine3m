@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface IGerencia<E> {
     Enum cadastrar(E obj);
-    E remover(E obj);
+    Enum remover(E obj);
     Enum atualizar(E obj, E objAt);
-    E consultar(E obj);
+    E consultar(Integer id);
     List<E> relatorio();
 }

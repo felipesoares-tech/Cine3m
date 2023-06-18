@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import br.com.iftm.pv.cinema.cine3m.config.ParametrosSistema;
 import br.com.iftm.pv.cinema.cine3m.controller.*;
-import br.com.iftm.pv.cinema.cine3m.dao.Conexao;
-import br.com.iftm.pv.cinema.cine3m.model.*;
 import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.*;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.*;
@@ -19,14 +17,7 @@ import br.com.iftm.pv.cinema.cine3m.view.util.ValidaTela;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -43,19 +34,14 @@ public class Principal extends javax.swing.JFrame {
     private final LoginFuncionario loginFuncionario;
     private final TelaImportacao telaImportacao;
 
-    List<Filme> filmes = new ArrayList<>();
-    List<Sessao> sessoes = new ArrayList<>();
-    List<Venda> vendas = new ArrayList<>();
-    List<Sala> salas = new ArrayList<>();
-
     private final GerenciaArquivo gerenciaArquivo = new GerenciaArquivo();
-    private final GerenciaCliente gerenciaCliente = new GerenciaCliente();
-    private final GerenciaFilme gerenciaFilme = new GerenciaFilme(filmes);
+    private final GerenciaCliente gerenciaCliente = new GerenciaCliente();    
     private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(
             gerenciaArquivo.obterFuncionarios());
-    private final GerenciaSala gerenciaSala = new GerenciaSala(salas);
-    private final GerenciaSessao gerenciaSessao = new GerenciaSessao(sessoes, gerenciaSala);
-    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(vendas, gerenciaCliente, gerenciaSessao);
+    private final GerenciaSala gerenciaSala = new GerenciaSala();
+    private final GerenciaFilme gerenciaFilme = new GerenciaFilme();
+    private final GerenciaSessao gerenciaSessao = new GerenciaSessao(gerenciaSala,gerenciaFilme);        
+    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(gerenciaCliente, gerenciaSessao,gerenciaSala);
 
     public Principal() {
         initComponents();
@@ -64,7 +50,7 @@ public class Principal extends javax.swing.JFrame {
         operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario, gerenciaArquivo.getAdmin());
         operacoesFilme = new OperacoesFilme(gerenciaFilme);
         operacoesSala = new OperacoesSala(gerenciaSala);
-        operacoesVenda = new OperacoesVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
+        operacoesVenda = new OperacoesVenda(gerenciaVenda,gerenciaSessao, gerenciaCliente, gerenciaSala,operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
 
         this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, operacoesVenda.getCadastroVenda(), jMenuBar1);
 

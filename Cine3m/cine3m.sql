@@ -106,6 +106,7 @@ CREATE TABLE IF NOT EXISTS item_venda (
   fk_venda int NOT NULL,
   tipo_venda VARCHAR(45) NOT NULL,
   valor double precision NOT NULL,
+  cancelado boolean NOT NULL DEFAULT false,
   CONSTRAINT fk_item_venda_poltrona1 FOREIGN KEY (fk_poltrona) REFERENCES poltrona (id),
   CONSTRAINT fk_item_venda_venda1 FOREIGN KEY (fk_venda) REFERENCES venda (id)
 );

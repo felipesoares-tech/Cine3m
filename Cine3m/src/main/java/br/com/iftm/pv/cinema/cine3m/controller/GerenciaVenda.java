@@ -62,24 +62,20 @@ public class GerenciaVenda{
         itemVendaDAO.incluir(itemVenda);
     }
     
+    public void cancelarItensVenda(Integer vendaID){
+        itemVendaDAO.cancelar(vendaID);
+    }
+    
+   
     public List<Venda> consultarVendaSessao(Integer id) {
         return vendaDAO.consultarVendaSessao(id);
     }
 
     public EnumValidacoes cancelar(Venda venda) {
-//        if (!venda.isCancelada()) {
-//            venda.setCancelada(true);
-//            List<Poltrona> poltronas = venda.consultaPoltronasVenda();
-//
-//            Iterator<Poltrona> it = poltronas.iterator();
-//            while (it.hasNext()) {
-//                Poltrona p = (Poltrona) it.next();
-//                p.setLivre(true);
-//                gerenciaSessao.atualizaPoltronaSessao(venda.getSessao(), p);
-//            }
-//            return EnumValidacoes.VENDA_CANCELADA;
-//        }
-//        return EnumValidacoes.VENDA_JA_CANCELADA;
+        if (!venda.isCancelada()) {
+            vendaDAO.cancelar(venda.getId());            
+            return EnumValidacoes.VENDA_CANCELADA;
+        }
         return EnumValidacoes.VENDA_JA_CANCELADA;
     }
 

@@ -95,7 +95,7 @@ public class GerenciaSessao implements IGerencia<Sessao> {
     }
 
     @Override
-    public Sessao remover(Sessao sessao) {
+    public EnumValidacoes remover(Sessao sessao) {
         return null;
         //return sessoes.remove(sessoes.indexOf(sessao));
     }

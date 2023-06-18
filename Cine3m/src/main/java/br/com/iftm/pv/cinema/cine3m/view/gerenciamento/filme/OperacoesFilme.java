@@ -302,7 +302,7 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
                 "Apagar Filme", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            if (gerenciaFilme.removerr(filmeSelecionado).equals(EnumValidacoes.FILME_NAO_VINCULADO_SESSAO)) {
+            if (gerenciaFilme.remover(filmeSelecionado).equals(EnumValidacoes.FILME_NAO_VINCULADO_SESSAO)) {
                 lstFilmesAncestorAdded(null);
                 JOptionPane.showMessageDialog(this, "Filme removido",
                         "Remover", JOptionPane.INFORMATION_MESSAGE);

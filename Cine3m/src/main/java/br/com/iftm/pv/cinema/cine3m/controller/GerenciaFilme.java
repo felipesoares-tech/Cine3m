@@ -55,15 +55,7 @@ public class GerenciaFilme implements IGerencia<Filme> {
     }
 
     @Override
-    public Filme remover(Filme filme) {
-        if (!filmeDAO.consultarFilmeSessao(filme.getId())) {
-            filmeDAO.apagar(filme.getId());
-        } 
-        
-        return null;
-    }
-    
-    public EnumValidacoes removerr(Filme filme) {
+    public EnumValidacoes remover(Filme filme) {
         if (!filmeDAO.consultarFilmeSessao(filme.getId())) {
             filmeDAO.apagar(filme.getId());
             return EnumValidacoes.FILME_NAO_VINCULADO_SESSAO;

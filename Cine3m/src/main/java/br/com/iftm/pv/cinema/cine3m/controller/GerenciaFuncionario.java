@@ -94,8 +94,9 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
 
     }
 
-    public Funcionario remover(Funcionario funcionario) {
-        return funcionarios.remove(funcionarios.indexOf(funcionario));
+    public EnumValidacoes remover(Funcionario funcionario) {
+        funcionarios.remove(funcionarios.indexOf(funcionario));
+        return null;
     }
 
     public EnumValidacoes atualizar(Funcionario funcionario, Funcionario funcionarioAtualizado) {

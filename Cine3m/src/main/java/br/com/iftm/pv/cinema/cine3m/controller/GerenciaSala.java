@@ -60,9 +60,12 @@ public class GerenciaSala implements IGerencia<Sala> {
     }
 
     @Override
-    public Sala remover(Sala sala) {
-        // return salas.remove(salas.indexOf(sala));
-        return null;
+    public EnumValidacoes remover(Sala sala) {
+        if (!salaDAO.consultarSalaSessao(sala.getId())) {
+            salaDAO.apagar(sala.getId());
+            return EnumValidacoes.SALA_NAO_VINCULADA_SESSAO;
+        }         
+        return EnumValidacoes.SALA_VINCULADA_SESSAO;
     }
 
     @Override

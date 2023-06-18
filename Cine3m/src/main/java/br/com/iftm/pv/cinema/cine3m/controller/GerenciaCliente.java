@@ -62,9 +62,8 @@ public class GerenciaCliente implements IGerencia<Cliente> {
     }
 
     @Override
-    public Cliente remover(Cliente cliente) {
-        clienteDAO.apagar(cliente);
-        return null;
+    public EnumValidacoes remover(Cliente cliente) {
+       return clienteDAO.apagar(cliente) ? EnumValidacoes.CLIENTE_APAGADO : EnumValidacoes.CLIENTE_NAO_APAGADO;               
     }
 
     @Override

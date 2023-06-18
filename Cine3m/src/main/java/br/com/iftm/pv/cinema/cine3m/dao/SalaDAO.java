@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class SalaDAO {
+
     private Connection conn = null;
 
     public SalaDAO() {
@@ -21,7 +21,7 @@ public class SalaDAO {
             Logger.getLogger(SalaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public boolean incluir(Sala sala) {
         String sql;
         PreparedStatement ps;
@@ -30,9 +30,9 @@ public class SalaDAO {
 
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, sala.getNome());            
+            ps.setString(1, sala.getNome());
             ps.setInt(2, sala.getCapacidade());
-            
+
             ps.execute();
             ps.close();
             return true;
@@ -67,28 +67,27 @@ public class SalaDAO {
 //            return false;
 //        }
 //    }
+    public boolean apagar(Integer salaID) {
+        String sql;
+        PreparedStatement ps;
 
-//    public boolean apagar(Sala sala) {
-//        String sql;
-//        PreparedStatement ps;
-//
-//        sql = "UPDATE sala set del = true WHERE id = ?";
-//
-//        try {
-//            ps = conn.prepareStatement(sql);
-//
-//            ps.setInt(1, sala.getId());
-//
-//            ps.execute();
-//            ps.close();
-//
-//            return true;
-//        } catch (SQLException e) {
-//            System.err.println("Erro na operação de apagar do SGDB: " + e.getMessage());
-//
-//            return false;
-//        }
-//    }
+        sql = "UPDATE sala set del = true WHERE id = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, salaID);
+
+            ps.execute();
+            ps.close();
+
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Erro na operação de apagar do SGDB: " + e.getMessage());
+
+            return false;
+        }
+    }
 
     public List<Sala> listar() {
         List<Sala> salas = new ArrayList<>();
@@ -115,7 +114,7 @@ public class SalaDAO {
 
         return salas;
     }
-    
+
     public Sala consultarSalaID(Integer salaID) {
         PreparedStatement ps;
         ResultSet rs;
@@ -138,6 +137,29 @@ public class SalaDAO {
             System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
         }
         return salaRet;
+    }
+
+    public boolean consultarSalaSessao(Integer salaID) {
+        PreparedStatement ps;
+        ResultSet rs;
+
+        String sql = "SELECT * FROM sessao WHERE fk_sala = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, salaID);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return false;
     }
 
     public Sala consultarSalaNome(Sala sala) {
@@ -171,5 +193,5 @@ public class SalaDAO {
             System.err.println("Erro no fechamento da conexão com o SGDB: " + e.getMessage());
         }
     }
-    
+
 }

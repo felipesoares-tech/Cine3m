@@ -26,7 +26,7 @@ public class VendaDAO {
     private GerenciaVenda gerenciaVenda;
 //    private GerenciaFuncionario gerenciaFuncionario;
 
-    public VendaDAO(GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala,GerenciaVenda gerenciaVenda,GerenciaSessao gerenciaSessao) {
+    public VendaDAO(GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala, GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao) {
         this.gerenciaVenda = gerenciaVenda;
         this.gerenciaCliente = gerenciaCliente;
         this.gerenciaSessao = gerenciaSessao;
@@ -73,12 +73,12 @@ public class VendaDAO {
             return false;
         }
     }
-    
-    public List<Venda> consultarVendaSessao(Integer sessaoID){
+
+    public List<Venda> consultarVendaSessao(Integer sessaoID) {
         PreparedStatement ps;
         ResultSet rs;
         List<Venda> vendas = new ArrayList<>();
-        
+
         String sql = "SELECT * FROM venda WHERE fk_sessao = ?";
 
         try {
@@ -97,7 +97,28 @@ public class VendaDAO {
         }
         return vendas;
     }
-    
+
+    public boolean cancelar(Integer vendaID) {
+        PreparedStatement ps;
+
+        String sql = "UPDATE venda SET cancelada = true WHERE id = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, vendaID);
+            ps.executeUpdate();
+            
+            gerenciaVenda.cancelarItensVenda(vendaID);
+
+            ps.close();
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+            return false;
+        }
+    }
+
     public Venda consultaVendaPorID(Integer poltronaID) {
         PreparedStatement ps;
         ResultSet rs;
@@ -110,7 +131,7 @@ public class VendaDAO {
             ps.setInt(1, poltronaID);
             rs = ps.executeQuery();
 
-            if (rs.next()) {                
+            if (rs.next()) {
                 vendaRet = new Venda(rs.getInt("id"), new Funcionario("teste", "", "sxx", "123"), gerenciaSessao.consultar(rs.getInt("fk_sessao")), gerenciaCliente.consultar(rs.getInt("fk_cliente")), rs.getDouble("valor_total"), rs.getString("identificador"), rs.getBoolean("cancelada"), rs.getBoolean("desconto"), rs.getBoolean("del"));
             }
             rs.close();

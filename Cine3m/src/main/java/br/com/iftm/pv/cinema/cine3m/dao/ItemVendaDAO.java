@@ -53,6 +53,23 @@ public class ItemVendaDAO {
             return false;
         }
     }
+    public boolean cancelar(Integer vendaID) {
+        PreparedStatement ps;
+
+        String sql = "UPDATE item_venda SET cancelado = true WHERE fk_venda = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, vendaID);
+            ps.executeUpdate();
+            ps.close();
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+            return false;
+        }
+    }
     
     public List<ItemVenda> listar(Venda venda) {
         List<ItemVenda> itensVenda = new ArrayList<>();
@@ -60,7 +77,7 @@ public class ItemVendaDAO {
         PreparedStatement ps;
         ResultSet rs;
 
-        String sql = "SELECT * FROM item_venda WHERE fk_venda = ?";
+        String sql = "SELECT * FROM item_venda WHERE fk_venda = ? and cancelado = false";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -71,7 +88,7 @@ public class ItemVendaDAO {
             while (rs.next()) {
                 Poltrona p =  gerenciaSala.consultarPoltrona(rs.getInt("fk_poltrona"));
                 Venda v = gerenciaVenda.consultar(rs.getInt("fk_venda"));
-                itensVenda.add(new ItemVenda(rs.getInt("id"), p, TipoVenda.valueOf(rs.getString("tipo_venda")), v, rs.getDouble("valor")));
+                itensVenda.add(new ItemVenda(rs.getInt("id"), p, TipoVenda.valueOf(rs.getString("tipo_venda")), v, rs.getDouble("valor"),rs.getBoolean("cancelado")));
             }
 
             rs.close();

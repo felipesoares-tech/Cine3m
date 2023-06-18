@@ -1,9 +1,5 @@
 package br.com.iftm.pv.cinema.cine3m.model;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 public class Venda {
     private Integer id;
     private Sessao sessao;
@@ -54,24 +50,6 @@ public class Venda {
     public void setDel(boolean del) {
         this.del = del;
     }
-
-
-
-    /**
-     *
-     * @return retorna uma lista de poltronas que foram selecionadas na venda
-     */
-//    public List<Poltrona> consultaPoltronasVenda() {
-//        Iterator<ItemVenda> it = getItensVenda().iterator();
-//
-//        List<Poltrona> listPoltronas = new ArrayList<>();
-//
-//        while (it.hasNext()) {
-//            ItemVenda item = (ItemVenda) it.next();
-//            listPoltronas.add(item.getPoltrona());
-//        }
-//        return listPoltronas;
-//    }
 
     public boolean isCancelada() {
         return cancelada;

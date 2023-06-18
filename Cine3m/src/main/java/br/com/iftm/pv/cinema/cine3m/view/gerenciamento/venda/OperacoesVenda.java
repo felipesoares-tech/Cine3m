@@ -9,6 +9,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConsultaVenda;
+import br.com.iftm.pv.cinema.cine3m.view.util.CelulasPersonalizadasList;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.util.List;
 import javax.swing.JButton;
@@ -77,7 +78,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
 //            }
 //        });
 //
-//        lstVendas.setCellRenderer(new CelulasPersonalizadasList());
+        lstVendas.setCellRenderer(new CelulasPersonalizadasList());
     }
 
     public JList<Venda> getLstVendas() {

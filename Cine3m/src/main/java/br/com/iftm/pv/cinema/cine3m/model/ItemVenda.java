@@ -8,6 +8,7 @@ public class ItemVenda {
     private TipoVenda tipoVenda;
     private Venda venda;
     private Double valor;
+    private boolean cancelado;
 
     public ItemVenda(Poltrona poltrona, TipoVenda tipoVenda, Double valor) {
         this.poltrona = poltrona;
@@ -15,12 +16,13 @@ public class ItemVenda {
         this.valor = valor;
     }
 
-    public ItemVenda(Integer id, Poltrona poltrona, TipoVenda tipoVenda, Venda venda, Double valor) {
+    public ItemVenda(Integer id, Poltrona poltrona, TipoVenda tipoVenda, Venda venda, Double valor, boolean cancelado) {
         this.id = id;
         this.poltrona = poltrona;
         this.tipoVenda = tipoVenda;
         this.venda = venda;
         this.valor = valor;
+        this.cancelado = cancelado;
     }
     
     public ItemVenda(Poltrona poltrona) {
@@ -30,6 +32,14 @@ public class ItemVenda {
 
     public Integer getId() {
         return id;
+    }
+
+    public boolean isCancelado() {
+        return cancelado;
+    }
+
+    public void setCancelado(boolean cancelado) {
+        this.cancelado = cancelado;
     }
 
     public void setId(Integer id) {

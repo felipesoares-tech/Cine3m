@@ -127,7 +127,9 @@ public class CadastroSala extends ModalInternalFrame {
             case SALA_JA_CADASTRADA:
                 JOptionPane.showMessageDialog(this, "Sala já cadastrada", titulo,
                         JOptionPane.ERROR_MESSAGE);
-
+            case SALA_VINCULADA_SESSAO:
+                JOptionPane.showMessageDialog(this, "Não foi possível atualizar, sala já vinculada a uma sessão!",
+                        "Remover", JOptionPane.ERROR_MESSAGE);
                 break;
             default:
                 throw new AssertionError();
@@ -230,11 +232,11 @@ public class CadastroSala extends ModalInternalFrame {
     private void btnCadastrarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarSalaActionPerformed
         Integer capacidade = (int) jsCapacidade.getValue();
         String nome = tfNomeSala.getText();
-        
+
         if (ValidaCampo.validar(nome, lbSalaNome, this) && ValidaCampo.validar(capacidade, lbSalaCapacidade, this)) {
-            
+
             Sala sala = new Sala(nome, capacidade);
-            
+
             if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
                 exibeMensagemValidacao(gerenciaSala.cadastrar(sala));
             } else {
@@ -246,7 +248,7 @@ public class CadastroSala extends ModalInternalFrame {
                     getDesktopPane().remove(this);
 
                 }
-                
+
             }
             ListUtils.carregarList(operacoesSala.getLstSalas(), gerenciaSala.relatorio());
             if (gerenciaSala.relatorio().isEmpty()) {

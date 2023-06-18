@@ -30,13 +30,11 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
     private List<JButton> listBotoes;
     private final JButton btnConfirmar;
     private final PoltronaDAO poltronaDAO;
-    private final Sessao sessaoSelecionada;
     private final GerenciaVenda gerenciaVenda;
 
     public ConsultaPoltronas(CadastroVenda cadastroVenda, GerenciaSala gerenciaSala, Sessao sessaoSelecionada) {
         this.listBotoes = new ArrayList<>();
         this.btnConfirmar = null;
-        this.sessaoSelecionada = sessaoSelecionada;
         this.poltronaDAO = new PoltronaDAO(gerenciaSala);
         this.gerenciaVenda = cadastroVenda.getGerenciaVenda();
 

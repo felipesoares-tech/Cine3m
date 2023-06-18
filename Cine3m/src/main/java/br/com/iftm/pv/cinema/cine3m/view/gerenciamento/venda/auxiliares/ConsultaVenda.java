@@ -1,5 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
@@ -16,9 +17,11 @@ import javax.swing.JTextField;
 public class ConsultaVenda extends ModalInternalFrame {
 
     private Venda vendaSelecionada;
+    private GerenciaVenda gerenciaVenda;
 
-    public ConsultaVenda() {
+    public ConsultaVenda(GerenciaVenda gerenciaVenda) {
         initComponents();
+        this.gerenciaVenda = gerenciaVenda;
         tfClienteConsulta.setEnabled(false);
         tfSessaoConsulta.setEnabled(false);
         tfValorTotal.setEnabled(false);
@@ -374,7 +377,7 @@ public class ConsultaVenda extends ModalInternalFrame {
         String nomeClienteVenda = clienteVenda != null ? clienteVenda.getNome() : "";
         String nomeSessaoVenda = vendaSelecionada.getSessao().getIdentificador();
         String nomeFuncionarioVenda = vendaSelecionada.getFuncionario().getNome();
-        List<ItemVenda> itensVenda =  null;//vendaSelecionada.getItensVenda();
+        List<ItemVenda> itensVenda = gerenciaVenda.listarItensVenda(vendaSelecionada);
         Double valorTotal = vendaSelecionada.getValorFinal();
         boolean desconto = vendaSelecionada.hasDesconto();
         boolean cancelada = vendaSelecionada.isCancelada();

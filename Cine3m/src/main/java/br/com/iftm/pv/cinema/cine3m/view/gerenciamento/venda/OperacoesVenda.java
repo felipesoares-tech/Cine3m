@@ -9,17 +9,13 @@ import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.CadastroCliente;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConsultaVenda;
-import br.com.iftm.pv.cinema.cine3m.view.util.CelulasPersonalizadasList;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
-import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 public class OperacoesVenda extends javax.swing.JInternalFrame {
 
@@ -32,7 +28,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     private final ConsultaVenda telaAuxiliarConsultaVenda;
     private List<Venda> vendas;
 
-    public OperacoesVenda(GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala,CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
+    public OperacoesVenda(GerenciaVenda gerenciaVenda,GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala,CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
         initComponents();
         this.gerenciaVenda = gerenciaVenda;
         this.gerenciaSala = gerenciaSala;
@@ -49,7 +45,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     public GerenciaSala getGerenciaSala() {
         return gerenciaSala;
     }
-
+    
     public GerenciaVenda getGerenciaVenda() {
         return gerenciaVenda;
     }

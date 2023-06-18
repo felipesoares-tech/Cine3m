@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS poltrona (
   id SERIAL PRIMARY KEY,
   fk_sala int NOT NULL,
   identificador varchar(100) NOT NULL,
-  livre boolean NOT NULL,
   CONSTRAINT fk_poltrona_sala1 FOREIGN KEY (fk_sala) REFERENCES sala (id)
 );
 
@@ -57,8 +56,8 @@ BEGIN
 
             identificador := chr(ASCII('A') + fila) || numero;
 
-            INSERT INTO poltrona (fk_sala, identificador, livre)
-            VALUES (NEW.id, identificador, true);
+            INSERT INTO poltrona (fk_sala, identificador)
+            VALUES (NEW.id, identificador);
         END LOOP;
     END LOOP;
 

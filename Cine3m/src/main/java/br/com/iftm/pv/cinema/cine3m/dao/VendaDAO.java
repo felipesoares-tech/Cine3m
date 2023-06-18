@@ -1,7 +1,9 @@
 package br.com.iftm.pv.cinema.cine3m.dao;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
@@ -19,13 +21,13 @@ import java.util.logging.Logger;
 public class VendaDAO {
 
     private Connection conn = null;
-    private ItemVendaDAO itemVendaDAO;
     private GerenciaSessao gerenciaSessao;
     private GerenciaCliente gerenciaCliente;
+    private GerenciaVenda gerenciaVenda;
 //    private GerenciaFuncionario gerenciaFuncionario;
 
-    public VendaDAO(GerenciaCliente gerenciaCliente, GerenciaSessao gerenciaSessao) {
-        itemVendaDAO = new ItemVendaDAO();
+    public VendaDAO(GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala,GerenciaVenda gerenciaVenda,GerenciaSessao gerenciaSessao) {
+        this.gerenciaVenda = gerenciaVenda;
         this.gerenciaCliente = gerenciaCliente;
         this.gerenciaSessao = gerenciaSessao;
 
@@ -48,7 +50,7 @@ public class VendaDAO {
             Integer fk_cliente = venda.getCliente() != null ? venda.getCliente().getId() : 1;
 
             ps.setInt(2, fk_cliente);
-            ps.setInt(3, 2);
+            ps.setInt(3, 1);
             ps.setBoolean(4, venda.hasDesconto());
             ps.setString(5, venda.getIdentificador());
             ps.setDouble(6, venda.getValorFinal());
@@ -60,9 +62,7 @@ public class VendaDAO {
                 while (it.hasNext()) {
                     ItemVenda itemVenda = (ItemVenda) it.next();
                     venda.setId(rs.getInt(1));
-                    itemVenda.setVenda(venda);
-                    itemVendaDAO.incluir(itemVenda);
-
+                    gerenciaVenda.incluirItemVenda(venda, itemVenda);
                 }
             }
             ps.close();
@@ -72,6 +72,54 @@ public class VendaDAO {
 
             return false;
         }
+    }
+    
+    public List<Venda> consultarVendaSessao(Integer sessaoID){
+        PreparedStatement ps;
+        ResultSet rs;
+        List<Venda> vendas = new ArrayList<>();
+        
+        String sql = "SELECT * FROM venda WHERE fk_sessao = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, sessaoID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                vendas.add(new Venda(rs.getInt("id"), new Funcionario("teste", "", "sxx", "123"), gerenciaSessao.consultar(rs.getInt("fk_sessao")), gerenciaCliente.consultar(rs.getInt("fk_cliente")), rs.getDouble("valor_total"), rs.getString("identificador"), rs.getBoolean("cancelada"), rs.getBoolean("desconto"), rs.getBoolean("del")));
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return vendas;
+    }
+    
+    public Venda consultaVendaPorID(Integer poltronaID) {
+        PreparedStatement ps;
+        ResultSet rs;
+        Venda vendaRet = null;
+
+        String sql = "SELECT * FROM venda WHERE id = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, poltronaID);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {                
+                vendaRet = new Venda(rs.getInt("id"), new Funcionario("teste", "", "sxx", "123"), gerenciaSessao.consultar(rs.getInt("fk_sessao")), gerenciaCliente.consultar(rs.getInt("fk_cliente")), rs.getDouble("valor_total"), rs.getString("identificador"), rs.getBoolean("cancelada"), rs.getBoolean("desconto"), rs.getBoolean("del"));
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return vendaRet;
     }
 
     public List<Venda> listar() {

@@ -83,18 +83,9 @@ public class GerenciaSala implements IGerencia<Sala> {
     public List<Sala> relatorio() {
         return salaDAO.listar();
     }
-
-    public Boolean consultaPoltronaDisponivel(Poltrona poltrona) {        
-        return  poltronaDAO.consultaPoltronaPorID(poltrona.getId()).isLivre();
-    }
-
-    public Poltrona consultaPoltrona(Poltrona poltrona) {
-        return poltronaDAO.consultaPoltronaPorID(poltrona.getId());
-    }
-
-    public void atualizaEstadoPoltrona(Poltrona poltrona, boolean estado) {        
-        poltrona.setLivre(estado);
-        poltronaDAO.alterar(poltrona);
+    
+    public Poltrona consultarPoltrona(Integer salaID){
+        return poltronaDAO.consultaPoltronaPorID(salaID);
     }
 
 }

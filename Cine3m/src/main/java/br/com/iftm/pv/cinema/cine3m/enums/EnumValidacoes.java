@@ -23,5 +23,7 @@ public enum EnumValidacoes {
     VENDA_SUCESSO,
     VENDA_JA_CANCELADA,
     VENDA_CANCELADA,
-    VENDA_PROMOCAO
+    VENDA_PROMOCAO,
+    
+      RESERVA_SUCESSO,
 }

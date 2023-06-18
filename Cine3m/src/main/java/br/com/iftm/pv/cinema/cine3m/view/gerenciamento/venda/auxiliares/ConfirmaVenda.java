@@ -1,17 +1,12 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
-import br.com.iftm.pv.cinema.cine3m.dao.ItemVendaDAO;
-import br.com.iftm.pv.cinema.cine3m.dao.PoltronaDAO;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.enums.TipoVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
-import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.OperacoesVenda;
@@ -22,8 +17,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
 
 public class ConfirmaVenda extends javax.swing.JInternalFrame {
 
@@ -37,7 +30,7 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
     private final VincularCliente vincularCliente;
     private final CadastroVenda cadastroVenda;
     private final GerenciaVenda gerenciaVenda;
-    private final GerenciaSala gerenciaSala;
+    //private final GerenciaSala gerenciaSala;
     private final OperacoesVenda operacoesVenda;
     private Integer qtdInteira;
     private Integer qtdMeia;
@@ -47,7 +40,7 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
         this.operacoesVenda = operacoesVenda;
         this.cadastroVenda = operacoesVenda.getCadastroVenda();
         this.gerenciaVenda =  operacoesVenda.getGerenciaVenda();
-        this.gerenciaSala = operacoesVenda.getGerenciaSala();
+        //this.gerenciaSala = operacoesVenda.getGerenciaSala();
         this.sessaoSelecionada = sessaoSelecionada;
         this.vincularCliente = vincularCliente;
         this.spinnerModelInteira = new SpinnerNumberModel(0, 0, listItensIngresso.getModel().getSize(), 1);
@@ -191,17 +184,14 @@ public class ConfirmaVenda extends javax.swing.JInternalFrame {
     }
 
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
-        for (int i = 0; i < qtdMaxItensIngresso; i++) {
-            ItemVenda item = (ItemVenda) listItensIngresso.getModel().getElementAt(i);
-            gerenciaSala.atualizaEstadoPoltrona(item.getPoltrona(),false);            
-        }        
+        Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
+        Funcionario funcionarioSelecionado = cadastroVenda.getFuncionario();
+                
         Integer total = qtdMeia + qtdInteira;
         if (total.equals(qtdMaxItensIngresso)) {
             Venda venda;
             List<ItemVenda> itensVenda = preencheItensVenda(listItensIngresso, qtdInteira, qtdMeia, valorSessao);
             DefaultListModel<ItemVenda> model = (DefaultListModel<ItemVenda>) cadastroVenda.getListItensIngresso().getModel();
-            Cliente clienteSelecionado = vincularCliente.getClienteSelecionado();
-            Funcionario funcionarioSelecionado = cadastroVenda.getFuncionario();
             if (clienteSelecionado != null) {
                 venda = new Venda(funcionarioSelecionado, sessaoSelecionada, clienteSelecionado, valorTotal);
             } else {

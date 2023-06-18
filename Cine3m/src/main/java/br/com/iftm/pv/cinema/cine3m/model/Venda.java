@@ -105,6 +105,7 @@ public class Venda {
     }
     
     public Venda(Integer id,Funcionario funcionario, Sessao sessao, Cliente cliente, Double valorFinal, String identificador, boolean cancelada, boolean desconto, boolean del) {
+        this.id = id;
         this.sessao = sessao;
         this.cliente = cliente;
         this.valorFinal = valorFinal;

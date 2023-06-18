@@ -29,6 +29,7 @@ public class CadastroVenda extends ModalInternalFrame {
     private final GerenciaSessao gerenciaSessao;
     private final GerenciaSala gerenciaSala;
     private CadastroSessao cadastroSessao;
+    private GerenciaVenda gerenciaVenda;
     private final CadastroCliente cadastroCliente;
     private final VincularCliente vincularCliente;
     private final OperacoesVenda operacoesVenda;
@@ -56,6 +57,7 @@ public class CadastroVenda extends ModalInternalFrame {
         this.operacoesVenda = operacoesVenda;
         this.gerenciaSessao = operacoesVenda.getGerenciaSessao();
         this.gerenciaSala = operacoesVenda.getGerenciaSala();
+        this.gerenciaVenda = gerenciaVenda;
         this.cadastroSessao = cadastroSessao;
         this.cadastroCliente = cadastroCliente;
         this.vincularCliente = new VincularCliente(operacoesVenda.getGerenciaCliente(), this);
@@ -75,6 +77,10 @@ public class CadastroVenda extends ModalInternalFrame {
 
     public void setConfirmaCompra(ConfirmaVenda confirmaCompra) {
         this.confirmaCompra = confirmaCompra;
+    }
+
+    public GerenciaVenda getGerenciaVenda() {
+        return gerenciaVenda;
     }
 
     public CadastroSessao getCadastroSessao() {

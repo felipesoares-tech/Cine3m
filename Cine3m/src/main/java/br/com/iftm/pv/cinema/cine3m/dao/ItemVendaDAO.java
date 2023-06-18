@@ -77,7 +77,7 @@ public class ItemVendaDAO {
         PreparedStatement ps;
         ResultSet rs;
 
-        String sql = "SELECT * FROM item_venda WHERE fk_venda = ? and cancelado = false";
+        String sql = "SELECT * FROM item_venda WHERE fk_venda = ?";
 
         try {
             ps = conn.prepareStatement(sql);

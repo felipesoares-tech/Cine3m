@@ -47,9 +47,9 @@ public class VendaDAO {
         try {
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, venda.getSessao().getId());
-            Integer fk_cliente = venda.getCliente() != null ? venda.getCliente().getId() : 1;
+            Integer fk_cliente = venda.getCliente() != null ? venda.getCliente().getId() : null;
 
-            ps.setInt(2, fk_cliente);
+            ps.setObject(2, fk_cliente);
             ps.setInt(3, 1);
             ps.setBoolean(4, venda.hasDesconto());
             ps.setString(5, venda.getIdentificador());

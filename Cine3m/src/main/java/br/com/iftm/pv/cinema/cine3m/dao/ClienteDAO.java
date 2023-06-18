@@ -118,7 +118,7 @@ public class ClienteDAO {
         ResultSet rs;
         Cliente clienteRet = null;
 
-        String sql = "SELECT * FROM cliente WHERE id = ? and del = false";
+        String sql = "SELECT * FROM cliente WHERE id = ?";
 
         try {
             ps = conn.prepareStatement(sql);

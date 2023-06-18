@@ -43,30 +43,29 @@ public class SalaDAO {
         }
     }
 
-//    public boolean alterar(Sala sala, Sala salaAtualizado) {
-//        String sql;
-//        PreparedStatement ps;
-//        sql = "UPDATE sala SET nome = ?,tipo_genero = ?,descricao = ?, diretor = ?, duracao = ?  WHERE id = ?";
-//
-//        try {
-//            ps = conn.prepareStatement(sql);
-//            ps.setString(1, salaAtualizado.getNome());
-//            ps.setString(2, salaAtualizado.getGenero().name());
-//            ps.setString(3, salaAtualizado.getDescricao());
-//            ps.setString(4, salaAtualizado.getDiretor());
-//            ps.setTime(5, Time.valueOf(salaAtualizado.getDuracao()));
-//            ps.setInt(6, sala.getId());
-//
-//            ps.execute();
-//            ps.close();
-//
-//            return true;
-//        } catch (SQLException e) {
-//            System.err.println("Erro na operação de alteração do SGDB: " + e.getMessage());
-//
-//            return false;
-//        }
-//    }
+    public boolean alterar(Integer salaID, Sala salaAtualizada) {
+        String sql;
+        PreparedStatement ps;
+        sql = "UPDATE sala SET nome = ?,capacidade = ? WHERE id = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, salaAtualizada.getNome());
+            ps.setInt(2, salaAtualizada.getCapacidade());
+            ps.setInt(3, salaID);
+
+            ps.execute();
+            ps.close();
+
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Erro na operação de alteração do SGDB: " + e.getMessage());
+
+            return false;
+        }
+    }
+    
+    
     public boolean apagar(Integer salaID) {
         String sql;
         PreparedStatement ps;

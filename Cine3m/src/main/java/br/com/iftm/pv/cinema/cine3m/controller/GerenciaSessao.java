@@ -115,10 +115,6 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         return sessaoDAO.consultarSessaoID(sessaoID);                
     }
 
-    public Boolean poltronaDisponivel(Sessao sessao, Poltrona poltrona) {
-        return gerenciaSala.consultaPoltronaDisponivel(poltrona);
-    }
-
     @Override
     public List<Sessao> relatorio() {
         return sessaoDAO.listar();

@@ -1,13 +1,13 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares;
 
 import br.com.iftm.pv.cinema.cine3m.config.ParametrosSistema;
-import br.com.iftm.pv.cinema.cine3m.controller.GerenciaReserva;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.dao.PoltronaDAO;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
-import br.com.iftm.pv.cinema.cine3m.model.Reserva;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
+import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListennerBtn;
 import java.awt.BorderLayout;
@@ -21,7 +21,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -32,14 +31,14 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
     private final JButton btnConfirmar;
     private final PoltronaDAO poltronaDAO;
     private final Sessao sessaoSelecionada;
-    private final GerenciaReserva gerenciaReserva;
+    private final GerenciaVenda gerenciaVenda;
 
     public ConsultaPoltronas(CadastroVenda cadastroVenda, GerenciaSala gerenciaSala, Sessao sessaoSelecionada) {
         this.listBotoes = new ArrayList<>();
         this.btnConfirmar = null;
         this.sessaoSelecionada = sessaoSelecionada;
         this.poltronaDAO = new PoltronaDAO(gerenciaSala);
-        this.gerenciaReserva = cadastroVenda.getGerenciaReserva();
+        this.gerenciaVenda = cadastroVenda.getGerenciaVenda();
 
         initComponents();
         initComponentsPersonalizado(sessaoSelecionada, btnConfirmar, cadastroVenda, this);
@@ -68,20 +67,20 @@ public class ConsultaPoltronas extends javax.swing.JInternalFrame {
             panel.add(button);
         }
 
-        List<Reserva> reservas = gerenciaReserva.consultarReservaSessao(sessaoSelecionada.getId());
-        Iterator<Reserva> itReservas = reservas.iterator();
+        List<Venda> vendaSessao = gerenciaVenda.consultarVendaSessao(sessaoSelecionada.getId());
+        Iterator<Venda> itVendasSessao = vendaSessao.iterator();
 
-        while (itReservas.hasNext()) {
-            Reserva r = (Reserva) itReservas.next();
-            String identificador = r.getPoltrona().getIdentificador();
-            
-            for (JButton jb : listBotoes) {
-                if (jb.getText().equals(identificador) ){
-                    jb.setEnabled(false);
+        while (itVendasSessao.hasNext()) {
+            Venda v = (Venda) itVendasSessao.next();
+            List<ItemVenda> itensVenda = gerenciaVenda.listarItensVenda(v);
+            for (ItemVenda item : itensVenda) {
+                String identificador = item.getPoltrona().getIdentificador();
+                for (JButton jb : listBotoes) {
+                    if (jb.getText().equals(identificador)) {
+                        jb.setEnabled(false);
+                    }
                 }
             }
-          
-
         }
 
         btnListener.setDefaultColor(btnDefaultColor);

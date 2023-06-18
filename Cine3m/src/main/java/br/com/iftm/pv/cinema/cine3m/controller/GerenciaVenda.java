@@ -6,9 +6,7 @@ import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
-import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
-import java.util.Iterator;
 import java.util.List;
 
 public class GerenciaVenda{
@@ -18,9 +16,9 @@ public class GerenciaVenda{
     private final VendaDAO vendaDAO;
     private final ItemVendaDAO itemVendaDAO;
 
-    public GerenciaVenda(GerenciaCliente gerenciaCliente, GerenciaSessao gerenciaSessao) {
-        this.vendaDAO = new VendaDAO(gerenciaCliente,gerenciaSessao);
-        this.itemVendaDAO = new ItemVendaDAO();
+    public GerenciaVenda(GerenciaCliente gerenciaCliente, GerenciaSessao gerenciaSessao, GerenciaSala gerenciaSala) {
+        this.vendaDAO = new VendaDAO(gerenciaCliente, gerenciaSala, this, gerenciaSessao);
+        this.itemVendaDAO = new ItemVendaDAO(gerenciaSala, this);
         this.gerenciaCliente = gerenciaCliente;
         this.gerenciaSessao = gerenciaSessao;
     }
@@ -47,18 +45,25 @@ public class GerenciaVenda{
     }
 
 
-    public Venda consultar(Venda venda) {
-        //return vendas.get(vendas.indexOf(venda));
-        return null;
+    public Venda consultar(Integer vendaID) {
+        return vendaDAO.consultaVendaPorID(vendaID);
     }
-
-
+    
     public List<Venda> relatorio() {
         return vendaDAO.listar();
     }
 
     public List<ItemVenda> listarItensVenda(Venda venda) {
         return itemVendaDAO.listar(venda);
+    }
+    
+    public void incluirItemVenda(Venda venda, ItemVenda itemVenda){
+        itemVenda.setVenda(venda);
+        itemVendaDAO.incluir(itemVenda);
+    }
+    
+    public List<Venda> consultarVendaSessao(Integer id) {
+        return vendaDAO.consultarVendaSessao(id);
     }
 
     public EnumValidacoes cancelar(Venda venda) {

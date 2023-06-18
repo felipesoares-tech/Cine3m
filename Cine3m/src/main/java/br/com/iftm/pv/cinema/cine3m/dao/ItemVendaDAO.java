@@ -1,5 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.dao;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.enums.TipoVenda;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
@@ -16,8 +18,12 @@ import java.util.logging.Logger;
 
 public class ItemVendaDAO {
      private Connection conn = null;
+     private GerenciaSala gerenciaSala;
+     private GerenciaVenda gerenciaVenda;
 
-    public ItemVendaDAO() {
+    public ItemVendaDAO(GerenciaSala gerenciaSala, GerenciaVenda gerenciaVenda) {
+        this.gerenciaSala = gerenciaSala;
+        this.gerenciaVenda = gerenciaVenda;
         try {
             conn = Conexao.getConexao();
         } catch (SQLException ex) {
@@ -58,12 +64,14 @@ public class ItemVendaDAO {
 
         try {
             ps = conn.prepareStatement(sql);
+            ps.setInt(1, venda.getId());
             rs = ps.executeQuery();
             itensVenda = new ArrayList<>();
 
             while (rs.next()) {
-               // Poltrona poltrona =  
-               // itensVenda.add(new ItemVenda(rs.getInt("id"), poltrona, TipoVenda.INTEIRA, venda, Double.NaN) );
+                Poltrona p =  gerenciaSala.consultarPoltrona(rs.getInt("fk_poltrona"));
+                Venda v = gerenciaVenda.consultar(rs.getInt("fk_venda"));
+                itensVenda.add(new ItemVenda(rs.getInt("id"), p, TipoVenda.valueOf(rs.getString("tipo_venda")), v, rs.getDouble("valor")));
             }
 
             rs.close();
@@ -72,7 +80,7 @@ public class ItemVendaDAO {
             System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
         }
 
-        return null;
+        return itensVenda;
     }
     
 }

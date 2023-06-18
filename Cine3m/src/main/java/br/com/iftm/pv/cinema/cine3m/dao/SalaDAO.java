@@ -143,7 +143,7 @@ public class SalaDAO {
         PreparedStatement ps;
         ResultSet rs;
 
-        String sql = "SELECT * FROM sessao WHERE fk_sala = ?";
+        String sql = "SELECT * FROM sessao WHERE fk_sala = ? and del = false";
 
         try {
             ps = conn.prepareStatement(sql);

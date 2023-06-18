@@ -171,7 +171,7 @@ public class FilmeDAO {
         PreparedStatement ps;
         ResultSet rs;
 
-        String sql = "SELECT * FROM sessao WHERE fk_filme = ?";
+        String sql = "SELECT * FROM sessao WHERE fk_filme = ? and del = false";
 
         try {
             ps = conn.prepareStatement(sql);

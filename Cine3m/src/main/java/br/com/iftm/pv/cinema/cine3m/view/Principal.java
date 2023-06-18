@@ -44,6 +44,7 @@ public class Principal extends javax.swing.JFrame {
             gerenciaArquivo.obterFuncionarios());
     private final GerenciaSala gerenciaSala = new GerenciaSala();
     private final GerenciaSessao gerenciaSessao = new GerenciaSessao(gerenciaSala);
+    private final GerenciaReserva gerenciaReserva = new GerenciaReserva();
     private final GerenciaVenda gerenciaVenda = new GerenciaVenda(gerenciaCliente, gerenciaSessao);
 
     public Principal() {
@@ -53,7 +54,7 @@ public class Principal extends javax.swing.JFrame {
         operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario, gerenciaArquivo.getAdmin());
         operacoesFilme = new OperacoesFilme(gerenciaFilme);
         operacoesSala = new OperacoesSala(gerenciaSala);
-        operacoesVenda = new OperacoesVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, gerenciaSala,operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
+        operacoesVenda = new OperacoesVenda(gerenciaVenda, gerenciaReserva,gerenciaSessao, gerenciaCliente, gerenciaSala,operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
 
         this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, operacoesVenda.getCadastroVenda(), jMenuBar1);
 

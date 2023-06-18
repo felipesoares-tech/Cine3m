@@ -1,5 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaReserva;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
@@ -28,6 +29,7 @@ public class CadastroVenda extends ModalInternalFrame {
     private ConfirmaVenda confirmaCompra;
     private final GerenciaSessao gerenciaSessao;
     private final GerenciaSala gerenciaSala;
+    private final GerenciaReserva gerenciaReserva;
     private CadastroSessao cadastroSessao;
     private final CadastroCliente cadastroCliente;
     private final VincularCliente vincularCliente;
@@ -56,6 +58,7 @@ public class CadastroVenda extends ModalInternalFrame {
         this.operacoesVenda = operacoesVenda;
         this.gerenciaSessao = operacoesVenda.getGerenciaSessao();
         this.gerenciaSala = operacoesVenda.getGerenciaSala();
+        this.gerenciaReserva = operacoesVenda.getGerenciaReserva();
         this.cadastroSessao = cadastroSessao;
         this.cadastroCliente = cadastroCliente;
         this.vincularCliente = new VincularCliente(operacoesVenda.getGerenciaCliente(), this);
@@ -71,6 +74,10 @@ public class CadastroVenda extends ModalInternalFrame {
 
     public ConfirmaVenda getConfirmaCompra() {
         return confirmaCompra;
+    }
+
+    public GerenciaReserva getGerenciaReserva() {
+        return gerenciaReserva;
     }
 
     public void setConfirmaCompra(ConfirmaVenda confirmaCompra) {

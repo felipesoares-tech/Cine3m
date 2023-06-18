@@ -1,4 +1,3 @@
-
 package br.com.iftm.pv.cinema.cine3m.controller;
 
 import br.com.iftm.pv.cinema.cine3m.dao.ReservaDAO;
@@ -7,20 +6,23 @@ import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Reserva;
 import java.util.List;
 
+public class GerenciaReserva implements IGerencia<Reserva> {
 
-public class GerenciaReserva  implements IGerencia<Reserva>{
-    
     private ReservaDAO reservaDAO;
+
+    public GerenciaReserva() {
+        reservaDAO = new ReservaDAO();
+    }
 
     @Override
     public Enum cadastrar(Reserva reserva) {
         reservaDAO.incluir(reserva);
-         return EnumValidacoes.RESERVA_SUCESSO; 
-      }
+        return EnumValidacoes.RESERVA_SUCESSO;
+    }
 
     @Override
     public Reserva remover(Reserva obj) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -28,14 +30,18 @@ public class GerenciaReserva  implements IGerencia<Reserva>{
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public Reserva consultar(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<Reserva> consultarReservaSessao(Integer id) {
+        return reservaDAO.consultarReservaSessao(id);
     }
 
     @Override
     public List<Reserva> relatorio() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
+    @Override
+    public Reserva consultar(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

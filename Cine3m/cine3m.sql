@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS poltrona (
   id SERIAL PRIMARY KEY,
   fk_sala int NOT NULL,
   identificador varchar(100) NOT NULL,
-  livre boolean NOT NULL,
+--   livre boolean NOT NULL,
   CONSTRAINT fk_poltrona_sala1 FOREIGN KEY (fk_sala) REFERENCES sala (id)
 );
 
@@ -57,8 +57,8 @@ BEGIN
 
             identificador := chr(ASCII('A') + fila) || numero;
 
-            INSERT INTO poltrona (fk_sala, identificador, livre)
-            VALUES (NEW.id, identificador, true);
+            INSERT INTO poltrona (fk_sala, identificador)
+            VALUES (NEW.id, identificador);
         END LOOP;
     END LOOP;
 
@@ -85,6 +85,18 @@ CREATE TABLE IF NOT EXISTS sessao (
   CONSTRAINT fk_sessao_filme1 FOREIGN KEY (fk_filme) REFERENCES filme (id),
   CONSTRAINT fk_sessao_sala1 FOREIGN KEY (fk_sala) REFERENCES sala (id)
 );  
+
+CREATE TABLE reserva (
+	id serial primary key,
+	fk_poltrona int,
+	fk_sessao int,
+	fk_cliente int,
+	livre bool,
+	CONSTRAINT fk_reserva_sessao FOREIGN KEY (fk_sessao) REFERENCES sessao (id),
+	CONSTRAINT fk_reserva_cliente FOREIGN KEY (fk_cliente) REFERENCES cliente (id),
+	CONSTRAINT fk_reserva_poltrona FOREIGN KEY (fk_poltrona) REFERENCES poltrona (id),
+	CONSTRAINT fk_poltrona_sessao_unique UNIQUE (fk_poltrona, fk_sessao)
+);
 
 CREATE TABLE IF NOT EXISTS venda (
   id SERIAL PRIMARY KEY,

@@ -17,7 +17,7 @@ public class Poltrona {
         this.identificador = identificador;
     }
 
-    public Poltrona(Integer id,String identificador, Sala sala, boolean livre) {
+    public Poltrona(Integer id,String identificador, Sala sala) {
         this.identificador = identificador;
         this.sala = sala;
         this.livre = livre;

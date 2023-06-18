@@ -24,7 +24,7 @@ public class Conexao {
             
             Properties prop = new Properties();
             prop.put("user", "postgres");
-            prop.put("password", "lis150603");
+            prop.put("password", "16f877a");
             prop.put("charset", "UTF-8");
             prop.put("lc_ctype", "ISO8859_1");
             

@@ -92,9 +92,4 @@ public class GerenciaSala implements IGerencia<Sala> {
         return poltronaDAO.consultaPoltronaPorID(poltrona.getId());
     }
 
-    public void atualizaEstadoPoltrona(Poltrona poltrona, boolean estado) {        
-        poltrona.setLivre(estado);
-        poltronaDAO.alterar(poltrona);
-    }
-
 }

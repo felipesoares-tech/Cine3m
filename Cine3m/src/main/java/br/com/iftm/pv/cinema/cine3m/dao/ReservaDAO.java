@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +21,9 @@ public class ReservaDAO {
     private ClienteDAO clienteDAO;
 
     public ReservaDAO() {
+        poltronaDAO = new PoltronaDAO();
+        sessaoDAO = new SessaoDAO();
+        clienteDAO = new ClienteDAO();
         try {
             conn = Conexao.getConexao();
         } catch (SQLException ex) {
@@ -36,7 +41,8 @@ public class ReservaDAO {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, reserva.getPoltrona().getId());
             ps.setInt(2, reserva.getSessao().getId());
-            ps.setInt(3, reserva.getCliente().getId());
+            Cliente c = reserva.getCliente();
+            ps.setObject(3, c != null ? c.getId() : null);            
             ps.setBoolean(4, false);
 
             ps.execute();
@@ -48,6 +54,36 @@ public class ReservaDAO {
             return false;
         }
     }
+    
+    public List<Reserva> consultarReservaSessao(Integer sessaoID) {
+        PreparedStatement ps;
+        ResultSet rs;
+        List<Reserva> reservas = new ArrayList<>();
+        
+        String sql = "SELECT * FROM reserva WHERE fk_sessao = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, sessaoID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Poltrona poltrona = poltronaDAO.consultaPoltronaPorID(rs.getInt("fk_poltrona"));
+                Sessao sessao = sessaoDAO.consultarSessaoID(rs.getInt("fk_sessao"));
+                Cliente cliente = clienteDAO.consultarClienteID(rs.getInt("fk_cliente"));
+                reservas.add(new Reserva(rs.getInt("id"), rs.getBoolean("livre"),poltrona, sessao, cliente));                
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return reservas;
+    }
+    
+    
+    
 
     public Reserva consultarReservaID(Integer reservaID) {
         PreparedStatement ps;

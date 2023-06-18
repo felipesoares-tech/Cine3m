@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaReserva;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
@@ -26,17 +27,19 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     private final GerenciaVenda gerenciaVenda;
     private final GerenciaSessao gerenciaSessao;
     private final GerenciaCliente gerenciaCliente;
+    private final GerenciaReserva gerenciaReserva;
     private final CadastroVenda cadastroVenda;
     private final RelatorioVenda relatorioVenda;
     private final GerenciaSala gerenciaSala;
     private final ConsultaVenda telaAuxiliarConsultaVenda;
     private List<Venda> vendas;
 
-    public OperacoesVenda(GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala,CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
+    public OperacoesVenda(GerenciaVenda gerenciaVenda, GerenciaReserva gerenciaReserva,GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala,CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
         initComponents();
         this.gerenciaVenda = gerenciaVenda;
         this.gerenciaSala = gerenciaSala;
         this.gerenciaSessao = gerenciaSessao;
+        this.gerenciaReserva = gerenciaReserva;
         this.gerenciaCliente = gerenciaCliente;
         this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
         this.cadastroVenda = new CadastroVenda(gerenciaVenda, cadastroSessao, cadastroCliente, this);
@@ -48,6 +51,10 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
 
     public GerenciaSala getGerenciaSala() {
         return gerenciaSala;
+    }
+
+    public GerenciaReserva getGerenciaReserva() {
+        return gerenciaReserva;
     }
 
     public GerenciaVenda getGerenciaVenda() {

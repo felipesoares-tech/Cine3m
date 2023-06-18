@@ -54,7 +54,7 @@ public class PoltronaDAO {
             poltronas = new ArrayList<>();
 
             while (rs.next()) {
-                poltronas.add(new Poltrona(rs.getInt("id"), rs.getString("identificador"), sala, rs.getBoolean("livre")));
+                poltronas.add(new Poltrona(rs.getInt("id"), rs.getString("identificador"), sala));
             }
 
             rs.close();
@@ -80,7 +80,7 @@ public class PoltronaDAO {
 
             if (rs.next()) {
                 Sala sala = salaDAO.consultarSalaID(rs.getInt("fk_sala"));
-                poltronaRet = new Poltrona(rs.getInt("id"), rs.getString("identificador"), sala, rs.getBoolean("livre"));
+                poltronaRet = new Poltrona(rs.getInt("id"), rs.getString("identificador"), sala);
             }
             rs.close();
             ps.close();
@@ -107,7 +107,7 @@ public class PoltronaDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                poltronaRet = new Poltrona(rs.getInt("id"), rs.getString("identificador"), sala, rs.getBoolean("livre"));
+                poltronaRet = new Poltrona(rs.getInt("id"), rs.getString("identificador"), sala);
             }
             rs.close();
             ps.close();
@@ -117,26 +117,5 @@ public class PoltronaDAO {
         }
         return poltronaRet;
     }
-    
-    public boolean alterar(Poltrona poltrona) {
-        String sql;
-        PreparedStatement ps;
-        sql = "UPDATE poltrona SET livre = ?  WHERE id = ?";
-
-        try {
-            ps = conn.prepareStatement(sql);
-            ps.setBoolean(1, poltrona.isLivre());
-            ps.setInt(2, poltrona.getId());
-
-            ps.execute();
-            ps.close();
-
-            return true;
-        } catch (SQLException e) {
-            System.err.println("Erro na operação de alteração do SGDB: " + e.getMessage());
-
-            return false;
-        }
-    }
-
+   
 }

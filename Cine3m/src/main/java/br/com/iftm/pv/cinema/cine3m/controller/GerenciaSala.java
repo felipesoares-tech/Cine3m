@@ -64,7 +64,7 @@ public class GerenciaSala implements IGerencia<Sala> {
         if (!salaDAO.consultarSalaSessao(sala.getId())) {
             salaDAO.apagar(sala.getId());
             return EnumValidacoes.SALA_NAO_VINCULADA_SESSAO;
-        }         
+        }
         return EnumValidacoes.SALA_VINCULADA_SESSAO;
     }
 
@@ -72,7 +72,11 @@ public class GerenciaSala implements IGerencia<Sala> {
     public EnumValidacoes atualizar(Sala sala, Sala salaAtualizado) {
         EnumValidacoes retornoValidacao = validarSala(sala, salaAtualizado);
         if (retornoValidacao.equals(EnumValidacoes.SALA_SUCESSO)) {
-            salaDAO.alterar(sala.getId(), salaAtualizado);
+            if (!salaDAO.consultarSalaSessao(sala.getId())) {
+                salaDAO.alterar(sala.getId(), salaAtualizado);
+            } else {
+                return EnumValidacoes.SALA_VINCULADA_SESSAO;
+            }
         }
         return retornoValidacao;
     }
@@ -86,8 +90,8 @@ public class GerenciaSala implements IGerencia<Sala> {
     public List<Sala> relatorio() {
         return salaDAO.listar();
     }
-    
-    public Poltrona consultarPoltrona(Integer salaID){
+
+    public Poltrona consultarPoltrona(Integer salaID) {
         return poltronaDAO.consultaPoltronaPorID(salaID);
     }
 

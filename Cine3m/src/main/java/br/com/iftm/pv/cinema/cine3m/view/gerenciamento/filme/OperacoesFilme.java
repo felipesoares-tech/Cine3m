@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
@@ -301,10 +302,14 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
                 "Apagar Filme", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            gerenciaFilme.remover(filmeSelecionado);
-            lstFilmesAncestorAdded(null);
-            JOptionPane.showMessageDialog(this, "Filme removido",
-                    "Remover", JOptionPane.INFORMATION_MESSAGE);
+            if (gerenciaFilme.removerr(filmeSelecionado).equals(EnumValidacoes.FILME_NAO_VINCULADO_SESSAO)) {
+                lstFilmesAncestorAdded(null);
+                JOptionPane.showMessageDialog(this, "Filme removido",
+                        "Remover", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Não foi possível deletar, filme já vinculado a uma sessão!",
+                        "Remover", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 

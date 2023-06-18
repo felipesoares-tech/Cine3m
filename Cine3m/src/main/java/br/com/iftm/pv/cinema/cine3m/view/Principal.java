@@ -35,12 +35,12 @@ public class Principal extends javax.swing.JFrame {
     private final TelaImportacao telaImportacao;
 
     private final GerenciaArquivo gerenciaArquivo = new GerenciaArquivo();
-    private final GerenciaCliente gerenciaCliente = new GerenciaCliente();
-    private final GerenciaFilme gerenciaFilme = new GerenciaFilme();
+    private final GerenciaCliente gerenciaCliente = new GerenciaCliente();    
     private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(
             gerenciaArquivo.obterFuncionarios());
     private final GerenciaSala gerenciaSala = new GerenciaSala();
-    private final GerenciaSessao gerenciaSessao = new GerenciaSessao(gerenciaSala,gerenciaFilme);
+    private final GerenciaFilme gerenciaFilme = new GerenciaFilme();
+    private final GerenciaSessao gerenciaSessao = new GerenciaSessao(gerenciaSala,gerenciaFilme);        
     private final GerenciaVenda gerenciaVenda = new GerenciaVenda(gerenciaCliente, gerenciaSessao,gerenciaSala);
 
     public Principal() {

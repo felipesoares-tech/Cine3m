@@ -15,6 +15,7 @@ public enum EnumValidacoes {
     SESSAO_SUCESSO,
     
     FILME_JA_CADASTRADO,
+    FILME_VINCULADO_SESSAO,
     FILME_SUCESSO,
     
     SALA_JA_CADASTRADA,

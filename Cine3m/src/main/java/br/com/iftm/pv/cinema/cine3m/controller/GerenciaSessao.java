@@ -3,21 +3,17 @@ package br.com.iftm.pv.cinema.cine3m.controller;
 import br.com.iftm.pv.cinema.cine3m.dao.SessaoDAO;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
-import br.com.iftm.pv.cinema.cine3m.model.Poltrona;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import java.util.Iterator;
 import java.util.List;
 
 public class GerenciaSessao implements IGerencia<Sessao> {
-
     private final SessaoDAO sessaoDAO;
-    private final GerenciaSala gerenciaSala;
 
     public GerenciaSessao(GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme) {
-        this.sessaoDAO = new SessaoDAO(gerenciaFilme, gerenciaSala);
-        this.gerenciaSala = gerenciaSala;    
+        this.sessaoDAO = new SessaoDAO(gerenciaFilme, gerenciaSala);    
     }
-
+    
     private EnumValidacoes validarSessao(Sessao sessao) {
         EnumValidacoes retornoValidacao;
         if (sessaoDAO.consultarSessaoDataHoraSala(sessao) != null) { //O Contains, verifica somente oq está no Equals!
@@ -40,6 +36,10 @@ public class GerenciaSessao implements IGerencia<Sessao> {
             retornoValidacao = EnumValidacoes.SESSAO_SUCESSO;
         }
         return retornoValidacao;
+    }
+    
+    public boolean filmeVinculado(Integer filmeID){
+       return sessaoDAO.consultarFilmeSessao(filmeID);
     }
 
     private boolean existeSessaoComHorario(Sessao sessao, Sessao sessaoAtualizada) {

@@ -3,16 +3,14 @@ package br.com.iftm.pv.cinema.cine3m.controller;
 import br.com.iftm.pv.cinema.cine3m.dao.ItemVendaDAO;
 import br.com.iftm.pv.cinema.cine3m.dao.VendaDAO;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
-import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import java.util.List;
 
-public class GerenciaVenda{
+public class GerenciaVenda {
 
     private final GerenciaCliente gerenciaCliente;
-    private final GerenciaSessao gerenciaSessao;
     private final VendaDAO vendaDAO;
     private final ItemVendaDAO itemVendaDAO;
 
@@ -20,7 +18,6 @@ public class GerenciaVenda{
         this.vendaDAO = new VendaDAO(gerenciaCliente, gerenciaSala, this, gerenciaSessao);
         this.itemVendaDAO = new ItemVendaDAO(gerenciaSala, this);
         this.gerenciaCliente = gerenciaCliente;
-        this.gerenciaSessao = gerenciaSessao;
     }
 
     private Double aplicarPromocaoVenda(Double valor) {

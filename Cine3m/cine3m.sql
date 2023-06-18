@@ -95,9 +95,15 @@ CREATE TABLE IF NOT EXISTS venda (
   desconto boolean NOT NULL DEFAULT false,
   cancelada boolean NOT NULL DEFAULT false, 
   del boolean NOT NULL DEFAULT false,
-  CONSTRAINT fk_venda_sessao1 FOREIGN KEY (fk_sessao) REFERENCES sessao (id),
-  CONSTRAINT fk_venda_cliente1 FOREIGN KEY (fk_cliente) REFERENCES cliente (id),
+  CONSTRAINT fk_venda_sessao1 FOREIGN KEY (fk_sessao) REFERENCES sessao (id)
+  ON UPDATE NO ACTION 
+  ON DELETE NO ACTION,
+  CONSTRAINT fk_venda_cliente1 FOREIGN KEY (fk_cliente) REFERENCES cliente (id) 
+  ON UPDATE NO ACTION 
+  ON DELETE NO ACTION,
   CONSTRAINT fk_venda_funcionario1 FOREIGN KEY (fk_funcionario) REFERENCES funcionario (id)
+  ON UPDATE NO ACTION 
+  ON DELETE NO ACTION
 ); 
 
 CREATE TABLE IF NOT EXISTS item_venda (

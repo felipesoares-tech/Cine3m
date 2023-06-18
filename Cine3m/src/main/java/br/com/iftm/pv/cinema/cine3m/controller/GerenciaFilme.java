@@ -44,6 +44,11 @@ public class GerenciaFilme implements IGerencia<Filme> {
         }
         return false;
     }
+    
+    private boolean filmeVinculadoSessao(Filme filme){
+        //GerenciaSessao gerenciaSessao = new GerenciaSessao(gerenciaSala);
+        return true;
+    }
 
     @Override
     public EnumValidacoes cadastrar(Filme filme) {

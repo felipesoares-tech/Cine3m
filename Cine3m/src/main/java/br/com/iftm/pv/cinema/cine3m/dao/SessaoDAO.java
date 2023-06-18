@@ -1,5 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.dao;
 
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
@@ -17,12 +19,12 @@ import java.util.logging.Logger;
 public class SessaoDAO {
 
     private Connection conn = null;
-    private FilmeDAO filmeDAO;
-    private SalaDAO salaDAO;
-
-    public SessaoDAO() {
-        filmeDAO = new FilmeDAO();
-        salaDAO = new SalaDAO();
+    private GerenciaFilme gerenciaFilme;
+    private GerenciaSala gerenciaSala;
+    
+    public SessaoDAO(GerenciaFilme gerenciaFilme,GerenciaSala gerenciaSala) {   
+        this.gerenciaFilme = gerenciaFilme;
+        this.gerenciaSala = gerenciaSala;
         try {
             conn = Conexao.getConexao();
         } catch (SQLException ex) {
@@ -68,8 +70,8 @@ public class SessaoDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                Filme filme = filmeDAO.consultarFilmeID(rs.getInt("fk_filme"));
-                Sala sala = salaDAO.consultarSalaID(rs.getInt("fk_sala"));
+                Filme filme = gerenciaFilme.consultar(rs.getInt("fk_filme"));
+                Sala sala = gerenciaSala.consultar(rs.getInt("fk_sala"));                
                 sessaoRet = new Sessao(rs.getInt("id"), filme, rs.getDate("data").toLocalDate(), rs.getTime("hora").toLocalTime(), sala, rs.getDouble("valor"), rs.getString("identificador"), rs.getTime("hora_final").toLocalTime());
             }
             rs.close();
@@ -95,8 +97,8 @@ public class SessaoDAO {
             sessoes = new ArrayList<>();
 
             while (rs.next()) {
-                Filme filme = filmeDAO.consultarFilmeID(rs.getInt("fk_filme"));
-                Sala sala = salaDAO.consultarSalaID(rs.getInt("fk_sala"));
+                Filme filme = gerenciaFilme.consultar(rs.getInt("fk_filme"));
+                Sala sala = gerenciaSala.consultar(rs.getInt("fk_sala"));                
                 sessoes.add(new Sessao(rs.getInt("id"), filme, rs.getDate("data").toLocalDate(), rs.getTime("hora").toLocalTime(), sala, rs.getDouble("valor"), rs.getString("identificador"), rs.getTime("hora_final").toLocalTime()));
             }
 
@@ -124,8 +126,8 @@ public class SessaoDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                Filme filme = filmeDAO.consultarFilmeID(rs.getInt("fk_filme"));
-                Sala sala = salaDAO.consultarSalaID(rs.getInt("fk_sala"));
+                Filme filme = gerenciaFilme.consultar(rs.getInt("fk_filme"));
+                Sala sala = gerenciaSala.consultar(rs.getInt("fk_sala"));                
                 sessaoRet = new Sessao(rs.getInt("id"), filme, rs.getDate("data").toLocalDate(), rs.getTime("hora").toLocalTime(), sala, rs.getDouble("valor"), rs.getString("identificador"), rs.getTime("hora_final").toLocalTime());
             }
             rs.close();

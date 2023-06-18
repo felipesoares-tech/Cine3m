@@ -166,6 +166,29 @@ public class FilmeDAO {
         }
         return filmeRet;
     }
+    
+    public boolean consultarFilmeSessao(Integer filmeID) {
+        PreparedStatement ps;
+        ResultSet rs;
+
+        String sql = "SELECT * FROM sessao WHERE fk_filme = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, filmeID);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return false;
+    }
 
     public void fecharConexao() {
         try {

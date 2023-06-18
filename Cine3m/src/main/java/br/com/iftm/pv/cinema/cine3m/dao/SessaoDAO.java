@@ -2,6 +2,7 @@ package br.com.iftm.pv.cinema.cine3m.dao;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
+import br.com.iftm.pv.cinema.cine3m.enums.Genero;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
@@ -11,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,8 +23,8 @@ public class SessaoDAO {
     private Connection conn = null;
     private GerenciaFilme gerenciaFilme;
     private GerenciaSala gerenciaSala;
-    
-    public SessaoDAO(GerenciaFilme gerenciaFilme,GerenciaSala gerenciaSala) {   
+
+    public SessaoDAO(GerenciaFilme gerenciaFilme, GerenciaSala gerenciaSala) {
         this.gerenciaFilme = gerenciaFilme;
         this.gerenciaSala = gerenciaSala;
         try {
@@ -56,7 +58,7 @@ public class SessaoDAO {
             return false;
         }
     }
-    
+
     public Sessao consultarSessaoID(Integer sessaoID) {
         PreparedStatement ps;
         ResultSet rs;
@@ -71,7 +73,7 @@ public class SessaoDAO {
 
             if (rs.next()) {
                 Filme filme = gerenciaFilme.consultar(rs.getInt("fk_filme"));
-                Sala sala = gerenciaSala.consultar(rs.getInt("fk_sala"));                
+                Sala sala = gerenciaSala.consultar(rs.getInt("fk_sala"));
                 sessaoRet = new Sessao(rs.getInt("id"), filme, rs.getDate("data").toLocalDate(), rs.getTime("hora").toLocalTime(), sala, rs.getDouble("valor"), rs.getString("identificador"), rs.getTime("hora_final").toLocalTime());
             }
             rs.close();
@@ -81,6 +83,29 @@ public class SessaoDAO {
             System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
         }
         return sessaoRet;
+    }
+
+    public boolean consultarFilmeSessao(Integer filmeID) {
+        PreparedStatement ps;
+        ResultSet rs;
+
+        String sql = "SELECT * FROM sessao WHERE fk_filme = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, filmeID);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return false;
     }
 
     public List<Sessao> listar() {
@@ -98,7 +123,7 @@ public class SessaoDAO {
 
             while (rs.next()) {
                 Filme filme = gerenciaFilme.consultar(rs.getInt("fk_filme"));
-                Sala sala = gerenciaSala.consultar(rs.getInt("fk_sala"));                
+                Sala sala = gerenciaSala.consultar(rs.getInt("fk_sala"));
                 sessoes.add(new Sessao(rs.getInt("id"), filme, rs.getDate("data").toLocalDate(), rs.getTime("hora").toLocalTime(), sala, rs.getDouble("valor"), rs.getString("identificador"), rs.getTime("hora_final").toLocalTime()));
             }
 
@@ -110,7 +135,7 @@ public class SessaoDAO {
 
         return sessoes;
     }
-    
+
     public Sessao consultarSessaoDataHoraSala(Sessao sessao) {
         PreparedStatement ps;
         ResultSet rs;
@@ -127,7 +152,7 @@ public class SessaoDAO {
 
             if (rs.next()) {
                 Filme filme = gerenciaFilme.consultar(rs.getInt("fk_filme"));
-                Sala sala = gerenciaSala.consultar(rs.getInt("fk_sala"));                
+                Sala sala = gerenciaSala.consultar(rs.getInt("fk_sala"));
                 sessaoRet = new Sessao(rs.getInt("id"), filme, rs.getDate("data").toLocalDate(), rs.getTime("hora").toLocalTime(), sala, rs.getDouble("valor"), rs.getString("identificador"), rs.getTime("hora_final").toLocalTime());
             }
             rs.close();

@@ -330,7 +330,9 @@ public class CadastroFilme extends ModalInternalFrame {
             case FILME_JA_CADASTRADO:
                 JOptionPane.showMessageDialog(this, "Filme já cadastrado ", titulo,
                         JOptionPane.ERROR_MESSAGE);
-
+                case FILME_VINCULADO_SESSAO:
+                JOptionPane.showMessageDialog(this, "Não foi possível atualizar, filme já vinculado a uma sessão!",
+                        "Remover", JOptionPane.ERROR_MESSAGE);
                 break;
             default:
                 throw new AssertionError();
@@ -371,7 +373,6 @@ public class CadastroFilme extends ModalInternalFrame {
                     getDesktopPane().remove(this);
 
                 }
-
             }
             ListUtils.carregarList(operacoesFilme.getLstFilmes(), gerenciaFilme.relatorio());
             if (gerenciaFilme.relatorio().isEmpty()) {

@@ -84,18 +84,6 @@ FROM filme]]>
 				</reportElement>
 				<text><![CDATA[diretor]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="330" y="0" width="100" height="30" uuid="519603df-6df4-4f03-9c47-36c878072b9a">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="35895e73-d7f6-4a1d-8cb1-16e483ed9066"/>
-				</reportElement>
-				<text><![CDATA[duracao]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="440" y="0" width="100" height="30" uuid="26a0285b-8b35-4152-85bd-e1f0a4326e52">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7f06783-7c09-4eac-bb33-0825580ce3d7"/>
-				</reportElement>
-				<text><![CDATA[tipo_genero]]></text>
-			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -117,18 +105,6 @@ FROM filme]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc6a3a82-6556-43f1-8fc5-6f7eb88f0eb1"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{diretor}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="330" y="10" width="100" height="30" uuid="bf4bf1ff-4850-431e-b832-fe97c0d2e856">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="35895e73-d7f6-4a1d-8cb1-16e483ed9066"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{duracao}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="440" y="10" width="100" height="30" uuid="f9ba5ce4-1b08-4775-b3ba-d0716b3a439b">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7f06783-7c09-4eac-bb33-0825580ce3d7"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{tipo_genero}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

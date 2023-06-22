@@ -20,7 +20,7 @@ public class RelatorioFilme extends ModalInternalFrame {
 
     private GerenciaFilme gerenciaFilme;
     private TableModelGenerico modelo;
-      private JDialog tela; 
+    private JDialog tela;
 
     public RelatorioFilme(GerenciaFilme gerenciaFilme) {
         initComponents();
@@ -113,7 +113,7 @@ public class RelatorioFilme extends ModalInternalFrame {
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
         try {
             // Compilando o JasperReport
-            JasperReport relatorioCompilado = JasperCompileManager.compileReport("/src/main/java/br/com/iftm/pv/cinema/cine3m/report/Blank_A4.jrxml");
+            JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/main/java/br/com/iftm/pv/cinema/cine3m/report/Blank_A4.jrxml");
 
             // Preenchendo o relatório com uma lista de usuários usando JRBeanCollectionDataSource
             JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null, new JRBeanCollectionDataSource(gerenciaFilme.relatorio()));
@@ -132,7 +132,8 @@ public class RelatorioFilme extends ModalInternalFrame {
             tela.setVisible(true);
         } catch (JRException ex) {
 //            Logger.getLogger(TelaAdminstrador.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório.");
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório." + ex);
         }
 
     }//GEN-LAST:event_btnRelatorioActionPerformed

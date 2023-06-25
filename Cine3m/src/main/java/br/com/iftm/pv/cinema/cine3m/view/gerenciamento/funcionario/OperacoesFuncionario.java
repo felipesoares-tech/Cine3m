@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
+import br.com.iftm.pv.cinema.cine3m.dao.FuncionarioDAO;
 import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
@@ -21,6 +22,7 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
     private final GerenciaFuncionario gerenciaFuncionario;
     private final RelatorioFuncionario relatorioFuncionario;
     private List<Funcionario> funcionarios;
+    private FuncionarioDAO funcionarioDAO;
     private Funcionario admin;
     private Funcionario funcionarioLogado;
 
@@ -28,7 +30,8 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
         initComponents();
         this.gerenciaFuncionario = gerenciaFuncionario;
         initComponentsPersonalizado();
-        this.admin = admin;
+        funcionarioDAO = new FuncionarioDAO();
+        this.admin = funcionarioDAO.receberAdmin();
         cadastroFuncionario = new CadastroFuncionario(gerenciaFuncionario, this);
         relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
         btnConsultar.setEnabled(false);

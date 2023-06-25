@@ -2,7 +2,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
 import br.com.iftm.pv.cinema.cine3m.dao.FuncionarioDAO;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
-import br.com.iftm.pv.cinema.cine3m.util.ChecarCredenciais;
+import br.com.iftm.pv.cinema.cine3m.view.util.ChecarCredenciais;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;

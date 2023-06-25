@@ -24,7 +24,7 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
     private Funcionario admin;
     private Funcionario funcionarioLogado;
 
-    public OperacoesFuncionario(GerenciaFuncionario gerenciaFuncionario, Funcionario admin) {
+    public OperacoesFuncionario(GerenciaFuncionario gerenciaFuncionario) {
         initComponents();
         this.gerenciaFuncionario = gerenciaFuncionario;
         initComponentsPersonalizado();

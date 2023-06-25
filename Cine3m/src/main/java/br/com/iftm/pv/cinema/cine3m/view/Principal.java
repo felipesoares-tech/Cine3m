@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import br.com.iftm.pv.cinema.cine3m.config.ParametrosSistema;
 import br.com.iftm.pv.cinema.cine3m.controller.*;
-import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme.*;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.cliente.*;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario.*;
@@ -17,9 +16,6 @@ import br.com.iftm.pv.cinema.cine3m.view.util.ValidaTela;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Principal extends javax.swing.JFrame {
@@ -34,7 +30,6 @@ public class Principal extends javax.swing.JFrame {
     private final LoginFuncionario loginFuncionario;
     private final TelaImportacao telaImportacao;
 
-    private final GerenciaArquivo gerenciaArquivo = new GerenciaArquivo();
     private final GerenciaCliente gerenciaCliente = new GerenciaCliente();    
     private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario();
     private final GerenciaSala gerenciaSala = new GerenciaSala();
@@ -46,12 +41,12 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         operacoesSessao = new OperacoesSessao(gerenciaSessao, gerenciaSala, gerenciaFilme);
         operacoesCliente = new OperacoesCliente(gerenciaCliente);
-        operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario, gerenciaArquivo.getAdmin());
+        operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario);
         operacoesFilme = new OperacoesFilme(gerenciaFilme);
         operacoesSala = new OperacoesSala(gerenciaSala);
         operacoesVenda = new OperacoesVenda(gerenciaVenda,gerenciaSessao, gerenciaCliente, gerenciaSala,operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
 
-        this.loginFuncionario = new LoginFuncionario(gerenciaArquivo, operacoesVenda.getCadastroVenda(), jMenuBar1);
+        this.loginFuncionario = new LoginFuncionario(operacoesVenda.getCadastroVenda(), jMenuBar1);
 
         Color corFundo = ParametrosSistema.getInstance().getCorDeFundo();
         Color corPanel = ParametrosSistema.getInstance().getCorPanel();
@@ -141,18 +136,6 @@ public class Principal extends javax.swing.JFrame {
                 jDesktopPane1.add(loginFuncionario);
                 loginFuncionario.setVisible(true);
                 jMenuBar1.setVisible(false);
-            }
-        });
-
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                if (!gerenciaFuncionario.relatorio().isEmpty()) {
-                    try {
-                        gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario.relatorio());
-                    } catch (IOException ex) {
-                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
             }
         });
     }
@@ -294,11 +277,6 @@ public class Principal extends javax.swing.JFrame {
         Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja deslogar?",
                 "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (resp.equals(JOptionPane.OK_OPTION)) {
-            try {
-                gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario.relatorio());
-            } catch (IOException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
             loginFuncionario.getTfUsuario().setText("");
             loginFuncionario.getJpfSenha().setText("");
             jDesktopPane1.add(loginFuncionario);

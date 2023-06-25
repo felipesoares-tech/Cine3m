@@ -1,10 +1,10 @@
 package br.com.iftm.pv.cinema.cine3m.dao;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaCliente;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSessao;
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaVenda;
-import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.ItemVenda;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import java.sql.Connection;
@@ -24,12 +24,13 @@ public class VendaDAO {
     private GerenciaSessao gerenciaSessao;
     private GerenciaCliente gerenciaCliente;
     private GerenciaVenda gerenciaVenda;
-//    private GerenciaFuncionario gerenciaFuncionario;
+    private GerenciaFuncionario gerenciaFuncionario;
 
-    public VendaDAO(GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala, GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao) {
+    public VendaDAO(GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala, GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao, GerenciaFuncionario gerenciaFuncionario) {
         this.gerenciaVenda = gerenciaVenda;
         this.gerenciaCliente = gerenciaCliente;
         this.gerenciaSessao = gerenciaSessao;
+        this.gerenciaFuncionario = gerenciaFuncionario;
 
         try {
             conn = Conexao.getConexao();
@@ -48,9 +49,10 @@ public class VendaDAO {
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, venda.getSessao().getId());
             Integer fk_cliente = venda.getCliente() != null ? venda.getCliente().getId() : null;
+            Integer fk_funcionario = venda.getFuncionario().getId();
 
             ps.setObject(2, fk_cliente);
-            ps.setInt(3, 1);
+            ps.setInt(3, fk_funcionario);
             ps.setBoolean(4, venda.hasDesconto());
             ps.setString(5, venda.getIdentificador());
             ps.setDouble(6, venda.getValorFinal());
@@ -87,7 +89,7 @@ public class VendaDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                vendas.add(new Venda(rs.getInt("id"), new Funcionario("teste", "", "sxx", "123"), gerenciaSessao.consultar(rs.getInt("fk_sessao")), gerenciaCliente.consultar(rs.getInt("fk_cliente")), rs.getDouble("valor_total"), rs.getString("identificador"), rs.getBoolean("cancelada"), rs.getBoolean("desconto"), rs.getBoolean("del")));
+                vendas.add(new Venda(rs.getInt("id"), gerenciaFuncionario.consultar(rs.getInt("fk_funcionario")), gerenciaSessao.consultar(rs.getInt("fk_sessao")), gerenciaCliente.consultar(rs.getInt("fk_cliente")), rs.getDouble("valor_total"), rs.getString("identificador"), rs.getBoolean("cancelada"), rs.getBoolean("desconto"), rs.getBoolean("del")));
             }
             rs.close();
             ps.close();
@@ -132,7 +134,7 @@ public class VendaDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                vendaRet = new Venda(rs.getInt("id"), new Funcionario("teste", "", "sxx", "123"), gerenciaSessao.consultar(rs.getInt("fk_sessao")), gerenciaCliente.consultar(rs.getInt("fk_cliente")), rs.getDouble("valor_total"), rs.getString("identificador"), rs.getBoolean("cancelada"), rs.getBoolean("desconto"), rs.getBoolean("del"));
+                vendaRet = new Venda(rs.getInt("id"), gerenciaFuncionario.consultar(rs.getInt("fk_funcionario")), gerenciaSessao.consultar(rs.getInt("fk_sessao")), gerenciaCliente.consultar(rs.getInt("fk_cliente")), rs.getDouble("valor_total"), rs.getString("identificador"), rs.getBoolean("cancelada"), rs.getBoolean("desconto"), rs.getBoolean("del"));
             }
             rs.close();
             ps.close();
@@ -157,7 +159,7 @@ public class VendaDAO {
             vendas = new ArrayList<>();
 
             while (rs.next()) {
-                vendas.add(new Venda(rs.getInt("id"), new Funcionario("teste", "", "sxx", "123"), gerenciaSessao.consultar(rs.getInt("fk_sessao")), gerenciaCliente.consultar(rs.getInt("fk_cliente")), rs.getDouble("valor_total"), rs.getString("identificador"), rs.getBoolean("cancelada"), rs.getBoolean("desconto"), rs.getBoolean("del")));
+                vendas.add(new Venda(rs.getInt("id"), gerenciaFuncionario.consultar(rs.getInt("fk_funcionario")), gerenciaSessao.consultar(rs.getInt("fk_sessao")), gerenciaCliente.consultar(rs.getInt("fk_cliente")), rs.getDouble("valor_total"), rs.getString("identificador"), rs.getBoolean("cancelada"), rs.getBoolean("desconto"), rs.getBoolean("del")));
             }
 
             rs.close();

@@ -14,8 +14,8 @@ public class GerenciaVenda {
     private final VendaDAO vendaDAO;
     private final ItemVendaDAO itemVendaDAO;
 
-    public GerenciaVenda(GerenciaCliente gerenciaCliente, GerenciaSessao gerenciaSessao, GerenciaSala gerenciaSala) {
-        this.vendaDAO = new VendaDAO(gerenciaCliente, gerenciaSala, this, gerenciaSessao);
+    public GerenciaVenda(GerenciaCliente gerenciaCliente, GerenciaSessao gerenciaSessao, GerenciaSala gerenciaSala,GerenciaFuncionario gerenciaFuncionario) {
+        this.vendaDAO = new VendaDAO(gerenciaCliente, gerenciaSala, this, gerenciaSessao,gerenciaFuncionario);
         this.itemVendaDAO = new ItemVendaDAO(gerenciaSala, this);
         this.gerenciaCliente = gerenciaCliente;
     }

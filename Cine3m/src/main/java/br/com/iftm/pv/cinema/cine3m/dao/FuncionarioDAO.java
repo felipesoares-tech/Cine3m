@@ -10,10 +10,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
 public class FuncionarioDAO {
-        private Connection conn = null;
+
+    private Connection conn = null;
 
     public FuncionarioDAO() {
         try {
@@ -106,8 +105,8 @@ public class FuncionarioDAO {
 
             while (rs.next()) {
                 funcionarios.add(new Funcionario(rs.getInt("id"), rs.getString("nome"),
-                        rs.getString("cpf"), rs.getString("login"), 
-                        rs.getString("senha"),  rs.getBoolean("del")));
+                        rs.getString("cpf"), rs.getString("login"),
+                        rs.getString("senha"), rs.getBoolean("del")));
             }
 
             rs.close();
@@ -131,9 +130,9 @@ public class FuncionarioDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                funcionarioRet = new Funcionario(rs.getInt("id"), rs.getString("nome"), 
+                funcionarioRet = new Funcionario(rs.getInt("id"), rs.getString("nome"),
                         rs.getString("cpf"), rs.getString("login"),
-                        rs.getString("senha"),  rs.getBoolean("del"));
+                        rs.getString("senha"), rs.getBoolean("del"));
             }
             rs.close();
             ps.close();
@@ -157,7 +156,7 @@ public class FuncionarioDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                funcionarioRet = new Funcionario(rs.getString("nome"), rs.getString("cpf"), 
+                funcionarioRet = new Funcionario(rs.getString("nome"), rs.getString("cpf"),
                         rs.getString("login"), rs.getString("senha"));
             }
             rs.close();
@@ -169,7 +168,7 @@ public class FuncionarioDAO {
         return funcionarioRet;
     }
 
-        public Funcionario consultarFuncionarioLogin(String login) {
+    public Funcionario consultarFuncionarioLogin(String login) {
         PreparedStatement ps;
         ResultSet rs;
         Funcionario funcionarioRet = null;
@@ -182,8 +181,9 @@ public class FuncionarioDAO {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                funcionarioRet = new Funcionario(rs.getString("nome"), rs.getString("cpf"), 
-                        rs.getString("login"), rs.getString("senha"));
+                funcionarioRet = new Funcionario(rs.getInt("id"), rs.getString("nome"),
+                        rs.getString("cpf"), rs.getString("login"),
+                        rs.getString("senha"), rs.getBoolean("del"));
             }
             rs.close();
             ps.close();
@@ -193,7 +193,7 @@ public class FuncionarioDAO {
         }
         return funcionarioRet;
     }
-    
+
     public void fecharConexao() {
         try {
             conn.close();

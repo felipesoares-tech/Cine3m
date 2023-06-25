@@ -6,21 +6,31 @@ import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
+import java.awt.Frame;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.swing.JRViewer;
 
 public class OperacoesFilme extends javax.swing.JInternalFrame {
 
     private final CadastroFilme cadastroFilme;
     private final GerenciaFilme gerenciaFilme;
-    private final RelatorioFilme relatorioFilme;
+    private JDialog relFilme;
     private List<Filme> filmes;
 
     public OperacoesFilme(GerenciaFilme gerenciaFilme) {
@@ -28,7 +38,6 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
         this.gerenciaFilme = gerenciaFilme;
         initComponentsPersonalizado();
         this.cadastroFilme = new CadastroFilme(gerenciaFilme, this);
-        relatorioFilme = new RelatorioFilme(gerenciaFilme);
         btnConsultar.setEnabled(false);
 
     }
@@ -103,10 +112,6 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
 
     public JPanel getPanelBotoes() {
         return panelBotoes;
-    }
-
-    public RelatorioFilme getRelatorioFilme() {
-        return relatorioFilme;
     }
 
     public void setBtnNovo(JButton btnNovo) {
@@ -352,9 +357,31 @@ public class OperacoesFilme extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
-        getDesktopPane().add(relatorioFilme);
-        relatorioFilme.setModal(true);
-        relatorioFilme.setVisible(true);
+        try {
+            // Compilando o JasperReport
+            JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/main/java/br/com/iftm/pv/cinema/cine3m/report/filme.jrxml");
+
+            // Preenchendo o relatório com uma lista de usuários usando JRBeanCollectionDataSource
+            JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null, new JRBeanCollectionDataSource(gerenciaFilme.relatorio()));
+
+            // Criando um diálogo para exibir o relatório
+            relFilme = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Relatório de Usuários", true);
+            relFilme.setSize(1000, 500);
+
+            // Criando um componente Swing para exibir o relatório
+            JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+
+            // Adicionando o painel do relatório ao diálogo criado
+            relFilme.getContentPane().add(painelRelatorio);
+
+            // Tornando o diálogo visível com o relatório
+            relFilme.setVisible(true);
+        } catch (JRException ex) {
+//            Logger.getLogger(TelaAdminstrador.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório." + ex);
+        }
+
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
 

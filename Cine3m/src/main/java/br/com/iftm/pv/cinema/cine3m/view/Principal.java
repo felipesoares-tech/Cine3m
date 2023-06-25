@@ -99,7 +99,6 @@ public class Principal extends javax.swing.JFrame {
         operacoesSala.getLbPesquisar().setForeground(corLabel);
 
         operacoesFilme.getCadastroFilme().getContentPane().setBackground(corFundo);
-        operacoesFilme.getRelatorioFilme().getContentPane().setBackground(corFundo);
 
         operacoesFilme.getLstFilmes().setBackground(corFundo);
         operacoesFilme.getContentPane().setBackground(corFundo);

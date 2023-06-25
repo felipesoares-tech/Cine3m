@@ -16,7 +16,8 @@ public class ChecarCredenciais {
         while (it.hasNext()) {
             Funcionario funcionario = it.next();
             if (usuarioNome.equals(funcionario.getLogin())) {
-                return criptografarSenha.criptografarSenha(senha).equals(funcionario.getSenha());
+                
+                return senha.equals(funcionario.getSenha());
             }
         }
         return false;

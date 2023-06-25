@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="11cb1da1-bcc5-4417-9582-2c82741e30e8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="ZmlsbWUgLDE1LDE1LDBlMWE3OGZhLWFjYmEtNGU3OS1hOGI4LWFiMmNhMGNlNTJlOTs="/>
+	<queryString>
+		<![CDATA[SELECT tipo_genero,
+	nome,
+	descricao,
+	diretor,
+	del,
+	duracao,
+	id
+FROM filme]]>
+	</queryString>
+	<field name="tipo_genero" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo_genero"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo_genero"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
+		<fieldDescription><![CDATA[genero]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
+		<fieldDescription><![CDATA[descricao]]></fieldDescription>
+	</field>
+	<field name="diretor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diretor"/>
+		<property name="com.jaspersoft.studio.field.label" value="diretor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
+		<fieldDescription><![CDATA[diretor]]></fieldDescription>
+	</field>
+	<field name="del" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="del"/>
+		<property name="com.jaspersoft.studio.field.label" value="del"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
+		<fieldDescription><![CDATA[del]]></fieldDescription>
+	</field>
+	<field name="duracao" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="duracao"/>
+		<property name="com.jaspersoft.studio.field.label" value="duracao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
+		<fieldDescription><![CDATA[duracao]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="ccd609a4-cda6-4dbf-932e-61233b0bf5f0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e50d5c9-42d6-4bac-be21-cb5d738ec9e6"/>
+				</reportElement>
+				<text><![CDATA[nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="100" height="30" uuid="531b8118-f4f3-410b-9c15-02626a32f640">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="158081d9-1bb0-4683-b23f-8bb93a859ee9"/>
+				</reportElement>
+				<text><![CDATA[descricao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="100" height="30" uuid="d30682a1-a42a-4236-bb72-ba0df796b484">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc6a3a82-6556-43f1-8fc5-6f7eb88f0eb1"/>
+				</reportElement>
+				<text><![CDATA[diretor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="10" width="100" height="30" uuid="2e83f4c1-7221-45d8-ad80-68901bc94e1d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e50d5c9-42d6-4bac-be21-cb5d738ec9e6"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="10" width="100" height="30" uuid="a26dca8c-ea80-4f35-bc58-5a8c303d452e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="158081d9-1bb0-4683-b23f-8bb93a859ee9"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="10" width="100" height="30" uuid="b6bf3000-2cef-4595-bade-01292d263d3f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc6a3a82-6556-43f1-8fc5-6f7eb88f0eb1"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{diretor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

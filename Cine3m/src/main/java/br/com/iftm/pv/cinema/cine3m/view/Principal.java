@@ -36,8 +36,7 @@ public class Principal extends javax.swing.JFrame {
 
     private final GerenciaArquivo gerenciaArquivo = new GerenciaArquivo();
     private final GerenciaCliente gerenciaCliente = new GerenciaCliente();    
-    private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario(
-            gerenciaArquivo.obterFuncionarios());
+    private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario();
     private final GerenciaSala gerenciaSala = new GerenciaSala();
     private final GerenciaFilme gerenciaFilme = new GerenciaFilme();
     private final GerenciaSessao gerenciaSessao = new GerenciaSessao(gerenciaSala,gerenciaFilme);        
@@ -147,9 +146,9 @@ public class Principal extends javax.swing.JFrame {
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                if (!gerenciaFuncionario.getFuncionarios().isEmpty()) {
+                if (!gerenciaFuncionario.relatorio().isEmpty()) {
                     try {
-                        gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario.getFuncionarios());
+                        gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario.relatorio());
                     } catch (IOException ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -296,7 +295,7 @@ public class Principal extends javax.swing.JFrame {
                 "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (resp.equals(JOptionPane.OK_OPTION)) {
             try {
-                gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario.getFuncionarios());
+                gerenciaArquivo.adicionaUsuarios(gerenciaFuncionario.relatorio());
             } catch (IOException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -344,22 +343,6 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_imVendaActionPerformed
 
     public static void main(String args[]) {
-//        try (Connection conn = Conexao.getConexao()) {                                 
-//            try (BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir")+"/cine3m.sql"))) {
-//                StringBuilder script = new StringBuilder();
-//                String line;
-//                while ((line = reader.readLine()) != null) {
-//                    script.append(line);
-//                    script.append("\n");
-//                }
-//                Statement statement = conn.createStatement();
-//                statement.executeUpdate(script.toString());
-//            } catch (IOException ex) {
-//                System.out.println("Erro ao ler o arquivo SQL: " + ex.getMessage());
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, "Erro ao conectar ao banco de dados", ex);
-//        }
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

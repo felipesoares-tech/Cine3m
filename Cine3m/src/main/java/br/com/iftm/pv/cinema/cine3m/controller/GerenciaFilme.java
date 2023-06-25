@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GerenciaFilme implements IGerencia<Filme> {
+
     private final FilmeDAO filmeDAO;
 
     public GerenciaFilme() {
@@ -18,7 +19,7 @@ public class GerenciaFilme implements IGerencia<Filme> {
         EnumValidacoes retornoValidacao;
         if (filmeDAO.consultarFilmeNome(filme) != null) {
             retornoValidacao = EnumValidacoes.FILME_JA_CADASTRADO;
-        }else {
+        } else {
             retornoValidacao = EnumValidacoes.FILME_SUCESSO;
         }
         return retornoValidacao;
@@ -59,7 +60,7 @@ public class GerenciaFilme implements IGerencia<Filme> {
         if (!filmeDAO.consultarFilmeSessao(filme.getId())) {
             filmeDAO.apagar(filme.getId());
             return EnumValidacoes.FILME_NAO_VINCULADO_SESSAO;
-        }         
+        }
         return EnumValidacoes.FILME_VINCULADO_SESSAO;
     }
 
@@ -67,9 +68,14 @@ public class GerenciaFilme implements IGerencia<Filme> {
     public EnumValidacoes atualizar(Filme filme, Filme filmeAtualizado) {
         EnumValidacoes retornoValidacao = validarFilme(filme, filmeAtualizado);
         if (retornoValidacao.equals(EnumValidacoes.FILME_SUCESSO)) {
-            filmeDAO.alterar(filme.getId(), filmeAtualizado);
+            if (!filmeDAO.consultarFilmeSessao(filme.getId())) {
+                filmeDAO.alterar(filme.getId(), filmeAtualizado);
+            } else {
+                return EnumValidacoes.FILME_VINCULADO_SESSAO;
+            }
         }
         return retornoValidacao;
+
     }
 
     @Override

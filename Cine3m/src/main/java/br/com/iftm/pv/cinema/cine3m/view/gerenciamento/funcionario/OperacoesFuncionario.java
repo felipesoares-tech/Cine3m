@@ -261,6 +261,8 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        cadastroFuncionario.getTfSenhaFuncionario().setVisible(true);
+        cadastroFuncionario.getLbSenhaFuncionario().setVisible(true);
         cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
         cadastroFuncionario.getBtnCadastrarFuncionario().setText("CADASTRAR");
         cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
@@ -285,13 +287,13 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
         cadastroFuncionario.getTfNomeFuncionario().setText(funcionarioSelecionado.getNome());
         cadastroFuncionario.getTfCpfFuncionario().setText(funcionarioSelecionado.getCpf());
         cadastroFuncionario.getTfLoginFuncionario().setText(funcionarioSelecionado.getLogin());
-        cadastroFuncionario.getTfSenhaFuncionario().setText(funcionarioSelecionado.getSenha());
 
         cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(false);
+        cadastroFuncionario.getTfSenhaFuncionario().setVisible(false);
+        cadastroFuncionario.getLbSenhaFuncionario().setVisible(false);
         cadastroFuncionario.getTfNomeFuncionario().setEditable(false);
         cadastroFuncionario.getTfCpfFuncionario().setEditable(false);
         cadastroFuncionario.getTfLoginFuncionario().setEditable(false);
-        cadastroFuncionario.getTfSenhaFuncionario().setEditable(false);
         cadastroFuncionario.getLbTituloTelaFuncionario().setText("Consulta de Funcionário");
 
         getDesktopPane().add(cadastroFuncionario);
@@ -349,6 +351,8 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
             cadastroFuncionario.getLbTituloTelaFuncionario().setText("Atualização de Funcionario");
             cadastroFuncionario.getBtnCadastrarFuncionario().setText("Atualizar");
             cadastroFuncionario.getBtnCadastrarFuncionario().setVisible(true);
+            cadastroFuncionario.getTfSenhaFuncionario().setVisible(true);
+            cadastroFuncionario.getLbSenhaFuncionario().setVisible(true);
             cadastroFuncionario.getTfNomeFuncionario().setEditable(true);
             cadastroFuncionario.getTfCpfFuncionario().setEditable(true);
             cadastroFuncionario.getTfLoginFuncionario().setEditable(true);

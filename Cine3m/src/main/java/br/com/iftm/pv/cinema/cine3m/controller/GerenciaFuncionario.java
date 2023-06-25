@@ -1,5 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.controller;
 
+import br.com.iftm.pv.cinema.cine3m.dao.FuncionarioDAO;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import br.com.iftm.pv.cinema.cine3m.interfaces.IGerencia;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
@@ -10,21 +11,17 @@ import java.util.List;
 
 public class GerenciaFuncionario implements IGerencia<Funcionario> {
 
-    private final List<Funcionario> funcionarios;
+    private final FuncionarioDAO funcionarioDAO;
     private CriptografarSenha criptografarSenha;
 
-    public GerenciaFuncionario(List<Funcionario> funcionarios) {
+    public GerenciaFuncionario() {
         this.criptografarSenha = new CriptografarSenha();
-        this.funcionarios = funcionarios;
-    }
-
-    public List<Funcionario> getFuncionarios() {
-        return funcionarios;
+        this.funcionarioDAO = new FuncionarioDAO();
     }
 
     private EnumValidacoes validarFuncionario(Funcionario funcionario) {
         EnumValidacoes retornoValidacao;
-        if (funcionarios.contains(funcionario)) {
+        if (funcionarioDAO.consultarFuncionarioCpf(funcionario) != null) {
             retornoValidacao = EnumValidacoes.FUNCIONARIO_CPF_JA_CADASTRADO;
         } else if (!ValidadorCPF.isCPF(funcionario.getCpf())) {
             retornoValidacao = EnumValidacoes.FUNCIONARIO_CPF_INVALIDO;
@@ -52,7 +49,7 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
     }
 
     private boolean existeFuncionarioComCPF(Funcionario funcionarioAtual, Funcionario funcionarioAtualizado) {
-        Iterator<Funcionario> it = funcionarios.iterator();
+        Iterator<Funcionario> it = funcionarioDAO.listar().iterator();
         while (it.hasNext()) {
             Funcionario f = (Funcionario) it.next();
             if (!f.equals(funcionarioAtual) && f.getCpf().equals(funcionarioAtualizado.getCpf())) {
@@ -63,7 +60,7 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
     }
 
     private boolean existeFuncionarioComLOGIN(Funcionario funcionarioAtual, Funcionario funcionarioAtualizado) {
-        Iterator<Funcionario> it = funcionarios.iterator();
+        Iterator<Funcionario> it = funcionarioDAO.listar().iterator();
         while (it.hasNext()) {
             Funcionario f = (Funcionario) it.next();
             if (!f.getLogin().equals(funcionarioAtual.getLogin()) && f.getLogin().equals(funcionarioAtualizado.getLogin())) {
@@ -74,7 +71,7 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
     }
 
     private boolean existeFuncionarioComLOGIN(Funcionario funcionarioAtual) {
-        Iterator<Funcionario> it = funcionarios.iterator();
+        Iterator<Funcionario> it = funcionarioDAO.listar().iterator();
         while (it.hasNext()) {
             Funcionario f = (Funcionario) it.next();
             if (f.getLogin().equals(funcionarioAtual.getLogin())) {
@@ -88,14 +85,14 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
         EnumValidacoes retornoValidacao = validarFuncionario(funcionario);
         if (retornoValidacao.equals(EnumValidacoes.FUNCIONARIO_SUCESSO)) {
             funcionario.setSenha(criptografarSenha.criptografarSenha(funcionario.getSenha()));
-            funcionarios.add(funcionario);
+            funcionarioDAO.incluir(funcionario);
         }
         return retornoValidacao;
 
     }
 
     public EnumValidacoes remover(Funcionario funcionario) {
-        funcionarios.remove(funcionarios.indexOf(funcionario));
+        funcionarioDAO.apagar(funcionario);
         return null;
     }
 
@@ -105,18 +102,17 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
             if (!funcionarioAtualizado.getSenha().startsWith("CRYPT:") && funcionarioAtualizado.getSenha().length() != 70) {
                 funcionarioAtualizado.setSenha(criptografarSenha.criptografarSenha(funcionarioAtualizado.getSenha()));
             }
-            funcionarios.set(funcionarios.indexOf(funcionario), funcionarioAtualizado);
+            funcionarioDAO.alterar(funcionario, funcionarioAtualizado);
         }
         return retornoValidacao;
     }
 
     public Funcionario consultar(Integer funcionarioID) {
-        //return funcionarios.get(funcionarios.indexOf(funcionario));
-        return null;
+        return funcionarioDAO.consultarFuncionarioID(funcionarioID);
     }
 
     public List<Funcionario> relatorio() {
-        return this.funcionarios;
+        return funcionarioDAO.listar();
     }
 
 }

@@ -169,6 +169,31 @@ public class FuncionarioDAO {
         return funcionarioRet;
     }
 
+        public Funcionario consultarFuncionarioLogin(String login) {
+        PreparedStatement ps;
+        ResultSet rs;
+        Funcionario funcionarioRet = null;
+
+        String sql = "SELECT * FROM funcionario WHERE login = ? and del = false";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, login);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                funcionarioRet = new Funcionario(rs.getString("nome"), rs.getString("cpf"), 
+                        rs.getString("login"), rs.getString("senha"));
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return funcionarioRet;
+    }
+    
     public void fecharConexao() {
         try {
             conn.close();

@@ -1,7 +1,8 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
+import br.com.iftm.pv.cinema.cine3m.dao.FuncionarioDAO;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
-import br.com.iftm.pv.cinema.cine3m.util.GerenciaArquivo;
+import br.com.iftm.pv.cinema.cine3m.util.ChecarCredenciais;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -11,15 +12,17 @@ import javax.swing.JTextField;
 
 public class LoginFuncionario extends javax.swing.JInternalFrame {
 
-    private GerenciaArquivo gerenciaArquivo;
     private JMenuBar menuBar;
     private CadastroVenda cadastroVenda;
     private Funcionario funcionarioSelecionado;
+    private ChecarCredenciais checarCredenciais;
+    private FuncionarioDAO funcionarioDAO;
 
-    public LoginFuncionario(GerenciaArquivo gerenciaArquivo, CadastroVenda cadastroVenda, JMenuBar menuBar) {
+    public LoginFuncionario(CadastroVenda cadastroVenda, JMenuBar menuBar) {
         this.menuBar = menuBar;
-        this.gerenciaArquivo = gerenciaArquivo;
         this.cadastroVenda = cadastroVenda;
+        this.checarCredenciais = new ChecarCredenciais();
+        this.funcionarioDAO = new FuncionarioDAO();
         initComponents();
     }
 
@@ -89,14 +92,14 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
-        Boolean sucesso = gerenciaArquivo.checarCredenciais(tfUsuario.getText(), String.valueOf(jpfSenha.getPassword()));
+        Boolean sucesso = checarCredenciais.checarCredenciais(tfUsuario.getText(), String.valueOf(jpfSenha.getPassword()));
         if (sucesso) {
             JOptionPane.showMessageDialog(this, "Login bem sucedido!", null, JOptionPane.INFORMATION_MESSAGE);
             menuBar.setVisible(true);
             this.setVisible(false);
             getDesktopPane().remove(this);
-            funcionarioSelecionado = gerenciaArquivo.obterFuncionario(tfUsuario.getText());
-            cadastroVenda.setFuncionario(gerenciaArquivo.obterFuncionario(tfUsuario.getText()));
+            funcionarioSelecionado = funcionarioDAO.consultarFuncionarioLogin(tfUsuario.getText());
+            cadastroVenda.setFuncionario(funcionarioSelecionado);
 
         } else
             JOptionPane.showMessageDialog(this, "Login ou senha incorretos!", null, JOptionPane.ERROR_MESSAGE);

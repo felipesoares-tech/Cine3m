@@ -11,12 +11,22 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.CelulasPersonalizadasList;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import java.awt.Frame;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.swing.JRViewer;
 
 public class OperacoesVenda extends javax.swing.JInternalFrame {
 
@@ -27,6 +37,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     private final RelatorioVenda relatorioVenda;
     private final GerenciaSala gerenciaSala;
     private final ConsultaVenda telaAuxiliarConsultaVenda;
+    private JDialog relVenda;
     private List<Venda> vendas;
 
     public OperacoesVenda(GerenciaVenda gerenciaVenda,GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala,CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
@@ -77,7 +88,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
 //                pesquisaLike.filterList(tfPesquisar, lstVendas);
 //            }
 //        });
-//
+
         lstVendas.setCellRenderer(new CelulasPersonalizadasList());
     }
 
@@ -312,9 +323,30 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lstVendasAncestorAdded
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
-        getDesktopPane().add(relatorioVenda);
-        relatorioVenda.setModal(true);
-        relatorioVenda.setVisible(true);
+        try {
+            // Compilando o JasperReport
+            JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/main/java/br/com/iftm/pv/cinema/cine3m/report/venda.jrxml");
+
+            // Preenchendo o relatório com uma lista de usuários usando JRBeanCollectionDataSource
+            JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null, new JRBeanCollectionDataSource(gerenciaVenda.relatorio()));
+
+            // Criando um diálogo para exibir o relatório
+            relVenda = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Relatório de Usuários", true);
+            relVenda.setSize(1000, 500);
+
+            // Criando um componente Swing para exibir o relatório
+            JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+
+            // Adicionando o painel do relatório ao diálogo criado
+            relVenda.getContentPane().add(painelRelatorio);
+
+            // Tornando o diálogo visível com o relatório
+            relVenda.setVisible(true);
+        } catch (JRException ex) {
+//            Logger.getLogger(TelaAdminstrador.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório." + ex.getCause());
+        }
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
 

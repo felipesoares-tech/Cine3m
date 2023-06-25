@@ -106,6 +106,10 @@ public class Venda {
         return identificador;
     }
 
+    public boolean isDesconto() {
+        return desconto;
+    }
+
     @Override
     public String toString() {
         return getIdentificador();

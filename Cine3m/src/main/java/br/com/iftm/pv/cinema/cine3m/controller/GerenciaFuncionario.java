@@ -110,6 +110,14 @@ public class GerenciaFuncionario implements IGerencia<Funcionario> {
     public Funcionario consultar(Integer funcionarioID) {
         return funcionarioDAO.consultarFuncionarioID(funcionarioID);
     }
+    
+    public Funcionario consultar(String login){
+        return funcionarioDAO.consultarFuncionarioLogin(login);
+    }
+    
+    public Funcionario consultarAdmin(){
+        return funcionarioDAO.receberAdmin();
+    }
 
     public List<Funcionario> relatorio() {
         return funcionarioDAO.listar();

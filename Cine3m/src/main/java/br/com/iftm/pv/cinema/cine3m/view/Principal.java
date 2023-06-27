@@ -59,7 +59,6 @@ public class Principal extends javax.swing.JFrame {
         operacoesCliente.getCadastroCliente().getLbCpfCliente().setForeground(corLabel);
         operacoesCliente.getCadastroCliente().getjPanel8().setBackground(corPanel);
         operacoesCliente.getCadastroCliente().getContentPane().setBackground(corFundo);
-        operacoesCliente.getRelatorioCliente().getContentPane().setBackground(corFundo);
 
         operacoesCliente.getLstClientes().setBackground(corFundo);
         operacoesCliente.getContentPane().setBackground(corFundo);

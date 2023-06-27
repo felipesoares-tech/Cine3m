@@ -1,6 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.funcionario;
 
-import br.com.iftm.pv.cinema.cine3m.dao.FuncionarioDAO;
+import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFuncionario;
 import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.view.util.ChecarCredenciais;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
@@ -16,13 +16,13 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
     private CadastroVenda cadastroVenda;
     private Funcionario funcionarioSelecionado;
     private ChecarCredenciais checarCredenciais;
-    private FuncionarioDAO funcionarioDAO;
+    private GerenciaFuncionario gerenciaFuncionario;
 
     public LoginFuncionario(CadastroVenda cadastroVenda, JMenuBar menuBar) {
         this.menuBar = menuBar;
         this.cadastroVenda = cadastroVenda;
         this.checarCredenciais = new ChecarCredenciais();
-        this.funcionarioDAO = new FuncionarioDAO();
+        this.gerenciaFuncionario = new GerenciaFuncionario();
         initComponents();
     }
 
@@ -98,7 +98,7 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
             menuBar.setVisible(true);
             this.setVisible(false);
             getDesktopPane().remove(this);
-            funcionarioSelecionado = funcionarioDAO.consultarFuncionarioLogin(tfUsuario.getText());
+            funcionarioSelecionado = gerenciaFuncionario.consultar(tfUsuario.getText());
             cadastroVenda.setFuncionario(funcionarioSelecionado);
 
         } else

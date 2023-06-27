@@ -6,20 +6,30 @@ import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
+import java.awt.Frame;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.swing.JRViewer;
 
 public class OperacoesCliente extends javax.swing.JInternalFrame {
 
     private final CadastroCliente cadastroCliente;
     private final GerenciaCliente gerenciaCliente;
-    private final RelatorioCliente relatorioCliente;
+    private JDialog relCliente;
     private List<Cliente> clientes;
 
     public OperacoesCliente(GerenciaCliente gerenciaCliente) {
@@ -27,7 +37,6 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
         this.gerenciaCliente = gerenciaCliente;
         initComponentsPersonalizado();
         this.cadastroCliente = new CadastroCliente(gerenciaCliente, this);
-        relatorioCliente = new RelatorioCliente(gerenciaCliente);
         btnConsultar.setEnabled(false);
 
     }
@@ -78,10 +87,6 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
 
     public void setBtnEditar(JButton btnEditar) {
         this.btnEditar = btnEditar;
-    }
-
-    public RelatorioCliente getRelatorioCliente() {
-        return relatorioCliente;
     }
 
     public JButton getBtnExcluir() {
@@ -329,9 +334,18 @@ public class OperacoesCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
-        getDesktopPane().add(relatorioCliente);
-        relatorioCliente.setModal(true);
-        relatorioCliente.setVisible(true);
+        try {
+            JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/main/java/br/com/iftm/pv/cinema/cine3m/report/cliente.jrxml");
+            JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null, new JRBeanCollectionDataSource(gerenciaCliente.relatorio()));
+            relCliente = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Relatório de Clientes", true);
+            relCliente.setSize(1000, 500);
+            JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+            relCliente.getContentPane().add(painelRelatorio);
+            relCliente.setVisible(true);
+        } catch (JRException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório." + ex);
+        }
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
 

@@ -28,7 +28,7 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
         initComponents();
         this.gerenciaFuncionario = gerenciaFuncionario;
         initComponentsPersonalizado();
-        this.admin = admin;
+        this.admin = gerenciaFuncionario.consultarAdmin();
         cadastroFuncionario = new CadastroFuncionario(gerenciaFuncionario, this);
         relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
         btnConsultar.setEnabled(false);

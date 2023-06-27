@@ -124,5 +124,3 @@ CREATE TABLE IF NOT EXISTS item_venda (
   CONSTRAINT fk_item_venda_poltrona1 FOREIGN KEY (fk_poltrona) REFERENCES poltrona (id),
   CONSTRAINT fk_item_venda_venda1 FOREIGN KEY (fk_venda) REFERENCES venda (id)
 );
-
-INSERT INTO funcionario (nome, cpf, login, senha) VALUES ('ADMIN', '00000000000', 'admin', 'CRYPT:8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');

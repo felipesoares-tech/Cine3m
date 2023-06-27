@@ -3,9 +3,11 @@ CREATE TABLE IF NOT EXISTS funcionario (
   nome varchar(45) NOT NULL,
   cpf varchar(11) NOT NULL,
   login VARCHAR(45) NOT NULL,
-  senha VARCHAR(45) NOT NULL,
+  senha VARCHAR(70) NOT NULL,
   del boolean NOT NULL DEFAULT false
 );
+
+INSERT INTO funcionario (nome, cpf, login, senha) VALUES ('ADMIN', '00000000000', 'admin', 'CRYPT:8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
 
 CREATE TABLE IF NOT EXISTS cliente (
   id SERIAL PRIMARY KEY,
@@ -19,7 +21,7 @@ CREATE TABLE IF NOT EXISTS filme (
   id SERIAL PRIMARY KEY,
   tipo_genero VARCHAR(45) NOT NULL,
   nome varchar(45) NOT NULL,
-  descricao varchar(45) NOT NULL,
+  descricao varchar(100) NOT NULL,
   diretor varchar(45) NOT NULL,
   duracao time NOT NULL,
   del boolean NOT NULL DEFAULT false
@@ -83,8 +85,12 @@ CREATE TABLE IF NOT EXISTS sessao (
   valor double precision NOT NULL,
   hora_final time NOT NULL,
   del boolean NOT NULL DEFAULT false,
-  CONSTRAINT fk_sessao_filme1 FOREIGN KEY (fk_filme) REFERENCES filme (id),
+  CONSTRAINT fk_sessao_filme1 FOREIGN KEY (fk_filme) REFERENCES filme (id)
+  ON UPDATE NO ACTION 
+  ON DELETE NO ACTION,
   CONSTRAINT fk_sessao_sala1 FOREIGN KEY (fk_sala) REFERENCES sala (id)
+  ON UPDATE NO ACTION 
+  ON DELETE NO ACTION
 );  
 
 CREATE TABLE IF NOT EXISTS venda (

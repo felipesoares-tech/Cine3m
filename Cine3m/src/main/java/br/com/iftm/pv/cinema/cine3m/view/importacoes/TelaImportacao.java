@@ -5,6 +5,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.util.ImportacaoUtil;
 import br.com.iftm.pv.cinema.cine3m.view.util.TableModelGenerico;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,11 +21,11 @@ public class TelaImportacao extends javax.swing.JInternalFrame {
     private TableModelGenerico modelo;
     private GerenciaFilme gerenciaFilme;
     private List<Filme> filmesImportados;
-
+    
     public TelaImportacao(GerenciaFilme gerenciaFilme) {
         initComponents();
         this.btnConfirmarImportacao.setEnabled(false);
-        this.modelo = new TableModelGenerico(Filme.class);
+        this.modelo = new TableModelGenerico(Filme.class,Arrays.asList("genero","nome","descricao","diretor","duracao"));
         this.gerenciaFilme = gerenciaFilme;
         tbRelFilmes.setModel(modelo);
 

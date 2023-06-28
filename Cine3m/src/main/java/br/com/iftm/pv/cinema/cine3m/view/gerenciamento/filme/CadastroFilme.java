@@ -2,6 +2,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FILME_JA_CADASTRADO;
 import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.enums.Genero;
 import br.com.iftm.pv.cinema.cine3m.model.Filme;
@@ -35,7 +36,7 @@ public class CadastroFilme extends ModalInternalFrame {
         initComponents();
         this.gerenciaFilme = gerenciaFilme;
         this.operacoesFilme = operacoesFilme;
-        
+
     }
 
     public Filme getFilmeSelecionado() {
@@ -157,8 +158,6 @@ public class CadastroFilme extends ModalInternalFrame {
     public void setTfDuracaoFilme(JFormattedTextField tfDuracaoFilme) {
         this.tfDuracaoFilme = tfDuracaoFilme;
     }
-    
-    
 
     private void limpaCampos() {
         tfNomeFilme.setText("");
@@ -327,12 +326,12 @@ public class CadastroFilme extends ModalInternalFrame {
                         JOptionPane.INFORMATION_MESSAGE);
                 limpaCampos();
                 break;
+            case FILME_VINCULADO_SESSAO:
+                JOptionPane.showMessageDialog(this, "Não foi possível atualizar, filme já vinculado a uma sessão!",
+                        "Remover", JOptionPane.ERROR_MESSAGE);
             case FILME_JA_CADASTRADO:
                 JOptionPane.showMessageDialog(this, "Filme já cadastrado ", titulo,
                         JOptionPane.ERROR_MESSAGE);
-                case FILME_VINCULADO_SESSAO:
-                JOptionPane.showMessageDialog(this, "Não foi possível atualizar, filme já vinculado a uma sessão!",
-                        "Remover", JOptionPane.ERROR_MESSAGE);
                 break;
             default:
                 throw new AssertionError();
@@ -347,21 +346,21 @@ public class CadastroFilme extends ModalInternalFrame {
 
         if (ValidaCampo.validar(nome, lbNome, this)
                 && ValidaCampo.validar(diretor, lbDiretor, this)
-                && ValidaCampo.validar(descricao, lbDescricao, this)  
+                && ValidaCampo.validar(descricao, lbDescricao, this)
                 && ValidaCampo.validar(duracaoSessao.replaceAll("[:]", "").trim(), lbDuracao, this)) {
-            
+
             LocalTime duracao;
-            
-             try {
+
+            try {
                 duracao = LocalTime.parse(duracaoSessao, DateTimeFormatter.ofPattern("HH:mm"));
             } catch (DateTimeException e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(),
                         "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
-            Filme filme = new Filme(genero, nome, descricao, diretor,duracao);
-            
+
+            Filme filme = new Filme(genero, nome, descricao, diretor, duracao);
+
             if (estadoAtual.equals(EstadoAtual.CADASTRANDO)) {
                 exibeMensagemValidacao(gerenciaFilme.cadastrar(filme));
             } else {

@@ -2,6 +2,7 @@ package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sala;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaSala;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
+import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.SALA_JA_CADASTRADA;
 import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
@@ -124,13 +125,13 @@ public class CadastroSala extends ModalInternalFrame {
                         JOptionPane.INFORMATION_MESSAGE);
                 limpaCampos();
                 break;
-            case SALA_JA_CADASTRADA:
-                JOptionPane.showMessageDialog(this, "Sala já cadastrada", titulo,
-                        JOptionPane.ERROR_MESSAGE);
             case SALA_VINCULADA_SESSAO:
                 JOptionPane.showMessageDialog(this, "Não foi possível atualizar, sala já vinculada a uma sessão!",
                         "Remover", JOptionPane.ERROR_MESSAGE);
                 break;
+            case SALA_JA_CADASTRADA:
+                JOptionPane.showMessageDialog(this, "Sala já cadastrada", titulo,
+                        JOptionPane.ERROR_MESSAGE);
             default:
                 throw new AssertionError();
         }

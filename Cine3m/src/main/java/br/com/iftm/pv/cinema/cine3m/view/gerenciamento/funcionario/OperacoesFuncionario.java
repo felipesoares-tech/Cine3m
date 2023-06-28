@@ -6,20 +6,30 @@ import br.com.iftm.pv.cinema.cine3m.model.Funcionario;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
+import java.awt.Frame;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.swing.JRViewer;
 
 public class OperacoesFuncionario extends javax.swing.JInternalFrame {
 
     private final CadastroFuncionario cadastroFuncionario;
     private final GerenciaFuncionario gerenciaFuncionario;
-    private final RelatorioFuncionario relatorioFuncionario;
+    private JDialog relFuncionario;
     private List<Funcionario> funcionarios;
     private Funcionario admin;
     private Funcionario funcionarioLogado;
@@ -30,7 +40,6 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
         initComponentsPersonalizado();
         this.admin = gerenciaFuncionario.consultarAdmin();
         cadastroFuncionario = new CadastroFuncionario(gerenciaFuncionario, this);
-        relatorioFuncionario = new RelatorioFuncionario(gerenciaFuncionario);
         btnConsultar.setEnabled(false);
 
     }
@@ -77,10 +86,6 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
 
     public CadastroFuncionario getCadastroFuncionario() {
         return cadastroFuncionario;
-    }
-
-    public RelatorioFuncionario getRelatorioFuncionario() {
-        return relatorioFuncionario;
     }
 
     public void setBtnEditar(JButton btnEditar) {
@@ -365,9 +370,18 @@ public class OperacoesFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
-        getDesktopPane().add(relatorioFuncionario);
-        relatorioFuncionario.setModal(true);
-        relatorioFuncionario.setVisible(true);
+        try {
+            JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/main/java/br/com/iftm/pv/cinema/cine3m/report/funcionario.jrxml");
+            JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null, new JRBeanCollectionDataSource(gerenciaFuncionario.relatorio()));
+            relFuncionario = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Relatório de Funcionários", true);
+            relFuncionario.setSize(1000, 500);
+            JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+            relFuncionario.getContentPane().add(painelRelatorio);
+            relFuncionario.setVisible(true);
+        } catch (JRException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório." + ex);
+        }
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
 

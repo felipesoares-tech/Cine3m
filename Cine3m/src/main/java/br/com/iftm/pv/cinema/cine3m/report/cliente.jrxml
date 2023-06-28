@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Exemplo" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
-	<property name="com.jaspersoft.studio.data.sql.tables" value="ZmlsbWUgQVMgLDQ2LDU3LDRlY2UxNTM1LThlYTYtNGVjNS1hNGEzLTU5ODQwZTBhY2Y2NTs="/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="Y2xpZW50ZSBBUyAsMjAxLDEyMCwyODg4YTIyZi0xYmMyLTRmOGYtYjE4NC02YzNlMzM3YzJlYjE7"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
@@ -60,52 +60,37 @@
 	</subDataset>
 	<queryString>
 		<![CDATA[SELECT id,
-	tipo_genero,
 	nome,
-	descricao,
-	diretor,
-	duracao
-FROM filme]]>
+	cpf,
+	filmes_assistidos
+FROM cliente]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
-	</field>
-	<field name="tipo_genero" class="java.lang.Enum">
-		<property name="com.jaspersoft.studio.field.name" value="tipo_genero"/>
-		<property name="com.jaspersoft.studio.field.label" value="tipo_genero"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
-		<fieldDescription><![CDATA[genero]]></fieldDescription>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
 	</field>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nome"/>
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
 	</field>
-	<field name="descricao" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
-		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
 	</field>
-	<field name="diretor" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="diretor"/>
-		<property name="com.jaspersoft.studio.field.label" value="diretor"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
-	</field>
-	<field name="duracao" class="java.time.LocalTime">
-		<property name="com.jaspersoft.studio.field.name" value="duracao"/>
-		<property name="com.jaspersoft.studio.field.label" value="duracao"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="filme"/>
+	<field name="filmes_assistidos" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="filmes_assistidos"/>
+		<property name="com.jaspersoft.studio.field.label" value="filmes_assistidos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+		<fieldDescription><![CDATA[qtdFilmesAssistidos]]></fieldDescription>
 	</field>
 	<variable name="id1" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$F{id}]]></variableExpression>
 	</variable>
 	<variable name="TotalPages" class="java.lang.Integer" resetType="None" incrementType="Page" calculation="System">
 		<variableExpression><![CDATA[new Integer($V{PAGE_NUMBER}.intValue())]]></variableExpression>
-	</variable>
-	<variable name="id2" class="java.lang.Integer" calculation="Count">
-		<variableExpression><![CDATA[$F{id}]]></variableExpression>
 	</variable>
 	<title>
 		<band height="78" splitType="Stretch">
@@ -117,7 +102,7 @@ FROM filme]]>
 				<textElement>
 					<font size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Relatório Filmes]]></text>
+				<text><![CDATA[Relatório Clientes]]></text>
 			</staticText>
 			<line>
 				<reportElement x="-1" y="74" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
@@ -156,88 +141,66 @@ FROM filme]]>
 	</title>
 	<columnHeader>
 		<band height="24">
+			<staticText>
+				<reportElement x="0" y="0" width="44" height="16" uuid="aa5f2935-5f79-43f9-8f9d-26b104290569">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="523a0598-27db-4921-98ed-847d35f0623a"/>
+				</reportElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="65" y="0" width="80" height="16" uuid="012ffde8-d1cd-47f3-bfe2-14123875c4f2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="06906062-c346-4abd-98a4-14833b273912"/>
+				</reportElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="0" width="80" height="16" uuid="55298b0d-c0b5-4e44-8477-c80be10b6b08">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6541d3eb-7ea2-4333-8452-b8523e17b365"/>
+				</reportElement>
+				<text><![CDATA[Cpf]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="0" width="80" height="16" uuid="4d524865-f420-4d78-beb5-f912abcca0f9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1577f9e7-dbf3-46e4-9c66-21eefe6a90ee"/>
+				</reportElement>
+				<text><![CDATA[Filmes Assistidos]]></text>
+			</staticText>
 			<line>
 				<reportElement x="-1" y="16" width="556" height="1" uuid="3c92078d-a62e-4b9b-aa8e-578a50a14ef4">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 			</line>
-			<staticText>
-				<reportElement x="2" y="0" width="38" height="16" uuid="95b558d4-a792-4177-8e27-bccbeb96b63c">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdfd0f01-57c6-43cf-9944-6954d8a9715e"/>
-				</reportElement>
-				<text><![CDATA[Código]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="246" y="0" width="78" height="16" uuid="7f1d0366-45fe-46af-9a74-2a8e23e70fe1">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b17ee11a-5373-44be-8a1d-2cd1320c1ff6"/>
-				</reportElement>
-				<text><![CDATA[Gênero]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="46" y="0" width="100" height="16" uuid="d4cd81bf-594f-4e28-b4ca-842e909f23b5">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ef99304c-ae67-413a-bf1c-6837262b563b"/>
-				</reportElement>
-				<text><![CDATA[Nome]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="400" y="1" width="100" height="16" uuid="ee9dfeba-ab7e-46c5-9e80-48d3032b841a">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbd0d6b5-d035-49d1-a6af-0b336439c339"/>
-				</reportElement>
-				<text><![CDATA[Descrição]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="146" y="0" width="100" height="16" uuid="534cd1b8-fe7c-4d6e-aac9-55319b47eaa5">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a499ab81-c72f-4a4e-831f-c90265ac76c3"/>
-				</reportElement>
-				<text><![CDATA[Diretor]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="326" y="0" width="74" height="24" uuid="4b089ab8-f7fd-4fdb-8fcd-2046b7e73aae">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="68daa579-922f-4356-b6c8-459414d22d83"/>
-				</reportElement>
-				<text><![CDATA[Duração]]></text>
-			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="30">
+		<band height="21">
 			<textField>
-				<reportElement x="2" y="0" width="32" height="14" uuid="e136de0f-3d0a-4b4f-9362-d49c78f43213">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdfd0f01-57c6-43cf-9944-6954d8a9715e"/>
+				<reportElement x="0" y="0" width="44" height="16" uuid="ade19bd6-6c53-4b84-971e-a841fccfb531">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="523a0598-27db-4921-98ed-847d35f0623a"/>
 				</reportElement>
-				<textElement textAlignment="Right"/>
+				<textElement textAlignment="Right" verticalAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="248" y="2" width="78" height="14" uuid="d1c11d7f-55af-4cd8-b7b4-0091beb54adf">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b17ee11a-5373-44be-8a1d-2cd1320c1ff6"/>
+				<reportElement x="66" y="0" width="142" height="16" uuid="3ba0775a-feca-4b2b-8c89-fe4b54a52609">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="06906062-c346-4abd-98a4-14833b273912"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{tipo_genero}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="44" y="0" width="100" height="14" uuid="e61c5b92-f235-4e65-98df-f128a5cd49e6">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ef99304c-ae67-413a-bf1c-6837262b563b"/>
-				</reportElement>
+				<textElement verticalAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="400" y="0" width="154" height="30" uuid="c1e5aa7a-eba2-43ef-9f65-826ed5046544">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbd0d6b5-d035-49d1-a6af-0b336439c339"/>
+			<textField pattern="###.###.###-##">
+				<reportElement x="219" y="0" width="80" height="16" uuid="293a6add-ef6f-46b3-b21d-9418f74fa3dc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6541d3eb-7ea2-4333-8452-b8523e17b365"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="146" y="0" width="100" height="14" uuid="12dd9d9f-483e-4fa0-82c1-0d2ea253ce08">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a499ab81-c72f-4a4e-831f-c90265ac76c3"/>
+				<reportElement x="299" y="2" width="80" height="16" uuid="169f7162-c6c8-4d61-9e10-245d8f4bffe2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1577f9e7-dbf3-46e4-9c66-21eefe6a90ee"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{diretor}]]></textFieldExpression>
-			</textField>
-			<textField pattern="h:mm">
-				<reportElement x="326" y="2" width="74" height="14" uuid="af832265-8e89-4fa5-8a9b-be48c8c86168">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="68daa579-922f-4356-b6c8-459414d22d83"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{duracao}]]></textFieldExpression>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{filmes_assistidos}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -257,10 +220,10 @@ FROM filme]]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="37">
+		<band height="23">
 			<textField>
 				<reportElement x="0" y="5" width="44" height="18" uuid="a0b45c03-72e5-42e2-9119-85c34ab88e81"/>
-				<textFieldExpression><![CDATA["Filmes:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Clientes:"]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="-1" y="2" width="556" height="1" uuid="8a3212f9-3dd5-428c-b6c6-01e4ce2598cb">
@@ -269,8 +232,8 @@ FROM filme]]>
 				</reportElement>
 			</line>
 			<textField>
-				<reportElement x="40" y="6" width="100" height="16" uuid="7243513c-adf3-4b6d-8512-e9e5aff081d3"/>
-				<textFieldExpression><![CDATA[$V{id2}]]></textFieldExpression>
+				<reportElement x="41" y="5" width="30" height="18" uuid="ccd0a851-995d-4a9d-a710-246ba2396d27"/>
+				<textFieldExpression><![CDATA[$V{id1}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

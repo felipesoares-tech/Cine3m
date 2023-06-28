@@ -7,21 +7,31 @@ import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
+import java.awt.Frame;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.swing.JRViewer;
 
 public class OperacoesSessao extends javax.swing.JInternalFrame {
 
     private final CadastroSessao cadastroSessao;
     private final GerenciaSessao gerenciaSessao;
-    private final RelatorioSessao relatorioSessao;
+    private JDialog relSessao;
     private List<Sessao> sessoes;
 
     public OperacoesSessao(GerenciaSessao gerenciaSessao, GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme) {
@@ -29,7 +39,6 @@ public class OperacoesSessao extends javax.swing.JInternalFrame {
         this.gerenciaSessao = gerenciaSessao;
         initComponentsPersonalizado();
         this.cadastroSessao = new CadastroSessao(gerenciaSessao, gerenciaSala, gerenciaFilme, this);
-        relatorioSessao = new RelatorioSessao(gerenciaSessao);
         btnConsultar.setEnabled(false);
 
     }
@@ -54,7 +63,6 @@ public class OperacoesSessao extends javax.swing.JInternalFrame {
         });
     }
 
-  
     public CadastroSessao getCadastroSessao() {
         return cadastroSessao;
     }
@@ -69,10 +77,6 @@ public class OperacoesSessao extends javax.swing.JInternalFrame {
 
     public JButton getBtnConsultar() {
         return btnConsultar;
-    }
-
-    public RelatorioSessao getRelatorioSessao() {
-        return relatorioSessao;
     }
 
     public void setBtnConsultar(JButton btnConsultar) {
@@ -347,9 +351,18 @@ public class OperacoesSessao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
-        getDesktopPane().add(relatorioSessao);
-        relatorioSessao.setModal(true);
-        relatorioSessao.setVisible(true);
+        try {
+            JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/main/java/br/com/iftm/pv/cinema/cine3m/report/sessao.jrxml");
+            JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null, new JRBeanCollectionDataSource(gerenciaSessao.relatorio()));
+            relSessao = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Relatório de Sessões", true);
+            relSessao.setSize(1000, 500);
+            JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+            relSessao.getContentPane().add(painelRelatorio);
+            relSessao.setVisible(true);
+        } catch (JRException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório." + ex);
+        }
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
 

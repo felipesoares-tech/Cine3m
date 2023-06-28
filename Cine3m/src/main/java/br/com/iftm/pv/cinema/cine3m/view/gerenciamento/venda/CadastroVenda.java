@@ -437,8 +437,9 @@ public class CadastroVenda extends ModalInternalFrame {
 
     private void btnSelecionarPoltronaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarPoltronaActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();
-        if (this.consultaPoltronas == null) {
-            this.consultaPoltronas = new ConsultaPoltronas(this, gerenciaSala, sessaoSelecionada);
+        if (consultaPoltronas == null) {
+            consultaPoltronas = new ConsultaPoltronas(this, gerenciaSala, sessaoSelecionada);
+            consultaPoltronas.setModal(true);
         }
         getDesktopPane().add(consultaPoltronas);
         consultaPoltronas.setVisible(true);
@@ -453,11 +454,13 @@ public class CadastroVenda extends ModalInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         getDesktopPane().add(cadastroCliente);
-        this.cadastroCliente.setVisible(true);
+        cadastroCliente.setModal(true);
+        cadastroCliente.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnVincularClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVincularClienteActionPerformed
         getDesktopPane().add(vincularCliente);
+        vincularCliente.setModal(true);
         vincularCliente.setVisible(true);
     }//GEN-LAST:event_btnVincularClienteActionPerformed
 

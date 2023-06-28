@@ -5,9 +5,10 @@ import br.com.iftm.pv.cinema.cine3m.model.Cliente;
 import br.com.iftm.pv.cinema.cine3m.model.Pessoa;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.ComboBoxUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import javax.swing.JOptionPane;
 
-public class VincularCliente extends javax.swing.JInternalFrame {
+public class VincularCliente extends ModalInternalFrame {
 
     private final GerenciaCliente gerenciaCliente;
     private Cliente clienteSelecionado;

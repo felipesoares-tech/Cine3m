@@ -133,18 +133,19 @@ public class SessaoDAO {
         return sessoes;
     }
 
-    public Sessao consultarSessaoDataHoraSala(Sessao sessao) {
+    public Sessao consultarSessaoFilmeDataHoraSala(Sessao sessao) {
         PreparedStatement ps;
         ResultSet rs;
         Sessao sessaoRet = null;
 
-        String sql = "SELECT * FROM sessao WHERE data = ? and hora = ? and fk_sala = ? and del = false";
+        String sql = "SELECT * FROM sessao WHERE data = ? and hora = ? and fk_sala = ? and fk_filme = ? and del = false";
 
         try {
             ps = conn.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(sessao.getData()));
             ps.setTime(2, Time.valueOf(sessao.getHora()));
             ps.setInt(3, sessao.getSala().getId());
+            ps.setInt(4, sessao.getFilme().getId());
             rs = ps.executeQuery();
 
             if (rs.next()) {

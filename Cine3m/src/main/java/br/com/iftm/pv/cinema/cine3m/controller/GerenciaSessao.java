@@ -16,7 +16,7 @@ public class GerenciaSessao implements IGerencia<Sessao> {
     
     private EnumValidacoes validarSessao(Sessao sessao) {
         EnumValidacoes retornoValidacao;
-        if (sessaoDAO.consultarSessaoDataHoraSala(sessao) != null) { //O Contains, verifica somente oq está no Equals!
+        if (sessaoDAO.consultarSessaoFilmeDataHoraSala(sessao) != null) { //O Contains, verifica somente oq está no Equals!
             retornoValidacao = EnumValidacoes.SESSAO_JA_CADASTRADA;
         } else if (existeSessaoComHorario(sessao)) {
             retornoValidacao = EnumValidacoes.SESSAO_HORARIO_JA_UTILIZADO;

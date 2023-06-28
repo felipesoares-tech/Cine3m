@@ -14,13 +14,15 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
 
     private JMenuBar menuBar;
     private CadastroVenda cadastroVenda;
+    private OperacoesFuncionario operacoesFuncionario;
     private Funcionario funcionarioSelecionado;
     private ChecarCredenciais checarCredenciais;
     private GerenciaFuncionario gerenciaFuncionario;
 
-    public LoginFuncionario(CadastroVenda cadastroVenda, JMenuBar menuBar) {
+    public LoginFuncionario(CadastroVenda cadastroVenda, OperacoesFuncionario operacoesFuncionario,JMenuBar menuBar) {
         this.menuBar = menuBar;
         this.cadastroVenda = cadastroVenda;
+        this.operacoesFuncionario = operacoesFuncionario;
         this.checarCredenciais = new ChecarCredenciais();
         this.gerenciaFuncionario = new GerenciaFuncionario();
         initComponents();
@@ -96,9 +98,10 @@ public class LoginFuncionario extends javax.swing.JInternalFrame {
         if (sucesso) {
             JOptionPane.showMessageDialog(this, "Login bem sucedido!", null, JOptionPane.INFORMATION_MESSAGE);
             menuBar.setVisible(true);
-            this.setVisible(false);
+            setVisible(false);
             getDesktopPane().remove(this);
-            funcionarioSelecionado = gerenciaFuncionario.consultar(tfUsuario.getText());
+            funcionarioSelecionado = gerenciaFuncionario.consultar(tfUsuario.getText());            
+            operacoesFuncionario.setFuncionarioLogado(funcionarioSelecionado);
             cadastroVenda.setFuncionario(funcionarioSelecionado);
 
         } else

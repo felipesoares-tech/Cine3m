@@ -30,12 +30,12 @@ public class Principal extends javax.swing.JFrame {
     private final LoginFuncionario loginFuncionario;
     private final TelaImportacao telaImportacao;
 
-    private final GerenciaCliente gerenciaCliente = new GerenciaCliente();    
+    private final GerenciaCliente gerenciaCliente = new GerenciaCliente();
     private final GerenciaFuncionario gerenciaFuncionario = new GerenciaFuncionario();
     private final GerenciaSala gerenciaSala = new GerenciaSala();
     private final GerenciaFilme gerenciaFilme = new GerenciaFilme();
-    private final GerenciaSessao gerenciaSessao = new GerenciaSessao(gerenciaSala,gerenciaFilme);        
-    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(gerenciaCliente, gerenciaSessao,gerenciaSala,gerenciaFuncionario);
+    private final GerenciaSessao gerenciaSessao = new GerenciaSessao(gerenciaSala, gerenciaFilme);
+    private final GerenciaVenda gerenciaVenda = new GerenciaVenda(gerenciaCliente, gerenciaSessao, gerenciaSala, gerenciaFuncionario);
 
     public Principal() {
         initComponents();
@@ -44,9 +44,9 @@ public class Principal extends javax.swing.JFrame {
         operacoesFuncionario = new OperacoesFuncionario(gerenciaFuncionario);
         operacoesFilme = new OperacoesFilme(gerenciaFilme);
         operacoesSala = new OperacoesSala(gerenciaSala);
-        operacoesVenda = new OperacoesVenda(gerenciaVenda,gerenciaSessao, gerenciaCliente, gerenciaSala,operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
+        operacoesVenda = new OperacoesVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, gerenciaSala, operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
 
-        this.loginFuncionario = new LoginFuncionario(operacoesVenda.getCadastroVenda(), jMenuBar1);
+        this.loginFuncionario = new LoginFuncionario(operacoesVenda.getCadastroVenda(), operacoesFuncionario,jMenuBar1);
 
         Color corFundo = ParametrosSistema.getInstance().getCorDeFundo();
         Color corPanel = ParametrosSistema.getInstance().getCorPanel();
@@ -287,35 +287,27 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3MousePressed
 
     private void imClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imClienteActionPerformed
-//        jDesktopPane1.add(operacoesCliente);
-        //   operacoesCliente.setVisible(true);
         ValidaTela.abrirTela(operacoesCliente, jDesktopPane1);
     }//GEN-LAST:event_imClienteActionPerformed
 
     private void imFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imFuncionarioActionPerformed
-        jDesktopPane1.add(operacoesFuncionario);
-        operacoesFuncionario.setFuncionarioLogado(loginFuncionario.getFuncionarioSelecionado());
-        operacoesFuncionario.setVisible(true);
+        ValidaTela.abrirTela(operacoesFuncionario, jDesktopPane1);
     }//GEN-LAST:event_imFuncionarioActionPerformed
 
     private void imSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSessaoActionPerformed
-        jDesktopPane1.add(operacoesSessao);
-        operacoesSessao.setVisible(true);
+        ValidaTela.abrirTela(operacoesSessao, jDesktopPane1);
     }//GEN-LAST:event_imSessaoActionPerformed
 
     private void imFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imFilmeActionPerformed
-        jDesktopPane1.add(operacoesFilme);
-        operacoesFilme.setVisible(true);
+        ValidaTela.abrirTela(operacoesFilme, jDesktopPane1);
     }//GEN-LAST:event_imFilmeActionPerformed
 
     private void imSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSalaActionPerformed
-        jDesktopPane1.add(operacoesSala);
-        operacoesSala.setVisible(true);
+        ValidaTela.abrirTela(operacoesSala, jDesktopPane1);
     }//GEN-LAST:event_imSalaActionPerformed
 
     private void imVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imVendaActionPerformed
-        jDesktopPane1.add(operacoesVenda);
-        operacoesVenda.setVisible(true);
+        ValidaTela.abrirTela(operacoesVenda, jDesktopPane1);
     }//GEN-LAST:event_imVendaActionPerformed
 
     public static void main(String args[]) {

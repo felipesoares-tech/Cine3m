@@ -1,6 +1,7 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
+import br.com.iftm.pv.cinema.cine3m.enums.EnumHoras;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FILME_JA_CADASTRADO;
 import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
@@ -31,6 +32,7 @@ public class CadastroFilme extends ModalInternalFrame {
     private Filme filmeSelecionado;
     private final OperacoesFilme operacoesFilme;
     private EstadoAtual estadoAtual;
+    private EnumHoras enumHoras;
 
     public CadastroFilme(GerenciaFilme gerenciaFilme, OperacoesFilme operacoesFilme) {
         initComponents();
@@ -343,8 +345,9 @@ public class CadastroFilme extends ModalInternalFrame {
         String descricao = tfaDescricao.getText();
         Genero genero = (Genero) cbGenero.getSelectedItem();
         String duracaoSessao = tfDuracaoFilme.getText();
-
-        if (ValidaCampo.validar(nome, lbNome, this)
+        
+        if(Integer.parseInt(duracaoSessao.replaceAll("[:]", "")) <= 5){
+                    if (ValidaCampo.validar(nome, lbNome, this)
                 && ValidaCampo.validar(diretor, lbDiretor, this)
                 && ValidaCampo.validar(descricao, lbDescricao, this)
                 && ValidaCampo.validar(duracaoSessao.replaceAll("[:]", "").trim(), lbDuracao, this)) {
@@ -385,6 +388,8 @@ public class CadastroFilme extends ModalInternalFrame {
                 operacoesFilme.getLstFilmes().setSelectedIndex(0);
             }
         }
+        } else
+            JOptionPane.showMessageDialog(this, "Filme não pode ultrapassar 5 horas.", "Erro", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnCadastrarFilmeActionPerformed
 
 

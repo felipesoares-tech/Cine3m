@@ -193,10 +193,10 @@ FROM cliente]]>
 				<reportElement x="219" y="0" width="80" height="16" uuid="293a6add-ef6f-46b3-b21d-9418f74fa3dc">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6541d3eb-7ea2-4333-8452-b8523e17b365"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cpf}.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="299" y="2" width="80" height="16" uuid="169f7162-c6c8-4d61-9e10-245d8f4bffe2">
+				<reportElement x="299" y="0" width="80" height="16" uuid="169f7162-c6c8-4d61-9e10-245d8f4bffe2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1577f9e7-dbf3-46e4-9c66-21eefe6a90ee"/>
 				</reportElement>
 				<textElement textAlignment="Right"/>

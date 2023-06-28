@@ -10,6 +10,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.model.Venda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListennerBtn;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -25,7 +26,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class ConsultaPoltronas extends javax.swing.JInternalFrame {
+public class ConsultaPoltronas extends ModalInternalFrame {
 
     private List<JButton> listBotoes;
     private final JButton btnConfirmar;

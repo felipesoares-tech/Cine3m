@@ -46,13 +46,14 @@ public class ClienteDAO {
     public boolean alterar(Cliente cliente, Cliente clienteAtualizado) {
         String sql;
         PreparedStatement ps;
-        sql = "UPDATE cliente SET nome = ?,cpf = ? WHERE id = ?";
+        sql = "UPDATE cliente SET nome = ?,cpf = ?,filmes_assistidos = ? WHERE id = ?";
 
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, clienteAtualizado.getNome());
             ps.setString(2, clienteAtualizado.getCpf());
-            ps.setInt(3, cliente.getId());
+            ps.setInt(3, clienteAtualizado.getQtdFilmesAssistidos());
+            ps.setInt(4, cliente.getId());
 
             ps.execute();
             ps.close();

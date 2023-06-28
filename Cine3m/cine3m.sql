@@ -1,3 +1,4 @@
+-- ###### TABELAS ######
 CREATE TABLE IF NOT EXISTS funcionario (
   id SERIAL PRIMARY KEY,
   nome varchar(45) NOT NULL,
@@ -6,8 +7,6 @@ CREATE TABLE IF NOT EXISTS funcionario (
   senha VARCHAR(70) NOT NULL,
   del boolean NOT NULL DEFAULT false
 );
-
-INSERT INTO funcionario (nome, cpf, login, senha) VALUES ('ADMIN', '00000000000', 'admin', 'CRYPT:8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
 
 CREATE TABLE IF NOT EXISTS cliente (
   id SERIAL PRIMARY KEY,
@@ -40,40 +39,6 @@ CREATE TABLE IF NOT EXISTS poltrona (
   identificador varchar(100) NOT NULL,
   CONSTRAINT fk_poltrona_sala1 FOREIGN KEY (fk_sala) REFERENCES sala (id)
 );
-
-CREATE OR REPLACE FUNCTION criar_poltronas()
-    RETURNS TRIGGER AS
-$$
-DECLARE
-    num_filas INTEGER;
-    identificador VARCHAR(10);
-BEGIN
-    DELETE FROM poltrona WHERE fk_sala = OLD.id;
-
-    num_filas := CEIL(NEW.capacidade / 10.0);
-
-    FOR fila IN 0..(num_filas-1) LOOP
-        EXIT WHEN (SELECT COUNT(*) FROM poltrona WHERE fk_sala = NEW.id) >= NEW.capacidade;
-
-        FOR numero IN 1..10 LOOP
-            EXIT WHEN (SELECT COUNT(*) FROM poltrona WHERE fk_sala = NEW.id) >= NEW.capacidade;
-
-            identificador := chr(ASCII('A') + fila) || numero;
-
-            INSERT INTO poltrona (fk_sala, identificador)
-            VALUES (NEW.id, identificador);
-        END LOOP;
-    END LOOP;
-
-    RETURN NULL;
-END;
-$$
-LANGUAGE plpgsql;
-
-CREATE TRIGGER inserir_poltronas
-AFTER INSERT OR UPDATE ON sala
-FOR EACH ROW
-EXECUTE FUNCTION criar_poltronas();
 
 CREATE TABLE IF NOT EXISTS sessao (
   id SERIAL PRIMARY KEY,
@@ -124,3 +89,59 @@ CREATE TABLE IF NOT EXISTS item_venda (
   CONSTRAINT fk_item_venda_poltrona1 FOREIGN KEY (fk_poltrona) REFERENCES poltrona (id),
   CONSTRAINT fk_item_venda_venda1 FOREIGN KEY (fk_venda) REFERENCES venda (id)
 );
+
+-- ###### TRIGGERS E FUNÇÕES ######
+CREATE OR REPLACE FUNCTION criar_poltronas()
+    RETURNS TRIGGER AS
+$$
+DECLARE
+    num_filas INTEGER;
+    identificador VARCHAR(10);
+BEGIN
+    DELETE FROM poltrona WHERE fk_sala = OLD.id;
+
+    num_filas := CEIL(NEW.capacidade / 10.0);
+
+    FOR fila IN 0..(num_filas-1) LOOP
+        EXIT WHEN (SELECT COUNT(*) FROM poltrona WHERE fk_sala = NEW.id) >= NEW.capacidade;
+
+        FOR numero IN 1..10 LOOP
+            EXIT WHEN (SELECT COUNT(*) FROM poltrona WHERE fk_sala = NEW.id) >= NEW.capacidade;
+
+            identificador := chr(ASCII('A') + fila) || numero;
+
+            INSERT INTO poltrona (fk_sala, identificador)
+            VALUES (NEW.id, identificador);
+        END LOOP;
+    END LOOP;
+
+    RETURN NULL;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER inserir_poltronas
+AFTER INSERT OR UPDATE ON sala
+FOR EACH ROW
+EXECUTE FUNCTION criar_poltronas();
+
+CREATE OR REPLACE FUNCTION cancelamento_cliente()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.cancelada = true THEN
+        UPDATE cliente
+        SET filmes_assistidos = filmes_assistidos - 1
+        WHERE id = NEW.fk_cliente;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER cancelamento_cliente
+AFTER UPDATE ON venda
+FOR EACH ROW
+EXECUTE FUNCTION cancelamento_cliente();
+
+-- ###### INSERTS ######
+INSERT INTO funcionario (nome, cpf, login, senha) VALUES ('ADMIN', '00000000000', 'admin', 'CRYPT:8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');

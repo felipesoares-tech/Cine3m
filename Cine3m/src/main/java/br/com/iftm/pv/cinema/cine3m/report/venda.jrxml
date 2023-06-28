@@ -185,7 +185,7 @@ FROM venda v
 				</reportElement>
 			</line>
 			<staticText>
-				<reportElement x="-1" y="0" width="42" height="17" uuid="88782046-389a-46a6-9a78-8bfbce8e9e86">
+				<reportElement x="0" y="0" width="42" height="16" uuid="88782046-389a-46a6-9a78-8bfbce8e9e86">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8a7c2989-9f49-4949-8181-56d8f80e4df2"/>
 				</reportElement>
 				<text><![CDATA[Código]]></text>
@@ -197,7 +197,7 @@ FROM venda v
 				<text><![CDATA[Sessão]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="325" y="-1" width="100" height="17" uuid="5a97ce94-537d-481f-a2c6-17a2367f2802">
+				<reportElement x="325" y="0" width="100" height="16" uuid="5a97ce94-537d-481f-a2c6-17a2367f2802">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c4d908a8-969d-4927-99e8-1586318928cc"/>
 				</reportElement>
 				<text><![CDATA[Cliente]]></text>
@@ -209,7 +209,7 @@ FROM venda v
 				<text><![CDATA[Desconto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="519" y="-1" width="36" height="16" uuid="ad51a034-6c32-41d1-bb88-de1da313612d">
+				<reportElement x="519" y="0" width="36" height="16" uuid="ad51a034-6c32-41d1-bb88-de1da313612d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c2f0d2c7-f2f7-40e5-8995-b176eafc4140"/>
 				</reportElement>
 				<text><![CDATA[Total]]></text>
@@ -220,32 +220,32 @@ FROM venda v
 		<band height="20">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="0" y="0" width="34" height="14" uuid="636f2a07-f736-40f7-91e0-237b2cbecef6">
+				<reportElement x="0" y="0" width="34" height="16" uuid="636f2a07-f736-40f7-91e0-237b2cbecef6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8a7c2989-9f49-4949-8181-56d8f80e4df2"/>
 				</reportElement>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="48" y="0" width="276" height="14" uuid="59ca28fe-9d3a-47f2-a6ef-225d1ae6ae33">
+				<reportElement x="48" y="0" width="276" height="16" uuid="59ca28fe-9d3a-47f2-a6ef-225d1ae6ae33">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4254b14-03c6-488d-904b-3f1ceee85599"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{identificador}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="325" y="0" width="100" height="14" uuid="aeb1666b-2acf-4eb9-b557-a9524696c40f">
+				<reportElement x="325" y="0" width="100" height="16" uuid="aeb1666b-2acf-4eb9-b557-a9524696c40f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c4d908a8-969d-4927-99e8-1586318928cc"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{nome_cliente}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="466" y="0" width="52" height="14" uuid="912b87cb-63ea-4e54-a880-9e785dcf7a4f">
+				<reportElement x="466" y="0" width="52" height="16" uuid="912b87cb-63ea-4e54-a880-9e785dcf7a4f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ab5f9df-69c6-4f84-8f81-5a08d2c09dec"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{desconto}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤#,##0.000;¤-#,##0.00">
-				<reportElement x="518" y="0" width="36" height="14" uuid="533a7bcd-6e37-4b45-9acd-80cee656495a">
+				<reportElement x="518" y="0" width="36" height="16" uuid="533a7bcd-6e37-4b45-9acd-80cee656495a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c2f0d2c7-f2f7-40e5-8995-b176eafc4140"/>
 				</reportElement>
 				<textElement textAlignment="Right"/>

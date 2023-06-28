@@ -150,13 +150,13 @@ FROM sala]]>
 				</reportElement>
 			</line>
 			<staticText>
-				<reportElement x="-1" y="0" width="36" height="16" uuid="1859932b-91f9-4ed1-9274-7dd1e377fc7b">
+				<reportElement x="0" y="0" width="36" height="16" uuid="1859932b-91f9-4ed1-9274-7dd1e377fc7b">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c4e092ce-3793-4435-b43e-d06493614a63"/>
 				</reportElement>
 				<text><![CDATA[Código]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="48" y="1" width="80" height="16" uuid="f4b7eaf8-6ebf-467f-83f0-e8d53aaaf655">
+				<reportElement x="48" y="0" width="80" height="16" uuid="f4b7eaf8-6ebf-467f-83f0-e8d53aaaf655">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="13ccd7d4-a3f8-4301-b148-3ae0c9957062"/>
 				</reportElement>
 				<text><![CDATA[Nome]]></text>

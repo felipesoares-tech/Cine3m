@@ -13,6 +13,7 @@ import br.com.iftm.pv.cinema.cine3m.view.util.CelulasPersonalizadasList;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import java.awt.Frame;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -20,6 +21,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -40,7 +43,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     private JDialog relVenda;
     private List<Venda> vendas;
 
-    public OperacoesVenda(GerenciaVenda gerenciaVenda,GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala,CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
+    public OperacoesVenda(GerenciaVenda gerenciaVenda, GerenciaSessao gerenciaSessao, GerenciaCliente gerenciaCliente, GerenciaSala gerenciaSala, CadastroSessao cadastroSessao, CadastroCliente cadastroCliente) {
         initComponents();
         this.gerenciaVenda = gerenciaVenda;
         this.gerenciaSala = gerenciaSala;
@@ -57,7 +60,7 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     public GerenciaSala getGerenciaSala() {
         return gerenciaSala;
     }
-    
+
     public GerenciaVenda getGerenciaVenda() {
         return gerenciaVenda;
     }
@@ -71,25 +74,41 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     }
 
     private void initComponentsPersonalizado() {
-//        PesquisaLike pesquisaLike = new PesquisaLike(gerenciaVenda);
-//        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
-//            @Override
-//            public void insertUpdate(DocumentEvent e) {
-//                pesquisaLike.filterList(tfPesquisar, lstVendas);
-//            }
-//
-//            @Override
-//            public void removeUpdate(DocumentEvent e) {
-//                pesquisaLike.filterList(tfPesquisar, lstVendas);
-//            }
-//
-//            @Override
-//            public void changedUpdate(DocumentEvent e) {
-//                pesquisaLike.filterList(tfPesquisar, lstVendas);
-//            }
-//        });
+        tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filterList();
+            }
 
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filterList();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filterList();
+            }
+        });
         lstVendas.setCellRenderer(new CelulasPersonalizadasList());
+    }
+
+    private void filterList() {
+        String palavraDigitada = tfPesquisar.getText().toLowerCase();
+        if (palavraDigitada.isEmpty() || palavraDigitada.isBlank()) {
+            ListUtils.carregarList(lstVendas, gerenciaVenda.relatorio());
+        } else {
+            DefaultListModel<Venda> model = new DefaultListModel<>();
+            for (int i = 0; i < lstVendas.getModel().getSize(); i++) {
+                Venda venda = lstVendas.getModel().getElementAt(i);
+                String nomeItem = venda.getIdentificador();
+
+                if (nomeItem.toLowerCase().contains(palavraDigitada)) {
+                    model.addElement(venda);
+                }
+            }
+            lstVendas.setModel(model);
+        }
     }
 
     public JList<Venda> getLstVendas() {

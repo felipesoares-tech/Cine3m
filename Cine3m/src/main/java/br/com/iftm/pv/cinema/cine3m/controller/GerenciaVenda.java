@@ -75,15 +75,4 @@ public class GerenciaVenda {
         }
         return EnumValidacoes.VENDA_JA_CANCELADA;
     }
-
-
-    public Venda remover(Venda venda) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-
-    public Enum atualizar(Venda obj, Venda objAt) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 }

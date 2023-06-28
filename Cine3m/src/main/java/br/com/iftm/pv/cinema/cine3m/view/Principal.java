@@ -68,8 +68,6 @@ public class Principal extends javax.swing.JFrame {
         operacoesCliente.getLbPesquisar().setForeground(corLabel);
 
         operacoesFuncionario.getCadastroFuncionario().setBackground(corFundo);
-        operacoesFuncionario.getRelatorioFuncionario().getContentPane().setBackground(corFundo);
-
         operacoesFuncionario.getLstFuncionarios().setBackground(corFundo);
         operacoesFuncionario.getContentPane().setBackground(corFundo);
         operacoesFuncionario.getLstFuncionarios().setBackground(corPanel);
@@ -78,7 +76,6 @@ public class Principal extends javax.swing.JFrame {
         operacoesFuncionario.getLbPesquisar().setForeground(corLabel);
 
         operacoesSessao.getCadastroSessao().getContentPane().setBackground(corFundo);
-        operacoesSessao.getRelatorioSessao().getContentPane().setBackground(corFundo);
 
         operacoesSessao.getLstSessoes().setBackground(corFundo);
         operacoesSessao.getContentPane().setBackground(corFundo);
@@ -88,7 +85,6 @@ public class Principal extends javax.swing.JFrame {
         operacoesSessao.getLbPesquisar().setForeground(corLabel);
 
         operacoesSala.getCadastroSala().getContentPane().setBackground(corFundo);
-        operacoesSala.getRelatorioSala().getContentPane().setBackground(corFundo);
 
         operacoesSala.getLstSalas().setBackground(corFundo);
         operacoesSala.getContentPane().setBackground(corFundo);
@@ -107,7 +103,6 @@ public class Principal extends javax.swing.JFrame {
         operacoesFilme.getLbPesquisar().setForeground(corLabel);
 
         operacoesVenda.getCadastroVenda().getContentPane().setBackground(corFundo);
-        operacoesVenda.getRelatorioVenda().getContentPane().setBackground(corFundo);
 
         operacoesVenda.getCadastroVenda().getPanelBotoes().setBackground(corPanel);
         operacoesVenda.getCadastroVenda().getPanelDados().setBackground(corPanel);

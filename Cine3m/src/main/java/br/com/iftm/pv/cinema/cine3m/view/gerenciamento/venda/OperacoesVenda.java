@@ -37,7 +37,6 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     private final GerenciaSessao gerenciaSessao;
     private final GerenciaCliente gerenciaCliente;
     private final CadastroVenda cadastroVenda;
-    private final RelatorioVenda relatorioVenda;
     private final GerenciaSala gerenciaSala;
     private final ConsultaVenda telaAuxiliarConsultaVenda;
     private JDialog relVenda;
@@ -49,7 +48,6 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
         this.gerenciaSala = gerenciaSala;
         this.gerenciaSessao = gerenciaSessao;
         this.gerenciaCliente = gerenciaCliente;
-        this.relatorioVenda = new RelatorioVenda(gerenciaVenda);
         this.cadastroVenda = new CadastroVenda(gerenciaVenda, cadastroSessao, cadastroCliente, this);
         this.telaAuxiliarConsultaVenda = new ConsultaVenda(gerenciaVenda);
         initComponentsPersonalizado();
@@ -137,10 +135,6 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
 
     public JButton getBtnNovo() {
         return btnNovo;
-    }
-
-    public RelatorioVenda getRelatorioVenda() {
-        return relatorioVenda;
     }
 
     public JLabel getLbPesquisar() {
@@ -343,26 +337,14 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
         try {
-            // Compilando o JasperReport
             JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/main/java/br/com/iftm/pv/cinema/cine3m/report/venda.jrxml");
-
-            // Preenchendo o relatório com uma lista de usuários usando JRBeanCollectionDataSource
             JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null, new JRBeanCollectionDataSource(gerenciaVenda.relatorio()));
-
-            // Criando um diálogo para exibir o relatório
             relVenda = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Relatório de Usuários", true);
             relVenda.setSize(1000, 500);
-
-            // Criando um componente Swing para exibir o relatório
             JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
-
-            // Adicionando o painel do relatório ao diálogo criado
             relVenda.getContentPane().add(painelRelatorio);
-
-            // Tornando o diálogo visível com o relatório
             relVenda.setVisible(true);
         } catch (JRException ex) {
-//            Logger.getLogger(TelaAdminstrador.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
             JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório." + ex.getCause());
         }

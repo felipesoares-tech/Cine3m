@@ -6,20 +6,30 @@ import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
 import br.com.iftm.pv.cinema.cine3m.view.util.PesquisaLike;
+import java.awt.Frame;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.swing.JRViewer;
 
 public class OperacoesSala extends javax.swing.JInternalFrame {
 
     private final CadastroSala cadastroSala;
     private final GerenciaSala gerenciaSala;
-    private final RelatorioSala relatorioSala;
+    private JDialog relSala;
     private List<Sala> salas;
 
     public OperacoesSala(GerenciaSala gerenciaSala) {
@@ -27,7 +37,6 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
         this.gerenciaSala = gerenciaSala;
         initComponentsPersonalizado();
         this.cadastroSala = new CadastroSala(gerenciaSala, this);
-        relatorioSala = new RelatorioSala(gerenciaSala);
         btnConsultar.setEnabled(false);
 
     }
@@ -94,10 +103,6 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
 
     public JButton getBtnExcluir() {
         return btnExcluir;
-    }
-
-    public RelatorioSala getRelatorioSala() {
-        return relatorioSala;
     }
 
     public void setBtnExcluir(JButton btnExcluir) {
@@ -256,7 +261,7 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         cadastroSala.getJsCapacidade().setEnabled(true);
         cadastroSala.getBtnCadastrarSala().setVisible(true);
-        cadastroSala.getLbTituloTelaSala().setText("Cadastro de Salas");        
+        cadastroSala.getLbTituloTelaSala().setText("Cadastro de Salas");
         cadastroSala.getBtnCadastrarSala().setText("CADASTRAR");
         cadastroSala.setEstadoAtual(EstadoAtual.CADASTRANDO);
         cadastroSala.getTfNomeSala().setText("");
@@ -276,7 +281,7 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
         cadastroSala.getTfNomeSala().setEditable(false);
         cadastroSala.getJsCapacidade().setEnabled(false);
         cadastroSala.getLbTituloTelaSala().setText("Consulta de Sala");
-        
+
         getDesktopPane().add(cadastroSala);
         cadastroSala.setModal(true);
         cadastroSala.setVisible(true);
@@ -284,14 +289,14 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         Sala salaSelecionada = lstSalas.getSelectedValue();
-             Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
+        Integer resp = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja apagar ??",
                 "Apagar Sala", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (resp.equals(JOptionPane.OK_OPTION)) {
-           if (gerenciaSala.remover(salaSelecionada).equals(EnumValidacoes.SALA_NAO_VINCULADA_SESSAO)) {
+            if (gerenciaSala.remover(salaSelecionada).equals(EnumValidacoes.SALA_NAO_VINCULADA_SESSAO)) {
                 lstSalasAncestorAdded(null);
-            JOptionPane.showMessageDialog(this,"Sala removida!",
-                    "Remover", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sala removida!",
+                        "Remover", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Não foi possível deletar, sala já vinculada a uma sessão!",
                         "Remover", JOptionPane.ERROR_MESSAGE);
@@ -327,16 +332,25 @@ public class OperacoesSala extends javax.swing.JInternalFrame {
         cadastroSala.getBtnCadastrarSala().setVisible(true);
         cadastroSala.getTfNomeSala().setEditable(true);
         cadastroSala.setSalaSelecionada(salaSelecionada);
-        
+
         getDesktopPane().add(cadastroSala);
         cadastroSala.setModal(true);
         cadastroSala.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
-        getDesktopPane().add(relatorioSala);
-        relatorioSala.setModal(true);
-        relatorioSala.setVisible(true);
+        try {
+            JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/main/java/br/com/iftm/pv/cinema/cine3m/report/sala.jrxml");
+            JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null, new JRBeanCollectionDataSource(gerenciaSala.relatorio()));
+            relSala = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Relatório de Salas", true);
+            relSala.setSize(1000, 500);
+            JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+            relSala.getContentPane().add(painelRelatorio);
+            relSala.setVisible(true);
+        } catch (JRException ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório." + ex);
+        }
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
 

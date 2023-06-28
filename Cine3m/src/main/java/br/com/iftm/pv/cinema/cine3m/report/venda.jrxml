@@ -141,7 +141,7 @@ FROM venda v
 			</textField>
 			<image hAlign="Center">
 				<reportElement x="0" y="0" width="65" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
-				<imageExpression><![CDATA["imagens/invoice_logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["imagens/logo-final.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="95" y="0" width="210" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">

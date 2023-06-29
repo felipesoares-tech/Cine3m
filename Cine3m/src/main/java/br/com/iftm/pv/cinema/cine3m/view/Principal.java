@@ -46,7 +46,7 @@ public class Principal extends javax.swing.JFrame {
         operacoesSala = new OperacoesSala(gerenciaSala);
         operacoesVenda = new OperacoesVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, gerenciaSala, operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
 
-        this.loginFuncionario = new LoginFuncionario(operacoesVenda.getCadastroVenda(), operacoesFuncionario,jMenuBar1);
+        this.loginFuncionario = new LoginFuncionario(operacoesVenda.getCadastroVenda(), operacoesFuncionario, jMenuBar1);
 
         Color corFundo = ParametrosSistema.getInstance().getCorDeFundo();
         Color corPanel = ParametrosSistema.getInstance().getCorPanel();
@@ -69,11 +69,17 @@ public class Principal extends javax.swing.JFrame {
 
         operacoesFuncionario.getCadastroFuncionario().setBackground(corFundo);
         operacoesFuncionario.getLstFuncionarios().setBackground(corFundo);
+        operacoesFuncionario.getCadastroFuncionario().getContentPane().setBackground(corFundo);
         operacoesFuncionario.getContentPane().setBackground(corFundo);
         operacoesFuncionario.getLstFuncionarios().setBackground(corPanel);
         operacoesFuncionario.getPanelBotoes().setBackground(transparent);
         operacoesFuncionario.getLbTitulo().setForeground(corLabel);
         operacoesFuncionario.getLbPesquisar().setForeground(corLabel);
+        operacoesFuncionario.getCadastroFuncionario().getLbNomeFuncionario().setForeground(corLabel);
+        operacoesFuncionario.getCadastroFuncionario().getLbCpfFuncionario().setForeground(corLabel);
+        operacoesFuncionario.getCadastroFuncionario().getLbLoginFuncionario().setForeground(corLabel);
+        operacoesFuncionario.getCadastroFuncionario().getLbSenhaFuncionario().setForeground(corLabel);
+        operacoesFuncionario.getCadastroFuncionario().getLbTituloTelaFuncionario().setForeground(corLabel);
 
         operacoesSessao.getCadastroSessao().getContentPane().setBackground(corFundo);
 

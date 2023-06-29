@@ -1,7 +1,6 @@
 package br.com.iftm.pv.cinema.cine3m.view.gerenciamento.filme;
 
 import br.com.iftm.pv.cinema.cine3m.controller.GerenciaFilme;
-import br.com.iftm.pv.cinema.cine3m.enums.EnumHoras;
 import br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes;
 import static br.com.iftm.pv.cinema.cine3m.enums.EnumValidacoes.FILME_JA_CADASTRADO;
 import br.com.iftm.pv.cinema.cine3m.enums.EstadoAtual;
@@ -32,7 +31,6 @@ public class CadastroFilme extends ModalInternalFrame {
     private Filme filmeSelecionado;
     private final OperacoesFilme operacoesFilme;
     private EstadoAtual estadoAtual;
-    private EnumHoras enumHoras;
 
     public CadastroFilme(GerenciaFilme gerenciaFilme, OperacoesFilme operacoesFilme) {
         initComponents();

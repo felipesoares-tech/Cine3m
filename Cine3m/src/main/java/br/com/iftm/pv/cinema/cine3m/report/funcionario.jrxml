@@ -188,9 +188,9 @@ FROM funcionario]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="14">
+		<band height="16">
 			<textField>
-				<reportElement x="0" y="0" width="32" height="16" uuid="d79e234b-4b8f-46b2-9c1e-c2ccc7cb1e13">
+				<reportElement x="0" y="0" width="40" height="16" uuid="d79e234b-4b8f-46b2-9c1e-c2ccc7cb1e13">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9d89b18c-4ee7-4ec8-9ca6-66e6e913aa84"/>
 				</reportElement>
 				<textElement textAlignment="Right"/>

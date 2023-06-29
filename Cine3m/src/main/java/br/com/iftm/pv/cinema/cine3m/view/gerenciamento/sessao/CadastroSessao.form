@@ -25,23 +25,21 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="94" max="32767" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lbTituloTelaSessao" min="-2" pref="373" max="-2" attributes="0"/>
+                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
                       <Component id="btnCadastrarSessao" min="-2" pref="131" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                      <Component id="lbTituloTelaSessao" min="-2" pref="373" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="73" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,9 +48,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="lbTituloTelaSessao" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnCadastrarSessao" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
@@ -87,21 +85,16 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lbFilmes" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lbFilmes" alignment="0" pref="403" max="32767" attributes="0"/>
                       <Component id="lbSalas" alignment="0" max="32767" attributes="0"/>
                       <Component id="lbValor" alignment="0" max="32767" attributes="0"/>
                       <Component id="lbData" alignment="0" max="32767" attributes="0"/>
                       <Component id="lbHora" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfDataSessao" alignment="0" min="-2" pref="303" max="-2" attributes="0"/>
-                              <Component id="tfHorarioSessao" alignment="0" min="-2" pref="303" max="-2" attributes="0"/>
-                              <Component id="cbSalasSessao" alignment="0" min="-2" pref="302" max="-2" attributes="0"/>
-                              <Component id="cbFilmesSessao" alignment="0" min="-2" pref="302" max="-2" attributes="0"/>
-                              <Component id="tfValorSessao" alignment="0" min="-2" pref="303" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="39" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="cbFilmesSessao" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cbSalasSessao" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tfValorSessao" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tfDataSessao" max="32767" attributes="0"/>
+                      <Component id="tfHorarioSessao" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -138,6 +131,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lbFilmes">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="12" style="1"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
@@ -156,6 +152,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbSalas">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="12" style="1"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
@@ -174,6 +173,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbValor">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="12" style="1"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
@@ -189,6 +191,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbData">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="12" style="1"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
@@ -204,6 +209,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbHora">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="12" style="1"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>

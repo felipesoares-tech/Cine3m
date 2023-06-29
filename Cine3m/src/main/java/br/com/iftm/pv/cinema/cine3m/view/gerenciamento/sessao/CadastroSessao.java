@@ -65,8 +65,13 @@ public class CadastroSessao extends ModalInternalFrame {
         this.cbSalasSessao = cbSalasSessao;
     }
 
-    public JLabel getLbDataHora() {
+
+    public JLabel getLbData() {
         return lbData;
+    }
+
+    public JLabel getLbHora() {
+        return lbHora;
     }
 
     public EstadoAtual getEstadoAtual() {
@@ -79,14 +84,6 @@ public class CadastroSessao extends ModalInternalFrame {
 
     public void setLbDataHora(JLabel lbDataHora) {
         this.lbData = lbDataHora;
-    }
-
-    public JLabel getLbDataHora1() {
-        return lbHora;
-    }
-
-    public void setLbDataHora1(JLabel lbDataHora1) {
-        this.lbHora = lbDataHora1;
     }
 
     public JLabel getLbFilmes() {
@@ -227,17 +224,21 @@ public class CadastroSessao extends ModalInternalFrame {
             }
         });
 
+        lbFilmes.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbFilmes.setForeground(new java.awt.Color(51, 51, 51));
         lbFilmes.setText("FIlmes");
 
+        lbSalas.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbSalas.setForeground(new java.awt.Color(51, 51, 51));
         lbSalas.setText("Salas");
 
+        lbValor.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbValor.setForeground(new java.awt.Color(51, 51, 51));
         lbValor.setText("Valor");
 
         tfValorSessao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
+        lbData.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbData.setForeground(new java.awt.Color(51, 51, 51));
         lbData.setText("Data:");
 
@@ -247,6 +248,7 @@ public class CadastroSessao extends ModalInternalFrame {
             ex.printStackTrace();
         }
 
+        lbHora.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbHora.setForeground(new java.awt.Color(51, 51, 51));
         lbHora.setText("Hora");
 
@@ -263,19 +265,16 @@ public class CadastroSessao extends ModalInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
                     .addComponent(lbSalas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfDataSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfHorarioSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbSalasSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbFilmesSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfValorSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 39, Short.MAX_VALUE)))
+                    .addComponent(cbFilmesSessao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbSalasSessao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfValorSessao)
+                    .addComponent(tfDataSessao)
+                    .addComponent(tfHorarioSessao))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -308,28 +307,26 @@ public class CadastroSessao extends ModalInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbTituloTelaSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(lbTituloTelaSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(209, 209, 209)
+                        .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lbTituloTelaSessao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(btnCadastrarSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(48, Short.MAX_VALUE))
         );

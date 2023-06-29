@@ -12,7 +12,9 @@ import br.com.iftm.pv.cinema.cine3m.model.Filme;
 import br.com.iftm.pv.cinema.cine3m.model.Sala;
 import java.awt.Frame;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -29,6 +31,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.swing.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class OperacoesSessao extends javax.swing.JInternalFrame {
 
@@ -476,14 +479,23 @@ public class OperacoesSessao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
+        
         try {
             JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/main/java/br/com/iftm/pv/cinema/cine3m/report/sessao.jrxml");
             JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null, new JRBeanCollectionDataSource(gerenciaSessao.relatorio()));
-            relSessao = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Relatório de Sessões", true);
-            relSessao.setSize(1000, 500);
-            JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
-            relSessao.getContentPane().add(painelRelatorio);
-            relSessao.setVisible(true);
+            
+            String param1 = "fk_sala";
+            String param2 = "2";
+            // Criar um mapa de parâmetros e definir o valor do parâmetro "filtro"
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("filtro1", param1);
+            parameters.put("filtro2", param2);
+
+            // Preencher o relatório com dados (opcionalmente, se você tiver dados)
+            JasperPrint jasperPrint = JasperFillManager.fillReport(relatorioCompilado, parameters, new JRBeanCollectionDataSource(null));
+
+            JasperViewer.viewReport(jasperPrint, true);
+             
         } catch (JRException ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(this, "Erro ao gerar o relatório." + ex);

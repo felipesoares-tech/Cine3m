@@ -3,7 +3,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Exemplo" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
     <property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
     <property name="com.jaspersoft.studio.data.sql.tables">
-<![CDATA[c2FsYSAsMTUsMzAwLDJiOTQ3NDQxLTRmYzktNDI1OS05MjFkLTM5MzFiNDg1MTAyZDtzZXNzYW8g
+		<![CDATA[c2FsYSAsMTUsMzAwLDJiOTQ3NDQxLTRmYzktNDI1OS05MjFkLTM5MzFiNDg1MTAyZDtzZXNzYW8g
 LDE2MSwxMDMsOTU4ZGFjZTgtNjI3NC00Y2Q4LWEwOTQtMzI1ZGVmMWUzN2M2O2ZpbG1lICwxNSwx
 NSxjODhiYmQ0Zi1lOTg2LTQxZTItOTQ0Yy03NzE1MjIxMDdmOWM7]]>
     </property>
@@ -59,24 +59,23 @@ NSxjODhiYmQ0Zi1lOTg2LTQxZTItOTQ0Yy03NzE1MjIxMDdmOWM7]]>
     </style>
     <subDataset name="tableDataset" uuid="f13e6d36-5148-4ecc-bbe3-3035def80980">
         <queryString>
-<![CDATA[]]>
+			<![CDATA[]]>
         </queryString>
     </subDataset>
     <queryString>
-<![CDATA[SELECT sessao.id,
-sessao.identificador,
-sessao.data,
-sessao.hora,
-sessao.valor,
-sessao.hora_final,
-filme.nome,
-sala.nome
+		<![CDATA[SELECT sessao.id,
+	sessao.identificador,
+	sessao.data,
+	sessao.hora,
+	sessao.valor,
+	sessao.hora_final,
+	filme.nome,
+	sala.nome
 FROM sessao
-join filme ON
-filme.id = sessao.fk_filme
-join sala ON
-sala.id = sessao.fk_sala
-WHERE $P{filtro1} = $P{filtro2}]]>
+	join filme ON 
+	 filme.id = sessao.fk_filme 
+	join sala ON 
+	 sala.id = sessao.fk_sala]]>
     </queryString>
     <field name="id" class="java.lang.Integer">
         <property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -216,7 +215,7 @@ WHERE $P{filtro1} = $P{filtro2}]]>
                 <text><![CDATA[Valor ]]></text>
             </staticText>
             <staticText>
-                <reportElement x="320" y="0" width="62" height="16" uuid="5eaba570-5d5a-4163-a69d-e8b00c030380">
+                <reportElement x="320" y="1" width="62" height="16" uuid="5eaba570-5d5a-4163-a69d-e8b00c030380">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c65ac5a-a968-48fc-a39d-e7c8b453f4f3"/>
                 </reportElement>
                 <text><![CDATA[Início]]></text>
@@ -228,7 +227,7 @@ WHERE $P{filtro1} = $P{filtro2}]]>
                 <text><![CDATA[Fim]]></text>
             </staticText>
             <staticText>
-                <reportElement x="250" y="0" width="70" height="16" uuid="7eacad30-49f2-456c-be59-08b36351567c">
+                <reportElement x="250" y="1" width="70" height="16" uuid="7eacad30-49f2-456c-be59-08b36351567c">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="349aad7c-b57e-47a6-b4ad-b3b9ff97b220"/>
                 </reportElement>
                 <text><![CDATA[Data]]></text>
@@ -263,20 +262,20 @@ WHERE $P{filtro1} = $P{filtro2}]]>
                 <textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="382" y="0" width="54" height="16" uuid="9422c9e8-de47-4c64-bad1-b014d9d9af7f">
+                <reportElement x="382" y="1" width="54" height="14" uuid="9422c9e8-de47-4c64-bad1-b014d9d9af7f">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="564c1e97-6178-488d-9e04-7e9933886b58"/>
                 </reportElement>
                 <textFieldExpression><![CDATA[$F{hora_final}.format(java.time.format.DateTimeFormatter.ofPattern("hh:mm a"))]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="250" y="0" width="70" height="16" uuid="62917ddf-290f-4cda-8407-3ca012699e9d">
+                <reportElement x="250" y="1" width="70" height="14" uuid="62917ddf-290f-4cda-8407-3ca012699e9d">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="349aad7c-b57e-47a6-b4ad-b3b9ff97b220"/>
                 </reportElement>
                 <textFieldExpression><![CDATA[$F{data}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))]]></textFieldExpression>
             </textField>
 
             <textField>
-                <reportElement x="320" y="0" width="62" height="16" uuid="5b6896bf-91cc-4b78-b182-4ae0e5c372e8">
+                <reportElement x="320" y="1" width="62" height="14" uuid="5b6896bf-91cc-4b78-b182-4ae0e5c372e8">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6b47fbf6-cf5a-49dc-9e3b-c10c12c279d6"/>
                 </reportElement>
                 <textFieldExpression><![CDATA[$F{hora}.format(java.time.format.DateTimeFormatter.ofPattern("hh:mm a"))]]></textFieldExpression>
@@ -311,7 +310,7 @@ WHERE $P{filtro1} = $P{filtro2}]]>
                 </reportElement>
             </line>
             <textField>
-                <reportElement x="49" y="5" width="40" height="18" uuid="0463496e-f1f5-4259-8811-fa1d26d3b969"/>
+                <reportElement x="49" y="7" width="40" height="16" uuid="0463496e-f1f5-4259-8811-fa1d26d3b969"/>
                 <textFieldExpression><![CDATA[$V{id4}]]></textFieldExpression>
             </textField>
         </band>

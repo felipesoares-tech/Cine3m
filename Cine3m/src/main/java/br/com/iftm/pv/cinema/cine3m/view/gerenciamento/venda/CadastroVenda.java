@@ -447,9 +447,10 @@ public class CadastroVenda extends ModalInternalFrame {
 
     private void btnContinuarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarCompraActionPerformed
         Sessao sessaoSelecionada = (Sessao) cbSessaoVenda.getSelectedItem();        
-        this.confirmaCompra = new ConfirmaVenda(listItensIngresso, sessaoSelecionada, vincularCliente, consultaPoltronas, operacoesVenda);
+        confirmaCompra = new ConfirmaVenda(listItensIngresso, sessaoSelecionada, vincularCliente, consultaPoltronas, operacoesVenda);
         getDesktopPane().add(confirmaCompra);
-        this.confirmaCompra.setVisible(true);
+        confirmaCompra.setModal(true);
+        confirmaCompra.setVisible(true);
     }//GEN-LAST:event_btnContinuarCompraActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

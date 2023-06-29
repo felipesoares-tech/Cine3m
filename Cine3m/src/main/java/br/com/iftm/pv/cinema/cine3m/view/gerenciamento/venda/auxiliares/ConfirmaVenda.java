@@ -11,6 +11,7 @@ import br.com.iftm.pv.cinema.cine3m.model.Sessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.CadastroVenda;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.OperacoesVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import br.com.iftm.pv.cinema.cine3m.view.util.ModalInternalFrame;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -18,7 +19,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
-public class ConfirmaVenda extends javax.swing.JInternalFrame {
+public class ConfirmaVenda extends ModalInternalFrame {
 
     private final Integer qtdMaxItensIngresso;
     private final SpinnerNumberModel spinnerModelInteira;

@@ -345,9 +345,8 @@ public class CadastroFilme extends ModalInternalFrame {
         String descricao = tfaDescricao.getText();
         Genero genero = (Genero) cbGenero.getSelectedItem();
         String duracaoSessao = tfDuracaoFilme.getText();
-        
-        if(Integer.parseInt(duracaoSessao.replaceAll("[:]", "")) <= 5){
-                    if (ValidaCampo.validar(nome, lbNome, this)
+
+        if (ValidaCampo.validar(nome, lbNome, this)
                 && ValidaCampo.validar(diretor, lbDiretor, this)
                 && ValidaCampo.validar(descricao, lbDescricao, this)
                 && ValidaCampo.validar(duracaoSessao.replaceAll("[:]", "").trim(), lbDuracao, this)) {
@@ -388,8 +387,6 @@ public class CadastroFilme extends ModalInternalFrame {
                 operacoesFilme.getLstFilmes().setSelectedIndex(0);
             }
         }
-        } else
-            JOptionPane.showMessageDialog(this, "Filme não pode ultrapassar 5 horas.", "Erro", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnCadastrarFilmeActionPerformed
 
 

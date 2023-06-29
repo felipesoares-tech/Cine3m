@@ -108,6 +108,14 @@ public class Principal extends javax.swing.JFrame {
         operacoesFilme.getLbTitulo().setForeground(corLabel);
         operacoesFilme.getLbPesquisar().setForeground(corLabel);
 
+        operacoesFilme.getCadastroFilme().getLbTituloTelaFilme().setForeground(corLabel);
+        operacoesFilme.getCadastroFilme().getjPanel1().setBackground(corPanel);
+        operacoesFilme.getCadastroFilme().getLbDescricao().setForeground(corLabel);
+        operacoesFilme.getCadastroFilme().getLbDiretor().setForeground(corLabel);
+        operacoesFilme.getCadastroFilme().getLbGenero().setForeground(corLabel);
+        operacoesFilme.getCadastroFilme().getLbNome().setForeground(corLabel);
+        operacoesFilme.getCadastroFilme().getLbDuracao().setForeground(corLabel);
+
         operacoesVenda.getCadastroVenda().getContentPane().setBackground(corFundo);
 
         operacoesVenda.getCadastroVenda().getPanelBotoes().setBackground(corPanel);

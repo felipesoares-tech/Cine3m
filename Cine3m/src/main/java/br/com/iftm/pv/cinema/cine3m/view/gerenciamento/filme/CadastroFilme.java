@@ -155,6 +155,10 @@ public class CadastroFilme extends ModalInternalFrame {
         return tfDuracaoFilme;
     }
 
+    public JLabel getLbDuracao() {
+        return lbDuracao;
+    }
+
     public void setTfDuracaoFilme(JFormattedTextField tfDuracaoFilme) {
         this.tfDuracaoFilme = tfDuracaoFilme;
     }
@@ -190,6 +194,7 @@ public class CadastroFilme extends ModalInternalFrame {
         tfaDescricao.setRows(5);
         jScrollPane1.setViewportView(tfaDescricao);
 
+        lbGenero.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbGenero.setForeground(new java.awt.Color(51, 51, 51));
         lbGenero.setText("Genero");
 
@@ -203,12 +208,15 @@ public class CadastroFilme extends ModalInternalFrame {
             }
         });
 
+        lbDescricao.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbDescricao.setForeground(new java.awt.Color(51, 51, 51));
         lbDescricao.setText("Descrição");
 
+        lbNome.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbNome.setForeground(new java.awt.Color(51, 51, 51));
         lbNome.setText("Nome");
 
+        lbDiretor.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbDiretor.setForeground(new java.awt.Color(51, 51, 51));
         lbDiretor.setText("Diretor");
 
@@ -219,6 +227,8 @@ public class CadastroFilme extends ModalInternalFrame {
             }
         });
 
+        lbDuracao.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        lbDuracao.setForeground(new java.awt.Color(51, 51, 51));
         lbDuracao.setText("Duracao");
 
         try {
@@ -244,16 +254,15 @@ public class CadastroFilme extends ModalInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(192, 192, 192)
-                                .addComponent(btnCadastrarFilme))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lbDuracao)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addComponent(lbDuracao)
+                        .addGap(0, 403, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(tfDuracaoFilme)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(btnCadastrarFilme)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

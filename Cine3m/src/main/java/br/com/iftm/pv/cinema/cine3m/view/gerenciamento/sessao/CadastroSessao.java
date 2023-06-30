@@ -65,7 +65,6 @@ public class CadastroSessao extends ModalInternalFrame {
         this.cbSalasSessao = cbSalasSessao;
     }
 
-
     public JLabel getLbData() {
         return lbData;
     }
@@ -174,10 +173,13 @@ public class CadastroSessao extends ModalInternalFrame {
                         JOptionPane.ERROR_MESSAGE);
 
                 break;
-            case SESSAO_HORARIO_JA_UTILIZADO: //TODO: falta implementar
+            case SESSAO_HORARIO_JA_UTILIZADO:
                 JOptionPane.showMessageDialog(this, "Horario Utilizado", titulo,
                         JOptionPane.ERROR_MESSAGE);
-
+                break;
+            case SESSAO_VINCULADA_VENDA:
+                JOptionPane.showMessageDialog(this, "Não é possível alterar sessão com lançamentos!", titulo,
+                        JOptionPane.ERROR_MESSAGE);
                 break;
             default:
                 throw new AssertionError();

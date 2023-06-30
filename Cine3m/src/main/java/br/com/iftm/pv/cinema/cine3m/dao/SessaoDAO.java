@@ -161,5 +161,54 @@ public class SessaoDAO {
         }
         return sessaoRet;
     }
+    
+    public boolean consultarVendaSessao(Integer sessaoID) {
+        PreparedStatement ps;
+        ResultSet rs;
+
+        String sql = "SELECT * FROM venda WHERE fk_sessao = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, sessaoID);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar registros do SGDB: " + e.getMessage());
+        }
+        return false;
+    }
+    
+    public boolean alterar(Integer sessaoID, Sessao sessaoAtualizada) {
+        String sql;
+        PreparedStatement ps;
+        sql = "UPDATE sessao SET fk_filme = ?,fk_sala = ?,data  = ?, hora  = ?, hora_final = ?,valor = ?  WHERE id = ?";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, sessaoAtualizada.getFilme().getId());
+            ps.setInt(2, sessaoAtualizada.getSala().getId());
+            ps.setDate(3, Date.valueOf(sessaoAtualizada.getData()));
+            ps.setTime(4, Time.valueOf(sessaoAtualizada.getHora()));
+            ps.setTime(5, Time.valueOf(sessaoAtualizada.getHoraFinal()));
+            ps.setDouble(6, sessaoAtualizada.getValor());
+            ps.setInt(7, sessaoID);
+
+            ps.execute();
+            ps.close();
+
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Erro na operação de alteração do SGDB: " + e.getMessage());
+
+            return false;
+        }
+    }
 
 }

@@ -222,9 +222,9 @@ public class CadastroSala extends ModalInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(67, Short.MAX_VALUE)
                 .addComponent(lbTituloTelaSala)
-                .addGap(55, 55, 55)
+                .addGap(37, 37, 37)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
+                .addGap(96, 96, 96))
         );
 
         pack();

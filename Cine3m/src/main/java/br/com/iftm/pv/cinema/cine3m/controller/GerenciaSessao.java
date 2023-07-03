@@ -8,12 +8,13 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GerenciaSessao implements IGerencia<Sessao> {
+
     private final SessaoDAO sessaoDAO;
 
     public GerenciaSessao(GerenciaSala gerenciaSala, GerenciaFilme gerenciaFilme) {
-        this.sessaoDAO = new SessaoDAO(gerenciaFilme, gerenciaSala);    
+        this.sessaoDAO = new SessaoDAO(gerenciaFilme, gerenciaSala);
     }
-    
+
     private EnumValidacoes validarSessao(Sessao sessao) {
         EnumValidacoes retornoValidacao;
         if (sessaoDAO.consultarSessaoFilmeDataHoraSala(sessao) != null) { //O Contains, verifica somente oq está no Equals!
@@ -32,12 +33,14 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         EnumValidacoes retornoValidacao;
         if (existeSessaoComHorario(sessao, sessaoAtualizada)) {
             retornoValidacao = EnumValidacoes.SESSAO_HORARIO_JA_UTILIZADO;
+        } else if (sessaoDAO.consultarVendaSessao(sessao.getId())) {
+            retornoValidacao = EnumValidacoes.SESSAO_VINCULADA_VENDA;
         } else {
             retornoValidacao = EnumValidacoes.SESSAO_SUCESSO;
         }
         return retornoValidacao;
     }
-    
+
     private boolean existeSessaoComHorario(Sessao sessao, Sessao sessaoAtualizada) {
         Iterator<Sessao> it = sessaoDAO.listar().iterator();
         while (it.hasNext()) {
@@ -93,22 +96,21 @@ public class GerenciaSessao implements IGerencia<Sessao> {
     @Override
     public EnumValidacoes remover(Sessao sessao) {
         sessaoDAO.apagar(sessao.getId());
-        return null;
+        return EnumValidacoes.SESSAO_SUCESSO;
     }
 
     @Override
     public EnumValidacoes atualizar(Sessao sessao, Sessao sessaoAtualizada) {
         EnumValidacoes retornoValidacao = validarSessao(sessao, sessaoAtualizada);
         if (retornoValidacao.equals(EnumValidacoes.SESSAO_SUCESSO)) {
-            //sessoes.set(sessoes.indexOf(sessao), sessaoAtualizada);
-            return null;
+            sessaoDAO.alterar(sessao.getId(), sessaoAtualizada);
         }
         return retornoValidacao;
     }
-    
+
     @Override
     public Sessao consultar(Integer sessaoID) {
-        return sessaoDAO.consultarSessaoID(sessaoID);                
+        return sessaoDAO.consultarSessaoID(sessaoID);
     }
 
     @Override
@@ -116,5 +118,4 @@ public class GerenciaSessao implements IGerencia<Sessao> {
         return sessaoDAO.listar();
     }
 
-   
 }

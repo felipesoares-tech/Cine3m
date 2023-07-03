@@ -182,14 +182,19 @@ public class CadastroFuncionario extends ModalInternalFrame {
 
         setClosable(true);
 
+        lbTituloTelaFuncionario.setBackground(new java.awt.Color(102, 102, 102));
         lbTituloTelaFuncionario.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lbTituloTelaFuncionario.setForeground(new java.awt.Color(204, 204, 204));
+        lbTituloTelaFuncionario.setForeground(new java.awt.Color(102, 102, 102));
         lbTituloTelaFuncionario.setText("Cadastro de Funcionários");
 
-        lbNomeFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(java.awt.Color.gray);
+
+        lbNomeFuncionario.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        lbNomeFuncionario.setForeground(new java.awt.Color(51, 51, 51));
         lbNomeFuncionario.setText("Nome:");
 
-        lbCpfFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        lbCpfFuncionario.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        lbCpfFuncionario.setForeground(new java.awt.Color(51, 51, 51));
         lbCpfFuncionario.setText("CPF:");
 
         try {
@@ -198,12 +203,15 @@ public class CadastroFuncionario extends ModalInternalFrame {
             ex.printStackTrace();
         }
 
-        lbLoginFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        lbLoginFuncionario.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        lbLoginFuncionario.setForeground(new java.awt.Color(51, 51, 51));
         lbLoginFuncionario.setText("Login:");
 
-        lbSenhaFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        lbSenhaFuncionario.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        lbSenhaFuncionario.setForeground(new java.awt.Color(51, 51, 51));
         lbSenhaFuncionario.setText("Senha:");
 
+        btnCadastrarFuncionario.setForeground(new java.awt.Color(51, 51, 51));
         btnCadastrarFuncionario.setText("CADASTRAR");
         btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,21 +269,21 @@ public class CadastroFuncionario extends ModalInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTituloTelaFuncionario))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(lbTituloTelaFuncionario)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addComponent(lbTituloTelaFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();

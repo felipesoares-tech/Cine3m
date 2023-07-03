@@ -188,28 +188,28 @@ FROM funcionario]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="14">
+		<band height="16">
 			<textField>
-				<reportElement x="0" y="0" width="32" height="14" uuid="d79e234b-4b8f-46b2-9c1e-c2ccc7cb1e13">
+				<reportElement x="0" y="0" width="40" height="16" uuid="d79e234b-4b8f-46b2-9c1e-c2ccc7cb1e13">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9d89b18c-4ee7-4ec8-9ca6-66e6e913aa84"/>
 				</reportElement>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="50" y="-2" width="130" height="16" uuid="c499990c-76cb-41d8-ad1d-688d8d5624d5">
+				<reportElement x="50" y="0" width="130" height="16" uuid="c499990c-76cb-41d8-ad1d-688d8d5624d5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e427b930-9af0-4982-95a7-b45a0e8e5cd2"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="180" y="-2" width="100" height="16" uuid="ba299146-4c57-4dce-a7cc-b441151af093">
+				<reportElement x="180" y="0" width="100" height="16" uuid="ba299146-4c57-4dce-a7cc-b441151af093">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe5a3ef6-f34b-4874-bfeb-3a67afd2ff38"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cpf}.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="280" y="-2" width="100" height="16" uuid="7d45a298-0186-4cc7-8bcb-6b69fbf54232">
+				<reportElement x="280" y="0" width="100" height="16" uuid="7d45a298-0186-4cc7-8bcb-6b69fbf54232">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d9d18ab6-17ab-4ad1-817a-e0d7b464dfc4"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{login}]]></textFieldExpression>

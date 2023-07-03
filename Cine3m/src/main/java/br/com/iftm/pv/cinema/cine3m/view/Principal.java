@@ -69,11 +69,17 @@ public class Principal extends javax.swing.JFrame {
 
         operacoesFuncionario.getCadastroFuncionario().setBackground(corFundo);
         operacoesFuncionario.getLstFuncionarios().setBackground(corFundo);
+        operacoesFuncionario.getCadastroFuncionario().getContentPane().setBackground(corFundo);
         operacoesFuncionario.getContentPane().setBackground(corFundo);
         operacoesFuncionario.getLstFuncionarios().setBackground(corPanel);
         operacoesFuncionario.getPanelBotoes().setBackground(transparent);
         operacoesFuncionario.getLbTitulo().setForeground(corLabel);
         operacoesFuncionario.getLbPesquisar().setForeground(corLabel);
+        operacoesFuncionario.getCadastroFuncionario().getLbNomeFuncionario().setForeground(corLabel);
+        operacoesFuncionario.getCadastroFuncionario().getLbCpfFuncionario().setForeground(corLabel);
+        operacoesFuncionario.getCadastroFuncionario().getLbLoginFuncionario().setForeground(corLabel);
+        operacoesFuncionario.getCadastroFuncionario().getLbSenhaFuncionario().setForeground(corLabel);
+        operacoesFuncionario.getCadastroFuncionario().getLbTituloTelaFuncionario().setForeground(corLabel);
 
         operacoesSessao.getCadastroSessao().getContentPane().setBackground(corFundo);
 
@@ -83,6 +89,14 @@ public class Principal extends javax.swing.JFrame {
         operacoesSessao.getPanelBotoes().setBackground(transparent);
         operacoesSessao.getLbTitulo().setForeground(corLabel);
         operacoesSessao.getLbPesquisar().setForeground(corLabel);
+
+        operacoesSessao.getCadastroSessao().getLbData().setForeground(corLabel);
+        operacoesSessao.getCadastroSessao().getLbHora().setForeground(corLabel);
+        operacoesSessao.getCadastroSessao().getLbFilmes().setForeground(corLabel);
+        operacoesSessao.getCadastroSessao().getLbSalas().setForeground(corLabel);
+        operacoesSessao.getCadastroSessao().getLbTituloTelaSessao().setForeground(corLabel);
+        operacoesSessao.getCadastroSessao().getLbValor().setForeground(corLabel);
+        operacoesSessao.getCadastroSessao().getjPanel1().setBackground(corPanel);
 
         operacoesSala.getCadastroSala().getContentPane().setBackground(corFundo);
         operacoesSala.getCadastroSala().getjPanel1().setBackground(corPanel);
@@ -103,6 +117,14 @@ public class Principal extends javax.swing.JFrame {
         operacoesFilme.getCadastroFilme().getPanelPrincipal().setBackground(corPanel);
         operacoesFilme.getLbTitulo().setForeground(corLabel);
         operacoesFilme.getLbPesquisar().setForeground(corLabel);
+
+        operacoesFilme.getCadastroFilme().getLbTituloTelaFilme().setForeground(corLabel);
+        operacoesFilme.getCadastroFilme().getjPanel1().setBackground(corPanel);
+        operacoesFilme.getCadastroFilme().getLbDescricao().setForeground(corLabel);
+        operacoesFilme.getCadastroFilme().getLbDiretor().setForeground(corLabel);
+        operacoesFilme.getCadastroFilme().getLbGenero().setForeground(corLabel);
+        operacoesFilme.getCadastroFilme().getLbNome().setForeground(corLabel);
+        operacoesFilme.getCadastroFilme().getLbDuracao().setForeground(corLabel);
 
         operacoesVenda.getCadastroVenda().getContentPane().setBackground(corFundo);
 

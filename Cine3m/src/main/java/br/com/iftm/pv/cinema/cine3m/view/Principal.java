@@ -46,7 +46,7 @@ public class Principal extends javax.swing.JFrame {
         operacoesSala = new OperacoesSala(gerenciaSala);
         operacoesVenda = new OperacoesVenda(gerenciaVenda, gerenciaSessao, gerenciaCliente, gerenciaSala, operacoesSessao.getCadastroSessao(), operacoesCliente.getCadastroCliente());
 
-        this.loginFuncionario = new LoginFuncionario(operacoesVenda.getCadastroVenda(), operacoesFuncionario,jMenuBar1);
+        this.loginFuncionario = new LoginFuncionario(operacoesVenda.getCadastroVenda(), operacoesFuncionario, jMenuBar1);
 
         Color corFundo = ParametrosSistema.getInstance().getCorDeFundo();
         Color corPanel = ParametrosSistema.getInstance().getCorPanel();
@@ -85,6 +85,7 @@ public class Principal extends javax.swing.JFrame {
         operacoesSessao.getLbPesquisar().setForeground(corLabel);
 
         operacoesSala.getCadastroSala().getContentPane().setBackground(corFundo);
+        operacoesSala.getCadastroSala().getjPanel1().setBackground(corPanel);
 
         operacoesSala.getLstSalas().setBackground(corFundo);
         operacoesSala.getContentPane().setBackground(corFundo);
@@ -99,6 +100,7 @@ public class Principal extends javax.swing.JFrame {
         operacoesFilme.getContentPane().setBackground(corFundo);
         operacoesFilme.getLstFilmes().setBackground(corPanel);
         operacoesFilme.getPanelBotoes().setBackground(transparent);
+        operacoesFilme.getCadastroFilme().getPanelPrincipal().setBackground(corPanel);
         operacoesFilme.getLbTitulo().setForeground(corLabel);
         operacoesFilme.getLbPesquisar().setForeground(corLabel);
 
@@ -106,7 +108,13 @@ public class Principal extends javax.swing.JFrame {
 
         operacoesVenda.getCadastroVenda().getPanelBotoes().setBackground(corPanel);
         operacoesVenda.getCadastroVenda().getPanelDados().setBackground(corPanel);
+        operacoesVenda.getCadastroVenda().getJpPrincipal().setBackground(corPanel);
         operacoesVenda.getContentPane().setBackground(corFundo);
+        operacoesVenda.getConsultaVenda().getContentPane().setBackground(corFundo);
+        operacoesVenda.getConsultaVenda().getjPanel1().setBackground(corPanel);
+        operacoesVenda.getConsultaVenda().getjPanel2().setBackground(corPanel);
+        operacoesVenda.getConsultaVenda().getjPanel3().setBackground(corPanel);
+        operacoesVenda.getConsultaVenda().getjPanel4().setBackground(corPanel);
         operacoesVenda.getPanelBotoesVenda().setBackground(transparent);
         operacoesVenda.getLbPesquisar().setForeground(corLabel);
         operacoesVenda.getLbTitulo().setForeground(corLabel);

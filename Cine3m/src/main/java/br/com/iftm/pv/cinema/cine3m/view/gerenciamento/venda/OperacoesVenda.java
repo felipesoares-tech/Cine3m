@@ -11,6 +11,7 @@ import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.sessao.CadastroSessao;
 import br.com.iftm.pv.cinema.cine3m.view.gerenciamento.venda.auxiliares.ConsultaVenda;
 import br.com.iftm.pv.cinema.cine3m.view.util.CelulasPersonalizadasList;
 import br.com.iftm.pv.cinema.cine3m.view.util.ListUtils;
+import java.awt.Color;
 import java.awt.Frame;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -70,6 +71,10 @@ public class OperacoesVenda extends javax.swing.JInternalFrame {
     public CadastroVenda getCadastroVenda() {
         return cadastroVenda;
     }
+    
+       public ConsultaVenda getConsultaVenda() {
+        return telaAuxiliarConsultaVenda;
+    }   
 
     private void initComponentsPersonalizado() {
         tfPesquisar.getDocument().addDocumentListener(new DocumentListener() {

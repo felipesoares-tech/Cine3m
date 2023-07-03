@@ -190,7 +190,7 @@
                                   <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="tfSituacaoVenda" max="32767" attributes="0"/>
-                                      <Component id="jLabel6" pref="116" max="32767" attributes="0"/>
+                                      <Component id="jLabel6" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>

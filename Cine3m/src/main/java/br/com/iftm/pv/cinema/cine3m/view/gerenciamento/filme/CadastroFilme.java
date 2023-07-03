@@ -39,6 +39,16 @@ public class CadastroFilme extends ModalInternalFrame {
 
     }
 
+    public JPanel getPanelPrincipal() {
+        return panelPrincipal;
+    }
+
+    public void setPanelPrincipal(JPanel panelPrincipal) {
+        this.panelPrincipal = panelPrincipal;
+    }
+    
+    
+
     public Filme getFilmeSelecionado() {
         return filmeSelecionado;
     }
@@ -72,11 +82,11 @@ public class CadastroFilme extends ModalInternalFrame {
     }
 
     public JPanel getjPanel1() {
-        return jPanel1;
+        return panelPrincipal;
     }
 
     public void setjPanel1(JPanel jPanel1) {
-        this.jPanel1 = jPanel1;
+        this.panelPrincipal = jPanel1;
     }
 
     public JScrollPane getjScrollPane1() {
@@ -162,6 +172,7 @@ public class CadastroFilme extends ModalInternalFrame {
     public void setTfDuracaoFilme(JFormattedTextField tfDuracaoFilme) {
         this.tfDuracaoFilme = tfDuracaoFilme;
     }
+    
 
     private void limpaCampos() {
         tfNomeFilme.setText("");
@@ -173,7 +184,7 @@ public class CadastroFilme extends ModalInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        panelPrincipal = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tfaDescricao = new javax.swing.JTextArea();
         lbGenero = new javax.swing.JLabel();
@@ -237,26 +248,33 @@ public class CadastroFilme extends ModalInternalFrame {
             ex.printStackTrace();
         }
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
+        panelPrincipal.setLayout(panelPrincipalLayout);
+        panelPrincipalLayout.setHorizontalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tfNomeFilme)
             .addComponent(lbNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lbDiretor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tfDiretor)
             .addComponent(cbGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addComponent(lbGenero)
                 .addGap(0, 422, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbDuracao)
-                        .addGap(0, 403, Short.MAX_VALUE)))
+
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGap(192, 192, 192)
+                                .addComponent(btnCadastrarFilme))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lbDuracao)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+
                 .addContainerGap())
             .addComponent(tfDuracaoFilme)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -264,9 +282,9 @@ public class CadastroFilme extends ModalInternalFrame {
                 .addComponent(btnCadastrarFilme)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        panelPrincipalLayout.setVerticalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(lbNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -302,7 +320,7 @@ public class CadastroFilme extends ModalInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbTituloTelaFilme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -312,7 +330,7 @@ public class CadastroFilme extends ModalInternalFrame {
                 .addGap(12, 12, 12)
                 .addComponent(lbTituloTelaFilme)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
@@ -400,7 +418,6 @@ public class CadastroFilme extends ModalInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarFilme;
     private javax.swing.JComboBox<Genero> cbGenero;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbDescricao;
     private javax.swing.JLabel lbDiretor;
@@ -408,6 +425,7 @@ public class CadastroFilme extends ModalInternalFrame {
     private javax.swing.JLabel lbGenero;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbTituloTelaFilme;
+    private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTextField tfDiretor;
     private javax.swing.JFormattedTextField tfDuracaoFilme;
     private javax.swing.JTextField tfNomeFilme;
